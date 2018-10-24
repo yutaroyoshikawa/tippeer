@@ -39,3 +39,26 @@ Route::get( '/foo', function () {
 
     return response()->json( $pitchers );
 } );
+
+Route::get( 'bar', function () {
+
+    $pitchers = collect([
+        [
+            'id'  => '4',
+            'name' => 'hoge',
+            'email'  => 'hoge@sample.com',
+        ],
+        [
+            'id'  => '5',
+            'name' => 'fuga',
+            'email'  => 'fuga@sample.com',
+        ],
+        [
+            'id'  => '6',
+            'name' => 'piyo',
+            'email'  => 'piyo@sample.com',
+        ],
+    ]);
+
+    return response()->json( $pitchers );
+} );
