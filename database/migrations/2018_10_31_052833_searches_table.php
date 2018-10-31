@@ -13,10 +13,31 @@ class SearchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('artists', function (Blueprint $table) {
-            $table -> increments('id') -> comment('主キー');
-            $table -> string('artists') -> comment('ユーザID');
-            $table ->
+        Schema::create('artists_test', function (Blueprint $table) {
+            $table -> increments('id');
+            $table -> string('artist_name');
+            $table -> string('tag');
+        });
+
+        Schema::create('places_test', function (Blueprint $table) {
+            $table -> increments('id');
+            $table -> string('place_name');
+            $table -> string('address');
+        });
+
+        Schema::create('performances_test', function (Blueprint $table) {
+            $table -> increments('id');
+            $table -> string('performance_name');
+            $table -> unsignedInteger('artist_id');
+            $table -> unsignedInteger('place_id');
+
+            $table -> foreign('artist_id')
+                -> references('id')
+                -> on('artists_test');
+
+            $table -> foreign('place_id')
+                -> references('id')
+                -> on('places_test');
         });
     }
 
@@ -27,6 +48,8 @@ class SearchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('performances');
+        Schema::dropIfExists('performances_test');
+        Schema::dropIfExists('artists_test');
+        Schema::dropIfExists('places_test');
     }
 }
