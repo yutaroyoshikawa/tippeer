@@ -6,5 +6,9 @@
 
 {{-- application.blade.phpの@yield('content')に以下のレイアウトを代入 --}}
 @section('content')
-  <h1>ほげ</h1>
+  @foreach ($articles as $article)
+    <h4>{{$article->title}}</h4>
+    <p>{{$article->body}}</p>
+    <hr>
+  @endforeach
 @endsection
