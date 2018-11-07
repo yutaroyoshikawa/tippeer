@@ -39,3 +39,42 @@ Route::get( '/foo', function () {
 
     return response()->json( $pitchers );
 } );
+
+
+Route::get( '/students', function () {
+
+    $students = collect([
+        [
+            'id'  => '1',
+            'name' => 'yutaro',
+            'email'  => 'yutaro@sample.com',
+        ],
+        [
+            'id'  => '2',
+            'name' => 'yusuke',
+            'email'  => 'yusuke@sample.com',
+        ],
+        [
+            'id'  => '3',
+            'name' => 'ryuya',
+            'email'  => 'ryuya@sample.com',
+        ],
+        [
+            'id'  => '4',
+            'name' => 'reiji',
+            'email'  => 'reiji@sample.com',
+        ],
+        [
+            'id'  => '5',
+            'name' => 'ryo',
+            'email'  => 'ryo@sample.com',
+        ],
+        [
+            'id'  => '6',
+            'name' => 'naoki',
+            'email'  => 'naoki@sample.com',
+        ],
+    ]);
+
+    return response()->json( $students );
+} );
