@@ -82,7 +82,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'tipperdbinstance.cra9bcvutwgz.us-east-2.rds.amazonaws.com'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'tipperdb'),
+            'database' => env('DB_DATABASE', 'testdb'),
             'username' => env('DB_USERNAME', 'tipperuser'),
             'password' => env('DB_PASSWORD', '6fQ8wZbB'),
             'charset' => 'utf8',
