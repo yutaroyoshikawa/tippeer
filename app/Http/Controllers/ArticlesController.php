@@ -81,7 +81,15 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // idを元にレコードを検索して$articleに代入
+        $article = Article::find($id);
+        // editで編集されたデータを$articleにそれぞれ代入する
+        $article->title = $request->title;
+        $article->body = $request->body;
+        // 保存
+        $article->save();
+        // 詳細ページへリダイレクト
+        return redirect("/articles/".$id);
     }
 
     /**
