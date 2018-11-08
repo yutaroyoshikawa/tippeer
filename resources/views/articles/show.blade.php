@@ -9,5 +9,6 @@
   <h1>{{$article->title}}</h1>
   <p>{{$article->body}}</p>
   <br><br>
+	<a href="/articles/{{$article->id}}/edit">編集する</a>
   <a href="/articles">一覧に戻る</a>
 @endsection
