@@ -14,6 +14,12 @@
     <p>{{$article->body}}</p>
     <a href="/articles/{{$article->id}}">詳細を表示</a>
     <a href="/articles/{{$article->id}}/edit">編集する</a>
+    <form action="/articles/{{$article->id}}" method="post">
+      {{ csrf_field() }}
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" name="" value="削除する">
+    </form>
+    {{-- <a href="/articles/{{$article->id}}">削除する</a> --}}
     <hr>
   @endforeach
 @endsection
