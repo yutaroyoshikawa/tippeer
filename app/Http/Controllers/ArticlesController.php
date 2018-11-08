@@ -37,7 +37,15 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // モデルからインスタンスを生成
+        $article = new Article;
+        // $requestにformからのデータが格納されているので、以下のようにそれぞれ代入する
+        $article->title = $request->title;
+        $article->body = $request->body;
+        // 保存
+        $article->save();
+        // 保存後 一覧ページへリダイレクト
+        return redirect('/articles');
     }
 
     /**
