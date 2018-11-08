@@ -100,6 +100,11 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // idを元にレコードを検索
+        $article = Article::find($id);
+        // 削除
+        $article->delete();
+        // 一覧にリダイレクト
+        return redirect('/articles');
     }
 }
