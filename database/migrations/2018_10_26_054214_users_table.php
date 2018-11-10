@@ -18,12 +18,12 @@ class UsersTable extends Migration
             $table -> string('name');
             $table -> unsignedInteger('gender_id');
             $table -> string('user_id');
-            $table -> timestamps('birthday');
+            $table -> date('birthday');
             $table -> string('tel');
             $table -> string('icon');
             $table -> unsignedInteger('account_type_id');
             $table -> string('email');
-            $table -> timestamps('registration_date');
+            $table -> date('registration_date');
 
             $table -> index('id');
 

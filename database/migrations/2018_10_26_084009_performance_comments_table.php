@@ -17,7 +17,7 @@ class PerformanceCommentsTable extends Migration
             $table -> increments('id') -> comment('主キー');
             $table -> unsignedInteger('user_id') -> comment('ユーザID');
             $table -> string('content') -> comment('コメント内容');
-            $table -> timestamps('date') -> comment('投稿日');
+            $table -> timestamps() -> comment('投稿日');
 
             $table -> foreign('user_id')
                 -> references('id')

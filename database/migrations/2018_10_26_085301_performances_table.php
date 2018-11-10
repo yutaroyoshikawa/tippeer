@@ -18,7 +18,7 @@ class PerformancesTable extends Migration
             $table -> UnsignedInteger('user_id') -> comment('ユーザID');
             $table -> UnsignedInteger('location_id') -> comment('ロケーションID');
             $table -> timestamps('start') -> comment('パフォーマンス開始時間');
-            $table -> timestamps('finish') -> comment('パフォーマンス終了時間');
+            $table -> timestamps() -> comment('パフォーマンス終了時間');
             $table -> string('thumbnail') -> comment('いいね！');
             $table -> string('description') -> comment('パフォーマンス概要');
             $table -> UnsignedInteger('state_id') -> comment('パフォーマンス申請状態');
