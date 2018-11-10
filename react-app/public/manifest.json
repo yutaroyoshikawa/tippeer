@@ -1,15 +1,26 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TIPPER",
+  "name": "TIPPER アートにもっと出会いを。",
   "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
+      {
+        "src": "icons/icon_76pt.png",
+        "sizes": "76x76",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon_83.5.png",
+        "sizes": "83.5x83.5",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
   ],
-  "start_url": "./index.html",
+  "Scope": "/",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }
