@@ -16,7 +16,7 @@ class CreateLoginHistoriesTable extends Migration
         Schema::create('login_histories', function (Blueprint $table) {
             $table->increments('id')            ->comment('主キー');
             $table->unsignedInteger('user_id')  ->comment('ユーザID');
-            $table->string('ip_address')        ->comment('ログインIPアドレス');
+            $table->ipAddress('ip_address')     ->comment('ログインIPアドレス');
             $table->timestampTz('date')         ->comment('ログイン日時');
 
             $table->index('id');
