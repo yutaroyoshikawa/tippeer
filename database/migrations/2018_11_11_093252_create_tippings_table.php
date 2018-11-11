@@ -18,7 +18,7 @@ class CreateTippingsTable extends Migration
             $table -> unsignedInteger('user_id')    ->comment('ユーザID');
             $table -> unsignedInteger('artist_id')  ->comment('アーティストID');
             $table -> unsignedInteger('value')      ->comment('投げ銭額');
-            $table->timestampTz('date')            ->comment('投げ銭日時');
+            $table->timestampsTz('date')            ->comment('投げ銭日時');
 
             $table->index('id');
         });
