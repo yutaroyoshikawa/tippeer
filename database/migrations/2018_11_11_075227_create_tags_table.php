@@ -14,8 +14,8 @@ class CreateTagsTable extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id') -> comment('主キー');
-            $table->string('name') -> comment('タグ名');
+            $table->increments('id')        ->comment('主キー');
+            $table->string('name')->unique()->comment('タグ名');
 
             $table -> index('id');
         });

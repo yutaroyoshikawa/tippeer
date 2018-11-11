@@ -14,8 +14,8 @@ class CreatePrefecturesTable extends Migration
     public function up()
     {
         Schema::create('prefectures', function (Blueprint $table) {
-            $table->increments('id')        -> comment('主キー');
-            $table->string('prefecture')    -> comment('都道府県名');
+            $table->increments('id')                ->comment('主キー');
+            $table->string('prefecture')->unique()  ->comment('都道府県名');
 
             $table -> index('id');
         });

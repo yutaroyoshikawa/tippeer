@@ -15,7 +15,7 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id')                    -> comment('主キー');
-            $table->string('name')                      -> comment('地名');
+            $table->string('name')->unique()            -> comment('地名');
             $table->unsignedInteger('prefecture_id')    -> comment('都道府県ID');
             $table->string('address')                   -> comment('住所');
             $table->float('latitude')                   -> comment('緯度');
