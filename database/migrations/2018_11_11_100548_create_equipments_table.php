@@ -14,8 +14,8 @@ class CreateEquipmentsTable extends Migration
     public function up()
     {
         Schema::create('equipments', function (Blueprint $table) {
-            $table->increments('id')->comment('主キー');
-            $table->string('name')->comment('設備名');
+            $table->increments('id')    ->comment('主キー');
+            $table->string('name')      ->comment('設備名');
 
             $table->index('id');
         });
