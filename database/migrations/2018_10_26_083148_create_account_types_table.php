@@ -14,8 +14,8 @@ class CreateAccountTypesTable extends Migration
     public function up()
     {
         Schema::create('account_types', function (Blueprint $table) {
-            $table -> increments('id')   -> comment('主キー');
-            $table -> string('account')  -> comment('アカウント種');
+            $table -> increments('id')              ->comment('主キー');
+            $table -> string('account')->unique()   ->comment('アカウント種');
 
             $table -> index('id');
         });

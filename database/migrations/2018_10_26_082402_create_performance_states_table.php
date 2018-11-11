@@ -14,8 +14,8 @@ class CreatePerformanceStatesTable extends Migration
     public function up()
     {
         Schema::create('performance_states', function (Blueprint $table) {
-            $table -> increments('id')   -> comment('主キー');
-            $table -> string('state')    -> comment('パフォーマンス申請状態内容');
+            $table -> increments('id')          ->comment('主キー');
+            $table -> string('state')->unique() ->comment('パフォーマンス申請状態内容');
 
             $table -> index('id');
         });

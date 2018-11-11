@@ -14,8 +14,8 @@ class CreateGendersTable extends Migration
     public function up()
     {
         Schema::create('genders', function (Blueprint $table) {
-            $table->increments('id')    -> comment('主キー');
-            $table->string('gender')    -> comment('性別名');
+            $table->increments('id')            ->comment('主キー');
+            $table->string('gender')->unique()  ->comment('性別名');
 
             $table -> index('id');
         });
