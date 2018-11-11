@@ -16,7 +16,7 @@ class CreateWorksCommentsTable extends Migration
         Schema::create('works_comments', function (Blueprint $table) {
             $table->increments('id')            ->comment('主キー');
             $table->unsignedInteger('user_id')  ->comment('ユーザID');
-            $table->unsignedInteger('score')    ->comment('評価値');
+            $table->unsignedTinyInteger('score')->comment('評価値');
             $table->unsignedInteger('works_id') ->comment('作品ID');
             $table->string('content')           ->comment('コメント内容');
             $table->timestampTz('date')         ->comment('投稿日時');
