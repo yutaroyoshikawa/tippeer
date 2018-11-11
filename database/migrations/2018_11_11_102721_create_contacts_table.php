@@ -19,7 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('title')             ->comment('問い合わせタイトル');
             $table->string('content')           ->comment('問い合わせ本文');
             $table->unsignedInteger('type_id')  ->comment('問い合わせ種ID');
-            $table->timestampsTz('date')        ->comment('問い合わせ日時');
+            $table->timestampTz('date')         ->comment('問い合わせ日時');
 
             $table->index('id');
         });

@@ -17,7 +17,7 @@ class CreatePurchaseHistoriesTable extends Migration
             $table->increments('id')                    ->comment('主キー');
             $table->unsignedInteger('user_id')          ->comment('ユーザID');
             $table->unsignedInteger('works_content_id') ->comment('作品コンテンツID');
-            $table->timestampsTz('date')                ->comment('購買日時');
+            $table->timestampTz('date')                 ->comment('購買日時');
 
             $table->index('id');
         });
