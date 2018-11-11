@@ -17,6 +17,8 @@ class CreateUserTagsTable extends Migration
             $table->increments('id')            -> comment('主キー');
             $table->unsignedInteger('user_id')  -> comment('ユーザID');
             $table->unsignedInteger('tag_id')   -> comment('タグID');
+
+            $table -> index('id');
         });
     }
 
