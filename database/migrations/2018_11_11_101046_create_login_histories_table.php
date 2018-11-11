@@ -17,7 +17,7 @@ class CreateLoginHistoriesTable extends Migration
             $table->increments('id')            ->comment('主キー');
             $table->unsignedInteger('user_id')  ->comment('ユーザID');
             $table->string('ip_address')        ->comment('ログインIPアドレス');
-            $table->timestampsTz('date')        ->comment('ログイン日時');
+            $table->timestampTz('date')        ->comment('ログイン日時');
 
             $table->index('id');
         });

@@ -17,7 +17,7 @@ class CreateSearchHistoriesTable extends Migration
             $table->increments('id')            ->comment('主キー');
             $table->unsignedInteger('user_id')  ->comment('ユーザID');
             $table->string('key_word')          ->comment('検索キーワード');
-            $table->timestampsTz('date')        ->comment('検索日時');
+            $table->timestampTz('date')        ->comment('検索日時');
 
             $table -> index('id');
         });
