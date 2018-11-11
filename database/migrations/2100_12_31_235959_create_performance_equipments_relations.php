@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePerformanceEquipmantsRelations extends Migration
+class CreatePerformanceEquipmentsRelations extends Migration
 {
     /**
      * Run the migrations.
