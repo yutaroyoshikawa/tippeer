@@ -14,11 +14,11 @@ class CreateWorksContentsTable extends Migration
     public function up()
     {
         Schema::create('works_contents', function (Blueprint $table) {
-            $table->increments('id')            ->comment('主キー');
-            $table->unsignedInteger('works_id') ->comment('作品ID');
-            $table->string('name')              ->comment('作品名');
-            $table->integer('price')            ->comment('価格');
-            $table->string('data_url')          ->comment('データURL');
+            $table->increments('id')                            ->comment('主キー');
+            $table->unsignedInteger('works_id')->nullable(false)->comment('作品ID');
+            $table->string('name')->nullable(false)             ->comment('作品名');
+            $table->integer('price')->nullable(false)           ->comment('価格');
+            $table->string('data_url')->nullable(false)         ->comment('データURL');
 
             $table->index('id');
         });

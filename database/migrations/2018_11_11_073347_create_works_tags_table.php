@@ -14,9 +14,9 @@ class CreateWorksTagsTable extends Migration
     public function up()
     {
         Schema::create('works_tags', function (Blueprint $table) {
-            $table->increments('id')            -> comment('主キー');
-            $table->unsignedInteger('user_id')  -> comment('アーティストID');
-            $table->unsignedInteger('tag_id')   -> comment('タグID');
+            $table->increments('id')                            -> comment('主キー');
+            $table->unsignedInteger('user_id')->nullable(false) -> comment('アーティストID');
+            $table->unsignedInteger('tag_id')->nullable(false)  -> comment('タグID');
 
             $table -> index('id');
         });

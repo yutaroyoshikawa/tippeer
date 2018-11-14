@@ -14,9 +14,9 @@ class CreateSubscribeArtistsTable extends Migration
     public function up()
     {
         Schema::create('subscribe_artists', function (Blueprint $table) {
-            $table->increments('id')            ->cocmment('主キー');
-            $table->unsignedInteger('user_id')  ->comment('ユーザID');
-            $table->unsignedInteger('artist_id')->comment('アーティストID');
+            $table->increments('id')                                ->cocmment('主キー');
+            $table->unsignedInteger('user_id')->nullable(false)     ->comment('ユーザID');
+            $table->unsignedInteger('artist_id')->nullable(false)   ->comment('アーティストID');
 
             $table->index('id');
         });

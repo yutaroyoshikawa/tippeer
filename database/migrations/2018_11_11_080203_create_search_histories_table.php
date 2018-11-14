@@ -14,10 +14,10 @@ class CreateSearchHistoriesTable extends Migration
     public function up()
     {
         Schema::create('search_histories', function (Blueprint $table) {
-            $table->increments('id')            ->comment('主キー');
-            $table->unsignedInteger('user_id')  ->comment('ユーザID');
-            $table->string('key_word')          ->comment('検索キーワード');
-            $table->timestampTz('date')         ->comment('検索日時');
+            $table->increments('id')                            ->comment('主キー');
+            $table->unsignedInteger('user_id')->nullable(false) ->comment('ユーザID');
+            $table->string('key_word')->nullable(false)         ->comment('検索キーワード');
+            $table->timestampTz('date')->nullable(false)        ->comment('検索日時');
 
             $table -> index('id');
         });

@@ -14,8 +14,8 @@ class CreateContactTypesTable extends Migration
     public function up()
     {
         Schema::create('contact_types', function (Blueprint $table) {
-            $table->increments('id')        ->comment('主キー');
-            $table->string('name')->unique()->comment('問い合わせ種名');
+            $table->increments('id')                            ->comment('主キー');
+            $table->string('name')->unique()->nullable(false)   ->comment('問い合わせ種名');
 
             $table->index('id');
         });

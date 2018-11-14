@@ -14,9 +14,9 @@ class CreatePerformanceEquipmentsTable extends Migration
     public function up()
     {
         Schema::create('performance_equipments', function (Blueprint $table) {
-            $table->increments('id')                    ->comment('主キー');
-            $table->unsignedInteger('performance_id')   ->comment('パフォーマンスID');
-            $table->unsignedInteger('equipment_id')     ->comment('使用設備ID');
+            $table->increments('id')                                    ->comment('主キー');
+            $table->unsignedInteger('performance_id')->nullable(false)  ->comment('パフォーマンスID');
+            $table->unsignedInteger('equipment_id')->nullable(false)    ->comment('使用設備ID');
 
             $table->index('id');
         });

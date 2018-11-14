@@ -14,10 +14,10 @@ class CreateLoginHistoriesTable extends Migration
     public function up()
     {
         Schema::create('login_histories', function (Blueprint $table) {
-            $table->increments('id')            ->comment('主キー');
-            $table->unsignedInteger('user_id')  ->comment('ユーザID');
-            $table->ipAddress('ip_address')     ->comment('ログインIPアドレス');
-            $table->timestampTz('date')         ->comment('ログイン日時');
+            $table->increments('id')                            ->comment('主キー');
+            $table->unsignedInteger('user_id')->nullable(false) ->comment('ユーザID');
+            $table->ipAddress('ip_address')->nullable(false)    ->comment('ログインIPアドレス');
+            $table->timestampTz('date')->nullable(false)        ->comment('ログイン日時');
 
             $table->index('id');
         });

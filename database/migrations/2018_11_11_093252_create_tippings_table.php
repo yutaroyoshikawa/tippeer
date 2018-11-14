@@ -14,11 +14,11 @@ class CreateTippingsTable extends Migration
     public function up()
     {
         Schema::create('tippings', function (Blueprint $table) {
-            $table->increments('id')              ->comment('主キー');
-            $table->unsignedInteger('user_id')    ->comment('ユーザID');
-            $table->unsignedInteger('artist_id')  ->comment('アーティストID');
-            $table->unsignedInteger('value')      ->comment('投げ銭額');
-            $table->timestampTz('date')           ->comment('投げ銭日時');
+            $table->increments('id')                                ->comment('主キー');
+            $table->unsignedInteger('user_id')->nullable(false)     ->comment('ユーザID');
+            $table->unsignedInteger('artist_id')->nullable(false)   ->comment('アーティストID');
+            $table->unsignedInteger('value')->nullable(false)       ->comment('投げ銭額');
+            $table->timestampTz('date')->nullable(false)            ->comment('投げ銭日時');
 
             $table->index('id');
         });
