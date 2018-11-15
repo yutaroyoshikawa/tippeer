@@ -16,7 +16,7 @@ class SearchesTable extends Migration
         Schema::create('artists_test', function (Blueprint $table) {
             $table -> increments('id');
             $table -> string('artist_name');
-            $table -> string('tag');
+            $table -> string('twitter_id');
         });
 
         Schema::create('places_test', function (Blueprint $table) {
@@ -30,6 +30,7 @@ class SearchesTable extends Migration
             $table -> string('performance_name');
             $table -> unsignedInteger('artist_id');
             $table -> unsignedInteger('place_id');
+            $table -> string('tag');
 
             $table -> foreign('artist_id')
                 -> references('id')

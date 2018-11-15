@@ -27,14 +27,14 @@ class UsersTable extends Migration
 
             $table -> index('id');
 
-            $table -> foreign('gender_id')
-                -> references('id')
-                -> on('genders');
-
-            $table -> foreign('account_type_id')
-                -> references('id')
-                -> on('account_types');
-        }
+//            $table -> foreign('gender_id')
+//                -> references('id')
+//                -> on('genders');
+//
+//            $table -> foreign('account_type_id')
+//                -> references('id')
+//                -> on('account_types');
+        });
     }
 
     /**

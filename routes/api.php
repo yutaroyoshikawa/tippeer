@@ -17,25 +17,29 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::get( '/foo', function () {
+//Route::get( '/foo', function () {
+//
+//    $pitchers = collect([
+//        [
+//            'id'  => '1',
+//            'name' => 'first',
+//            'email'  => 'hoge@sample.com',
+//        ],
+//        [
+//            'id'  => '2',
+//            'name' => 'second',
+//            'email'  => 'fuga@sample.com',
+//        ],
+//        [
+//            'id'  => '3',
+//            'name' => 'third',
+//            'email'  => 'piyo@sample.com',
+//        ],
+//    ]);
+//
+//    return response()->json( $pitchers );
+//} );
 
-    $pitchers = collect([
-        [
-            'id'  => '1',
-            'name' => 'first',
-            'email'  => 'hoge@sample.com',
-        ],
-        [
-            'id'  => '2',
-            'name' => 'second',
-            'email'  => 'fuga@sample.com',
-        ],
-        [
-            'id'  => '3',
-            'name' => 'third',
-            'email'  => 'piyo@sample.com',
-        ],
-    ]);
-
-    return response()->json( $pitchers );
-} );
+Route::group(['middleware' => ['api']], function(){
+    Route::resource('Search', 'SearchController', ['except' => ['create', 'edit']]);
+});
