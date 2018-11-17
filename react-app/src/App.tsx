@@ -1,7 +1,7 @@
 import createHistory from 'history/createBrowserHistory';
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import GlobalMenu from './layouts/globalMenu'
 import { buildStore } from './store';
 
