@@ -56,7 +56,7 @@ export default class extends React.Component<IProps, IState> {
         return(
             <li>
                 <button onClick={this.clickMenu}>
-                <FontAwesomeIcon icon={this.state.mark} style={{width: '50px', height: '50px'}} />
+                <FontAwesomeIcon icon={this.state.mark} style={{width: '40px', height: '40px'}} />
                 </button>
                 {this.renderMenu()}
             </li>

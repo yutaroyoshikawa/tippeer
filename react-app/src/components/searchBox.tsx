@@ -28,17 +28,19 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <li>
-                <form>
-                    <button>
-                        <FontAwesomeIcon icon={faSearch}  style={{width: '50px', height: '50px'}}/>
+                <form style={{border: 'solid 0.5px #555', borderRadius: '35px', padding: '5px', width: '700px'}}>
+                    <button style={{padding: '3px'}}>
+                        <FontAwesomeIcon icon={faSearch}  style={{width: '20px', height: '20px'}}/>
                     </button>
                     <input
                         type="text"
                         value={this.state.searchWord}
                         onChange={this.setSearchWordState}
+                        style={{margin: '0px 10px'}}
                     />
                 </form>
             </li>
         )
     }
 }
+
