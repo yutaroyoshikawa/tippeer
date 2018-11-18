@@ -1,4 +1,5 @@
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import { Dispatch } from 'redux'
@@ -11,18 +12,28 @@ interface IProps extends IUserMenuState {
 
 interface IState {
     openState: boolean;
+    mark: any;
 }
 
 export default class extends React.Component<IProps, IState> {
     constructor(props: IProps){
         super(props);
+
+        this.state = {
+            mark: faUserCircle,
+            openState: false,
+        }
     }
 
     public clickMenu = (): void => {
-        this.props.userMenu[0].openState ?
+        if(this.props.userMenu[0].openState) {
             this.props.dispatch(actions.closeMenu())
-        :
+            this.setState({mark: faUserCircle})
+        }else{
             this.props.dispatch(actions.openMenu())
+            this.setState({mark: faTimes})
+        }
+            
     }
 
     public renderMenu = () => (
@@ -44,7 +55,9 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <li>
-                <span onClick={this.clickMenu}><FontAwesomeIcon icon={faUserCircle}  style={{width: '50px', height: '50px', cursor: 'pointer'}}/></span>
+                <button onClick={this.clickMenu}>
+                <FontAwesomeIcon icon={this.state.mark} style={{width: '50px', height: '50px'}} />
+                </button>
                 {this.renderMenu()}
             </li>
         )

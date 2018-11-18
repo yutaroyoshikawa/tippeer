@@ -20,7 +20,9 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <li>
-                <ReactSVG src={TipperIcon} svgStyle={{ width: 50 }} />
+                <button>
+                    <ReactSVG src={TipperIcon} svgStyle={{ width: 50 }} />
+                </button>
             </li>
         )
     }

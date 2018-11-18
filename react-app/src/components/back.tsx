@@ -6,7 +6,9 @@ export default class extends React.Component<{}, {}> {
     public render() {
         return(
             <li>
-                <FontAwesomeIcon icon={faChevronLeft} style={{width: '50px', height: '50px', cursor: 'pointer'}} />
+                <button>
+                <FontAwesomeIcon icon={faChevronLeft} style={{width: '50px', height: '50px'}} />
+                </button>
             </li>
         )
     }
