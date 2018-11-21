@@ -14,7 +14,7 @@ class CreateWorksTable extends Migration
     public function up()
     {
         $thumbnailUrl='';
-        Schema::create('works', function (Blueprint $table) {
+        Schema::create('works', function (Blueprint $table) use($thumbnailUrl) {
             $table->increments('id')            -> comment('主キー');
             $table->string('title')->nullable(false)                            -> comment('作品名');
             $table->unsignedInteger('user_id')->nullable(false)                 -> comment('アーティストID');

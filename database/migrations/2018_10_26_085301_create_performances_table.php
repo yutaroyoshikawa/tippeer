@@ -14,7 +14,7 @@ class CreatePerformancesTable extends Migration
     public function up()
     {
         $thumbnailUrl = '';
-        Schema::create('performances', function (Blueprint $table) {
+        Schema::create('performances', function (Blueprint $table) use($thumbnailUrl) {
             $table -> increments('id')                                              -> comment('主キー');
             $table -> UnsignedInteger('user_id')->nullable(false)                   -> comment('ユーザID');
             $table -> UnsignedInteger('location_id')->nullable(false)               -> comment('ロケーションID');
