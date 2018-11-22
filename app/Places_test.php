@@ -24,4 +24,7 @@ class Places_test extends Model
         return $this -> hasMany('App\Performances_test');
     }
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4db33aa87bde0dd77e535a690ea2b96919e2bb97

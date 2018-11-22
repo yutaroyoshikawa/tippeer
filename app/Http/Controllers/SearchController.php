@@ -14,7 +14,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        //
+        //gitむずかしいね。
     }
 
     /**

@@ -13,7 +13,11 @@ class Artists_test extends Model
     public $timestamps = false;
 
     protected $fillable = [
+<<<<<<< HEAD
+        'artist_name', 'twitter_id'
+=======
         'artist_name','twitter_id'
+>>>>>>> 4db33aa87bde0dd77e535a690ea2b96919e2bb97
     ];
 
     /**
