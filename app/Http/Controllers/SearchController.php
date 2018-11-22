@@ -14,9 +14,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        echo 'index';
-//        $result = Search::search();
-//        return $result;
+        //gitむずかしいね。
     }
 
     /**
@@ -35,7 +33,6 @@ class SearchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         //
@@ -44,7 +41,7 @@ class SearchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Search  $search
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
@@ -74,7 +71,7 @@ class SearchController extends Controller
      * @param  \App\Search  $search
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Search $search)
     {
         //
     }
@@ -86,7 +83,7 @@ class SearchController extends Controller
      * @param  \App\Search  $search
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Search $search)
     {
         //
     }
@@ -97,7 +94,7 @@ class SearchController extends Controller
      * @param  \App\Search  $search
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Search $search)
     {
         //
     }

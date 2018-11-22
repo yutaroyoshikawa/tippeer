@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+<<<<<<< HEAD
 //Route::get( '/foo', function () {
 //
 //    $pitchers = collect([
@@ -42,4 +43,9 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['api']], function(){
     Route::resource('Search', 'SearchController', ['except' => ['create', 'edit']]);
+=======
+
+Route::group(['middleware' => ['api']], function(){
+    Route::get('search', 'SearchController@show');
+>>>>>>> 4db33aa87bde0dd77e535a690ea2b96919e2bb97
 });

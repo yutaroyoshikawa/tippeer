@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 /* すべてのActionをインポート */
@@ -42,3 +43,9 @@ export default reducerWithInitialState(initialReduceTodoState)
     )
   }))
   .build();
+=======
+import { combineReducers } from 'redux';
+
+export default combineReducers({
+});
+>>>>>>> 4db33aa87bde0dd77e535a690ea2b96919e2bb97

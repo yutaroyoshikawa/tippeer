@@ -33,6 +33,10 @@ class Performances_test extends Model
     }
 
     public function performance_details() {
+<<<<<<< HEAD
         $details = \DB::$table('performances_test')->get();
+=======
+//        $details = \DB::$table('performances_test')->get();
+>>>>>>> 4db33aa87bde0dd77e535a690ea2b96919e2bb97
     }
 }
