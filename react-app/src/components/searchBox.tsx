@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { ISearchBoxState } from 'src/reducers/searchBox'
 
-interface IProps extends ISearchBoxState {
+export interface IProps extends ISearchBoxState {
     dispatch: Dispatch<any>;
 }
 

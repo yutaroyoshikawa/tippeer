@@ -6,7 +6,7 @@ import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
 import * as actions from '../actions/userMenu'
 
-interface IProps extends IUserMenuState {
+export interface IProps extends IUserMenuState {
     dispatch: Dispatch<any>;
 }
 

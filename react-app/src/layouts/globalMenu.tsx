@@ -5,7 +5,7 @@ import { IGlobalMenuState } from 'src/reducers/globalMenu';
 import * as actions from '../actions/globalMenu'
 import { Back, SearchBox, TipperLogo, UserMenu } from '../components'
 
-interface IProps extends IGlobalMenuState {
+export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>;
 }
 

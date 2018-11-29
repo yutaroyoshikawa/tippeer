@@ -5,7 +5,7 @@ import { IGlobalMenuState } from 'src/reducers/globalMenu'
 import TipperIcon from '../TipperIcon.svg'
 import TipperLogo from '../TipperLogo.svg'
 
-interface IProps extends IGlobalMenuState {
+export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>;
 }
 
