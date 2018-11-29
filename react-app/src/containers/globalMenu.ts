@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import globalMenu from '../layouts/globalMenu'
-import { IGlobalMenuState } from '../reducers/globalMenu'
+import globalMenu, { IProps } from '../layouts/globalMenu'
+import { buildStore } from '../store'
 
-interface IStore {
-    globalMenu: IGlobalMenuState
-}
+const store = buildStore()
+type AllState = ReturnType<typeof store.getState>
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: AllState) => {
     return {
         globalMenu: state.globalMenu.globalMenu,
         tipperLogo: state.globalMenu.tipperLogo
@@ -15,4 +14,4 @@ const mapStateToProps = (state: IStore) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
 
-export const GlobalMenu = connect(mapStateToProps, mapDispatchToProps)(globalMenu)
+export const GlobalMenu = connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(globalMenu) as React.ComponentClass

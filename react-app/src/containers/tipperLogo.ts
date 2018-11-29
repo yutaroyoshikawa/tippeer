@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import tipperLogo from '../components/tipperLogo'
-import { IGlobalMenuState } from '../reducers/globalMenu'
+import tipperLogo, { IProps } from '../components/tipperLogo'
+import {buildStore} from '../store'
 
-interface IStore {
-    globalMenu: IGlobalMenuState
-}
+const store = buildStore()
+type AllState = ReturnType<typeof store.getState>
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: AllState) => {
     return {
         globalMenu: state.globalMenu.globalMenu,
         tipperLogo: state.globalMenu.tipperLogo
@@ -15,4 +14,4 @@ const mapStateToProps = (state: IStore) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
 
-export const TipperLogo = connect(mapStateToProps, mapDispatchToProps)(tipperLogo)
+export const TipperLogo = connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(tipperLogo) as React.ComponentClass
