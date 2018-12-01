@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import globalMenu, { IProps } from '../layouts/globalMenu'
-import { buildStore } from '../store'
+import mobileMenu, { IProps } from '../components/mobileMenu'
+import {buildStore} from '../store'
 
 const store = buildStore()
 type AllState = ReturnType<typeof store.getState>
@@ -15,4 +15,4 @@ const mapStateToProps = (state: AllState) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
 
-export const GlobalMenu = connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(globalMenu) as React.ComponentClass
+export const MobileMenu = connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(mobileMenu) as React.ComponentClass

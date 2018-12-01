@@ -6,13 +6,20 @@ import { ITipperLogo } from './tipperLogo';
 const uaParser = new UAParser()
 const getDevice = uaParser.getDevice().type
 
+export type tabType = 'library' | 'search' | 'tipping' | 'works' | 'none'
+
 interface IGlobalMenu {
     agent: string
+}
+
+interface IMobileMenu {
+    tabState: tabType
 }
 
 export interface IGlobalMenuState {
     globalMenu: IGlobalMenu[]
     tipperLogo: ITipperLogo[]
+    mobileMenu: IMobileMenu
 }
 
 const initialReduceUserMenuState: IGlobalMenuState = {
@@ -21,11 +28,13 @@ const initialReduceUserMenuState: IGlobalMenuState = {
             agent: '',
         }
     ],
+    mobileMenu: {tabState: 'none'},
     tipperLogo: [
         {
             url: '',
         }
-    ]
+    ],
+    
 }
 
 const getAgentInfo = (data: IGlobalMenu[]):IGlobalMenu[] => (
@@ -43,5 +52,9 @@ export default reducerWithInitialState(initialReduceUserMenuState)
     .case(actions.getAgentInfo, (state: IGlobalMenuState) => ({
         ...state,
         globalMenu: getAgentInfo(state.globalMenu)
+    }))
+    .case(actions.setMobileMenuState, (state: IGlobalMenuState, payload) => ({
+        ...state,
+        mobileMenu: payload
     }))
     .build()
