@@ -5,15 +5,13 @@ interface ISearchBox {
 }
 
 export interface ISearchBoxState {
-    searchBox: ISearchBox[]
+    searchBox: ISearchBox
 }
 
 const initialReduceUserMenuState: ISearchBoxState = {
-    searchBox: [
-        {
+    searchBox: {
             searchWord: '',
         }
-    ]
 }
 
 export default reducerWithInitialState(initialReduceUserMenuState)
