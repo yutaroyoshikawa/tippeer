@@ -9,6 +9,7 @@ type AllState = ReturnType<typeof store.getState>
 const mapStateToProps = (state: AllState) => {
     return {
         globalMenu: state.globalMenu.globalMenu,
+        mobileMenu: state.globalMenu.mobileMenu,
         tipperLogo: state.globalMenu.tipperLogo
     }
 }
