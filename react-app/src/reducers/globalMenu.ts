@@ -17,41 +17,22 @@ interface IMobileMenu {
 }
 
 export interface IGlobalMenuState {
-    globalMenu: IGlobalMenu[]
-    tipperLogo: ITipperLogo[]
+    globalMenu: IGlobalMenu
+    tipperLogo: ITipperLogo
     mobileMenu: IMobileMenu
 }
 
 const initialReduceUserMenuState: IGlobalMenuState = {
-    globalMenu: [
-        {
-            agent: '',
-        }
-    ],
+    globalMenu: {agent: ''},
     mobileMenu: {tabState: 'none'},
-    tipperLogo: [
-        {
-            url: '',
-        }
-    ],
+    tipperLogo: {url: ''},
     
 }
-
-const getAgentInfo = (data: IGlobalMenu[]):IGlobalMenu[] => (
-    data.map((task) => {
-        !getDevice ?
-            task.agent = 'undefined'
-        :
-            task.agent = getDevice.toString()
-        
-      return task
-    })
-)
 
 export default reducerWithInitialState(initialReduceUserMenuState)
     .case(actions.getAgentInfo, (state: IGlobalMenuState) => ({
         ...state,
-        globalMenu: getAgentInfo(state.globalMenu)
+        globalMenu: {agent: !getDevice ? 'undefined' : getDevice.toString()}
     }))
     .case(actions.setMobileMenuState, (state: IGlobalMenuState, payload) => ({
         ...state,
