@@ -18,7 +18,7 @@ export default class extends React.Component<IProps, {}> {
         super(props);
     }
     public renderTipper = () => (
-        this.props.globalMenu[0].agent === 'mobile' || this.props.globalMenu[0].agent === 'tablet' ?
+        this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
             <img src={TipperLogo} style={{ width: '120px'}} />
         :
             <img src={TipperIcon} style={{ width: '40px' }} />

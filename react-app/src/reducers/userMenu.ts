@@ -6,38 +6,22 @@ interface IUserMenu {
 }
 
 export interface IUserMenuState {
-    userMenu: IUserMenu[];
+    userMenu: IUserMenu;
 }
 
 const initialReduceUserMenuState: IUserMenuState = {
-    userMenu: [
-        {
+    userMenu: {
             openState: false,
         }
-    ]
 }
-
-const openMenu = (data: IUserMenu[]): IUserMenu[] => (
-    data.map((task) => {
-          task.openState = true
-        return task;
-      })
-)
-
-const closeMenu = (data: IUserMenu[]): IUserMenu[] => (
-    data.map((menu) => {
-          menu.openState = false
-        return menu;
-      })
-)
 
 export default reducerWithInitialState(initialReduceUserMenuState)
     .case(actions.openMenu, (state: IUserMenuState) => ({
         ...state,
-        userMenu: openMenu(state.userMenu)
+        userMenu: {openState: true}
     }))
     .case(actions.closeMenu, (state: IUserMenuState) => ({
         ...state,
-        userMenu: closeMenu(state.userMenu)
+        userMenu: {openState: false}
     }))
     .build()

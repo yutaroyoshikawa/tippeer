@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import tipperLogo, { IProps } from '../components/tipperLogo'
+import mobileMenu, { IProps } from '../components/mobileMenu'
 import {buildStore} from '../store'
 
 const store = buildStore()
@@ -15,4 +15,4 @@ const mapStateToProps = (state: AllState) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
 
-export const TipperLogo = connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(tipperLogo) as React.ComponentClass
+export const MobileMenu = connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(mobileMenu) as React.ComponentClass

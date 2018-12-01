@@ -26,7 +26,7 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public clickMenu = (): void => {
-        if(this.props.userMenu[0].openState) {
+        if(this.props.userMenu.openState) {
             this.props.dispatch(actions.closeMenu())
             this.setState({mark: faUserCircle})
         }else{
@@ -37,8 +37,8 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public renderMenu = () => (
-        this.props.userMenu[0].openState ?
-                <nav　style={{width: '180px', height: '180px', position: 'absolute', left: '50%', top: '50%', marginTop: '-90px', marginLeft: '-90px'}}>
+        this.props.userMenu.openState ?
+                <nav　style={{width: '180px', height: '180px', position: 'absolute', left: '50%', top: innerHeight/2, marginTop: '-90px', marginLeft: '-90px'}}>
                     <ul>
                         <li>ユーザ情報変更</li>
                         <li>ログアウト</li>
@@ -55,7 +55,7 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <li>
-                <button onClick={this.clickMenu}>
+                <button onClick={this.clickMenu.bind(this,)}>
                 <FontAwesomeIcon icon={this.state.mark} style={{width: '40px', height: '40px'}} />
                 </button>
                 {this.renderMenu()}
