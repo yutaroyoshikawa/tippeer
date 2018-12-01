@@ -1,9 +1,8 @@
 import * as React from 'react'
-
 import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu';
 import * as actions from '../actions/globalMenu'
-import { Back, SearchBox, TipperLogo, UserMenu } from '../components'
+import { Back, MobileMenu, SearchBox, TipperLogo, UserMenu } from '../components'
 
 export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>;
@@ -24,13 +23,16 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
 
     public renderLeyout = () => (
         this.props.globalMenu[0].agent === 'mobile' || this.props.globalMenu[0].agent === 'tablet' ?
-            <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none'}}>
-                <Back />
-                <TipperLogo/>
-                <UserMenu />
-            </ul>
+            <div>
+                <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px -5px 20px 0px rgba(0,0,0,0.4)', position: 'fixed', width: '100%', height: '50px'}}>
+                    <Back />
+                    <TipperLogo/>
+                    <UserMenu />
+                </ul>
+                <MobileMenu />
+            </div>
         :
-            <ul style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', listStyle: 'none'}}>
+            <ul style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.4)'}}>
                 <TipperLogo/>
                 <SearchBox />
                 <UserMenu />
@@ -39,7 +41,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <nav style={{padding: '5px', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.4)'}}>
+            <nav>
                 {this.renderLeyout()}
             </nav>
         )
