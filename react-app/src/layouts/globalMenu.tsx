@@ -24,7 +24,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
     public renderLeyout = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
             <div>
-                <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px -5px 20px 0px rgba(0,0,0,0.4)', position: 'fixed', width: '100%', height: '50px'}}>
+                <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px -5px 20px 0px rgba(0,0,0,0.4)'}}>
                     <Back />
                     <TipperLogo/>
                     <UserMenu />
@@ -41,7 +41,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <nav>
+            <nav style={{position: 'fixed', width: '100%', height: '50px'}}>
                 {this.renderLeyout()}
             </nav>
         )
