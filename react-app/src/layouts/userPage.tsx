@@ -21,7 +21,7 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <section style={{margin: '50px 0'}}>
+            <section>
                 hoge
             </section>
         )
