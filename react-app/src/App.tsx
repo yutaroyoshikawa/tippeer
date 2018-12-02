@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import 'ress'
-import { PrivacyPolicy, UserPage } from './components'
+import { Faq, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
 import { buildStore } from './store';
 
@@ -19,8 +19,11 @@ class App extends React.Component {
                     <div>
                         <GlobalMenu />
                         <Switch>
+                            <div style={{padding: '50px 0'}}>
+                            <Route exact={true} path='/faq' component={Faq} />
                             <Route exact={true} path='/privacypolicy' component={PrivacyPolicy} />
                             <Route exact={true} path='/' component={UserPage} />
+                            </div>
                         </Switch>
                     </div>
                 </Router>
