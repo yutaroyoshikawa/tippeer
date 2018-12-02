@@ -24,7 +24,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
     public renderLeyout = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
             <div>
-                <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px -5px 20px 0px rgba(0,0,0,0.4)'}}>
+                <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px -5px 20px 0px rgba(0,0,0,0.4)', backgroundColor: 'white'}}>
                     <Back />
                     <TipperLogo/>
                     <UserMenu />
@@ -32,7 +32,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
                 <MobileMenu />
             </div>
         :
-            <ul style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.4)'}}>
+            <ul style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', listStyle: 'none', padding: '5px', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.4)', backgroundColor: 'white'}}>
                 <TipperLogo/>
                 <SearchBox />
                 <UserMenu />
@@ -41,7 +41,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <nav style={{position: 'fixed', width: '100%', height: '50px'}}>
+            <nav style={{position: 'fixed', width: '100%', height: '50px',zIndex: 'auto', top: '0px'}}>
                 {this.renderLeyout()}
             </nav>
         )
