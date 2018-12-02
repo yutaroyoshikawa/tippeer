@@ -2,47 +2,37 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
 import * as actions from '../actions/userMenu'
+
 
 export interface IProps extends IUserMenuState {
     dispatch: Dispatch<any>;
 }
 
-interface IState {
-    openState: boolean;
-    mark: any;
-}
-
-export default class extends React.Component<IProps, IState> {
+export default class extends React.Component<IProps, {}> {
     constructor(props: IProps){
         super(props);
-
-        this.state = {
-            mark: faUserCircle,
-            openState: false,
-        }
     }
 
     public clickMenu = (): void => {
         if(this.props.userMenu.openState) {
             this.props.dispatch(actions.closeMenu())
-            this.setState({mark: faUserCircle})
         }else{
             this.props.dispatch(actions.openMenu())
-            this.setState({mark: faTimes})
         }
             
     }
 
     public renderMenu = () => (
         this.props.userMenu.openState ?
-                <nav　style={{width: '180px', height: '180px', position: 'absolute', left: '50%', top: innerHeight/2, marginTop: '-90px', marginLeft: '-90px'}}>
+                <nav　style={{width: '180px', height: '180px', position: 'absolute', left: '50%', top: innerHeight/2, marginTop: '-90px', marginLeft: '-90px', backgroundColor: 'white'}}>
                     <ul>
                         <li>ユーザ情報変更</li>
                         <li>ログアウト</li>
-                        <li>プライバシーポリシ</li>
+                        <li><Link to='/privacypolicy' onClick={this.clickMenu.bind(this,)}>プライバシーポリシ</Link></li>
                         <li>退会</li>
                         <li>よくある質問</li>
                     </ul>
@@ -56,7 +46,7 @@ export default class extends React.Component<IProps, IState> {
         return(
             <li>
                 <button onClick={this.clickMenu.bind(this,)}>
-                <FontAwesomeIcon icon={this.state.mark} style={{width: '40px', height: '40px'}} />
+                <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
                 </button>
                 {this.renderMenu()}
             </li>
