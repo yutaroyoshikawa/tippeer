@@ -34,7 +34,7 @@ export default class extends React.Component<IProps, {}> {
                         <li>ログアウト</li>
                         <li><Link to='/privacypolicy' onClick={this.clickMenu.bind(this,)}>プライバシーポリシ</Link></li>
                         <li>退会</li>
-                        <li>よくある質問</li>
+                        <li><Link to='/faq' onClick={this.clickMenu.bind(this,)}>よくある質問</Link></li>
                     </ul>
                     <p><small>TIPPER&copy; all rights reserved</small></p>
                 </nav>

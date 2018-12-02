@@ -21,7 +21,7 @@ export default class extends React.Component<IProps, {}> {
     )
 
     public privacyPolicy = () => (
-        <div>
+        <div style={{width: '90%', margin: '0 auto'}}>
             <p>TIPPER（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
             <dl>
                 <dt>第1条（プライバシー情報）</dt>
@@ -152,8 +152,10 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <section style={{width: '100%', margin: '0 auto', padding: '80px 20px', backgroundColor: 'white'}}>
-                <ArticleTitle title={'プライバシーポリシー'}/>
+            <section style={{width: '100%', margin: '0 auto', backgroundColor: 'white'}}>
+                <div style={{width: '90%', margin: '20px'}}>
+                    <ArticleTitle title={'プライバシーポリシー'} />
+                </div>
                 {this.privacyPolicy()}
             </section>
         )
