@@ -21,7 +21,7 @@ export default class extends React.Component<IProps, {}> {
     
     public render() {
         return(
-            <ul style={{display: 'flex', justifyContent: 'space-around', alignContent: 'space-between', listStyle: 'none', boxShadow: '0px 5px 20px 0px rgba(0,0,0,0.4)', position: 'fixed', bottom: '0', width: '100%', height: '50px'}}>
+            <ul style={{display: 'flex', justifyContent: 'space-around', alignContent: 'space-between', listStyle: 'none', boxShadow: '0px 5px 20px 0px rgba(0,0,0,0.4)', position: 'fixed', bottom: '0', width: '100%', height: '50px', backgroundColor: 'white'}}>
                 <li className={this.props.mobileMenu.tabState === 'search'? 'active' : 'inactive'} style={{textAlign: 'center', fontSize: '10px', display: 'flex'}}><button onClick={this.setTabState.bind(this, 'search')} ><span style={{display:'block'}}><FontAwesomeIcon icon={faSearch} style={{width: '20px', height: '20px'}} /></span>Search</button></li>
                 <li className={this.props.mobileMenu.tabState === 'tipping'? 'active' : 'inactive'} style={{textAlign: 'center', fontSize: '10px', display: 'flex'}}><button onClick={this.setTabState.bind(this, 'tipping')}><span style={{display:'block'}}><FontAwesomeIcon icon={faMoneyBill} style={{width: '20px', height: '20px'}} /></span>Tipping</button></li>
                 <li className={this.props.mobileMenu.tabState === 'works'? 'active' : 'inactive'} style={{textAlign: 'center', fontSize: '10px', display: 'flex'}}><button onClick={this.setTabState.bind(this, 'works')}><span style={{display:'block'}}><FontAwesomeIcon icon={faPaintBrush} style={{width: '20px', height: '20px'}} /></span>Works</button></li>

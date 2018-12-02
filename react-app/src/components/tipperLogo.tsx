@@ -1,7 +1,8 @@
 import * as React from 'react'
-// import ReactSVG from 'react-svg'
+import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu'
+import * as actions from '../actions/userMenu'
 import TipperIcon from '../TipperIcon.svg'
 import TipperLogo from '../TipperLogo.svg'
 
@@ -23,12 +24,15 @@ export default class extends React.Component<IProps, {}> {
         :
             <img src={TipperIcon} style={{ width: '40px' }} />
     )
+    public closeUserMenu = () => (
+        this.props.dispatch(actions.closeMenu())
+    )
 
     public render() {
         return(
             <li>
-                <button>
-                    {this.renderTipper()}
+                <button onClick={this.closeUserMenu.bind(this,)}>
+                    <Link to='/'>{this.renderTipper()}</Link>
                 </button>
             </li>
         )
