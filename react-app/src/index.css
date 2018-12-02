@@ -7,3 +7,7 @@ body {
 .active {
   color: rgb(0, 122, 204);
 }
+
+ol {
+  margin-left:2em
+}
