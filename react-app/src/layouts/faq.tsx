@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu'
 import * as actions from '../actions/globalMenu'
-import ArticleTitle from '../components/articleTitle'
+import { ArticleTitle } from '../components'
 import FaqCard from '../components/faqCard'
 
 
