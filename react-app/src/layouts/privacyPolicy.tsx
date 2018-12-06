@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/globalMenu'
-import ArticleTitle from '../components/articleTitle'
+import { ArticleTitle } from '../components'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 
 export interface IProps extends IGlobalMenuState {
