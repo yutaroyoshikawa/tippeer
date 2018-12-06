@@ -4,7 +4,7 @@ export interface IProps {
     title: string
 }
 
-export default class extends React.Component<IProps, {}> {
+export class ArticleTitle extends React.Component<IProps, {}> {
     constructor(props: IProps) {
         super(props)
     }
