@@ -44,12 +44,12 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <li>
+            <div>
                 <button onClick={this.clickMenu.bind(this,)}>
                 <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
                 </button>
                 {this.renderMenu()}
-            </li>
+            </div>
         )
     }
 }
