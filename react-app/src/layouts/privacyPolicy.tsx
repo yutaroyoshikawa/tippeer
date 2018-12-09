@@ -13,12 +13,13 @@ export default class extends React.Component<IProps, {}> {
         super(props)
     }
 
-    public componentDidMount = () => (
-        this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
+    public componentDidMount = () => {
+        if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
-        :
-            null
-    )
+        }
+            
+        document.body.className = 'normal'
+    }
 
     public privacyPolicy = () => (
         <div style={{width: '90%', margin: '0 auto'}}>

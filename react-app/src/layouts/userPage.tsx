@@ -12,12 +12,12 @@ export default class extends React.Component<IProps, {}> {
         super(props)
     }
 
-    public componentDidMount = () => (
-        this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
-        this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
-    :
-        null
-    ) 
+    public componentDidMount = () => {
+        if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
+            this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
+        } 
+        document.body.className = 'normal'
+    }
 
     public render() {
         return(
