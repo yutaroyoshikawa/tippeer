@@ -1,6 +1,6 @@
-import { all } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
+import { handleSearch } from './search'
 
 export function* rootSaga(){
-  yield all([
-  ]);
+  yield fork(handleSearch)
 }
