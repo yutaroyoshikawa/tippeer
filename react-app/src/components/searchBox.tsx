@@ -1,45 +1,45 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
+import * as reactRouter from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { ISearchBoxState } from 'src/reducers/searchBox'
 
-export interface IProps extends ISearchBoxState {
+import * as actions from '../actions/search'
+import {setSearchBoxWord} from '../actions/searchBox'
+
+export interface IProps extends ISearchBoxState, reactRouter.RouteComponentProps<{}> {
     dispatch: Dispatch<any>;
 }
 
-interface IState {
-    searchWord: string;
-}
-
-export default class extends React.Component<IProps, IState> {
+export default class extends React.Component<IProps, {}> {
     constructor(props: IProps){
         super(props);
-
-        this.state = {
-            searchWord: '',
-        }
     }
 
     public setSearchWordState = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({searchWord: e.currentTarget.value})
+        this.props.dispatch(setSearchBoxWord({searchWord: e.currentTarget.value}))
+    }
+
+    public onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        this.props.dispatch(actions.Search({searchWord: this.props.searchBox.searchWord}))
+        this.props.history.push('/search/' + this.props.searchBox.searchWord)
     }
 
     public render() {
         return(
-            <li>
-                <form style={{border: 'solid 0.5px #555', borderRadius: '35px', padding: '5px', width: '700px'}}>
-                    <button style={{padding: '3px'}}>
-                        <FontAwesomeIcon icon={faSearch}  style={{width: '20px', height: '20px'}}/>
-                    </button>
-                    <input
-                        type="text"
-                        value={this.state.searchWord}
-                        onChange={this.setSearchWordState}
-                        style={{margin: '0px 10px'}}
-                    />
-                </form>
-            </li>
+            <form onSubmit={this.onSubmit.bind(this,)} style={{ borderRadius: '35px', padding: '5px', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center'}}>
+                <button style={{padding: '3px'}}>
+                    <FontAwesomeIcon icon={faSearch}  style={{width: '20px', height: '20px', color: '#555'}}/>
+                </button>
+                <input
+                    type="text"
+                    value={this.props.searchBox.searchWord}
+                    onChange={this.setSearchWordState}
+                    style={{margin: '0px 10px'}}
+                />
+            </form>
         )
     }
 }
