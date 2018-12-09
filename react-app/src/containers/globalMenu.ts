@@ -10,7 +10,8 @@ const mapStateToProps = (state: AllState) => {
     return {
         globalMenu: state.globalMenu.globalMenu,
         mobileMenu: state.globalMenu.mobileMenu,
-        tipperLogo: state.globalMenu.tipperLogo
+        search: state.globalMenu.search,
+        tipperLogo: state.globalMenu.tipperLogo,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
