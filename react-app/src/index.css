@@ -1,13 +1,60 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  overflow-y: scroll;
+  width: 100%;
+  /* -webkit-overflow-scrolling: touch;  */
+}
+
+html {
+  /* overflow: hidden; */
+  /* */
+}
+
+.search {
+  background-color: rgb(215, 187, 187);
+}
+
+.normal {
+  background-color: rgb(255, 255, 255);
+}
+
+* {
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
+  font-weight: 'normanl';
+  table-layout: fixed;
 }
 
 .active {
   color: rgb(0, 122, 204);
 }
 
+.inactive {
+  color: rgb(70, 70, 70);
+}
+
 ol {
   margin-left:2em
+}
+
+.card {
+  display: flex;
+  align-items: center;
+}
+
+.standalone {
+  filter: drop-shadow(0 0 1px #555);
+}
+
+.card-margin {
+  margin-right: 10px;
+}
+
+.standalone-margin {
+  margin: 20px 20px 10px 20px;
+}
+
+a{
+  color: #555
 }

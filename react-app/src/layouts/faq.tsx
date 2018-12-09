@@ -45,12 +45,13 @@ export default class extends React.Component<IProps, IState> {
         }
     }
 
-    public componentDidMount = () => (
-        this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
+    public componentDidMount = () => {
+        if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
-        :
-            null
-    )
+        }
+
+        document.body.className = 'normal'
+    }
 
     public renderFaqs = () => (
         this.state.faqs.map((faq) => (<FaqCard question={faq.question} answer={faq.answer} />))
