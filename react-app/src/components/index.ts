@@ -14,6 +14,7 @@ export { Faq } from '../containers/faq'
 export { PerformanceCard } from './performanceCard'
 export { ArtistCard } from './artistCard'
 export { PlaceCard } from './placeCard'
+export { WorksCard } from './worksCard'
 /*
 template
 */
