@@ -95,7 +95,7 @@ export default class extends React.Component<IProps, IState> {
 
     public renderPage = () => (
         this.props.match.params.searchWord ?
-        <div style={{width: '100vw'}}>
+        <div style={{width: '100%', position: 'relative'}}>
             {this.props.globalMenu.agent === 'tablet' || this.props.globalMenu.agent === 'mobile' ? null : <h2 style={{display: 'inline-block', backgroundColor: 'white', filter: 'drop-shadow(0 0 1px #555)', margin: '10px', padding: '3px 30px', borderRadius: '15px', color: '#999', fontWeight: 'normal', fontSize: '20px'}}>{this.props.match.params.searchWord}の検索結果</h2>}
             <div style={{display: 'block', margin: '10px', color: '#444'}}>
                 <ArticleTitle title={'パフォーマンス'} />
