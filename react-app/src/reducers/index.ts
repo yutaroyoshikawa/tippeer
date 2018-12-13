@@ -5,6 +5,7 @@ import placeDetails from './placeDetails'
 import searchBox from './searchBox'
 // import tipperLogo from './tipperLogo'
 import userMenu from './userMenu'
+import worksDetails from './worksDetails'
 
 
 export default combineReducers({
@@ -14,4 +15,5 @@ export default combineReducers({
     searchBox,
     // tipperLogo,
     userMenu,
+    worksDetails,
 });
