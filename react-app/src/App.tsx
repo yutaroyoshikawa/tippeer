@@ -5,7 +5,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import 'ress'
 import { Faq, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
-import { PlaceDetails, Search, WorksDetails } from './layouts'
+import { PerformanceDetails, PlaceDetails, Search, WorksDetails } from './layouts'
 import { buildStore } from './store';
 
 const store = buildStore();
@@ -27,6 +27,7 @@ class App extends React.Component {
                                 <Route exact={true} path='/search/:searchWord' component={Search} />
                                 <Route exact={true} path='/places/:placeId' component={PlaceDetails} />
                                 <Route exact={true} path='/works/:worksId' component={WorksDetails} />
+                                <Route exact={true} path='/performances/:performanceId' component={PerformanceDetails} />
                             </Switch>
                         </div>
                     </div>
