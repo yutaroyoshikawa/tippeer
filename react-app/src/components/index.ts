@@ -19,6 +19,8 @@ export { Score } from './score'
 export { CommentBox } from './commentBox'
 export { CommentList } from './commentList'
 export { PriceCard } from './priceCard'
+export { GoogleMap } from './googleMap'
+export { DistanceCard } from './distanceCard'
 /*
 template
 */
