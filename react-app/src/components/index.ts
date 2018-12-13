@@ -15,6 +15,10 @@ export { PerformanceCard } from './performanceCard'
 export { ArtistCard } from './artistCard'
 export { PlaceCard } from './placeCard'
 export { WorksCard } from './worksCard'
+export { Score } from './score'
+export { CommentBox } from './commentBox'
+export { CommentList } from './commentList'
+export { PriceCard } from './priceCard'
 /*
 template
 */
