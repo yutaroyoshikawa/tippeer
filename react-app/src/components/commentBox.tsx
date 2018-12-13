@@ -20,7 +20,7 @@ export class CommentBox extends React.Component<IProps, {}> {
                         <ArtistCard artistId={'hoge'} size={40} style={'standalone'} />
                     </div>
                     <div style={{margin: '10px 40px 0px 0px', width: '100%'}}>
-                        <Score size={30} />
+                        {this.props.type === 'works' ? <Score size={30} /> : null}
                         <textarea style={{width: '100%', margin: '20px 40px 20px 0', height: '70px', fontSize: '25px'}} rows={2} />
                     </div>
                 </div>

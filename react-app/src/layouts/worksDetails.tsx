@@ -70,7 +70,7 @@ export default class extends React.Component<IProps, {}> {
                     <ArticleTitle title={'Comments'} />
                     <CommentBox type={'works'} />
                     <div style={{listStyle: 'none', width: '65%', margin: '0 auto'}}>
-                        <CommentList initialComments={this.props.worksDetails.comments} type={'works'} />
+                        <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} />
                     </div>
                 </div>
             </section>

@@ -9,11 +9,16 @@ interface IContents {
     price: number
 }
 
-export interface IComments {
+export interface IWorksComments {
     content: string
     userId: string
-    userIcon: string
     score: number
+    postDate: string
+}
+
+export interface IPerformanceComments {
+    content: string
+    userId: string
     postDate: string
 }
 
@@ -24,7 +29,7 @@ interface IWorksDetails {
     price: number
     description: string
     contents: IContents[]
-    comments: IComments[]
+    comments: IWorksComments[]
 }
 
 export interface IWorksDetailsState {
@@ -39,21 +44,18 @@ const initialReduceUserMenuState: IWorksDetailsState = {
                     content: 'hogehugapiyofoo',
                     postDate: '2018-12-1',
                     score: 4,
-                    userIcon: 'hoge',
                     userId: 'hoge'
                 },
                 {
                     content: 'hogehugapiyofoo',
                     postDate: '2018-12-1',
                     score: 4,
-                    userIcon: 'hoge',
                     userId: 'hoge'
                 },
                 {
                     content: 'hogehugapiyofoo',
                     postDate: '2018-12-1',
                     score: 4,
-                    userIcon: 'hoge',
                     userId: 'hoge'
                 },
             ],
