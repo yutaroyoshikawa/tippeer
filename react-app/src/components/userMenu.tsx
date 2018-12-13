@@ -44,7 +44,7 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <div>
+            <div style={{color: '#000'}}>
                 <button onClick={this.clickMenu.bind(this,)}>
                 <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
                 </button>

@@ -21,6 +21,10 @@ export default class extends React.Component<IProps, {}> {
         document.body.style.backgroundAttachment = 'fixed'
     }
 
+    public componentWillUnmount() {
+        document.body.style.background = 'none'
+    }
+
     public renderContents = () => (
         this.props.worksDetails.contents.map((data,key) => (
             <div key={key}>

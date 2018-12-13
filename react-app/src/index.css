@@ -19,6 +19,35 @@ html {
   background-color: rgb(255, 255, 255);
 }
 
+.worksDetails {
+  z-index: 0;
+  overflow: scroll;
+  color: #fff;
+}
+
+.worksDetails::before {
+  content: '';
+  background: inherit;
+  filter: blur(10px);
+  position: fixed;
+  z-index: -1;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+}
+
+.worksDetailsBody::before {
+  content: '';
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
 * {
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
