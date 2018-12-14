@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import artistDetails from './artistDetails'
 import back from './back'
 import globalMenu from './globalMenu'
 import performanceDetails from './performaceDetails'
@@ -10,7 +11,9 @@ import worksDetails from './worksDetails'
 
 
 
+
 export default combineReducers({
+    artistDetails,
     back,
     globalMenu,
     performanceDetails,
