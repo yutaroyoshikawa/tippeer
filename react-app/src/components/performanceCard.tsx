@@ -52,7 +52,7 @@ export class PerformanceCard extends React.Component<IProps, IState> {
     public render() {
         return(
             <article style={{backgroundColor: 'white', padding: '30px 20px', filter: 'drop-shadow(0 0 2px #555)', margin: '5px 10px', width: '200px'}}>
-                <Link to={"/performance/" + this.props.performanceId}  >
+                <Link to={"/performances/" + this.props.performanceId}  >
                     <div style={{color: '#999'}}>
                         <h3 style={{fontWeight: 'normal', fontSize: '30px', color: '#666', marginBottom: '20px'}}>{this.state.performanceTitle}</h3>
                         <p style={{fontSize: '12px'}}>start<time>{this.state.start}</time></p>

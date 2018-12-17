@@ -31,7 +31,7 @@ export default class extends React.Component<IProps, {}> {
                 <li>
                     <ul style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', listStyle: 'none'}}>
                         <li style={{width: '60%'}}>{data.title}</li>
-                        <li style={{width: '10%'}}><ArtistCard artistId={data.artistId} size={40} style={'card'} /></li>
+                        <li style={{width: '10%'}}><ArtistCard artistId={data.artistId} size={40} style={'card'} nameHidden={false} /></li>
                         <li style={{width: '30%', textAlign: 'right'}}><PriceCard type={'ellipse'} price={data.price} size={20} /></li>
                     </ul>
                 </li>
@@ -52,7 +52,7 @@ export default class extends React.Component<IProps, {}> {
                         </div>
                         <div style={{marginLeft: '30px', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                             <h2 style={{fontWeight: 'normal', fontSize: '60px'}}>{this.props.worksDetails.worksTitle}</h2>
-                            <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} />
+                            <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} />
                             <PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={30} />
                             <Score size={40} />
                         </div>
@@ -70,7 +70,7 @@ export default class extends React.Component<IProps, {}> {
                     <ArticleTitle title={'Comments'} />
                     <CommentBox type={'works'} />
                     <div style={{listStyle: 'none', width: '65%', margin: '0 auto'}}>
-                        <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} />
+                        <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} dark={true} />
                     </div>
                 </div>
             </section>
