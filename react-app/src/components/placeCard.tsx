@@ -46,7 +46,7 @@ export class PlaceCard extends React.Component<IProps, IState> {
     public render() {
         return(
             <article style={{backgroundColor: 'white', padding: '30px 20px', filter: 'drop-shadow(0 0 2px #555)', margin: '5px 20px', width: '200px'}}>
-                <Link to={"/place/" + this.props.placeId}  >
+                <Link to={"/places/" + this.props.placeId}  >
                     <figure><img src={mapExample} style={{width: '100%'}} alt=""/></figure>
                     <h3 style={{fontWeight: 'normal', fontSize: '30px', color: '#666', marginBottom: '20px'}}>{this.state.placeName}</h3>
                     <p style={{color: '#999'}}>〒{this.state.postalCode}</p>

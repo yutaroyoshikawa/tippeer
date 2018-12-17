@@ -7,6 +7,7 @@ export interface IProps {
     type: 'performance' | 'works' | 'standalone'
     initialWorksComments: IWorksComments[] | null
     initialPerformanceComments: IPerformanceComments[] | null
+    dark: boolean
 }
 
 export class CommentList extends React.Component<IProps, {}> {
@@ -21,18 +22,24 @@ export class CommentList extends React.Component<IProps, {}> {
                     <div key={key}>
                         <li style={{padding: '10px 0'}}>
                             <ul style={{listStyle: 'none', display: 'flex'}}>
-                                <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} />}</li>
+                                <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} />}</li>
                                 <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                                     <li><Score size={20} /></li>
                                     <li>{data.content}</li>
-                                    <li>{data.postDate}</li>
+                                    <div style={{display: 'flex'}}>
+                                        <li>{data.userId}</li>
+                                        <li>{data.postDate}</li>
+                                    </div>
                                 </div>
                             </ul>
                         </li>
                         {
                             this.props.initialWorksComments !== null ?
                                 key !== this.props.initialWorksComments.length - 1 ?
-                                    <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0))', height: '1px'}} />
+                                    this.props.dark ?
+                                        <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0))', height: '1px'}} />
+                                        :
+                                        <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(0, 0, 0, 1), rgba(255, 255, 255, 255))', height: '1px'}} />
                                 : null
                             : null
                         }
@@ -45,17 +52,23 @@ export class CommentList extends React.Component<IProps, {}> {
                 <div key={key}>
                     <li style={{padding: '10px 0'}}>
                         <ul style={{listStyle: 'none', display: 'flex'}}>
-                            <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} />}</li>
+                            <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} />}</li>
                             <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                                 <li>{data.content}</li>
-                                <li>{data.postDate}</li>
+                                <div style={{display: 'flex'}}>
+                                    <li style={{marginRight: '20px'}}>{data.userId}</li>
+                                    <li>{data.postDate}</li>
+                                </div>
                             </div>
                         </ul>
                     </li>
                     {
                         this.props.initialPerformanceComments !== null ?
                             key !== this.props.initialPerformanceComments.length - 1 ?
-                                <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0))', height: '1px'}} />
+                            this.props.dark ?
+                            <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0))', height: '1px'}} />
+                            :
+                            <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(0, 0, 0, 1), rgba(255, 255, 255, 255))', height: '1px'}} />
                             : null
                         : null
                     }
@@ -66,7 +79,7 @@ export class CommentList extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <ul style={{listStyle: 'none'}}>
+            <ul style={{listStyle: 'none',width: '100%'}}>
                 {this.renderComments()}
             </ul>
         )

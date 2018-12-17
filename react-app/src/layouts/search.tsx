@@ -58,7 +58,7 @@ export default class extends React.Component<IProps, IState> {
     public renderArtists = () => (
         this.state.result.artists.map((id) => (
             <div>
-                <ArtistCard artistId={id} size={130} style={'standalone'} />
+                <ArtistCard artistId={id} size={130} style={'standalone'} nameHidden={false} />
             </div>
         ))
     )

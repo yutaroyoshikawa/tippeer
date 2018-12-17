@@ -38,7 +38,7 @@ export default class extends React.Component<IProps, {}> {
                     </div>
                     <div style={{width: '100%', height: '200px', background: 'url('+ this.props.performanceDetails.thumbnail +') no-repeat center', backgroundSize: 'cover', marginBottom: '300px'}}>
                         <div style={{position: 'relative', top: '100px', filter: 'drop-shadow(0 0 2px #555)'}}>
-                            <ArtistCard artistId={this.props.performanceDetails.artistId} size={200} style={'standalone'} />
+                            <ArtistCard artistId={this.props.performanceDetails.artistId} size={200} style={'standalone'} nameHidden={true} />
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ export default class extends React.Component<IProps, {}> {
                         <CommentBox type={'performance'} />
                     </div>
                     <div style={{width: '630px', margin: '0 auto'}}>
-                        <CommentList type={'performance'} initialWorksComments={null} initialPerformanceComments={this.props.performanceDetails.comments} />
+                        <CommentList type={'performance'} initialWorksComments={null} initialPerformanceComments={this.props.performanceDetails.comments} dark={false} />
                     </div>
                 </div>
             </section>
