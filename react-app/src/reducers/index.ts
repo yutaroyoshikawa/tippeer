@@ -5,13 +5,11 @@ import globalMenu from './globalMenu'
 import performanceDetails from './performaceDetails'
 import placeDetails from './placeDetails'
 import searchBox from './searchBox'
+import tipping from './tipping'
 // import tipperLogo from './tipperLogo'
 import userMenu from './userMenu'
 import worksDetails from './worksDetails'
 import worksTop from './worksTop'
-
-
-
 
 export default combineReducers({
     artistDetails,
@@ -20,6 +18,7 @@ export default combineReducers({
     performanceDetails,
     placeDetails,
     searchBox,
+    tipping,
     // tipperLogo,
     userMenu,
     worksDetails,
