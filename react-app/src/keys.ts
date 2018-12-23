@@ -1,1 +1,2 @@
 export const googleMapApiKey: string = 'AIzaSyDGf63kKrhK8HlWuti2Zj6mRr2Ki2EN4D0'
+export const mapboxAccessToken: string = 'pk.eyJ1IjoieXV0YXJveW9zaGlrYXdhIiwiYSI6ImNqcHVzcWo0eDA5Z3Izd3BvYXY3M2RpenQifQ.ewNB2cyvJmgf8b4VWdWpyQ'
