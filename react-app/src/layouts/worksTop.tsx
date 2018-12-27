@@ -22,10 +22,10 @@ export default class extends React.Component<IProps, {}> {
         document.body.className = 'normal'
     }
 
-    public renderFollowArtists = () => (
+    public renderFollowArtists = (size: number) => (
         this.props.worksTop.followArtists.map((data, i) => (
             <div key={i}>
-                <ArtistCard artistId={data} size={100} style={'standalone'} nameHidden={true} />
+                <ArtistCard artistId={data} size={size} style={'standalone'} nameHidden={true} />
             </div>
         ))
     )
@@ -57,7 +57,10 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <div>
-                <div style={{width: '100%', height: '100vh', display: 'flex', flexWrap: 'wrap', flexDirection: 'column', justifyContent: 'center', minHeight: '900px'}}>
+                <Styled.TopSection>
+                    <Styled.TopFollowArtists>
+                        {this.renderFollowArtists(50)}
+                    </Styled.TopFollowArtists>
                     <Styled.WorksStoreTitle>
                         <ArticleTitle title={'Works Store'} />
                     </Styled.WorksStoreTitle>
@@ -65,30 +68,29 @@ export default class extends React.Component<IProps, {}> {
                         <Styled.SpotlightTitle>
                             <ArticleTitle title={'Spotlight'} />
                         </Styled.SpotlightTitle>
-                        <div style={{display: 'flex'}}>
+                        <Styled.TwoSection>
                             <article>
                                 <Link to={'/works/' + this.props.worksTop.spotlight[0].worksId} >
                                     <Styled.TopSpotlight itemProp={this.props.worksTop.spotlight[0].thumbnail}>
-                                        <Styled.WorksInfo>
+                                        <Styled.LargeWorksInfo>
                                             <Styled.WorksTitle>{this.props.worksTop.spotlight[0].worksTitle}</Styled.WorksTitle>
-                                            <div>
+                                            <div style={{color: '#FFF'}}>
                                                 <ArtistCard artistId={this.props.worksTop.spotlight[0].artistId} size={50} style={'card'} nameHidden={false} />
                                             </div>
-                                        </Styled.WorksInfo>
-                                        
+                                        </Styled.LargeWorksInfo>  
                                     </Styled.TopSpotlight>
                                 </Link>  
                             </article>
-                            <div>
+                            <Styled.SecondTwoSection>
                                 <article>
                                     <Link to={'/works/' + this.props.worksTop.spotlight[1].worksId} >
                                         <Styled.MiddleSpotlight itemProp={this.props.worksTop.spotlight[1].thumbnail}>
-                                            <Styled.WorksInfo>
-                                                <Styled.WorksTitle>{this.props.worksTop.spotlight[1].worksTitle}</Styled.WorksTitle>
+                                            <Styled.LargeWorksInfo>
+                                                <Styled.MiddleWorksTitle>{this.props.worksTop.spotlight[1].worksTitle}</Styled.MiddleWorksTitle>
                                                 <div>
                                                     <ArtistCard artistId={this.props.worksTop.spotlight[1].artistId} size={50} style={'card'} nameHidden={false} />
                                                 </div>
-                                            </Styled.WorksInfo>
+                                            </Styled.LargeWorksInfo>
                                         </Styled.MiddleSpotlight>
                                     </Link>
                                 </article>
@@ -96,31 +98,35 @@ export default class extends React.Component<IProps, {}> {
                                     <article>
                                         <Link to={'/works/' + this.props.worksTop.spotlight[2].worksId} >
                                             <Styled.SmallLeftSpotlight itemProp={this.props.worksTop.spotlight[2].thumbnail}>
-                                                <Styled.SmallWorksTitle>{this.props.worksTop.spotlight[2].worksTitle}</Styled.SmallWorksTitle>
-                                                <Styled.SmallWorksArtist>
-                                                    <ArtistCard artistId={this.props.worksTop.spotlight[2].artistId} size={50} style={'card'} nameHidden={false} />
-                                                </Styled.SmallWorksArtist>
+                                                <Styled.SmallWorksInfo>
+                                                    <Styled.SmallWorksTitle>{this.props.worksTop.spotlight[2].worksTitle}</Styled.SmallWorksTitle>
+                                                    <Styled.SmallWorksArtist>
+                                                        <ArtistCard artistId={this.props.worksTop.spotlight[2].artistId} size={50} style={'card'} nameHidden={false} />
+                                                    </Styled.SmallWorksArtist>
+                                                </Styled.SmallWorksInfo>
                                             </Styled.SmallLeftSpotlight>
                                         </Link>
                                     </article>
                                     <article>
                                         <Link to={'/works/' + this.props.worksTop.spotlight[3].worksId} >
                                             <Styled.SmallRightSpotlight itemProp={this.props.worksTop.spotlight[3].thumbnail}>
-                                                <Styled.SmallWorksTitle>{this.props.worksTop.spotlight[3].worksTitle}</Styled.SmallWorksTitle>
-                                                <Styled.SmallWorksArtist>
-                                                    <ArtistCard artistId={this.props.worksTop.spotlight[3].artistId} size={50} style={'card'} nameHidden={false} />
-                                                </Styled.SmallWorksArtist>
+                                                <Styled.SmallWorksInfo>
+                                                    <Styled.SmallWorksTitle>{this.props.worksTop.spotlight[3].worksTitle}</Styled.SmallWorksTitle>
+                                                    <Styled.SmallWorksArtist>
+                                                        <ArtistCard artistId={this.props.worksTop.spotlight[3].artistId} size={50} style={'card'} nameHidden={false} />
+                                                    </Styled.SmallWorksArtist>
+                                                </Styled.SmallWorksInfo>
                                             </Styled.SmallRightSpotlight>
                                         </Link>
                                     </article>
                                 </div>
-                            </div>
-                        </div>
+                            </Styled.SecondTwoSection>
+                        </Styled.TwoSection>
                     </Styled.Spotlight>
-                    <Styled.FollowArtists>
-                        {this.renderFollowArtists()}
-                    </Styled.FollowArtists>
-                </div>
+                    <Styled.BottomFollowArtists>
+                        {this.renderFollowArtists(100)}
+                    </Styled.BottomFollowArtists>
+                </Styled.TopSection>
                 
                 
                 <section>
