@@ -13,7 +13,7 @@ export const Entire = styled.div`
 export const WorksInfo = styled.section`
     @media screen and (min-width: 1024px){
         width: 100%;
-        height: 10vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
