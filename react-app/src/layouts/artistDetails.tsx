@@ -1,11 +1,12 @@
 import { faBell, faComments, faHistory, faPaintBrush, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
 import { ArticleTitle, ArtistCard, CommentBox, CommentList, DistanceCard, GoogleMap, PerformanceCard } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
+
+import * as Styled from '../styles/artistDetails'
 
 
 export interface IProps extends IArtistDetailsState {
@@ -46,21 +47,21 @@ export default class extends React.Component<IProps, IState> {
 
     public renderOfferBox = () => (
         this.state.offerBoxState ?
-        <div style={{position: 'absolute', width: '1020px', height: '500px', left: '50%', top: '50%', margin: '-250px 0 0 -510px', background: 'rgba(255,255,255,0.9)', padding: '20px', borderRadius: '20px', backdropFilter: 'blur(30px)', WebkitBackdropFilter: 'blur(30px)'}}>
+        <Styled.ClickBox>
             <ArticleTitle title={'オファー'} />
             <form>
                 <textarea cols={30} rows={10} />
             </form>
-        </div>
+        </Styled.ClickBox>
         :
         null
     )
 
     public renderBiographyBox = () => (
         this.state.biographyState ?
-        <div style={{position: 'absolute', width: '1020px', height: '500px', left: '50%', top: '50%', margin: '-250px 0 0 -510px', background: 'rgba(255,255,255,0.9)', padding: '20px', borderRadius: '20px', backdropFilter: 'blur(30px)', WebkitBackdropFilter: 'blur(30px)'}}>
+        <Styled.ClickBox>
             <ArticleTitle title={'バイオグラフィー'} />
-        </div>
+        </Styled.ClickBox>
         :
         null
     )
@@ -76,71 +77,79 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <section>
-                <div style={{width: '100%', height: '80vh', background: 'url(' + this.props.artistDetails.topImage + ') no-repeat center', backgroundSize: 'cover', marginBottom: '15vh', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.3)' }}>
-                    <div style={{background: 'rgba(255, 255, 255, 0.8)', display: 'inline-block', backdropFilter: 'blur(17px)', padding: '50px', margin: '10vh 0', width: '700px'}}>
-                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+                <Styled.TopSection itemProp={this.props.artistDetails.topImage}>
+                    <Styled.ArtistInfo>
+                        <Styled.TopArtistinfo>
                             <div>
-                                <p style={{textAlign: 'right', fontSize: '30px'}}>{this.props.artistDetails.jobTitle}</p>
-                                <h2 style={{textAlign: 'right', fontSize: '90px'}}>{this.props.artistDetails.artistName}</h2>
+                                <Styled.JobTitle>{this.props.artistDetails.jobTitle}</Styled.JobTitle>
+                                <Styled.ArtistName>{this.props.artistDetails.artistName}</Styled.ArtistName>
                             </div>
-                            <div>
+                            <Styled.ArtistCard>
                                 <ArtistCard size={150} style={'standalone'} artistId={this.props.match.params.artistId} nameHidden={true} />
-                            </div>
-                        </div>
+                            </Styled.ArtistCard>
+                        </Styled.TopArtistinfo>
                         
-                        <p style={{fontSize: '20px', paddingTop: '30px'}}>{this.props.artistDetails.selfIntroduction}</p>
-                    </div>
-                    <ul style={{display: 'flex', background: 'rgb(255, 255, 255)', padding: '30px', width: '1020px', listStyle: 'none', alignItems: 'center', position: 'absolute', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.3)', height: '90px', justifyContent: 'space-around', borderRadius: '20px', top: '80vh', left: '50%', marginLeft: '-510px'}}>
-                        <li style={{width: '40px'}}><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.subscribeState ? actions.successUnsubscribe() : actions.successSubscribe() )}><FontAwesomeIcon icon={faStar} style={{display: 'block', margin: '0 auto', fontSize: '40px', color: this.props.artistDetails.subscribeState ? 'rgb(255, 236, 0)' : 'black', filter: this.props.artistDetails.subscribeState ? 'drop-shadow(0 0 1px #555)' : 'none'}} /><span>登録</span></button></li>
-                        <li style={{width: '40px'}}><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.notifyState ? actions.successUnnotify() : actions.successNotify() )}><FontAwesomeIcon icon={faBell} style={{display: 'block', margin: '0 auto', fontSize: '40px', color: this.props.artistDetails.notifyState ? 'rgb(255, 236, 0)' : 'black', filter: this.props.artistDetails.notifyState ? 'drop-shadow(0 0 1px #555)' : 'none'}} /><span>通知</span></button></li>
-                        <li style={{width: '40px'}}><button><Link to={'/artists/' + this.props.match.params.artistId + '/works'}><FontAwesomeIcon icon={faPaintBrush} style={{display: 'block', margin: '0 auto', fontSize: '40px'}} /><span>作品</span></Link></button></li>
-                        <li style={{width: '64px', margin: '0 -12px'}}><button onClick={this.setOfferboxState.bind(this,)}><FontAwesomeIcon icon={faComments} style={{display: 'block', margin: '0 auto', fontSize: '40px'}} /><span>オファー</span></button></li>
-                        <li style={{width: '128px', margin: '0 -44px'}}><button onClick={this.setBiographyState.bind(this,)}><FontAwesomeIcon icon={faHistory} style={{display: 'block', margin: '0 auto', fontSize: '40px'}} /><span>バイオグラフィー</span></button></li>
-                    </ul> 
+                        <Styled.SelfIntroduction>{this.props.artistDetails.selfIntroduction}</Styled.SelfIntroduction>
+                        <Styled.MobileArtistCard>
+                                <ArtistCard size={80} style={'standalone'} artistId={this.props.match.params.artistId} nameHidden={true} />
+                        </Styled.MobileArtistCard>
+                    </Styled.ArtistInfo>
+                    <Styled.FunctionList>
+                        <Styled.UsuallyButton><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.subscribeState ? actions.successUnsubscribe() : actions.successSubscribe() )}><Styled.MarkColor itemScope={this.props.artistDetails.subscribeState} ><Styled.RegistrationMark icon={faStar}/></Styled.MarkColor><span>登録</span></button></Styled.UsuallyButton>
+                        <Styled.UsuallyButton><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.notifyState ? actions.successUnnotify() : actions.successNotify() )}><Styled.MarkColor itemScope={this.props.artistDetails.notifyState} ><Styled.RegistrationMark icon={faBell} /></Styled.MarkColor><span>通知</span></button></Styled.UsuallyButton>
+                        <Styled.UsuallyButton><button><Link to={'/artists/' + this.props.match.params.artistId + '/works'}><Styled.LinkMark icon={faPaintBrush} /><span>作品</span></Link></button></Styled.UsuallyButton>
+                        <Styled.OfferButton><button onClick={this.setOfferboxState.bind(this,)}><Styled.LinkMark icon={faComments} /><span>オファー</span></button></Styled.OfferButton>
+                        <Styled.BiographyButton><button onClick={this.setBiographyState.bind(this,)}><Styled.LinkMark icon={faHistory} /><span>バイオグラフィー</span></button></Styled.BiographyButton>
+                    </Styled.FunctionList> 
                     {this.renderOfferBox()}
                     {this.renderBiographyBox()}
-                </div>
+                </Styled.TopSection>
                 
-                <div style={{width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', flexWrap:'wrap', justifyContent: 'center', alignItems: 'center', background: '#fff'}}>
-                    <div style={{boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.3)', padding: '80px', borderRadius: '50px', display: 'flex'}}>
-                        <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'column', justifyContent: 'space-between', marginRight: '-80px'}}>
+                <Styled.RecentPerformanceSection>
+                    <Styled.RecentPerformanceBox>
+                        <Styled.PerformanceInfo>
                             <div>
-                                <div style={{marginLeft: '-110px'}}>
+                                <Styled.RecentlyPerformanceTitle>
                                     <ArticleTitle title={'最新のパフォーマンス'} />
-                                </div>
-                                <p style={{fontSize: '50px', marginBottom: '10px'}}>{this.props.artistDetails.recentlyPerformanceTitle}</p>
-                                <div style={{display: 'flex'}}>
+                                </Styled.RecentlyPerformanceTitle>
+                                <Styled.PerformanceName>{this.props.artistDetails.recentlyPerformanceTitle}</Styled.PerformanceName>
+                                <Styled.RecentlyPerformanceInfo>
                                     <p>{this.props.artistDetails.recentlyPerformanceStart}</p>
-                                    <p><span style={{margin: '0 10px'}}>-</span></p>
+                                    <p><Styled.TimeHyphen>-</Styled.TimeHyphen></p>
                                     <p>{this.props.artistDetails.recentlyPerformanceFinish}</p>
-                                </div>
-                                    <div style={{width: '450px', wordBreak: 'break-word'}}>
-                                    <p style={{margin: '30px 0'}}>{this.props.artistDetails.recentlyPerformanceDescription}</p>
-                                </div>
+                                </Styled.RecentlyPerformanceInfo>
+                                <Styled.PerformanceDescriptionBox>
+                                    <Styled.PerformanceDescription>{this.props.artistDetails.recentlyPerformanceDescription}</Styled.PerformanceDescription>
+                                </Styled.PerformanceDescriptionBox>
                             </div>
-                            <div style={{display: 'flex'}}>
+                            <Styled.DesktopPerformancePlace>
                                 <GoogleMap placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'250px'} height={'250px'} />
-                                <div style={{position: 'relative', right: '100px'}}>
+                                <Styled.DistanceCard>
                                     <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'300px'} height={'200px'} />
-                                </div>
-                            </div>
-                        </div>
+                                </Styled.DistanceCard>
+                            </Styled.DesktopPerformancePlace>
+                            <Styled.MobilePerformancePlace>
+                                <GoogleMap placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'100px'} height={'100px'} />
+                                <Styled.DistanceCard>
+                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'50px'} height={'50px'} />
+                                </Styled.DistanceCard>
+                            </Styled.MobilePerformancePlace>
+                        </Styled.PerformanceInfo>
                         
-                        <div>
+                        <Styled.PerformanceComment>
                             <div>
                                 <CommentBox type={'performance'} />
                             </div>
                             <CommentList type={'performance'} initialPerformanceComments={this.props.artistDetails.recentlyPerformanceComments} initialWorksComments={null} dark={false} />
-                        </div>
-                    </div>
-                    
-                </div>
-                <div style={{margin: '0 0 10px 50px'}}>
+                        </Styled.PerformanceComment>
+                    </Styled.RecentPerformanceBox>  
+                </Styled.RecentPerformanceSection>
+                <Styled.PerformanceHistoryTitle>
                     <ArticleTitle title={'過去のパフォーマンス'} />
-                </div>
-                <div style={{display: 'flex'}}>
+                </Styled.PerformanceHistoryTitle>
+                <Styled.PerformanceHistory>
                     {this.renderPerformanceCard()}
-                </div>    
+                </Styled.PerformanceHistory>    
             </section>
         )
     }
