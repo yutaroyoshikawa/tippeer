@@ -3,6 +3,8 @@ import { Dispatch } from 'redux'
 import { ArticleTitle, ArtistCard, CommentBox, CommentList, DistanceCard, GoogleMap } from '../components'
 import { IPerformanceDetailsState } from '../reducers/performaceDetails'
 
+import * as Styled from '../styles/performanceDetails'
+
 export interface IProps extends IPerformanceDetailsState {
     dispatch: Dispatch<any>
     match: {
@@ -23,39 +25,49 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <section>
-                <div style={{width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center'}}>
-                    <div style={{padding: '50px 100px'}}>
-                        <div style={{display: 'flex', alignItems: 'center'}}>
-                            <div style={{marginRight: '50px'}}>
-                                <ArticleTitle title={this.props.performanceDetails.performanceTitle} />
-                            </div>
-                            <p>{this.props.performanceDetails.start}</p>
-                            <p><span style={{display: 'inline-block', margin: '0 10px'}}>-</span></p>
-                            <p>{this.props.performanceDetails.finish}</p>
-                        </div>
-                        <p style={{display: 'inline-block', width: '800px'}}>{this.props.performanceDetails.discription}</p>
-                    </div>
-                    <div style={{width: '100%', height: '200px', background: 'url('+ this.props.performanceDetails.thumbnail +') no-repeat center', backgroundSize: 'cover', marginBottom: '300px'}}>
-                        <div style={{position: 'relative', top: '100px', filter: 'drop-shadow(0 0 2px #555)'}}>
-                            <ArtistCard artistId={this.props.performanceDetails.artistId} size={200} style={'standalone'} nameHidden={true} />
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <Styled.TopSection itemProp={this.props.performanceDetails.thumbnail}>
+                    <Styled.PerformanceInfo>
+                        <Styled.PerformanceArticleTitle>
+                            <ArticleTitle title={'Performance'} />
+                        </Styled.PerformanceArticleTitle>
+                        <Styled.TopPerformanceInfo>
+                            <Styled.PerformanceThumbnail>
+                                <Styled.Thumbnail src={this.props.performanceDetails.thumbnail} />
+                            </Styled.PerformanceThumbnail>
+                            <Styled.PerformanceDetails>
+                                <Styled.PerformanceTitle>
+                                    <ArticleTitle title={this.props.performanceDetails.performanceTitle} />
+                                </Styled.PerformanceTitle>
+                                <Styled.PerformanceArtist>
+                                    <ArtistCard artistId={this.props.performanceDetails.artistId} size={80} style={'card'} nameHidden={false} />
+                                </Styled.PerformanceArtist>
+                                <Styled.MobilePerformanceArtist>
+                                    <ArtistCard artistId={this.props.performanceDetails.artistId} size={30} style={'card'} nameHidden={false} />
+                                </Styled.MobilePerformanceArtist>
+                                <div>
+                                    <Styled.Start>{this.props.performanceDetails.start}</Styled.Start>
+                                    <Styled.Finish>{this.props.performanceDetails.finish}</Styled.Finish>
+                                </div>
+                            </Styled.PerformanceDetails>
+                        </Styled.TopPerformanceInfo>
+                        <Styled.PerformanceDiscription>{this.props.performanceDetails.discription}</Styled.PerformanceDiscription>
+                    </Styled.PerformanceInfo>
+                </Styled.TopSection>
                 
-                <div>
+                <Styled.BottomSection>
                     <GoogleMap placeId={this.props.performanceDetails.placeId} width={'100%'} height={'200px'} />
-                    <div style={{position: 'relative', top: '-50px', left: '70vw'}}>
+                    <Styled.PlaceDistance>
                         <DistanceCard placeId={this.props.performanceDetails.placeId} width={'200px'} height={'100px'} />
-                    </div>
-                    <div style={{width: '900px', margin: '0 auto'}}>
+                    </Styled.PlaceDistance>
+                    <Styled.CommentBox>
                         <CommentBox type={'performance'} />
-                    </div>
-                    <div style={{width: '630px', margin: '0 auto'}}>
+                    </Styled.CommentBox>
+                    <Styled.CommentList>
                         <CommentList type={'performance'} initialWorksComments={null} initialPerformanceComments={this.props.performanceDetails.comments} dark={false} />
-                    </div>
-                </div>
-            </section>
+                    </Styled.CommentList>
+                </Styled.BottomSection>
+            </div>
         )
     }
 }
