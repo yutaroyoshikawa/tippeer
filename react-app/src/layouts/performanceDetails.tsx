@@ -49,12 +49,10 @@ export default class extends React.Component<IProps, {}> {
                                     <Styled.Start>{this.props.performanceDetails.start}</Styled.Start>
                                     <Styled.Finish>{this.props.performanceDetails.finish}</Styled.Finish>
                                 </div>
-                                
                             </Styled.PerformanceDetails>
                         </Styled.TopPerformanceInfo>
                         <Styled.PerformanceDiscription>{this.props.performanceDetails.discription}</Styled.PerformanceDiscription>
                     </Styled.PerformanceInfo>
-                    
                 </Styled.TopSection>
                 
                 <Styled.BottomSection>

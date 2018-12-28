@@ -6,7 +6,6 @@ export const TopSection = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     position: fixed;
-
     &::before {
         content: '';
         width: 100%;
