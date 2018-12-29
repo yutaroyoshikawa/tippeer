@@ -87,3 +87,19 @@ ol {
 a{
   color: #555
 }
+
+.shuffle-text-char {
+  animation: 0.5s ease-in-out both myWordEnter; /* none for no effect */
+}
+ 
+@keyframes myWordEnter {
+  0% {
+    opacity: 0;
+    transform: translate(0%, 0) scale(1);
+  }
+ 
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
