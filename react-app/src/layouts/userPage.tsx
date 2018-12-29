@@ -3,7 +3,6 @@ import {fromJS} from 'immutable';
 import * as mapbox from 'mapbox-gl'
 import * as React from 'react'
 import MapGL, * as map from 'react-map-gl'
-import { Link } from 'react-router-dom'
 import ShuffleText from 'react-shuffle-text'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/globalMenu'
@@ -12,6 +11,7 @@ import { mapboxAccessToken } from '../keys'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 import { IUserPageState } from '../reducers/userPage'
 
+import * as Styled from '../styles/userPage'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
@@ -95,12 +95,12 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <section>
-                <ul style={{fontSize: '40px', listStyle: 'none', position: 'absolute', zIndex: 1, top: '0', left: '0', height: '100vh', width: '450px', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', display: 'flex', textShadow: '0 0 5px #FFF, 0 0 40px #000, 0 0 60px #000, 0 0 100px #0FF, 0 0 120px #0FF', color: '#FFF', marginLeft: '50px'}}>
-                    <li style={{marginBottom: '25px'}}><Link to='/works/' style={{color: '#FFF'}}>Works Store</Link></li>
-                    <li style={{marginBottom: '25px'}}>おすすめパフォーマンス</li>
-                    <li style={{marginBottom: '25px'}}>近くのパフォーマンス</li>
+                <Styled.Menu>
+                    <Styled.MenuList><Styled.MenuLink to='/works/' >Works Store</Styled.MenuLink></Styled.MenuList>
+                    <Styled.MenuList>おすすめパフォーマンス</Styled.MenuList>
+                    <Styled.MenuList>近くのパフォーマンス</Styled.MenuList>
                     <li>フォローアーティスト</li>
-                </ul>
+                </Styled.Menu>
                 <div style={{position: 'absolute', top: '80px', width: '250px', height: '200px', display: 'none', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', background: 'white', zIndex: 11}} >
                     <ul>
                         <li>lat:  {this.props.userPage.viewport.latitude}</li>
@@ -112,13 +112,15 @@ export default class extends React.Component<IProps, {}> {
                         <li>transactionType: {this.props.userPage.transitionType}</li>
                     </ul>
                 </div>
-                <ul style={{width: '600px', height: '100vh', background: 'linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1))', position: 'absolute', right: 0, top: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', flexDirection: 'column', flexWrap: 'wrap', zIndex: 3, listStyle: 'none', paddingRight: '100px', color: '#FFF'}}>
-                    <li style={{fontSize: '80px'}}><ShuffleText content={this.props.userPage.nowPerformance.performanceName}/></li>
-                    <li style={{fontSize: '30px'}}><ShuffleText content={this.props.userPage.nowPerformance.start} /></li>
-                    <li style={{fontSize: '30px'}}><ShuffleText content={this.props.userPage.nowPerformance.finish} /></li>
-                    <li style={{fontSize: '30px'}}><ShuffleText content={this.props.userPage.nowPerformance.placeName} /></li>
-                </ul>
-                <div style={{zIndex: 0}}>
+                <Styled.PlaceInfo>
+                    <Styled.PerformanceName><ShuffleText content={this.props.userPage.nowPerformance.performanceName}/></Styled.PerformanceName>
+                    <div>
+                        <Styled.PerformanceTime><ShuffleText content={this.props.userPage.nowPerformance.start} /></Styled.PerformanceTime>
+                        <Styled.PerformanceTime><ShuffleText content={this.props.userPage.nowPerformance.finish} /></Styled.PerformanceTime>
+                        <Styled.PerformancePlaceName><ShuffleText content={this.props.userPage.nowPerformance.placeName} /></Styled.PerformancePlaceName>
+                    </div>
+                </Styled.PlaceInfo>
+                <Styled.Map>
                     <MapGL 
                         {...this.props.userPage.viewport}
                         width= '100%'
@@ -136,7 +138,7 @@ export default class extends React.Component<IProps, {}> {
                         dragRotate={false}
                         scrollZoom={false}
                     />
-                </div>
+                </Styled.Map>
             </section>
         )
     }
