@@ -1,11 +1,12 @@
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faAddressBook, faQuestionCircle, faSadTear, faSignOutAlt, faTimes, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
-import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
 import * as actions from '../actions/userMenu'
+
+import * as Styled from '../styles/components/userMenu'
 
 
 export interface IProps extends IUserMenuState {
@@ -28,28 +29,28 @@ export default class extends React.Component<IProps, {}> {
 
     public renderMenu = () => (
         this.props.userMenu.openState ?
-                <nav　style={{width: '180px', height: '180px', position: 'absolute', left: '50%', top: innerHeight/2, marginTop: '-90px', marginLeft: '-90px', backgroundColor: 'white'}}>
-                    <ul>
-                        <li>ユーザ情報変更</li>
-                        <li>ログアウト</li>
-                        <li><Link to='/privacypolicy' onClick={this.clickMenu.bind(this,)}>プライバシーポリシ</Link></li>
-                        <li>退会</li>
-                        <li><Link to='/faq' onClick={this.clickMenu.bind(this,)}>よくある質問</Link></li>
-                    </ul>
-                    <p><small>TIPPER&copy; all rights reserved</small></p>
-                </nav>
+                <Styled.Top>
+                    <Styled.MenuList>
+                        <Styled.ListStyle><span><Styled.MenuIcon icon={faAddressBook} /></span>ユーザ情報変更</Styled.ListStyle>
+                        <Styled.ListStyle><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
+                        <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
+                        <Styled.ListStyle><span><Styled.MenuIcon icon={faSadTear} /></span>退会</Styled.ListStyle>
+                        <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
+                    </Styled.MenuList>
+                    <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
+                </Styled.Top>
         :
             null
     )
 
     public render() {
         return(
-            <div style={{color: '#000'}}>
-                <button onClick={this.clickMenu.bind(this,)}>
-                <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
-                </button>
+            <Styled.Entire>
+                <Styled.MenuButton onClick={this.clickMenu.bind(this,)}>
+                    <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
+                </Styled.MenuButton>
                 {this.renderMenu()}
-            </div>
+            </Styled.Entire>
         )
     }
 }
