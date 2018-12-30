@@ -5,6 +5,7 @@ import * as actions from '../actions/globalMenu'
 import { ArticleTitle } from '../components'
 import FaqCard from '../components/faqCard'
 
+import * as Styled from '../styles/faq'
 
 export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>;
@@ -54,16 +55,22 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public renderFaqs = () => (
-        this.state.faqs.map((faq) => (<FaqCard question={faq.question} answer={faq.answer} />))
+        this.state.faqs.map((faq, i) => (
+            <Styled.FaqCard key={i.toString()}>
+                <FaqCard question={faq.question} answer={faq.answer} />
+            </Styled.FaqCard>
+        ))
     )
 
     public render() {
         return(
             <section>
-                <div style={{width: '90%', margin: '20px'}}>
+                <Styled.FaqTitle>
                     <ArticleTitle title={'よくある質問'} />
-                </div>
-                {this.renderFaqs()}
+                </Styled.FaqTitle>
+                <Styled.FaqContents>
+                    {this.renderFaqs()}
+                </Styled.FaqContents>
             </section>
         )
     }
