@@ -18,7 +18,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.FaqSent>{this.props.question}</Styled.FaqSent>
                 <Styled.SeparateLine />
                 <Styled.Answer>A.</Styled.Answer>
-                <Styled.Question>{this.props.answer}</Styled.Question>
+                <Styled.FaqSent>{this.props.answer}</Styled.FaqSent>
             </Styled.Card>
         )
     }
