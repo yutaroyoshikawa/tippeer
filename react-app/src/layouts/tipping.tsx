@@ -1,5 +1,4 @@
 import { faQrcode } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react'
 import QrReader from 'react-qr-reader'
 import { Link } from 'react-router-dom'
@@ -8,6 +7,8 @@ import { setMobileMenuState } from '../actions/globalMenu'
 import { ArtistCard } from '../components'
 // import * as actions from '../actions/tipping'
 import { ITippingState } from '../reducers/tipping'
+
+import * as Styled from '../styles/tipping'
 
 export interface IProps extends ITippingState {
     dispatch: Dispatch<any>
@@ -77,16 +78,16 @@ export default class extends React.Component<IProps, IState> {
         switch(this.state.screen){
             case 'top' :
                 return(
-                    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
+                    <Styled.Section>
                         <div onClick={this.setScreen.bind(this, 'scan')}>
-                            <FontAwesomeIcon icon={faQrcode} style={{width: '80vw', height: '80vw'}}/>
+                            <Styled.QrCode icon={faQrcode} />
                         </div>
-                        <p style={{display: 'inline-block', width: '80%', fontSize: '30px'}}>タップしてQRコードを読み込む</p>
-                    </div>
+                        <Styled.QrDesctiption>タップしてQRコードを読み込む</Styled.QrDesctiption>
+                    </Styled.Section>
                 )
             case 'scan' :
                 return(
-                    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
+                    <Styled.Section>
                         {!this.state.legacyMode ?
                             <QrReader
                                 onError={this.onError.bind(this,)}
@@ -110,11 +111,11 @@ export default class extends React.Component<IProps, IState> {
                         <p>
                             {this.state.result}
                         </p>
-                    </div>
+                    </Styled.Section>
                 )
             case 'result' :
                 return(
-                    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
+                    <Styled.Section>
                         <ArtistCard artistId={'hoge'} size={80} style={'card'} nameHidden={false} />
                         <Link to={'/performance/' + this.props.tipping.performanceId}>
                             <div>
@@ -122,23 +123,23 @@ export default class extends React.Component<IProps, IState> {
                                 <h3>{this.state.result}</h3>
                             </div>
                         </Link>
-                        <div onClick={this.setScreen.bind(this, 'tipping')} style={{width: '100%', height: '200px', background: 'white', color: 'black'}}>Tap to Tipping</div>
-                    </div>
+                        <Styled.ToTipping>Tap to Tipping</Styled.ToTipping>
+                    </Styled.Section>
                 )
             case 'tipping' :
                 return(
-                    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
-                        <div onClick={this.setScreen.bind(this, 'thanks')} style={{width: '100%', height: '200px', background: 'white', color: 'black'}}>Tap to Tipping</div>
+                    <Styled.Section>
+                        <Styled.ToTipping onClick={this.setScreen.bind(this, 'thanks')} >Tap to Tipping</Styled.ToTipping>
                         <form>
                             <input type="number"/>
                         </form>
-                    </div>
+                    </Styled.Section>
                 )
             case 'thanks' :
                 return(
-                    <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}} onClick={this.setScreen.bind(this, 'top')}>
+                    <Styled.Section onClick={this.setScreen.bind(this, 'top')}>
                         <h2>Thunk you</h2>
-                    </div>
+                    </Styled.Section>
                 )
         }
     }
@@ -146,12 +147,12 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <div>
-                <section style={{width: '100%', height: window.innerHeight - 100 + 'px', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', background: 'linear-gradient(rgb(255, 188, 247), rgb(255, 135, 161))', color: '#FFF'}}>
+                <Styled.Entire>
                     <p>
                         {this.state.error}
                     </p>
                     {this.renderState()}
-                </section>
+                </Styled.Entire>
             </div>
         )
     }
