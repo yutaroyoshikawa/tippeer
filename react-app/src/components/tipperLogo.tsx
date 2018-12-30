@@ -6,13 +6,11 @@ import * as actions from '../actions/userMenu'
 import TipperIcon from '../TipperIcon.svg'
 import TipperLogo from '../TipperLogo.svg'
 
+import * as Styled from '../styles/components/tipperLogo'
+
 export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>;
 }
-
-// interface IState {
-//     url: string
-// }
 
 export default class extends React.Component<IProps, {}> {
     constructor(props: IProps){
@@ -20,9 +18,9 @@ export default class extends React.Component<IProps, {}> {
     }
     public renderTipper = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
-            <img src={TipperLogo} style={{ width: '120px'}} />
+            <Styled.LongLogo src={TipperLogo} />
         :
-            <img src={TipperIcon} style={{ width: '40px' }} />
+            <Styled.Logo src={TipperIcon} />
     )
     public closeUserMenu = () => (
         this.props.dispatch(actions.closeMenu())
