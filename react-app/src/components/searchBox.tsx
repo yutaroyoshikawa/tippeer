@@ -35,7 +35,7 @@ export default class extends React.Component<IProps, {}> {
                 type="text"
                 value={this.props.searchBox.searchWord}
                 onChange={this.setSearchWordState}
-                placeholder="TIPPERを検索"
+                placeholder="Search"
             />
             <Styled.MobileSearchButton>
                 <Styled.MobileSearchIcon icon={faSearch}/>
@@ -47,7 +47,7 @@ export default class extends React.Component<IProps, {}> {
                 type="text"
                 value={this.props.searchBox.searchWord}
                 onChange={this.setSearchWordState}
-                placeholder="TIPPERを検索"
+                placeholder="Search"
             />
             <Styled.SearchButton>
                 <Styled.SearchIcon icon={faSearch}/>
