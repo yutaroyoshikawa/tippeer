@@ -1,4 +1,6 @@
 import * as React from 'react'
+import * as Styled from '../styles/notFound'
+
 
 export class NotFound extends React.Component<{}, {}> {
 
@@ -8,14 +10,14 @@ export class NotFound extends React.Component<{}, {}> {
 
     public render() {
         return(
-            <section style={{display: 'flex', width: '100%', height: '91vh', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', flexWrap: 'wrap'}}>
-                <p style={{fontSize: '90px', color: 'rgb(128, 128, 128)', letterSpacing: '15px'}}>
+            <Styled.Entire>
+                <Styled.Top>
                     404
-                </p>
-                <p style={{fontSize: '50px'}}>
+                </Styled.Top>
+                <Styled.Bottom>
                     not found
-                </p>
-            </section>
+                </Styled.Bottom>
+            </Styled.Entire>
         )
     }
 }
