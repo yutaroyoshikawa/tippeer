@@ -63,7 +63,6 @@ export const SearchWordInput = styled.input`
 `
 
 export const MobileSearchWordInput = styled.input`
-    margin-left: 15px;
     :focus {
         outline: none;
     }
