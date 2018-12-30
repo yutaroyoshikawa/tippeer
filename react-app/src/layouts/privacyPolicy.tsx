@@ -4,6 +4,8 @@ import * as actions from '../actions/globalMenu'
 import { ArticleTitle } from '../components'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 
+import * as Styled from '../styles/privacyPolicy'
+
 export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>
 }
@@ -22,7 +24,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public privacyPolicy = () => (
-        <div style={{width: '90%', margin: '0 auto'}}>
+        <Styled.PrivacyPolicyContent>
             <p>TIPPER（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
             <dl>
                 <dt>第1条（プライバシー情報）</dt>
@@ -147,18 +149,18 @@ export default class extends React.Component<IProps, {}> {
                     本ポリシーに関するお問い合わせは，問い合わせフォームからお願致します。
                 </dd>
             </dl>
-            <p style={{textAlign: 'right'}}>以上</p>
-        </div>
+            <Styled.End>以上</Styled.End>
+        </Styled.PrivacyPolicyContent>
     )
 
     public render() {
         return(
-            <section style={{width: '100%', margin: '0 auto', backgroundColor: 'white'}}>
-                <div style={{width: '90%', margin: '20px'}}>
+            <Styled.Entire>
+                <Styled.PrivacyPolicyTitle>
                     <ArticleTitle title={'プライバシーポリシー'} />
-                </div>
+                </Styled.PrivacyPolicyTitle>
                 {this.privacyPolicy()}
-            </section>
+            </Styled.Entire>
         )
     }
 }
