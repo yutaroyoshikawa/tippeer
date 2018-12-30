@@ -153,7 +153,7 @@ export default class extends React.Component<IProps, IState> {
 
     public renderSearchBox = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
-        <div style={{position: 'fixed', filter: 'drop-shadow(0 0 1px #555)', zIndex: 5, left: '50%', transform: 'translate(-50%, -40px)', width: '80%'}}><SearchBox /></div>
+        <div style={{position: 'fixed', filter: 'drop-shadow(0 0 1px #555)', zIndex: 5, width: '100%', transform: 'translate(-8px, -40px)', display: 'flex', justifyContent: 'center'}}><SearchBox /></div>
         :
         null
     )
