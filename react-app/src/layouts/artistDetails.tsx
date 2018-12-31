@@ -114,9 +114,8 @@ export default class extends React.Component<IProps, IState> {
                                 </Styled.RecentlyPerformanceTitle>
                                 <Styled.PerformanceName>{this.props.artistDetails.recentlyPerformanceTitle}</Styled.PerformanceName>
                                 <Styled.RecentlyPerformanceInfo>
-                                    <p>{this.props.artistDetails.recentlyPerformanceStart}</p>
-                                    <p><Styled.TimeHyphen>-</Styled.TimeHyphen></p>
-                                    <p>{this.props.artistDetails.recentlyPerformanceFinish}</p>
+                                    <Styled.Start>{this.props.artistDetails.recentlyPerformanceStart}</Styled.Start>
+                                    <Styled.Finish>{this.props.artistDetails.recentlyPerformanceFinish}</Styled.Finish>
                                 </Styled.RecentlyPerformanceInfo>
                                 <Styled.PerformanceDescriptionBox>
                                     <Styled.PerformanceDescription>{this.props.artistDetails.recentlyPerformanceDescription}</Styled.PerformanceDescription>
@@ -125,13 +124,13 @@ export default class extends React.Component<IProps, IState> {
                             <Styled.DesktopPerformancePlace>
                                 <GoogleMap placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'250px'} height={'250px'} />
                                 <Styled.DistanceCard>
-                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'300px'} height={'200px'} />
+                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} />
                                 </Styled.DistanceCard>
                             </Styled.DesktopPerformancePlace>
                             <Styled.MobilePerformancePlace>
                                 <GoogleMap placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'100px'} height={'100px'} />
                                 <Styled.DistanceCard>
-                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'50px'} height={'50px'} />
+                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} />
                                 </Styled.DistanceCard>
                             </Styled.MobilePerformancePlace>
                         </Styled.PerformanceInfo>

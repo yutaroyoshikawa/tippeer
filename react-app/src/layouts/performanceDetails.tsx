@@ -58,7 +58,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.BottomSection>
                     <GoogleMap placeId={this.props.performanceDetails.placeId} width={'100%'} height={'200px'} />
                     <Styled.PlaceDistance>
-                        <DistanceCard placeId={this.props.performanceDetails.placeId} width={'200px'} height={'100px'} />
+                        <DistanceCard placeId={this.props.performanceDetails.placeId} />
                     </Styled.PlaceDistance>
                     <Styled.CommentBox>
                         <CommentBox type={'performance'} />
