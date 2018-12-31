@@ -75,7 +75,6 @@ export default class extends React.Component<IProps, {}> {
     )
 
     public render() {
-        
         return(
             <div>
                 <Styled.StreetViewSection>
