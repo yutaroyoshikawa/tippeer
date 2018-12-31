@@ -23,7 +23,7 @@ export const ContentBox = styled.div`
     display: flex;
 `
 
-export const Artists = styled.div`
+export const Elements = styled.div`
     margin-left: 20px;
 `
 

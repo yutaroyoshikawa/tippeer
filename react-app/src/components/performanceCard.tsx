@@ -1,5 +1,8 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import * as Styled from '../styles/components/performanceCard'
+
+import nature from '../natureExample.jpeg'
 
 export interface IProps {
     performanceId: number
@@ -51,23 +54,21 @@ export class PerformanceCard extends React.Component<IProps, IState> {
 
     public render() {
         return(
-            <article style={{backgroundColor: 'white', padding: '30px 20px', filter: 'drop-shadow(0 0 2px #555)', margin: '5px 10px', width: '200px'}}>
+            <Styled.Entire>
                 <Link to={"/performances/" + this.props.performanceId}  >
-                    <div style={{color: '#999'}}>
-                        <h3 style={{fontWeight: 'normal', fontSize: '30px', color: '#666', marginBottom: '20px'}}>{this.state.performanceTitle}</h3>
-                        <p style={{fontSize: '12px'}}>start<time>{this.state.start}</time></p>
-                        <p style={{fontSize: '12px'}}>finish<time>{this.state.finish}</time></p>
-                        <p style={{margin: '10px 0'}}>{this.state.discription}</p>
-                    </div>  
+                    <figure><Styled.PerformanceThumbnail src={nature} alt="PerformanceThumbnail" /></figure>
                 </Link>
-                <Link to={"/places/" + this.state.placeId}>
-                    <div>
-                        <p style={{fontSize: '25px', color: '#666'}}>{this.state.placeName}</p>
-                        <p style={{color: '#999', fontSize: '12px'}}>〒{this.state.postalCode}</p>
-                        <p style={{color: '#999', fontSize: '12px'}}>{this.state.address}</p>
-                    </div>
-                </Link>                
-            </article>
+                <Styled.PerformanceInfo>
+                    <Link to={"/performances/" + this.props.performanceId}  >
+                        <Styled.PerformanceName>{this.state.performanceTitle}</Styled.PerformanceName>
+                        <Styled.Start>{this.state.start}</Styled.Start>
+                        <Styled.Finish>{this.state.finish}</Styled.Finish>
+                    </Link>
+                    <Link to={"/places/" + this.state.placeId}>
+                        <Styled.PlaceInfo>{this.state.placeName}</Styled.PlaceInfo>
+                    </Link>        
+                </Styled.PerformanceInfo> 
+            </Styled.Entire>
         )
     }
 }

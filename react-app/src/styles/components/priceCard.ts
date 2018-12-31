@@ -4,10 +4,12 @@ export const Circle = styled.button`
     color: #FFF;
     display: inline-block;
     background: rgb(63, 213, 180);
-    borderRadius: 100%;
-    padding: 25px;
-    font-size: ${prop => prop.value}px;
-    text-align: center;
+    border-radius: ${prop => prop.value}px;
+    width: ${prop => prop.value}px;
+    height: ${prop => prop.value}px
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
 `
 

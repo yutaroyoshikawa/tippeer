@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { GoogleMap } from './'
 
-import mapExample from 'src/mapExample.png'
+import * as Styled from '../styles/components/placeCard'
 
 export interface IProps {
     placeId: number
@@ -45,14 +46,16 @@ export class PlaceCard extends React.Component<IProps, IState> {
 
     public render() {
         return(
-            <article style={{backgroundColor: 'white', padding: '30px 20px', filter: 'drop-shadow(0 0 2px #555)', margin: '5px 20px', width: '200px'}}>
+            <Styled.Entire>
                 <Link to={"/places/" + this.props.placeId}  >
-                    <figure><img src={mapExample} style={{width: '100%'}} alt=""/></figure>
-                    <h3 style={{fontWeight: 'normal', fontSize: '30px', color: '#666', marginBottom: '20px'}}>{this.state.placeName}</h3>
-                    <p style={{color: '#999'}}>〒{this.state.postalCode}</p>
-                    <p style={{color: '#999'}}>{this.state.address}</p>
+                    <figure><GoogleMap placeId={this.props.placeId} width={'100%'} height={'110px'} /></figure>
+                    <Styled.PlaceInfo>
+                        <Styled.Name>{this.state.placeName}</Styled.Name>
+                        <Styled.PostalCode>〒{this.state.postalCode}</Styled.PostalCode>
+                        <Styled.Address>{this.state.address}</Styled.Address>
+                    </Styled.PlaceInfo>
                 </Link>
-            </article>
+            </Styled.Entire>
         )
     }
 }
