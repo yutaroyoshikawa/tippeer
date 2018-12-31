@@ -23,6 +23,10 @@ export const ContentBox = styled.div`
     display: flex;
 `
 
+export const Artists = styled.div`
+    margin-left: 20px;
+`
+
 export const SearchWord = styled.h2`
     display: inline-block;
     background-color: #FFF;

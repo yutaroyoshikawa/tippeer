@@ -57,15 +57,15 @@ export default class extends React.Component<IProps, IState> {
 
     public renderArtists = () => (
         this.state.result.artists.map((id) => (
-            <div>
+            <Styled.Artists key={id}>
                 <ArtistCard artistId={id} size={130} style={'standalone'} nameHidden={false} color={'light'} link={true} />
-            </div>
+            </Styled.Artists>
         ))
     )
 
     public renderPerformaces = () => (
         this.state.result.performaces.map((id) => (
-            <div>
+            <div key={id}>
                 <PerformanceCard performanceId={id} />
             </div>
             

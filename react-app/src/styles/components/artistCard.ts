@@ -49,6 +49,6 @@ export const ArtistIcon = styled.img`
 `
 
 export const Name = styled.p`
-    color: ${props => props.itemProp === 'light' ? '#555': '#FFF'};
+    color: ${props => props.itemProp === 'light' ? '#000': '#FFF'};
     display: block;
 `

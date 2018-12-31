@@ -23,10 +23,10 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public renderFollowArtists = (size: number) => (
-        this.props.worksTop.followArtists.map((data, i) => (
-            <div key={i}>
+        this.props.worksTop.followArtists.map((data) => (
+            <Styled.FollowArtists key={data}>
                 <ArtistCard artistId={data} size={size} style={'standalone'} nameHidden={true} color={'light'} link={true} />
-            </div>
+            </Styled.FollowArtists>
         ))
     )
 
@@ -62,11 +62,11 @@ export default class extends React.Component<IProps, {}> {
                         {this.renderFollowArtists(50)}
                     </Styled.TopFollowArtists>
                     <Styled.WorksStoreTitle>
-                        <ArticleTitle title={'Works Store'} color={'dark'} />
+                        <ArticleTitle title={'Works Store'} color={'light'} />
                     </Styled.WorksStoreTitle>
                     <Styled.Spotlight>
                         <Styled.SpotlightTitle>
-                            <ArticleTitle title={'Spotlight'} color={'dark'} />
+                            <ArticleTitle title={'Spotlight'} color={'light'} />
                         </Styled.SpotlightTitle>
                         <Styled.TwoSection>
                             <article>
@@ -131,7 +131,7 @@ export default class extends React.Component<IProps, {}> {
                 
                 <section>
                     <Styled.CardTitle>
-                        <ArticleTitle title={'あなたにおすすめ'} color={'dark'} />
+                        <ArticleTitle title={'あなたにおすすめ'} color={'light'} />
                     </Styled.CardTitle>
                     <Styled.CardContents>
                         {this.renderRecommend()}
@@ -139,7 +139,7 @@ export default class extends React.Component<IProps, {}> {
                 </section>
                 <section>
                     <Styled.CardTitle>
-                        <ArticleTitle title={'ニューリリース'} color={'dark'} />
+                        <ArticleTitle title={'ニューリリース'} color={'light'} />
                     </Styled.CardTitle>
                     <Styled.CardContents>
                         {this.renderNewrelease()}
@@ -147,7 +147,7 @@ export default class extends React.Component<IProps, {}> {
                 </section>
                 <section>
                     <Styled.CardTitle>
-                        <ArticleTitle title={'ランキング'} color={'dark'} />
+                        <ArticleTitle title={'ランキング'} color={'light'} />
                     </Styled.CardTitle>
                     <Styled.CardContents>
                         {this.renderRanking()}
