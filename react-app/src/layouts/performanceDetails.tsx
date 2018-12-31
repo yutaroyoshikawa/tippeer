@@ -29,7 +29,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.TopSection itemProp={this.props.performanceDetails.thumbnail}>
                     <Styled.PerformanceInfo>
                         <Styled.PerformanceArticleTitle>
-                            <ArticleTitle title={'Performance'} />
+                            <ArticleTitle title={'Performance'} color={'dark'} />
                         </Styled.PerformanceArticleTitle>
                         <Styled.TopPerformanceInfo>
                             <Styled.PerformanceThumbnail>
@@ -37,13 +37,13 @@ export default class extends React.Component<IProps, {}> {
                             </Styled.PerformanceThumbnail>
                             <Styled.PerformanceDetails>
                                 <Styled.PerformanceTitle>
-                                    <ArticleTitle title={this.props.performanceDetails.performanceTitle} />
+                                    <ArticleTitle title={this.props.performanceDetails.performanceTitle} color={'dark'} />
                                 </Styled.PerformanceTitle>
                                 <Styled.PerformanceArtist>
-                                    <ArtistCard artistId={this.props.performanceDetails.artistId} size={80} style={'card'} nameHidden={false} />
+                                    <ArtistCard artistId={this.props.performanceDetails.artistId} size={80} style={'card'} nameHidden={false} color={'dark'} link={true} />
                                 </Styled.PerformanceArtist>
                                 <Styled.MobilePerformanceArtist>
-                                    <ArtistCard artistId={this.props.performanceDetails.artistId} size={30} style={'card'} nameHidden={false} />
+                                    <ArtistCard artistId={this.props.performanceDetails.artistId} size={30} style={'card'} nameHidden={false} color={'dark'} link={true} />
                                 </Styled.MobilePerformanceArtist>
                                 <div>
                                     <Styled.Start>{this.props.performanceDetails.start}</Styled.Start>
@@ -58,7 +58,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.BottomSection>
                     <GoogleMap placeId={this.props.performanceDetails.placeId} width={'100%'} height={'200px'} />
                     <Styled.PlaceDistance>
-                        <DistanceCard placeId={this.props.performanceDetails.placeId} width={'200px'} height={'100px'} />
+                        <DistanceCard placeId={this.props.performanceDetails.placeId} />
                     </Styled.PlaceDistance>
                     <Styled.CommentBox>
                         <CommentBox type={'performance'} />

@@ -9,6 +9,10 @@ export const Commnet = styled.li`
     padding: 10px 0;
 `
 
+export const Artist = styled.li`
+    margin: 10px 10px 0 0;
+`
+
 export const CommentElements = styled.ul`
     list-style: none;
     display: flex;

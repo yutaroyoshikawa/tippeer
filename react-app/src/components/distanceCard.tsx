@@ -3,8 +3,6 @@ import * as Styled from '../styles/components/distanceCard'
 
 export interface IProps {
     placeId: number
-    width: string
-    height: string
 }
 
 interface IState {

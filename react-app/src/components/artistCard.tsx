@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+
+import * as Styled from '../styles/components/artistCard'
 
 import icon from '../natureicon.jpg'
 
@@ -8,6 +9,8 @@ export interface IProps {
     size: number
     style: 'standalone' | 'card'
     nameHidden: boolean
+    color: 'light' | 'dark'
+    link: boolean
 }
 
 export interface IState {
@@ -32,14 +35,25 @@ export class ArtistCard extends React.Component<IProps, IState> {
         })
     }
 
+    public renderCard = () => (
+        this.props.link ?
+            <Styled.ArtistLink to={"/artists/" + this.props.artistId} itemProp={this.props.style} >
+                <Styled.ArtistCard itemProp={this.props.style}><Styled.ArtistIcon src={icon} width={this.props.size} alt="ArtistIcon"/></Styled.ArtistCard>
+                {this.props.nameHidden ? null : <Styled.Name itemProp={this.props.color}>{this.state.artistName}</Styled.Name> }
+            </Styled.ArtistLink>
+        :
+            <Styled.IconBox itemProp={this.props.style}>
+                <Styled.ArtistCard itemProp={this.props.style}><Styled.ArtistIcon src={icon} width={this.props.size} alt="ArtistIcon"/></Styled.ArtistCard>
+                {this.props.nameHidden ? null : <Styled.Name itemProp={this.props.color}>{this.state.artistName}</Styled.Name> }
+            </Styled.IconBox>
+
+    )
+
     public render() {
         return(
-            <article style={{width: '100%', textAlign: 'center', margin: '0px'}}>
-                <Link to={"/artists/" + this.props.artistId} className={this.props.style === 'card' ? 'card': 'standalone'} >
-                <figure style={{display: 'block', filter: 'drop-shadow(0 0 1px #555)'}} className={this.props.style === 'card' ? 'card-margin': 'standalone-margin'}><img src={icon} style={{width: this.props.size + 'px', height: this.props.size + 'px', borderRadius: this.props.size + 'px'}} alt="ArtistIcon"/></figure>
-                {this.props.nameHidden ? null : <p style={{color: '#555', display: 'block'}}>{this.state.artistName}</p> }
-                </Link>
-            </article>
+            <Styled.Entire>
+                {this.renderCard()}
+            </Styled.Entire>
         )
     }
 }

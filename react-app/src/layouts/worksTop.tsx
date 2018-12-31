@@ -23,10 +23,10 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public renderFollowArtists = (size: number) => (
-        this.props.worksTop.followArtists.map((data, i) => (
-            <div key={i}>
-                <ArtistCard artistId={data} size={size} style={'standalone'} nameHidden={true} />
-            </div>
+        this.props.worksTop.followArtists.map((data) => (
+            <Styled.FollowArtists key={data}>
+                <ArtistCard artistId={data} size={size} style={'standalone'} nameHidden={true} color={'light'} link={true} />
+            </Styled.FollowArtists>
         ))
     )
 
@@ -62,11 +62,11 @@ export default class extends React.Component<IProps, {}> {
                         {this.renderFollowArtists(50)}
                     </Styled.TopFollowArtists>
                     <Styled.WorksStoreTitle>
-                        <ArticleTitle title={'Works Store'} />
+                        <ArticleTitle title={'Works Store'} color={'light'} />
                     </Styled.WorksStoreTitle>
                     <Styled.Spotlight>
                         <Styled.SpotlightTitle>
-                            <ArticleTitle title={'Spotlight'} />
+                            <ArticleTitle title={'Spotlight'} color={'light'} />
                         </Styled.SpotlightTitle>
                         <Styled.TwoSection>
                             <article>
@@ -75,7 +75,7 @@ export default class extends React.Component<IProps, {}> {
                                         <Styled.LargeWorksInfo>
                                             <Styled.WorksTitle>{this.props.worksTop.spotlight[0].worksTitle}</Styled.WorksTitle>
                                             <div style={{color: '#FFF'}}>
-                                                <ArtistCard artistId={this.props.worksTop.spotlight[0].artistId} size={50} style={'card'} nameHidden={false} />
+                                                <ArtistCard artistId={this.props.worksTop.spotlight[0].artistId} size={50} style={'card'} nameHidden={false} color={'light'} link={true} />
                                             </div>
                                         </Styled.LargeWorksInfo>  
                                     </Styled.TopSpotlight>
@@ -88,7 +88,7 @@ export default class extends React.Component<IProps, {}> {
                                             <Styled.LargeWorksInfo>
                                                 <Styled.MiddleWorksTitle>{this.props.worksTop.spotlight[1].worksTitle}</Styled.MiddleWorksTitle>
                                                 <div>
-                                                    <ArtistCard artistId={this.props.worksTop.spotlight[1].artistId} size={50} style={'card'} nameHidden={false} />
+                                                    <ArtistCard artistId={this.props.worksTop.spotlight[1].artistId} size={50} style={'card'} nameHidden={false} color={'light'} link={true} />
                                                 </div>
                                             </Styled.LargeWorksInfo>
                                         </Styled.MiddleSpotlight>
@@ -101,7 +101,7 @@ export default class extends React.Component<IProps, {}> {
                                                 <Styled.SmallWorksInfo>
                                                     <Styled.SmallWorksTitle>{this.props.worksTop.spotlight[2].worksTitle}</Styled.SmallWorksTitle>
                                                     <Styled.SmallWorksArtist>
-                                                        <ArtistCard artistId={this.props.worksTop.spotlight[2].artistId} size={50} style={'card'} nameHidden={false} />
+                                                        <ArtistCard artistId={this.props.worksTop.spotlight[2].artistId} size={50} style={'card'} nameHidden={false} color={'light'} link={true} />
                                                     </Styled.SmallWorksArtist>
                                                 </Styled.SmallWorksInfo>
                                             </Styled.SmallLeftSpotlight>
@@ -113,7 +113,7 @@ export default class extends React.Component<IProps, {}> {
                                                 <Styled.SmallWorksInfo>
                                                     <Styled.SmallWorksTitle>{this.props.worksTop.spotlight[3].worksTitle}</Styled.SmallWorksTitle>
                                                     <Styled.SmallWorksArtist>
-                                                        <ArtistCard artistId={this.props.worksTop.spotlight[3].artistId} size={50} style={'card'} nameHidden={false} />
+                                                        <ArtistCard artistId={this.props.worksTop.spotlight[3].artistId} size={50} style={'card'} nameHidden={false} color={'light'} link={true} />
                                                     </Styled.SmallWorksArtist>
                                                 </Styled.SmallWorksInfo>
                                             </Styled.SmallRightSpotlight>
@@ -131,7 +131,7 @@ export default class extends React.Component<IProps, {}> {
                 
                 <section>
                     <Styled.CardTitle>
-                        <ArticleTitle title={'あなたにおすすめ'} />
+                        <ArticleTitle title={'あなたにおすすめ'} color={'light'} />
                     </Styled.CardTitle>
                     <Styled.CardContents>
                         {this.renderRecommend()}
@@ -139,7 +139,7 @@ export default class extends React.Component<IProps, {}> {
                 </section>
                 <section>
                     <Styled.CardTitle>
-                        <ArticleTitle title={'ニューリリース'} />
+                        <ArticleTitle title={'ニューリリース'} color={'light'} />
                     </Styled.CardTitle>
                     <Styled.CardContents>
                         {this.renderNewrelease()}
@@ -147,7 +147,7 @@ export default class extends React.Component<IProps, {}> {
                 </section>
                 <section>
                     <Styled.CardTitle>
-                        <ArticleTitle title={'ランキング'} />
+                        <ArticleTitle title={'ランキング'} color={'light'} />
                     </Styled.CardTitle>
                     <Styled.CardContents>
                         {this.renderRanking()}

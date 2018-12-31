@@ -48,7 +48,7 @@ export default class extends React.Component<IProps, IState> {
     public renderOfferBox = () => (
         this.state.offerBoxState ?
         <Styled.ClickBox>
-            <ArticleTitle title={'オファー'} />
+            <ArticleTitle title={'オファー'} color={'light'} />
             <form>
                 <textarea cols={30} rows={10} />
             </form>
@@ -60,7 +60,7 @@ export default class extends React.Component<IProps, IState> {
     public renderBiographyBox = () => (
         this.state.biographyState ?
         <Styled.ClickBox>
-            <ArticleTitle title={'バイオグラフィー'} />
+            <ArticleTitle title={'バイオグラフィー'} color={'light'} />
         </Styled.ClickBox>
         :
         null
@@ -85,13 +85,13 @@ export default class extends React.Component<IProps, IState> {
                                 <Styled.ArtistName>{this.props.artistDetails.artistName}</Styled.ArtistName>
                             </div>
                             <Styled.ArtistCard>
-                                <ArtistCard size={150} style={'standalone'} artistId={this.props.match.params.artistId} nameHidden={true} />
+                                <ArtistCard size={150} style={'standalone'} artistId={this.props.match.params.artistId} nameHidden={true} color={'dark'} link={false} />
                             </Styled.ArtistCard>
                         </Styled.TopArtistinfo>
                         
                         <Styled.SelfIntroduction>{this.props.artistDetails.selfIntroduction}</Styled.SelfIntroduction>
                         <Styled.MobileArtistCard>
-                                <ArtistCard size={80} style={'standalone'} artistId={this.props.match.params.artistId} nameHidden={true} />
+                                <ArtistCard size={80} style={'standalone'} artistId={this.props.match.params.artistId} nameHidden={true} color={'dark'} link={false} />
                         </Styled.MobileArtistCard>
                     </Styled.ArtistInfo>
                     <Styled.FunctionList>
@@ -110,13 +110,12 @@ export default class extends React.Component<IProps, IState> {
                         <Styled.PerformanceInfo>
                             <div>
                                 <Styled.RecentlyPerformanceTitle>
-                                    <ArticleTitle title={'最新のパフォーマンス'} />
+                                    <ArticleTitle title={'最新のパフォーマンス'} color={'light'} />
                                 </Styled.RecentlyPerformanceTitle>
                                 <Styled.PerformanceName>{this.props.artistDetails.recentlyPerformanceTitle}</Styled.PerformanceName>
                                 <Styled.RecentlyPerformanceInfo>
-                                    <p>{this.props.artistDetails.recentlyPerformanceStart}</p>
-                                    <p><Styled.TimeHyphen>-</Styled.TimeHyphen></p>
-                                    <p>{this.props.artistDetails.recentlyPerformanceFinish}</p>
+                                    <Styled.Start>{this.props.artistDetails.recentlyPerformanceStart}</Styled.Start>
+                                    <Styled.Finish>{this.props.artistDetails.recentlyPerformanceFinish}</Styled.Finish>
                                 </Styled.RecentlyPerformanceInfo>
                                 <Styled.PerformanceDescriptionBox>
                                     <Styled.PerformanceDescription>{this.props.artistDetails.recentlyPerformanceDescription}</Styled.PerformanceDescription>
@@ -125,13 +124,13 @@ export default class extends React.Component<IProps, IState> {
                             <Styled.DesktopPerformancePlace>
                                 <GoogleMap placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'250px'} height={'250px'} />
                                 <Styled.DistanceCard>
-                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'300px'} height={'200px'} />
+                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} />
                                 </Styled.DistanceCard>
                             </Styled.DesktopPerformancePlace>
                             <Styled.MobilePerformancePlace>
                                 <GoogleMap placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'100px'} height={'100px'} />
                                 <Styled.DistanceCard>
-                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} width={'50px'} height={'50px'} />
+                                    <DistanceCard placeId={this.props.artistDetails.recentlyPerformancePlaceId} />
                                 </Styled.DistanceCard>
                             </Styled.MobilePerformancePlace>
                         </Styled.PerformanceInfo>
@@ -145,7 +144,7 @@ export default class extends React.Component<IProps, IState> {
                     </Styled.RecentPerformanceBox>  
                 </Styled.RecentPerformanceSection>
                 <Styled.PerformanceHistoryTitle>
-                    <ArticleTitle title={'過去のパフォーマンス'} />
+                    <ArticleTitle title={'過去のパフォーマンス'} color={'light'} />
                 </Styled.PerformanceHistoryTitle>
                 <Styled.PerformanceHistory>
                     {this.renderPerformanceCard()}

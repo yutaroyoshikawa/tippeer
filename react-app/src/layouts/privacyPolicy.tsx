@@ -157,7 +157,7 @@ export default class extends React.Component<IProps, {}> {
         return(
             <Styled.Entire>
                 <Styled.PrivacyPolicyTitle>
-                    <ArticleTitle title={'プライバシーポリシー'} />
+                    <ArticleTitle title={'プライバシーポリシー'} color={'light'} />
                 </Styled.PrivacyPolicyTitle>
                 {this.privacyPolicy()}
             </Styled.Entire>

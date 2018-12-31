@@ -33,7 +33,7 @@ export default class extends React.Component<IProps, {}> {
                 <li>
                     <Styled.Contents>
                         <Styled.ContentTitle>{data.title}</Styled.ContentTitle>
-                        <Styled.ContentArtist><ArtistCard artistId={data.artistId} size={40} style={'card'} nameHidden={false} /></Styled.ContentArtist>
+                        <Styled.ContentArtist><ArtistCard artistId={data.artistId} size={40} style={'card'} nameHidden={false} color={'dark'} link={true} /></Styled.ContentArtist>
                         <Styled.ContentPrice><PriceCard type={'ellipse'} price={data.price} size={15} /></Styled.ContentPrice>
                     </Styled.Contents>
                 </li>
@@ -54,7 +54,7 @@ export default class extends React.Component<IProps, {}> {
                         </Styled.WorksThumbnail>
                         <Styled.WorksDetails>
                             <Styled.WorksTitle>{this.props.worksDetails.worksTitle}</Styled.WorksTitle>
-                            <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} />
+                            <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} color={'dark'} link={true} />
                             <Styled.DesktopPriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={30} /></Styled.DesktopPriceCard>
                             <Styled.MobilePriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={18} /></Styled.MobilePriceCard>
                             <Styled.DesktopScore><Score size={40} /></Styled.DesktopScore>
@@ -63,7 +63,7 @@ export default class extends React.Component<IProps, {}> {
                     </Styled.TopWorksInfo>
                     <Styled.Description>{this.props.worksDetails.description}</Styled.Description>
                     <Styled.ContentSection>
-                        <ArticleTitle title={'Contents'} />
+                        <ArticleTitle title={'Contents'} color={'dark'} />
                         <Styled.ContentList>
                             {this.renderContents()}
                         </Styled.ContentList>
@@ -71,7 +71,7 @@ export default class extends React.Component<IProps, {}> {
                 </Styled.WorksInfo>
                 
                 <Styled.CommentSection>
-                    <ArticleTitle title={'Comments'} />
+                    <ArticleTitle title={'Comments'} color={'dark'} />
                     <CommentBox type={'works'} />
                     <Styled.Comments>
                         <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} dark={true} />

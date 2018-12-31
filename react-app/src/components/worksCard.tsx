@@ -50,7 +50,7 @@ export class WorksCard extends React.Component<IProps, IState> {
                 <h3 style={{fontWeight: 'normal', fontSize: '20px', color: '#666', marginBottom: '20px', textAlign: 'center'}}>{this.state.worksName}</h3>
                 </Link>
                 <Link to={'/artists/' + this.state.artistId} style={{}}>
-                    <ArtistCard artistId={this.state.artistId} size={40} style={'card'} nameHidden={false} />
+                    <ArtistCard artistId={this.state.artistId} size={40} style={'card'} nameHidden={false} color={'light'} link={true} />
                 </Link>
                 <p style={{display: 'flex', width: '80px', height: '80px', borderRadius: '100px', backgroundColor: 'rgb(159,224,192)', justifyContent: 'center', alignItems: 'center', color: '#333', position: 'absolute', transform: 'translateX(50%)'}}>￥{this.state.price}</p>
             </article>

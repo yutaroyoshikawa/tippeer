@@ -12,6 +12,7 @@ export const TopSection = styled.section`
     }
     @media screen and (max-width: 480px){
         height: 43vh;
+        margin-bottom: 20px;
     }
 `
 
@@ -76,8 +77,11 @@ export const MobileArtistCard = styled.div`
     }
     @media screen and (max-width: 480px){
         position: absolute;
-        top: 41vh;
-        left: 34vw;
+        top: 44vh;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 `
 
@@ -246,7 +250,8 @@ export const RecentPerformanceSection = styled.section`
     }
     @media screen and (max-width: 480px){
         height: 80vh;
-        width: 98%;
+        width: 100%;
+        margin: 0 auto;
     }
 `
 
@@ -259,6 +264,10 @@ export const RecentPerformanceBox = styled.div`
     }
     @media screen and (max-width: 480px){
         border-radius: 10px;
+        width: 90%;
+        height: 500px;
+        margin: 0 auto;
+        padding: 10px;
     }
 `
 
@@ -280,6 +289,7 @@ export const RecentlyPerformanceTitle = styled.div`
         margin-left: -110px;
     }
     @media screen and (max-width: 480px){
+        margin-left: -16px;
     }
 `
 
@@ -289,24 +299,22 @@ export const PerformanceName = styled.p`
         margin-bottom: 10px;
     }
     @media screen and (max-width: 480px){
+        font-size: 30px;
     }
 `
 
 export const RecentlyPerformanceInfo = styled.div`
-    display: flex;
-`
 
-export const TimeHyphen = styled.span`
-    margin: 0 10px;
 `
 
 export const PerformanceDescriptionBox = styled.div`
-    word-breal: break-word;
+    word-break: break-word;
     @media screen and (min-width: 1024px){
         width: 450px;
     }
     @media screen and (max-width: 480px){
-        width: 95vw;
+        width: 95%;
+        margin: 0 auto;
     }
 `
 
@@ -317,7 +325,16 @@ export const PerformanceComment = styled.div`
 `
 
 export const PerformanceDescription = styled.p`
-    margin: 30px 0;
+    @media screen and (min-width: 1024px){
+        margin: 30px 0;
+    }
+    @media screen and (max-width: 480px){
+        margin: 15px 0;
+        height: 50px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
 `
 
 export const DesktopPerformancePlace = styled.div`
@@ -344,6 +361,7 @@ export const DistanceCard = styled.div`
         right: 100px;
     }
     @media screen and (max-width: 480px){
+        width: 100px;
     }
     
 `
@@ -353,7 +371,7 @@ export const PerformanceHistoryTitle = styled.div`
         width: 450px;
     }
     @media screen and (max-width: 480px){
-        width: 95vw;
+        margin-left: 10px;
     }
 `
 
@@ -363,4 +381,47 @@ export const PerformanceHistory = styled.div`
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 90px;
+`
+
+export const Start = styled.p`
+    &::before {
+        content: 'start';
+        display: inline-block;
+        background-color: rgb(255, 135, 161);
+        color: #000;
+        border-radius: 8px;
+        width: 50px;
+        height: 22px;
+        text-align: center;
+        margin-right: 5px;
+    }
+    margin-bottom: 5px;
+    color: #000;
+    @media screen and (max-width: 480px){
+        &::before {
+            content: 'start';
+            display: inline-block;
+            background-color: rgb(255, 135, 161);
+            border-radius: 8px;
+            width: 50px;
+            height: 22px;
+            text-align: center;
+            margin-right: 5px;
+        }
+    }
+`
+
+export const Finish = styled.p`
+    &::before {
+        content: 'finish';
+        display: inline-block;
+        background-color: rgb(255, 135, 161);
+        color: #000;
+        border-radius: 8px;
+        width: 50px;
+        height: 22px;
+        text-align: center;
+        margin-right: 5px;
+    }
+    color: #000;
 `

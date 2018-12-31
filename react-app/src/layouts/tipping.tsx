@@ -116,7 +116,7 @@ export default class extends React.Component<IProps, IState> {
             case 'result' :
                 return(
                     <Styled.Section>
-                        <ArtistCard artistId={'hoge'} size={80} style={'card'} nameHidden={false} />
+                        <ArtistCard artistId={'hoge'} size={80} style={'card'} nameHidden={false} color={'light'} link={true} />
                         <Link to={'/performance/' + this.props.tipping.performanceId}>
                             <div>
                                 <p>{this.props.tipping.performanceStart}<span>-</span>{this.props.tipping.performanceFinish}</p>

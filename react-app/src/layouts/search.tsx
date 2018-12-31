@@ -57,15 +57,15 @@ export default class extends React.Component<IProps, IState> {
 
     public renderArtists = () => (
         this.state.result.artists.map((id) => (
-            <div>
-                <ArtistCard artistId={id} size={130} style={'standalone'} nameHidden={false} />
-            </div>
+            <Styled.Artists key={id}>
+                <ArtistCard artistId={id} size={130} style={'standalone'} nameHidden={false} color={'light'} link={true} />
+            </Styled.Artists>
         ))
     )
 
     public renderPerformaces = () => (
         this.state.result.performaces.map((id) => (
-            <div>
+            <div key={id}>
                 <PerformanceCard performanceId={id} />
             </div>
             
@@ -103,7 +103,7 @@ export default class extends React.Component<IProps, IState> {
                 <Styled.SearchWord>{this.props.match.params.searchWord}の検索結果</Styled.SearchWord>
             }
             <Styled.PerformanceTitle>
-                <ArticleTitle title={'パフォーマンス'} />
+                <ArticleTitle title={'パフォーマンス'} color={'light'} />
             </Styled.PerformanceTitle>    
             <Styled.Contents>
                 <Styled.ContentBox>
@@ -111,7 +111,7 @@ export default class extends React.Component<IProps, IState> {
                 </Styled.ContentBox>    
             </Styled.Contents>
             <Styled.PerformanceTitle>
-                <ArticleTitle title={'アーティスト'} />
+                <ArticleTitle title={'アーティスト'} color={'light'} />
             </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>
@@ -119,7 +119,7 @@ export default class extends React.Component<IProps, IState> {
                 </Styled.ContentBox> 
             </Styled.Contents>
             <Styled.PerformanceTitle>
-                <ArticleTitle title={'Works'} />
+                <ArticleTitle title={'Works'} color={'light'} />
             </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>
@@ -127,7 +127,7 @@ export default class extends React.Component<IProps, IState> {
                 </Styled.ContentBox>
             </Styled.Contents>
             <Styled.PerformanceTitle>
-                <ArticleTitle title={'場所'} />
+                <ArticleTitle title={'場所'} color={'light'} />
             </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>

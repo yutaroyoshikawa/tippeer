@@ -310,7 +310,7 @@ export const TopFollowArtists = styled.div`
         overflow: scroll;
         -webkit-overflow-scrolling: touch;
         width: 100%;
-        marginTop: 40px;
+        padding-top: 20px;
         background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     }
 `
@@ -355,4 +355,8 @@ export const CardContents = styled.div`
         margin-top: 10px;
         position: relative;
     }
+`
+
+export const FollowArtists = styled.div`
+    margin-left: 15px;
 `
