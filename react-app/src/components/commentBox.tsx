@@ -13,43 +13,36 @@ export class CommentBox extends React.Component<IProps, {}> {
         super(props)
     }
 
-    public renderForm = () => (
+    public renderScore = () => (
         this.props.type === 'works' ?
-        <Styled.Form>
-            <Styled.Box>
-                <Styled.Artist>
-                    <ArtistCard artistId={'hoge'} size={40} style={'standalone'} nameHidden={false} />
-                </Styled.Artist>
-                <Styled.ReviewBox>
-                    <Styled.Score><Score size={30} /></Styled.Score><Styled.MobileScore><Score size={25} /></Styled.MobileScore>
-                    <Styled.Comment maxLength={255} placeholder="コメントをする" />
-                </Styled.ReviewBox>
-            </Styled.Box>
-            <Styled.SendBox>
-                <Styled.SendButton><Styled.SendIcon icon={faPaperPlane} /></Styled.SendButton>
-            </Styled.SendBox>
-        </Styled.Form>
+        <div>
+            <Styled.Score>
+                <Score size={30} />
+            </Styled.Score>
+            <Styled.MobileScore>
+                <Score size={25} />
+            </Styled.MobileScore>
+        </div>
         :
-        <Styled.PerformanceForm>
-            <Styled.Box>
-                <Styled.Artist>
-                    <ArtistCard artistId={'hoge'} size={40} style={'standalone'} nameHidden={false} />
-                </Styled.Artist>
-                <Styled.ReviewBox>
-                    <Styled.PerformanceComment maxLength={255} placeholder="コメントをする" />
-                </Styled.ReviewBox>
-            </Styled.Box>
-            <Styled.SendBox>
-                <Styled.SendButton><Styled.SendIcon icon={faPaperPlane} /></Styled.SendButton>
-            </Styled.SendBox>
-        </Styled.PerformanceForm>
+        null
     )
 
     public render() {
         return(
-            <div>
-                {this.renderForm()}
-            </div>
+            <Styled.Form itemProp={this.props.type}>
+                <Styled.Box>
+                    <Styled.Artist>
+                        <ArtistCard artistId={'hoge'} size={40} style={'standalone'} nameHidden={false} color={'light'} link={false} />
+                    </Styled.Artist>
+                    <Styled.ReviewBox>
+                        {this.renderScore()}
+                        <Styled.Comment maxLength={255} placeholder="コメントをする" itemProp={this.props.type} />
+                    </Styled.ReviewBox>
+                </Styled.Box>
+                <Styled.SendBox>
+                    <Styled.SendButton><Styled.SendIcon icon={faPaperPlane} /></Styled.SendButton>
+                </Styled.SendBox>
+            </Styled.Form>
         )
     }
 }

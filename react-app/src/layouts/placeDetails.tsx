@@ -103,7 +103,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.PerformanceBox>
                     <Styled.InnerPerformanceBox>
                         <Styled.PerformanceTitle>
-                            <ArticleTitle title={'ここのパフォーマンス'} />
+                            <ArticleTitle title={'ここのパフォーマンス'} color={'light'} />
                         </Styled.PerformanceTitle>
                         <Styled.PerformanceContent>
                             {this.renderPerformances()}

@@ -23,7 +23,7 @@ export class CommentList extends React.Component<IProps, {}> {
                     <div key={key}>
                         <Styled.Commnet>
                             <Styled.CommentElements>
-                                <li><ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} /></li>
+                                <Styled.Artist><ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} color={'dark'} link={false} /></Styled.Artist>
                                 <Styled.CommentContents>
                                     <li><Score size={20} /></li>
                                     <li>{data.content}</li>
@@ -53,7 +53,7 @@ export class CommentList extends React.Component<IProps, {}> {
                 <div key={key}>
                     <Styled.Commnet>
                         <Styled.CommentElements>
-                            <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} />}</li>
+                            <Styled.Artist>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} color={'dark'} link={false} />}</Styled.Artist>
                             <Styled.CommentContents>
                                 <li>{data.content}</li>
                                 <Styled.PostedData>

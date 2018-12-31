@@ -66,7 +66,7 @@ export default class extends React.Component<IProps, IState> {
         return(
             <section>
                 <Styled.FaqTitle>
-                    <ArticleTitle title={'よくある質問'} />
+                    <ArticleTitle title={'よくある質問'} color={'light'} />
                 </Styled.FaqTitle>
                 <Styled.FaqContents>
                     {this.renderFaqs()}

@@ -10,32 +10,13 @@ export const Form = styled.form`
         border-radius: 15px;
         margin: 20px auto 40px auto;
         padding: 10px 0 50ox 0;
-        height: 165px;
+        height: ${props => props.itemProp === 'works' ? '165px' : '135px'};
     }
     @media screen and (max-width: 480px){
         border-radius: 12px;
         margin: 0px auto 40px auto;
         padding: 10px 0 40ox 0;
-        height: 130px;
-    }
-`
-
-export const PerformanceForm = styled.form`
-    width: 100%;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    @media screen and (min-width: 1024px){
-        border-radius: 15px;
-        margin: 20px auto 40px auto;
-        padding: 10px 0 50ox 0;
-        height: 135px;
-    }
-    @media screen and (max-width: 480px){
-        border-radius: 12px;
-        margin: 0px auto 40px auto;
-        padding: 10px 0 40ox 0;
-        height: 125px;
+        height: ${props => props.itemProp === 'works' ? '130px' : '125px'};
     }
 `
 
@@ -49,6 +30,7 @@ export const Artist = styled.div`
         margin: 0 20px;
     }
     @media screen and (max-width: 480px){
+        margin: 15px 10px;
     }
 `
 
@@ -71,30 +53,12 @@ export const Comment = styled.textarea`
     @media screen and (min-width: 1024px){
         height: 70px;
         font-size: 25px;
-        margin: 10px 40px 0 0;
+        margin: 10px 40px ${props => props.itemProp === 'works' ? '0' : '10px'} 0;
     }
     @media screen and (max-width: 480px){
-        height: 45px;
+        height: ${props => props.itemProp === 'works' ? '45px' : '60px'};
         font-size: 18px;
-        margin: 10px 20px 5px 0;
-    }
-`
-
-export const PerformanceComment = styled.textarea`
-    width: 100%;
-    resize: none;
-    :focus{
-        outline: none;
-    }
-    @media screen and (min-width: 1024px){
-        height: 70px;
-        font-size: 25px;
-        margin: 10px 40px 10px 0;
-    }
-    @media screen and (max-width: 480px){
-        height: 60px;
-        font-size: 18px;
-        margin: 5px 20px 0 0;
+        margin: ${props => props.itemProp === 'works' ? '10px 20px 5px 0' : '5px 20px 0 0'};
     }
 `
 

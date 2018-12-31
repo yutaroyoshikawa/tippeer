@@ -67,23 +67,6 @@ ol {
   margin-left:2em
 }
 
-.card {
-  display: flex;
-  align-items: center;
-}
-
-.standalone {
-  filter: drop-shadow(0 0 1px #555);
-}
-
-.card-margin {
-  margin-right: 10px;
-}
-
-.standalone-margin {
-  margin: 20px 20px 10px 20px;
-}
-
 a{
   color: #555
 }
