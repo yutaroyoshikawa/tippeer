@@ -360,3 +360,7 @@ export const CardContents = styled.div`
 export const FollowArtists = styled.div`
     margin-left: 15px;
 `
+
+export const ListElements = styled.div`
+    margin-left: 20px;
+`

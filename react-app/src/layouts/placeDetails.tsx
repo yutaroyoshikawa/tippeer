@@ -8,7 +8,6 @@ import { googleMapApiKey } from '../keys'
 import { IPlaceDetailsState } from '../reducers/placeDetails'
 import * as Styled from '../styles/placeDetails'
 
-
 export interface IProps extends IPlaceDetailsState {
     dispatch: Dispatch<any>
     match: {
@@ -28,22 +27,22 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public googleMap = (googleMaps: any) => (
-            googleMaps && (
-              <ReactGoogleMap
-                googleMaps={googleMaps}
-                coordinates={[
-                  {
-                    position: {lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude},
-                  },
-                ]}
-                center={{lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude}}
-                zoom={13}
-                zoomControl={false}
-                mapTypeControl={false}
-                streetViewControl={false}
-                fullscreenControl={false}
-              />
-            )
+        googleMaps && (
+          <ReactGoogleMap
+            googleMaps={googleMaps}
+            coordinates={[
+              {
+                position: {lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude},
+              },
+            ]}
+            center={{lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude}}
+            zoom={13}
+            zoomControl={false}
+            mapTypeControl={false}
+            streetViewControl={false}
+            fullscreenControl={false}
+          />
+        )
     )
 
     public googleStreetView = (googleMaps: any) => (
@@ -70,7 +69,7 @@ export default class extends React.Component<IProps, {}> {
 
     public renderPerformances = () => (
         this.props.placeDetails.performaces.map((id, i) => (
-            <li key={i.toString()}><PerformanceCard performanceId={id} /></li>
+            <Styled.ListElements key={i.toString()}><PerformanceCard performanceId={id} /></Styled.ListElements>
         ))
     )
 

@@ -425,3 +425,7 @@ export const Finish = styled.p`
     }
     color: #000;
 `
+
+export const ListElements = styled.div`
+    margin: 0 0 3px 20px;
+`

@@ -77,3 +77,7 @@ export const PerformanceContent = styled.ul`
     list-style: none;
     -webkit-overflow-scrolling: touch;
 `
+
+export const ListElements = styled.li`
+    margin-left: 20px;
+`

@@ -32,25 +32,25 @@ export default class extends React.Component<IProps, {}> {
 
     public renderRecommend = () => (
         this.props.worksTop.recommend.map((data, i) => (
-            <div key={i} >
+            <Styled.ListElements key={i} >
                 <WorksCard worksId={data} />
-            </div>
+            </Styled.ListElements>
         ))
     )
 
     public renderNewrelease = () => (
         this.props.worksTop.newReleace.map((data, i) => (
-            <div key={i}>
+            <Styled.ListElements key={i}>
                 <WorksCard worksId={data} />
-            </div>
+            </Styled.ListElements>
         ))
     )
 
     public renderRanking = () => (
         this.props.worksTop.runking.map((data, i) => (
-            <div key={i}>
+            <Styled.ListElements key={i}>
                 <WorksCard worksId={data} />
-            </div>
+            </Styled.ListElements>
         ))
     )
 

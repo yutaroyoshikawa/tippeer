@@ -8,7 +8,6 @@ import { IArtistDetailsState } from '../reducers/artistDetails'
 
 import * as Styled from '../styles/artistDetails'
 
-
 export interface IProps extends IArtistDetailsState {
     dispatch: Dispatch<any>
     match: {
@@ -39,9 +38,9 @@ export default class extends React.Component<IProps, IState> {
 
     public renderPerformanceCard = () => (
         this.props.artistDetails.performanceHistory.map((id, key) => (
-            <div key={key}>
+            <Styled.ListElements key={key}>
                 <PerformanceCard performanceId={id} />
-            </div>
+            </Styled.ListElements>
         ))
     )
 

@@ -15,15 +15,14 @@ export const Entire = styled.section`
 
 export const Section = styled.div`
     display: flex;
-    flex-direction: colmn;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 `
 
 export const QrCode = styled(FontAwesomeIcon)`
-    width: 80vw;
-    height: 80vw;
+    font-size: 300px;
 `
 
 export const QrDesctiption = styled.p`
