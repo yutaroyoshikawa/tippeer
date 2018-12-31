@@ -75,6 +75,33 @@ export const WorksDetails = styled.div`
     }
 `
 
+export const DesktopScore = styled.div`
+    @media screen and (max-width: 480px){
+        display: none;
+    }
+`
+
+export const MobileScore = styled.div`
+    @media screen and (min-width: 1024px){
+        display: none;
+    }
+`
+
+export const DesktopPriceCard = styled.div`
+    @media screen and (max-width: 480px){
+        display: none;
+    }
+`
+
+export const MobilePriceCard = styled.div`
+    @media screen and (min-width: 1024px){
+        display: none;
+    }
+    @media screen and (max-width: 480px){
+        margin: 10px 0;
+    }
+`
+
 export const WorksTitle = styled.h2`
     font-weight: normal;
 
@@ -83,12 +110,13 @@ export const WorksTitle = styled.h2`
     }
     @media screen and (max-width: 480px){
         font-size: 30px;
+        margin-bottom: 10px;
     }
 `
 
 export const Description = styled.p`
     @media screen and (min-width: 1024px){
-        margin: 50px
+        margin: 50px;
     }
     @media screen and (max-width: 480px){
         margin: -8px 20px 20px 20px;
@@ -100,7 +128,8 @@ export const ContentSection = styled.section`
         margin: 50p 0;
     }
     @media screen and (max-width: 480px){
-        margin-bottom: 20px;
+        margin: 0 auto 20px auto;
+        width: 90%;
     }
 `
 
@@ -137,6 +166,8 @@ export const ContentArtist = styled.li`
 
 export const ContentPrice = styled.li`
     text-align: center;
+    display: flex;
+    justify-content: flex-end;
 
     @media screen and (min-width: 1024px){
         width: 30%;
@@ -165,7 +196,8 @@ export const CommentSection = styled.section`
         margin-bottom: 50px;
     }
     @media screen and (max-width: 480px){
-        margin-bottom: 20px;
+        margin: 0 auto 20px auto;
+        width: 90%;
     }
 `
 
@@ -177,6 +209,6 @@ export const Comments = styled.div`
         width: 65%;
     }
     @media screen and (max-width: 480px){
-        width: 95%;
+        width: 93%;
     }
 `

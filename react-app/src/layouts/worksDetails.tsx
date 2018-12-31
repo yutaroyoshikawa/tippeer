@@ -34,7 +34,7 @@ export default class extends React.Component<IProps, {}> {
                     <Styled.Contents>
                         <Styled.ContentTitle>{data.title}</Styled.ContentTitle>
                         <Styled.ContentArtist><ArtistCard artistId={data.artistId} size={40} style={'card'} nameHidden={false} /></Styled.ContentArtist>
-                        <Styled.ContentPrice><PriceCard type={'ellipse'} price={data.price} size={20} /></Styled.ContentPrice>
+                        <Styled.ContentPrice><PriceCard type={'ellipse'} price={data.price} size={15} /></Styled.ContentPrice>
                     </Styled.Contents>
                 </li>
                 {key !== this.props.worksDetails.contents.length - 1 ? <Styled.ContentsBorder /> : null}
@@ -55,8 +55,10 @@ export default class extends React.Component<IProps, {}> {
                         <Styled.WorksDetails>
                             <Styled.WorksTitle>{this.props.worksDetails.worksTitle}</Styled.WorksTitle>
                             <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} />
-                            <PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={30} />
-                            <Score size={40} />
+                            <Styled.DesktopPriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={30} /></Styled.DesktopPriceCard>
+                            <Styled.MobilePriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={18} /></Styled.MobilePriceCard>
+                            <Styled.DesktopScore><Score size={40} /></Styled.DesktopScore>
+                            <Styled.MobileScore><Score size={25} /></Styled.MobileScore>
                         </Styled.WorksDetails>
                     </Styled.TopWorksInfo>
                     <Styled.Description>{this.props.worksDetails.description}</Styled.Description>
