@@ -1,6 +1,7 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import * as React from 'react'
+import * as Styled from '../styles/components/score'
 
 export interface IProps {
     size: number
@@ -12,17 +13,17 @@ export class Score extends React.Component<IProps, {}> {
     }
 
     public renderScore = () => (
-        <div style={{display: 'flex', filter: 'drop-shadow(0 0 1px #555)'}}>
-            <div style={{color: 'rgb(255, 236, 0)'}}>
-                <FontAwesomeIcon icon={faStar} style={{width: this.props.size, height: this.props.size, paddingRight: '5px'}} />
-                <FontAwesomeIcon icon={faStar} style={{width: this.props.size, height: this.props.size, paddingRight: '5px'}} />
-                <FontAwesomeIcon icon={faStar} style={{width: this.props.size, height: this.props.size, paddingRight: '5px'}} />
-                <FontAwesomeIcon icon={faStar} style={{width: this.props.size, height: this.props.size, paddingRight: '5px'}} />
-            </div>
-            <div style={{color: 'rgb(190, 190, 190)'}}>
-                <FontAwesomeIcon icon={faStar} style={{width: this.props.size, height: this.props.size, paddingRight: '5px'}} />
-            </div>
-        </div>
+        <Styled.ScoreBox>
+            <Styled.ColorStar>
+                <Styled.Star icon={faStar} tabIndex={this.props.size} />
+                <Styled.Star icon={faStar} tabIndex={this.props.size} />
+                <Styled.Star icon={faStar} tabIndex={this.props.size} />
+                <Styled.Star icon={faStar} tabIndex={this.props.size} />
+            </Styled.ColorStar>
+            <Styled.MonoStar>
+                <Styled.Star icon={faStar} tabIndex={this.props.size} />
+            </Styled.MonoStar>
+        </Styled.ScoreBox>
     )
 
     public render() {

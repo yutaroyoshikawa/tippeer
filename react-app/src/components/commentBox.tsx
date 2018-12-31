@@ -1,7 +1,8 @@
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react'
 import { ArtistCard, Score } from './'
+
+import * as Styled from '../styles/components/commentBox'
 
 export interface IProps {
     type: 'works' | 'performance'
@@ -12,20 +13,43 @@ export class CommentBox extends React.Component<IProps, {}> {
         super(props)
     }
 
+    public renderForm = () => (
+        this.props.type === 'works' ?
+        <Styled.Form>
+            <Styled.Box>
+                <Styled.Artist>
+                    <ArtistCard artistId={'hoge'} size={40} style={'standalone'} nameHidden={false} />
+                </Styled.Artist>
+                <Styled.ReviewBox>
+                    <Styled.Score><Score size={30} /></Styled.Score><Styled.MobileScore><Score size={25} /></Styled.MobileScore>
+                    <Styled.Comment maxLength={255} placeholder="コメントをする" />
+                </Styled.ReviewBox>
+            </Styled.Box>
+            <Styled.SendBox>
+                <Styled.SendButton><Styled.SendIcon icon={faPaperPlane} /></Styled.SendButton>
+            </Styled.SendBox>
+        </Styled.Form>
+        :
+        <Styled.PerformanceForm>
+            <Styled.Box>
+                <Styled.Artist>
+                    <ArtistCard artistId={'hoge'} size={40} style={'standalone'} nameHidden={false} />
+                </Styled.Artist>
+                <Styled.ReviewBox>
+                    <Styled.PerformanceComment maxLength={255} placeholder="コメントをする" />
+                </Styled.ReviewBox>
+            </Styled.Box>
+            <Styled.SendBox>
+                <Styled.SendButton><Styled.SendIcon icon={faPaperPlane} /></Styled.SendButton>
+            </Styled.SendBox>
+        </Styled.PerformanceForm>
+    )
+
     public render() {
         return(
-            <form style={{width: '100%%', margin: '20px auto 40px auto', borderRadius: '15px', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.3)', padding: '10px 0 50px 0', background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', height: '180px'}}>
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <div style={{margin: '0 20px'}}>
-                        <ArtistCard artistId={'hoge'} size={40} style={'standalone'} nameHidden={false} />
-                    </div>
-                    <div style={{margin: '10px 40px 0px 0px', width: '100%'}}>
-                        {this.props.type === 'works' ? <Score size={30} /> : null}
-                        <textarea style={{width: '100%', margin: '20px 40px 20px 0', height: '70px', fontSize: '25px'}} rows={2} />
-                    </div>
-                </div>
-                    <button style={{padding: '18px 18px 14px 14px', borderRadius: '100%', border: 'solid 5px rgb(63, 213, 180)', position: 'relative', background: '#FFF', left: '50%', marginLeft: '-38px'}}><FontAwesomeIcon icon={faPaperPlane} style={{color: 'rgb(63, 213, 180)', width: '35px', height: '35px'}} /></button>
-            </form>
+            <div>
+                {this.renderForm()}
+            </div>
         )
     }
 }

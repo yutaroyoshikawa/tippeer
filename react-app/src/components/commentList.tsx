@@ -2,6 +2,7 @@ import * as React from 'react'
 import { IPerformanceComments, IWorksComments } from '../reducers/worksDetails'
 import { ArtistCard, Score } from './'
 
+import * as Styled from '../styles/components/commentList'
 
 export interface IProps {
     type: 'performance' | 'works' | 'standalone'
@@ -20,26 +21,26 @@ export class CommentList extends React.Component<IProps, {}> {
             this.props.initialWorksComments !== null ?
                 this.props.initialWorksComments.map((data, key) => (
                     <div key={key}>
-                        <li style={{padding: '10px 0'}}>
-                            <ul style={{listStyle: 'none', display: 'flex'}}>
-                                <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} />}</li>
-                                <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+                        <Styled.Commnet>
+                            <Styled.CommentElements>
+                                <li><ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} /></li>
+                                <Styled.CommentContents>
                                     <li><Score size={20} /></li>
                                     <li>{data.content}</li>
-                                    <div style={{display: 'flex'}}>
+                                    <Styled.PostedData>
                                         <li>{data.userId}</li>
                                         <li>{data.postDate}</li>
-                                    </div>
-                                </div>
-                            </ul>
-                        </li>
+                                    </Styled.PostedData>
+                                </Styled.CommentContents>
+                            </Styled.CommentElements>
+                        </Styled.Commnet>
                         {
                             this.props.initialWorksComments !== null ?
                                 key !== this.props.initialWorksComments.length - 1 ?
                                     this.props.dark ?
-                                        <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0))', height: '1px'}} />
+                                        <Styled.LightSepatateLine />
                                         :
-                                        <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(0, 0, 0, 1), rgba(255, 255, 255, 255))', height: '1px'}} />
+                                        <Styled.DarkSeparateLine />
                                 : null
                             : null
                         }
@@ -50,25 +51,25 @@ export class CommentList extends React.Component<IProps, {}> {
         this.props.initialPerformanceComments !== null ?
             this.props.initialPerformanceComments.map((data, key) => (
                 <div key={key}>
-                    <li style={{padding: '10px 0'}}>
-                        <ul style={{listStyle: 'none', display: 'flex'}}>
+                    <Styled.Commnet>
+                        <Styled.CommentElements>
                             <li>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} />}</li>
-                            <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+                            <Styled.CommentContents>
                                 <li>{data.content}</li>
-                                <div style={{display: 'flex'}}>
-                                    <li style={{marginRight: '20px'}}>{data.userId}</li>
+                                <Styled.PostedData>
+                                    <Styled.UserId>{data.userId}</Styled.UserId>
                                     <li>{data.postDate}</li>
-                                </div>
-                            </div>
-                        </ul>
-                    </li>
+                                </Styled.PostedData>
+                            </Styled.CommentContents>
+                        </Styled.CommentElements>
+                    </Styled.Commnet>
                     {
                         this.props.initialPerformanceComments !== null ?
                             key !== this.props.initialPerformanceComments.length - 1 ?
                             this.props.dark ?
-                            <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0))', height: '1px'}} />
+                            <Styled.LightSepatateLine />
                             :
-                            <hr style={{border: '0 none', margin: '8px 0', width: '95%', background: 'radial-gradient(rgba(0, 0, 0, 1), rgba(255, 255, 255, 255))', height: '1px'}} />
+                            <Styled.DarkSeparateLine />
                             : null
                         : null
                     }
@@ -79,9 +80,9 @@ export class CommentList extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <ul style={{listStyle: 'none',width: '100%'}}>
+            <Styled.Entire>
                 {this.renderComments()}
-            </ul>
+            </Styled.Entire>
         )
     }
 }

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as Styled from '../styles/components/priceCard'
 
 export interface IProps {
     price: number
@@ -13,9 +14,9 @@ export class PriceCard extends React.Component<IProps, {}> {
 
     public renderPriceCard = () => (
         this.props.type === 'circle' ? 
-        <button style={{color: '#FFF', display: 'inline-block', background: 'rgb(63, 213, 180)', borderRadius: '100%', padding: '25px', fontSize: this.props.size, textAlign: 'center', boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.3)'}}>￥{this.props.price}</button>
+        <Styled.Circle value={this.props.size}>￥{this.props.price}</Styled.Circle>
         :
-        <button style={{color: '#FFF', display: 'inline-block', background: 'rgb(63, 213, 180)', borderRadius: '55px', padding: '3px 25px', fontSize: this.props.size, textAlign: 'center', boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.3)'}}>￥{this.props.price}</button>
+        <Styled.Ellipse value={this.props.size}>￥{this.props.price}</Styled.Ellipse>
     )
 
     public render() {
