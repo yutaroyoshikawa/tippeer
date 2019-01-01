@@ -19,8 +19,6 @@ export default class extends React.Component<IProps, {}> {
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
         }
-            
-        document.body.className = 'normal'
     }
 
     public privacyPolicy = () => (
@@ -156,6 +154,7 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <Styled.Entire>
+                <Styled.GlobalStyle />
                 <Styled.PrivacyPolicyTitle>
                     <ArticleTitle title={'プライバシーポリシー'} color={'light'} />
                 </Styled.PrivacyPolicyTitle>

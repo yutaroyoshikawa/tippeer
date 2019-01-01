@@ -1,4 +1,3 @@
 export default interface IThemeInterface {
-    primaryColor: string
-    primaryColorInverted: string
+    image?: string
 }

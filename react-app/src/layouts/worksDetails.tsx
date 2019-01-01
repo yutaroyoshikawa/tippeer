@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
+import { setMobileMenuState } from '../actions/globalMenu'
 import { Score } from '../components'
 import { ArticleTitle } from '../components'
 import { ArtistCard, CommentBox, CommentList, PriceCard } from '../components'
@@ -16,15 +17,12 @@ export default class extends React.Component<IProps, {}> {
         super(props)
     }
 
-    public componentDidMount() {
-        document.body.className = 'worksDetails'
-        document.body.style.background = 'url(' + this.props.worksDetails.worksThumbnail + ') no-repeat center'
-        document.body.style.backgroundSize = 'cover'
-        document.body.style.backgroundAttachment = 'fixed'
-    }
-
     public componentWillUnmount() {
         document.body.style.background = 'none'
+    }
+
+    public componentDidMount() {
+        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
     }
 
     public renderContents = () => (
@@ -44,7 +42,8 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <Styled.Entire className={'worksDetailsBody'}>
+            <Styled.Entire>
+                <Styled.GlobalStyle theme={{image: this.props.worksDetails.worksThumbnail}} />
                 <Styled.WorksInfo>
                     <Styled.TopWorksInfo>
                         <Styled.WorksThumbnail>

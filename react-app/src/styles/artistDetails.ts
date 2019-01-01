@@ -1,5 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from './styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styled, { createGlobalStyle } from './styled-components'
+
+export const GlobalStyle = createGlobalStyle`
+    body {
+        background: #FFF;
+    }
+`
 
 export const TopSection = styled.section`
     width: 100%;

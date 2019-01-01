@@ -1,16 +1,21 @@
 import * as React from 'react'
+import { Dispatch } from 'redux'
+import { setMobileMenuState } from '../actions/globalMenu'
 import * as Styled from '../styles/notFound'
 
+export interface IProps {
+    dispatch: Dispatch<any>
+}
 
-export class NotFound extends React.Component<{}, {}> {
-
+export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
-        document.body.className = 'normal'
+        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
     }
 
     public render() {
         return(
             <Styled.Entire>
+                <Styled.GlobalStyle />
                 <Styled.Top>
                     404
                 </Styled.Top>

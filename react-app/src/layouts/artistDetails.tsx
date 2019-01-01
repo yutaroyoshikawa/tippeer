@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
+import { setMobileMenuState } from '../actions/globalMenu'
 import { ArticleTitle, ArtistCard, CommentBox, CommentList, DistanceCard, GoogleMap, PerformanceCard } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
 
@@ -33,7 +34,7 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidMount() {
-        document.body.className = 'normal'
+        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
     }
 
     public renderPerformanceCard = () => (
@@ -76,6 +77,7 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <section>
+                <Styled.GlobalStyle />
                 <Styled.TopSection itemProp={this.props.artistDetails.topImage}>
                     <Styled.ArtistInfo>
                         <Styled.TopArtistinfo>

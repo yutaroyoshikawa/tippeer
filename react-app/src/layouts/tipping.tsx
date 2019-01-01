@@ -41,7 +41,6 @@ export default class extends React.Component<IProps, IState> {
 
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState({tabState: 'tipping'}))
-        document.body.className = 'normal'
     }
 
     public onError = (e: any) => {
@@ -147,6 +146,7 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <div>
+                <Styled.GlobalStyle />
                 <Styled.Entire>
                     <p>
                         {this.state.error}

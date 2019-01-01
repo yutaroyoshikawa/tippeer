@@ -19,7 +19,6 @@ export default class extends React.Component<IProps, {}> {
 
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState({tabState: 'works'}))
-        document.body.className = 'normal'
     }
 
     public renderFollowArtists = (size: number) => (
@@ -57,6 +56,7 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <div>
+                <Styled.GlobalStyle />
                 <Styled.TopSection>
                     <Styled.TopFollowArtists>
                         {this.renderFollowArtists(50)}

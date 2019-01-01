@@ -1,4 +1,10 @@
-import styled from './styled-components'
+import styled, { createGlobalStyle} from './styled-components'
+
+export const GlobalStyle = createGlobalStyle`
+    body {
+        background-color: rgb(215, 187, 187);
+    }
+`
 
 export const Result = styled.div`
     width: 100%;

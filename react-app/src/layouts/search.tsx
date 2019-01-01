@@ -52,7 +52,6 @@ export default class extends React.Component<IProps, IState> {
                 works: [0, 1, 2, 3],
             }
         })
-        document.body.className = 'search'
     }
 
     public renderArtists = () => (
@@ -161,6 +160,7 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <Styled.Entire>
+                <Styled.GlobalStyle />
                 {this.renderSearchBox()}
                 {this.renderPage()}
             </Styled.Entire>

@@ -1,6 +1,26 @@
-import styled from './styled-components'
+import styled, { createGlobalStyle } from './styled-components'
+
+export const GlobalStyle = createGlobalStyle`
+    body {
+        background: url(${props => props.theme.image}) no-repeat center;
+        background-size: cover;
+    }
+
+    body::before {
+        content: '';
+        background: inherit;
+        filter: blur(10px);
+        position: fixed;
+        z-index: -1;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+    }
+`
 
 export const Entire = styled.div`
+    color: #FFF;
     @media screen and (min-width: 1024px){
         width: 1020px;
         margin: 0 auto;
@@ -8,6 +28,18 @@ export const Entire = styled.div`
     @media screen and (max-width: 480px){
         width: 100%;
     }
+
+    &::before {
+        content: '';
+        filter: blur(10px);
+        background: rgba(0, 0, 0, 0.3);
+        position: fixed;
+        z-index: -1;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+      }
 `
 
 export const WorksInfo = styled.section`

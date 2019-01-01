@@ -30,8 +30,7 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount = () => {
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
-        } 
-        document.body.className = 'normal'
+        }
         // this.props.dispatch(userPageActions.setInitialProps())
     }
 
@@ -95,6 +94,7 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <section>
+                <Styled.GlobalStyle />
                 <Styled.Menu>
                     <Styled.MenuList><Styled.MenuLink to='/works/' >Works Store</Styled.MenuLink></Styled.MenuList>
                     <Styled.MenuList>おすすめパフォーマンス</Styled.MenuList>

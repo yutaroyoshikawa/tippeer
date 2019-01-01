@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
+import { setMobileMenuState } from '../actions/globalMenu'
 import { ArticleTitle, ArtistCard, CommentBox, CommentList, DistanceCard, GoogleMap } from '../components'
 import { IPerformanceDetailsState } from '../reducers/performaceDetails'
-
 import * as Styled from '../styles/performanceDetails'
 
 export interface IProps extends IPerformanceDetailsState {
@@ -20,12 +20,13 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
-        document.body.className = 'normal'
+        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
     }
 
     public render() {
         return(
             <div>
+                <Styled.GlobalStyle />
                 <Styled.TopSection itemProp={this.props.performanceDetails.thumbnail}>
                     <Styled.PerformanceInfo>
                         <Styled.PerformanceArticleTitle>

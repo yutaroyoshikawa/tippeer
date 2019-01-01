@@ -50,8 +50,6 @@ export default class extends React.Component<IProps, IState> {
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
         }
-
-        document.body.className = 'normal'
     }
 
     public renderFaqs = () => (
@@ -65,6 +63,7 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <section>
+                <Styled.GlobalStyle />
                 <Styled.FaqTitle>
                     <ArticleTitle title={'よくある質問'} color={'light'} />
                 </Styled.FaqTitle>
