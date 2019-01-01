@@ -15,9 +15,9 @@ export class ArticleTitle extends React.Component<IProps, {}> {
         return(
             <div>
                 <Styled.Entire color={this.props.color}>
-                    <h2 style={{margin: '0 -20px 0 10px', fontSize: '30px'}}>
+                    <Styled.Title>
                         {this.props.title}
-                    </h2>
+                    </Styled.Title>
                 </Styled.Entire>
             </div>
         )
