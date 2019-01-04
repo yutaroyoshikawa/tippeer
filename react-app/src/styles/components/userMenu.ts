@@ -25,7 +25,6 @@ export const Top = styled.nav`
 export const MenuList = styled.ul`
     display: flex;
     list-style: none;
-    
     align-items: center;
     color: #FFF;
     @media screen and (min-width: 1024px){
@@ -35,7 +34,11 @@ export const MenuList = styled.ul`
     }
     @media screen and (max-width: 480px){
         width: 100%;
-        min-height: 500px;
+        height: 60vh;
+        min-height: 100px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 `
 
@@ -45,13 +48,23 @@ export const ListStyle = styled.li`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
+    @media screen and (min-width: 1024px){
+        font-size: 20px;
+    }
+    @media screen and (max-width: 480px){
+        font-size: 13px;
+    }
 `
 
 export const MenuIcon = styled(FontAwesomeIcon)`
     color: #FFF;
-    font-size: 50px;
     margin-bottom: 10px;
+    @media screen and (min-width: 1024px){
+        font-size: 50px;
+    }
+    @media screen and (max-width: 480px){
+        font-size: 30px;
+    }
 `
 
 export const ListLink = styled(Link)`

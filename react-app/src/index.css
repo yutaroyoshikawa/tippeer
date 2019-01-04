@@ -13,3 +13,16 @@
     transform: translate(0, 0) scale(1);
   }
 }
+
+/* .firebaseui-title::first-line {
+  font-size: 10px;
+}
+
+.firebaseui-title::after {
+  content: '電話番号で認証';
+  font-size: 35px;
+  display: block;
+} */
+
+
+

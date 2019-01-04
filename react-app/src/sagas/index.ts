@@ -1,6 +1,11 @@
-import { fork } from 'redux-saga/effects';
-import { handleSearch } from './search'
+import { SagaIterator } from 'redux-saga'
+import { all } from 'redux-saga/effects';
+import Auth from './auth'
+import Search from './search'
 
-export function* rootSaga(){
-  yield fork(handleSearch)
+export default function* (): SagaIterator{
+  yield all([
+    ...Auth,
+    ...Search,
+  ])
 }

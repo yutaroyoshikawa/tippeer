@@ -5,6 +5,7 @@ export { SearchBox } from '../containers/searchBox'
 export { MobileMenu } from '../containers/mobileMenu'
 export { PrivacyPolicy } from '../containers/privacyPolicy'
 export { UserPage } from '../containers/userPage'
+export { Auth } from '../containers/auth'
 
 /*
 template
