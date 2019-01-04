@@ -1,9 +1,14 @@
-import createHistory from 'history/createBrowserHistory';
-import { take } from 'redux-saga/effects'
+// import createHistory from 'history/createBrowserHistory';
+import { fork, put, take } from 'redux-saga/effects'
+import * as Actions from '../actions/globalMenu'
 
-export function* handleSearch() {
+function* handleSearch() {
     while(true) {
-        const action = yield take('SEARCH')
-        yield createHistory().push('/search/' + action.payload.searchWord)
+        yield take('SEARCH')
+        yield put(Actions.getAgentInfo)
     }
 } 
+
+export default [
+    fork(handleSearch),
+]
