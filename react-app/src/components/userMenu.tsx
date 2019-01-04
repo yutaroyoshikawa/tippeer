@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
+import { hideAuth, requestLogout, showAuth } from '../actions/auth'
 import * as actions from '../actions/userMenu'
-
+import { Auth } from '../components'
+import { IAuthState } from '../reducers/auth'
 import * as Styled from '../styles/components/userMenu'
 
 
-export interface IProps extends IUserMenuState {
+export interface IProps extends IUserMenuState, IAuthState {
     dispatch: Dispatch<any>;
 }
 
@@ -27,12 +29,34 @@ export default class extends React.Component<IProps, {}> {
             
     }
 
+    public renderAuth = () => (
+        !this.props.auth.hideAuth ?
+        <Auth />
+        :
+        null
+    )
+
+    public renderButton = () => (
+        this.props.auth.isSignedIn ?
+        <Styled.ListStyle onClick={this.props.dispatch.bind(this, requestLogout())}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
+        :
+        <Styled.ListStyle onClick={this.setAuthState.bind(this,)}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログイン</Styled.ListStyle>
+    )
+
+    public setAuthState = () => (
+        !this.props.auth.hideAuth ?
+         this.props.dispatch(hideAuth())
+         :
+         this.props.dispatch(showAuth())
+    )
+
     public renderMenu = () => (
         this.props.userMenu.openState ?
                 <Styled.Top>
+                    {this.renderAuth()}
                     <Styled.MenuList>
                         <Styled.ListStyle><span><Styled.MenuIcon icon={faAddressBook} /></span>ユーザ情報変更</Styled.ListStyle>
-                        <Styled.ListStyle><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
+                        {this.renderButton()}
                         <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
                         <Styled.ListStyle><span><Styled.MenuIcon icon={faSadTear} /></span>退会</Styled.ListStyle>
                         <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
