@@ -2,13 +2,15 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu'
+import { requestCanselRegistUser } from '../actions/registUser'
 import * as actions from '../actions/userMenu'
+import { IUserMenuState } from '../reducers/userMenu'
 import TipperIcon from '../TipperIcon.svg'
 import TipperLogo from '../TipperLogo.svg'
 
 import * as Styled from '../styles/components/tipperLogo'
 
-export interface IProps extends IGlobalMenuState {
+export interface IProps extends IGlobalMenuState, IUserMenuState {
     dispatch: Dispatch<any>;
 }
 
@@ -22,9 +24,13 @@ export default class extends React.Component<IProps, {}> {
         :
             <Styled.Logo src={TipperIcon} />
     )
-    public closeUserMenu = () => (
+    public closeUserMenu = () => {
         this.props.dispatch(actions.closeMenu())
-    )
+        if(this.props.userMenu.isRegistration){
+            this.props.dispatch(requestCanselRegistUser())
+        }
+            
+    }
 
     public render() {
         return(

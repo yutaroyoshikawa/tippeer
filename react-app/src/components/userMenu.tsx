@@ -5,8 +5,9 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
 import { hideAuth, requestLogout, showAuth } from '../actions/auth'
+import { requestCanselRegistUser } from '../actions/registUser'
 import * as actions from '../actions/userMenu'
-import { Auth } from '../components'
+import { Auth, RegistUser } from '../components'
 import { IAuthState } from '../reducers/auth'
 import * as Styled from '../styles/components/userMenu'
 
@@ -21,12 +22,14 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public clickMenu = (): void => {
-        if(this.props.userMenu.openState) {
+        this.props.userMenu.openState ?
             this.props.dispatch(actions.closeMenu())
-        }else{
+            :
             this.props.dispatch(actions.openMenu())
+        
+        if(this.props.userMenu.isRegistration){
+            this.props.dispatch(requestCanselRegistUser())
         }
-            
     }
 
     public renderAuth = () => (
@@ -52,9 +55,13 @@ export default class extends React.Component<IProps, {}> {
 
     public renderMenu = () => (
         this.props.userMenu.openState ?
-                <Styled.Top>
-                    {this.renderAuth()}
+            <Styled.Top>
+                {this.props.userMenu.isRegistration ?
+                <RegistUser />
+                :
+                <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center'}}>
                     <Styled.MenuList>
+                    {this.renderAuth()}
                         <Styled.ListStyle><span><Styled.MenuIcon icon={faAddressBook} /></span>ユーザ情報変更</Styled.ListStyle>
                         {this.renderButton()}
                         <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
@@ -62,7 +69,9 @@ export default class extends React.Component<IProps, {}> {
                         <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
                     </Styled.MenuList>
                     <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
-                </Styled.Top>
+                </div>
+                }
+            </Styled.Top>
         :
             null
     )
