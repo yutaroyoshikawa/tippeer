@@ -7,3 +7,6 @@ export const closeMenu          = actionCreator('CLOSE_MENU')
 
 export const requestUserIcon    = actionCreator('REQUEST_USER_ICON')
 export const succsessUserIcon   = actionCreator.call
+
+export const openRegistration   = actionCreator('OPEN_REGISTRATION')
+export const closeRegistration  = actionCreator('CLOSE_REGISTRATION')
