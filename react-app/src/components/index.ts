@@ -6,6 +6,9 @@ export { MobileMenu } from '../containers/mobileMenu'
 export { PrivacyPolicy } from '../containers/privacyPolicy'
 export { UserPage } from '../containers/userPage'
 export { Auth } from '../containers/auth'
+export { Notification } from '../containers/notification'
+export { RegistUser } from '../containers/registUser'
+export { Dialog } from '../containers/dialog'
 
 /*
 template
