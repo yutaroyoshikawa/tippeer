@@ -1,4 +1,3 @@
-import { __assign } from 'tslib';
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/auth'
 import { IAuthState } from '../reducers/auth'
@@ -11,6 +10,7 @@ interface IAuth {
     uid: string
     isSignedIn: boolean
     hideAuth: boolean
+    authState: 'login' | 'regist' | null
 }
 
 export interface IAuthState{
@@ -18,6 +18,7 @@ export interface IAuthState{
 }
 
 const initialReduceAuthState: IAuth = {
+    authState: null,
     displayName: null,
     email: null,
     emailVerified: null,
@@ -39,7 +40,13 @@ export default reducerWithInitialState(initialReduceAuthState)
     }))
     .case(actions.successLogout, (state: IAuth, payload): IAuth => ({
         ...state,
+        authState: null,
+        displayName: null,
+        email: null,
+        emailVerified: null,
         isSignedIn: false,
+        photoURL: null,
+        uid: '',
     }))
     .case(actions.showAuth, (state: IAuth): IAuth => ({
         ...state,

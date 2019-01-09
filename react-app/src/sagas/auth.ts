@@ -1,14 +1,13 @@
 import * as firebase from 'firebase'
+import * as notifications from 'react-notification-system-redux'
 import { SagaIterator } from 'redux-saga'
 import { call, fork, put, take } from 'redux-saga/effects'
 import * as actions from '../actions/auth'
 import { getAgentInfo } from '../actions/globalMenu'
-// import {firebaseConfig} from '../keys'
 import firebaseSaga from './firebase'
 
 function onAuthStateChanged() {
     return new Promise((resolve, reject) => {
-        // firebase.initializeApp(firebaseConfig)
         firebase.auth().onAuthStateChanged((user) => (
             user ? resolve(user) : reject(new Error('Ops!'))
         ))
@@ -55,8 +54,22 @@ function* doLogoutWorker():SagaIterator {
     }
 }
 
+function* doLogoutNotifify(): SagaIterator {
+    while(true) {
+        yield take(actions.successLogout)
+        yield put(notifications.success(
+            {
+                autoDismiss: 5,
+                message: 'ログアウトしました。',
+                position: 'tr',
+            }
+        ))
+    }
+}
+
 export default [
     fork(doInitializeAuthWorker),
     fork(doLogoutWorker),
     fork(doHideAuthWorker),
+    fork(doLogoutNotifify),
 ]
