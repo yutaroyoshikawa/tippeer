@@ -6,32 +6,36 @@ type IconProp = 'faUserCircle' | 'faTimes'
 interface IUserMenu {
     openState: boolean;
     mark: IconProp;
+    isRegistration: boolean
 }
 
 export interface IUserMenuState {
     userMenu: IUserMenu;
 }
 
-const initialReduceUserMenuState: IUserMenuState = {
-    userMenu: {
-            mark: 'faUserCircle',
-            openState: false,
-        }
+const initialReduceUserMenuState: IUserMenu = {
+    isRegistration: false,
+    mark: 'faUserCircle',
+    openState: false,
 }
 
 export default reducerWithInitialState(initialReduceUserMenuState)
-    .case(actions.openMenu, (state: IUserMenuState) => ({
+    .case(actions.openMenu, (state: IUserMenu): IUserMenu => ({
         ...state,
-        userMenu: {
-            mark: 'faTimes',
-            openState: true
-        }
+        mark: 'faTimes',
+        openState: true
     }))
-    .case(actions.closeMenu, (state: IUserMenuState) => ({
+    .case(actions.closeMenu, (state: IUserMenu): IUserMenu => ({
         ...state,
-        userMenu: {
-            mark: 'faUserCircle',
-            openState: false
-        }
+        mark: 'faUserCircle',
+        openState: false,
+    }))
+    .case(actions.openRegistration, (state: IUserMenu): IUserMenu => ({
+        ...state,
+        isRegistration: true,
+    }))
+    .case(actions.closeRegistration, (state: IUserMenu): IUserMenu => ({
+        ...state,
+        isRegistration: false,
     }))
     .build()

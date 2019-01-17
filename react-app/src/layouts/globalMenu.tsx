@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu';
+import { requestLogin } from '../actions/auth'
 import * as actions from '../actions/globalMenu'
 import { Back, MobileMenu, SearchBox, TipperLogo, UserMenu } from '../components'
 
@@ -24,6 +25,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
 
     public componentDidMount() {
         this.props.dispatch(actions.getAgentInfo())
+        this.props.dispatch(requestLogin())
     }
 
 

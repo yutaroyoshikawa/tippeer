@@ -1,12 +1,13 @@
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
-import { faAddressBook, faQuestionCircle, faSadTear, faSignOutAlt, faTimes, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faAddressBook, faQuestionCircle, faSignOutAlt, faTimes, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
 import { hideAuth, requestLogout, showAuth } from '../actions/auth'
+import { requestCanselRegistUser } from '../actions/registUser'
 import * as actions from '../actions/userMenu'
-import { Auth } from '../components'
+import { Auth, RegistUser } from '../components'
 import { IAuthState } from '../reducers/auth'
 import * as Styled from '../styles/components/userMenu'
 
@@ -21,12 +22,14 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public clickMenu = (): void => {
-        if(this.props.userMenu.openState) {
+        this.props.userMenu.openState ?
             this.props.dispatch(actions.closeMenu())
-        }else{
+            :
             this.props.dispatch(actions.openMenu())
+        
+        if(this.props.userMenu.isRegistration){
+            this.props.dispatch(requestCanselRegistUser())
         }
-            
     }
 
     public renderAuth = () => (
@@ -40,7 +43,7 @@ export default class extends React.Component<IProps, {}> {
         this.props.auth.isSignedIn ?
         <Styled.ListStyle onClick={this.props.dispatch.bind(this, requestLogout())}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
         :
-        <Styled.ListStyle onClick={this.setAuthState.bind(this,)}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログイン</Styled.ListStyle>
+        <Styled.ListStyle onClick={this.setAuthState.bind(this,)}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログインまたは登録</Styled.ListStyle>
     )
 
     public setAuthState = () => (
@@ -50,19 +53,31 @@ export default class extends React.Component<IProps, {}> {
          this.props.dispatch(showAuth())
     )
 
+    public renderChangeUserInfo = () => (
+        this.props.auth.isSignedIn ?
+            <Styled.ListStyle><span><Styled.MenuIcon icon={faAddressBook} /></span>ユーザ情報変更</Styled.ListStyle>
+            :
+            null
+    )
+
     public renderMenu = () => (
         this.props.userMenu.openState ?
-                <Styled.Top>
-                    {this.renderAuth()}
+            <Styled.Top>
+                {this.props.userMenu.isRegistration ?
+                <RegistUser />
+                :
+                <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center'}}>
                     <Styled.MenuList>
-                        <Styled.ListStyle><span><Styled.MenuIcon icon={faAddressBook} /></span>ユーザ情報変更</Styled.ListStyle>
+                    {this.renderAuth()}
+                        {this.renderChangeUserInfo()}
                         {this.renderButton()}
                         <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
-                        <Styled.ListStyle><span><Styled.MenuIcon icon={faSadTear} /></span>退会</Styled.ListStyle>
                         <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
                     </Styled.MenuList>
                     <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
-                </Styled.Top>
+                </div>
+                }
+            </Styled.Top>
         :
             null
     )
@@ -71,7 +86,15 @@ export default class extends React.Component<IProps, {}> {
         return(
             <Styled.Entire>
                 <Styled.MenuButton onClick={this.clickMenu.bind(this,)}>
-                    <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
+                    {
+                        this.props.auth.photoURL ?
+                            this.props.userMenu.openState?
+                                <FontAwesomeIcon icon={faTimes} style={{width: '40px', height: '40px'}} />
+                                :
+                                <img src={this.props.auth.photoURL} alt="userIcon" style={{width: '40px', height: '40px', borderRadius: '50%', marginBottom: '-4px'}} />
+                            :
+                            <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
+                    }
                 </Styled.MenuButton>
                 {this.renderMenu()}
             </Styled.Entire>

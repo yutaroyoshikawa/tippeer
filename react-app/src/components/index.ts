@@ -1,4 +1,5 @@
 export { Back } from '../containers/back'
+export { Cropper } from '../containers/cropper'
 export { UserMenu } from '../containers/userMenu'
 export { TipperLogo } from '../containers/tipperLogo'
 export { SearchBox } from '../containers/searchBox'
@@ -6,6 +7,9 @@ export { MobileMenu } from '../containers/mobileMenu'
 export { PrivacyPolicy } from '../containers/privacyPolicy'
 export { UserPage } from '../containers/userPage'
 export { Auth } from '../containers/auth'
+export { Notification } from '../containers/notification'
+export { RegistUser } from '../containers/registUser'
+export { Dialog } from '../containers/dialog'
 
 /*
 template

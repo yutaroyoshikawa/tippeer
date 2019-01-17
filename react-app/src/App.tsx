@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import 'ress'
-import { Faq, PrivacyPolicy, UserPage } from './components'
+import { Dialog, Faq, Notification, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
 import { ArtistDetails, NotFound, PerformanceDetails, PlaceDetails, Search, Tipping, WorksDetails, WorksTop } from './layouts'
 import { buildStore } from './store';
@@ -20,6 +20,8 @@ class App extends React.Component {
                     <div>
                         <GlobalMenu />
                         <Styled.GlobalStyle />
+                        <Notification />
+                        <Dialog />
                         <Switch>
                             <Route exact={true} path='/faq' component={Faq} />
                             <Route exact={true} path='/privacypolicy' component={PrivacyPolicy} />
