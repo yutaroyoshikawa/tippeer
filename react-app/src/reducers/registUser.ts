@@ -22,9 +22,14 @@ interface IRegistUser {
         value: string,
     },
     tags: {
-        value: string[],
-        dataSouce: string[],
-    }
+        tags: string[],
+        suggestions: string[],
+        value: string,
+    },
+    icon: {
+        data: string,
+    },
+    requestRegist: boolean
 }
 
 export interface IRegistUserState {
@@ -35,6 +40,9 @@ const initialReduceRegistUserState: IRegistUser = {
     birthday: {
         errorText: '',
         value: '1998-08-27',
+    },
+    icon: {
+        data: '',
     },
     id: {
         errorText: '',
@@ -51,9 +59,11 @@ const initialReduceRegistUserState: IRegistUser = {
         state: 'none',
         value: '',
     },
+    requestRegist: false,
     tags: {
-        dataSouce: [],
-        value: [],
+        suggestions: [],
+        tags: [],
+        value: '',
     },
 }
 
@@ -86,11 +96,39 @@ export default reducerWithInitialState(initialReduceRegistUserState)
             value: payload,
         }
     }))
-    .case(actions.getTagsValue, (state: IRegistUser, payload): IRegistUser => ({
+    .case(actions.setTagInput, (state: IRegistUser, payload): IRegistUser => ({
         ...state,
         tags: {
             ...state.tags,
             value: payload,
+        }
+    }))
+    .case(actions.addTagData, (state: IRegistUser, payload): IRegistUser => ({
+        ...state,
+        tags: {
+            ...state.tags,
+            tags: payload,
+        }
+    }))
+    .case(actions.removeTagData, (state: IRegistUser, payload): IRegistUser => ({
+        ...state,
+        tags: {
+            ...state.tags,
+            tags: payload,
+        }
+    }))
+    .case(actions.setSuggestionTags, (state: IRegistUser, payload): IRegistUser => ({
+        ...state,
+        tags: {
+            ...state.tags,
+            suggestions: payload,
+        }
+    }))
+    .case(actions.getIconData, (state: IRegistUser, payload): IRegistUser => ({
+        ...state,
+        icon: {
+            ...state.icon,
+            data: payload,
         }
     }))
     .case(actions.setIdError, (state: IRegistUser, payload): IRegistUser => ({
@@ -165,5 +203,12 @@ export default reducerWithInitialState(initialReduceRegistUserState)
             state: 'validating',
         }
     }))
+    .case(actions.requestRegistUser, (state: IRegistUser): IRegistUser => ({
+        ...state,
+        requestRegist: true,
+    }))
+    .case(actions.successRegistUser, (state: IRegistUser): IRegistUser => ({
+        ...state,
+        requestRegist: false,
+    }))
     .build()
-    

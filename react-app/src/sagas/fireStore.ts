@@ -1,6 +1,7 @@
+import {firestore} from 'firebase'
 import * as notifications from 'react-notification-system-redux'
 import { SagaIterator } from 'redux-saga'
-import { call, fork, put, select, take } from 'redux-saga/effects'
+import { call, fork, put, select, take, takeLatest } from 'redux-saga/effects'
 import * as authActions from '../actions/auth'
 import * as dialog from '../actions/dialog'
 import { closeDialog } from '../actions/dialog'
@@ -8,23 +9,10 @@ import * as registActions from '../actions/registUser'
 import { openMenu, openRegistration } from '../actions/userMenu'
 import firebaseSaga from './firebase'
 
-function* doRegistUser(): SagaIterator {
-    while(true){
-        const user = yield take(registActions.requestRegistUser)
-        const doc = yield call(
-            firebaseSaga.firestore.addDocument, 'users', {...user}
-        )
-        doc ?
-            put(registActions.successRegistUser)
-            :
-            put(registActions.faildRegistUser)
-    }
-}
-
 function* doCheckUsersExists(): SagaIterator {
     while(true){
-        const user: authActions.ICurrentUser = yield take(authActions.successCurrenUserInfo)
-        user.displayName ? 
+        const user = yield take(authActions.successCurrenUserInfo)
+        user.payload.displayName ? 
             yield put(authActions.existsUser())
             :
             yield put(authActions.noExistsUser())
@@ -78,11 +66,11 @@ function* loginCompleteAleart(): SagaIterator {
     while(true) {
         yield take(authActions.existsUser)
         const state = yield select()
-        const uid = yield state.auth.uid
+        const id = yield state.auth.id
         yield put(notifications.show(
             {
                 autoDismiss: 5,
-                message: uid + 'としてログインしました。',
+                message: id + 'としてログインしました。',
                 position: 'tr',
                 title: 'ログイン',
             },
@@ -91,17 +79,77 @@ function* loginCompleteAleart(): SagaIterator {
     }
 }
 
-// function* doAlertAppearance(): SagaIterator {
-//     while(true) {
+export function* registUserInfo(Uid: string, Id: string, Name: string, Mail: string, Birthday: string, Tags: string[], Icon: string | null): SagaIterator{
+    yield call(
+        firebaseSaga.firestore.addDocument,
+        'users',
+        {
+            account_type: "user",
+            birthday: new Date(Birthday),
+            browsing_history: [],
+            created_at: firestore.Timestamp.now(),
+            follow_artist: [],
+            icon_url: Icon,
+            id: Id,
+            mail: Mail,
+            name: Name,
+            purchase_history: [],
+            search_history: [],
+            tags: Tags,
+            uid: Uid,
+            updated_at: firestore.Timestamp.now(),
+        }
+    )
+}
 
-//     }
-// }
+function* getSuggestionTagsWorker(input: any):SagaIterator {
+    const searchWord = yield input.payload
+    const tags: string[] = yield []
+    if(input.payload){
+        const snapshot = yield call(firebaseSaga.firestore.getCollection, 'tags')
+        yield snapshot.forEach((tag: any) => {
+            if(tag.data().name.match(new RegExp('^' + searchWord)) || tag.data().reading.match(new RegExp('^' + searchWord))){
+                tags.push(tag.data().name)
+            }
+        })
+    }
+    yield put(registActions.setSuggestionTags(tags))
+}
+
+function getIsUserExists(id: string){
+    return new Promise( async (resolve) => {
+        const collection = await firestore().collection('users')
+        const query = await collection.where("id", "==", id)
+        await query.get().then((doc) => (
+            doc.empty ? resolve(false) : resolve(true)
+        ))
+    })
+}
+
+export function getUserId(Uid: string){
+    return new Promise( async (resolve) => {
+        const collection = await firestore().collection('users')
+        const query = await collection.where("uid", "==", Uid)
+        let id: string = ''
+        await query.get().then((doc) => (
+            doc.forEach((data) => {
+                id = data.data().id
+            }) 
+        ))
+        resolve(id)
+    })
+}
+
+export function* checkUserExists(id: string): SagaIterator {
+    const user = yield call(getIsUserExists, id)
+    return user
+}
 
 export default [
-    fork(doRegistUser),
     fork(doCheckUsersExists),
     fork(doDetermineAleart),
     fork(loginCompleteAleart),
     fork(doRequestRegistAleart),
     fork(doRegist),
+    takeLatest(registActions.setTagInput, getSuggestionTagsWorker),
 ]

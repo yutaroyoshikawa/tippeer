@@ -1,4 +1,5 @@
 export { Back } from '../containers/back'
+export { Cropper } from '../containers/cropper'
 export { UserMenu } from '../containers/userMenu'
 export { TipperLogo } from '../containers/tipperLogo'
 export { SearchBox } from '../containers/searchBox'

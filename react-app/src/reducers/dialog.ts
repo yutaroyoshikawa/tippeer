@@ -9,7 +9,7 @@ interface IButton {
 interface IDialog {
     isOpen: boolean
     title: string
-    content: string
+    content: JSX.Element | string
     buttons: IButton[]
     onClose: string
 }
@@ -31,6 +31,7 @@ export default reducerWithInitialState(initialReduceAuthState)
         ...state,
         ...payload,
         isOpen: true,
+        onClose: payload.onClose ? payload.onClose : "CLOSE_DIALOG",
     }))
     .case(actions.closeDialog, (state: IDialog): IDialog => ({
         ...state,

@@ -11,7 +11,7 @@ const mapStateToProps = (state: AllState) => {
         globalMenu: state.globalMenu.globalMenu,
         mobileMenu: state.globalMenu.mobileMenu,
         tipperLogo: state.globalMenu.tipperLogo,
-        userMenu: state.userMenu.userMenu,
+        userMenu: state.userMenu,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })

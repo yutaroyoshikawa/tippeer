@@ -32,7 +32,6 @@ export default reducerWithInitialState(initialReduceAuthState)
     .case(actions.successCurrenUserInfo, (state: IAuth, payload): IAuth => ({
         ...state,
         ...payload,
-        isSignedIn: true,
     }))
     .case(actions.failureCurrentUserInfo, (state: IAuth, payload): IAuth => ({
         ...state,
@@ -55,5 +54,13 @@ export default reducerWithInitialState(initialReduceAuthState)
     .case(actions.hideAuth, (state: IAuth): IAuth => ({
         ...state,
         hideAuth: true,
+    }))
+    .case(actions.existsUser, (state: IAuth): IAuth => ({
+        ...state,
+        isSignedIn: true,
+    }))
+    .case(actions.resetAuthState, (state: IAuth): IAuth => ({
+        ...state,
+        authState: null,
     }))
     .build()

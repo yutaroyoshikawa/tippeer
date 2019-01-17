@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import artistDetails from './artistDetails'
 import auth from './auth'
 import back from './back'
+import cropper from './cropper'
 import dialog from './dialog'
 import globalMenu from './globalMenu'
 import performanceDetails from './performaceDetails'
@@ -21,6 +22,7 @@ export default combineReducers({
     artistDetails,
     auth,
     back,
+    cropper,
     dialog,
     globalMenu,
     notifications,

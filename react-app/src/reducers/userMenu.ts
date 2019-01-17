@@ -13,39 +13,29 @@ export interface IUserMenuState {
     userMenu: IUserMenu;
 }
 
-const initialReduceUserMenuState: IUserMenuState = {
-    userMenu: {
-            isRegistration: false,
-            mark: 'faUserCircle',
-            openState: false,
-        }
+const initialReduceUserMenuState: IUserMenu = {
+    isRegistration: false,
+    mark: 'faUserCircle',
+    openState: false,
 }
 
 export default reducerWithInitialState(initialReduceUserMenuState)
-    .case(actions.openMenu, (state: IUserMenuState) => ({
-        userMenu: {
-            ...state.userMenu,
-            mark: 'faTimes',
-            openState: true
-        }
+    .case(actions.openMenu, (state: IUserMenu): IUserMenu => ({
+        ...state,
+        mark: 'faTimes',
+        openState: true
     }))
-    .case(actions.closeMenu, (state: IUserMenuState) => ({
-        userMenu: {
-            ...state.userMenu,
-            mark: 'faUserCircle',
-            openState: false
-        }
+    .case(actions.closeMenu, (state: IUserMenu): IUserMenu => ({
+        ...state,
+        mark: 'faUserCircle',
+        openState: false,
     }))
-    .case(actions.openRegistration, (state: IUserMenuState) => ({
-        userMenu: {
-            ...state.userMenu,
-            isRegistration: true,
-        }
+    .case(actions.openRegistration, (state: IUserMenu): IUserMenu => ({
+        ...state,
+        isRegistration: true,
     }))
-    .case(actions.closeRegistration, (state: IUserMenuState) => ({
-        userMenu: {
-            ...state.userMenu,
-            isRegistration: false,
-        }
+    .case(actions.closeRegistration, (state: IUserMenu): IUserMenu => ({
+        ...state,
+        isRegistration: false,
     }))
     .build()

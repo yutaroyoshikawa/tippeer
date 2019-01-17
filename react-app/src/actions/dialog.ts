@@ -8,7 +8,7 @@ interface IButton {
 
 interface IOpenDialog {
     title: string
-    content: string
+    content: string | JSX.Element
     buttons: IButton[]
     onClose?: string
 }

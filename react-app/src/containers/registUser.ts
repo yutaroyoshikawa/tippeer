@@ -8,6 +8,7 @@ type AllState = ReturnType<typeof store.getState>
 
 const mapStateToProps = (state: AllState) => {
     return {
+      globalMenu: state.globalMenu.globalMenu,
       registUser: state.registUser,
     }
   }
