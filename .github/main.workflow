@@ -12,7 +12,7 @@ action "GitHub Action for npm-1" {
   uses = "actions/npm@de7a3705a9510ee12702e124482fad6af249991b"
   needs = ["GitHub Action for npm"]
   args = "build"
-  secrets = ["GITHUB_TOKEN"]
+  secrets = ["REACT_APP_FIREBASE_API_KEY", "REACT_APP_FIREBASE_AUTH_DOMAIN", "REACT_APP_FIREBASE_DATABASE_URL", "REACT_APP_FIREBASE_MESSAGING_SENDER_ID", "REACT_APP_FIREBASE_PROJECT_ID", "REACT_APP_FIREBASE_STORAGE_BUCKET", "REACT_APP_GOOGLE_MAP_API_KEY", "REACT_APP_MAPBOX_ACCESS_TOKEN"]
 }
 
 action "w9jds/firebase-action@master" {
