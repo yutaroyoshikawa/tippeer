@@ -1,7 +1,6 @@
 import * as React from 'react'
 import ReactGoogleMap from "react-google-map"
 import ReactGoogleMapLoader from "react-google-maps-loader"
-import { googleMapApiKey } from '../keys'
 
 export interface IProps {
     placeId: number
@@ -48,7 +47,7 @@ export class GoogleMap extends React.Component<IProps, IState> {
             <div style={{width: this.props.width, height: this.props.height}}>
                 <ReactGoogleMapLoader
                     params={{
-                        key: googleMapApiKey,
+                        key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
                     }}
                     render={this.googleMap.bind(this,)}
                 />

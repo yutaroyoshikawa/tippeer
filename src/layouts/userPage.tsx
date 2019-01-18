@@ -7,7 +7,6 @@ import ShuffleText from 'react-shuffle-text'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/globalMenu'
 import * as userPageActions from '../actions/userPage'
-import { mapboxAccessToken } from '../keys'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 import { IUserPageState } from '../reducers/userPage'
 
@@ -18,8 +17,9 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 export interface IProps extends IGlobalMenuState, IUserPageState {
     dispatch: Dispatch<any>
 }
-
-(mapbox as typeof mapbox).accessToken = mapboxAccessToken
+if(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN){
+    (mapbox as typeof mapbox).accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
+}
 
 export default class extends React.Component<IProps, {}> {
 
@@ -126,7 +126,7 @@ export default class extends React.Component<IProps, {}> {
                         width= '100%'
                         height= {this.props.globalMenu.agent === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'}
                         mapStyle= 'mapbox://styles/mapbox/dark-v9'
-                        mapboxApiAccessToken={mapboxAccessToken}
+                        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
                         transitionDuration={10000}
                         transitionEasing={d3Ease.easeCubicOut}
                         transitionInterpolator={new map.FlyToInterpolator()}

@@ -5,7 +5,6 @@ import ReactStreetview from 'react-streetview'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/globalMenu'
 import { ArticleTitle, PerformanceCard } from '../components'
-import { googleMapApiKey } from '../keys'
 import { IPlaceDetailsState } from '../reducers/placeDetails'
 import * as Styled from '../styles/placeDetails'
 
@@ -49,7 +48,7 @@ export default class extends React.Component<IProps, {}> {
     public googleStreetView = (googleMaps: any) => (
         googleMaps && (
             <ReactStreetview
-                apiKey= {googleMapApiKey}
+                apiKey= {process.env.REACT_APP_GOOGLE_MAP_API_KEY}
                 streetViewPanoramaOptions={{
                     addressControl: false ,
                     enableCloseButton: false ,
@@ -86,7 +85,7 @@ export default class extends React.Component<IProps, {}> {
                     </Styled.PlaceInfo>
                     <ReactGoogleMapLoader
                         params={{
-                            key: googleMapApiKey,
+                            key: process.env.GOOGLE_MAP_API_KEY,
                         }}
                         render={this.googleStreetView.bind(this,)}
                     />
@@ -95,7 +94,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.Map>
                     <ReactGoogleMapLoader
                         params={{
-                            key: googleMapApiKey,
+                            key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
                         }}
                         render={this.googleMap.bind(this,)}
                     />

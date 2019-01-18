@@ -33,7 +33,7 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <Styled.Entire>
-                <div onClick={this.closeAuth} style={{width: '100%', height: '40px', marginBottom: '10px'}}>
+                <div onClick={this.closeAuth} style={{width: '100%', height: '40px', marginBottom: '10px', position: 'relative', top: 0}}>
                     <FontAwesomeIcon icon={faTimesCircle} style={{fontSize: '40px', color: '#333'}} />
                 </div>
                 <StyledFirebaseAuth
