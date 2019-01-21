@@ -3,59 +3,71 @@ import * as actions from '../actions/performanceDetails'
 
 import exampleImage from '../natureExample.jpeg'
 
-interface IComments {
+export interface IComments {
     content: string
+    createdAt: Date
     userId: string
-    postDate: string
+    updatedAt: Date
 }
 
 export interface IPerformanceDetails {
+    address: string
     performanceTitle: string
-    start: string
-    finish: string
+    start: Date
+    findPerformance: boolean
+    finish: Date
     discription: string
     artistId: string
-    placeId: number
     thumbnail: string
     comments: IComments[]
+    locateName: string
+    geoLocate: number[]
 }
 
 export interface IPerformanceDetailsState {
     performanceDetails: IPerformanceDetails
 }
 
-const initialReducePerformanceDetailsState: IPerformanceDetailsState = {
-    performanceDetails: {
-        artistId: 'hoge',
-        comments: [
-            {
-                content: 'hogehugapiyofoo',
-                postDate: '2018-12-1',
-                userId: 'hoge',
-            },
-            {
-                content: 'hogehugapiyofoo',
-                postDate: '2018-12-1',
-                userId: 'hoge',
-            },
-            {
-                content: 'hogehugapiyofoo',
-                postDate: '2018-12-1',
-                userId: 'hoge',
-            },
-        ],
-        discription: 'One way to announce or promote a certain new product or special events is perhaps through using of vinyl banners. Large or small size of printing these vinyl banners are can be able to print and in many types of weather it can hold up extremely well.',
-        finish: '2018-12-01-12:59',
-        performanceTitle: 'hoge',
-        placeId: 1,
-        start: '2018-12-01-15:59',
-        thumbnail: exampleImage,
-    }
+const initialReducePerformanceDetailsState: IPerformanceDetails = {
+    address: "",
+    artistId: 'hoge',
+    comments: [
+        {
+            content: 'hogehugapiyofoo',
+            createdAt: new Date('2018-12-1'),
+            updatedAt: new Date('2018-12-1'),
+            userId: 'hoge',
+        },
+        {
+            content: 'hogehugapiyofoo',
+            createdAt: new Date('2018-12-1'),
+            updatedAt: new Date('2018-12-1'),
+            userId: 'hoge',
+        },
+        {
+            content: 'hogehugapiyofoo',
+            createdAt: new Date('2018-12-1'),
+            updatedAt: new Date('2018-12-1'),
+            userId: 'hoge',
+        },
+    ],
+    discription: 'One way to announce or promote a certain new product or special events is perhaps through using of vinyl banners. Large or small size of printing these vinyl banners are can be able to print and in many types of weather it can hold up extremely well.',
+    findPerformance: true,
+    finish: new Date('2018-12-01-12:59'),
+    geoLocate: [35.71706, 139.517882],
+    locateName: '小金井公園',
+    performanceTitle: 'hoge',
+    start: new Date('2018-12-01-15:59'),
+    thumbnail: exampleImage,
 }
 
 export default reducerWithInitialState(initialReducePerformanceDetailsState)
-    .case(actions.successPerformanceInfo, (state: IPerformanceDetailsState, payload) => ({
+    .case(actions.successPerformanceInfo, (state: IPerformanceDetails, payload) => ({
         ...state,
-        performanceDetails: payload
+        ...payload,
+    }))
+    .case(actions.faildPerformanceInfo, (state: IPerformanceDetails) => ({
+        ...state,
+        findPerformance: false,
     }))
     .build()

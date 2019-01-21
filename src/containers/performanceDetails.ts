@@ -8,7 +8,7 @@ type AllState = ReturnType<typeof store.getState>
 
 const mapStateToProps = (state: AllState) => {
     return {
-        performanceDetails: state.performanceDetails.performanceDetails
+        performanceDetails: state.performanceDetails
     }
 }
 
