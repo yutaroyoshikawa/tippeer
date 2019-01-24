@@ -10,7 +10,7 @@ export interface ICurrentUser {
     uid: string
 }
 
-export const successCurrenUserInfo  = actionCreator<ICurrentUser>('SUCCESS_CURRENT_USER_INFO')
+export const successCurrentUserInfo  = actionCreator<ICurrentUser>('SUCCESS_CURRENT_USER_INFO')
 export const failureCurrentUserInfo = actionCreator<{errorMsg: string}>('FAILURE_CURRENT_USER_INFO')
 
 export const requestLogout          = actionCreator('REQUEST_LOGOUT')

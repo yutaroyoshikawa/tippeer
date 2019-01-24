@@ -11,7 +11,7 @@ import firebaseSaga from './firebase'
 
 function* doCheckUsersExists(): SagaIterator {
     while(true){
-        const user = yield take(authActions.successCurrenUserInfo)
+        const user = yield take(authActions.successCurrentUserInfo)
         user.payload.displayName ? 
             yield put(authActions.existsUser())
             :
@@ -82,7 +82,7 @@ function* loginCompleteAleart(): SagaIterator {
 export function* registUserInfo(Uid: string, Id: string, Name: string, Mail: string, Birthday: string, Tags: string[], Icon: string | null): SagaIterator{
     yield call(
         firebaseSaga.firestore.addDocument,
-        'users',
+        'users/',
         {
             account_type: "user",
             birthday: new Date(Birthday),
@@ -137,6 +137,46 @@ export function getUserId(Uid: string){
             }) 
         ))
         resolve(id)
+    })
+}
+
+export function getArtistDetails(Id: string){
+    return new Promise( async (resolve, reject) => {
+        const collection = await firestore().collection('users')
+        const query = await collection.where("id", "==", Id).where("account_type", "==", "artist")
+        let artist: any = await {}
+        await query.get().then((doc) => (
+            doc.forEach((data) => {
+                artist = data.data()
+            }) 
+        ))
+        if(artist){
+            await resolve(artist)
+        }else{
+            await reject()
+        }
+
+    })
+}
+
+export function getPerformances(Id: string){
+    return new Promise( async (resolve, reject) => {
+        const collection = await firestore().collection('performances')
+        const query = await collection.where('artist_id', '==', Id).orderBy('finish', 'desc')
+        const artist: any = await []
+        await query.get().then((doc) => (
+            doc.forEach((data) => {
+                artist.push({
+                    ...data.data(),
+                    id: data.id,
+                })
+            }) 
+        ))
+        if(artist){
+            resolve(artist)
+        }else{
+            reject()
+        }
     })
 }
 

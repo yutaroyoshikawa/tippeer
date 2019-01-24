@@ -29,7 +29,7 @@ const initialReduceAuthState: IAuth = {
 }
 
 export default reducerWithInitialState(initialReduceAuthState)
-    .case(actions.successCurrenUserInfo, (state: IAuth, payload): IAuth => ({
+    .case(actions.successCurrentUserInfo, (state: IAuth, payload): IAuth => ({
         ...state,
         ...payload,
     }))

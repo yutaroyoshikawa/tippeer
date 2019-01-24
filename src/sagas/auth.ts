@@ -40,7 +40,7 @@ function* deleteAccount(): SagaIterator {
 
 function* doHideAuthWorker():SagaIterator {
     while(true){
-        yield take(actions.successCurrenUserInfo)
+        yield take(actions.successCurrentUserInfo)
         yield put(actions.hideAuth())
     }
 }
@@ -51,7 +51,7 @@ function* doInitializeAuthWorker():SagaIterator {
         try{
             const user:firebase.User = yield call(onAuthStateChanged)
             const userId: string = yield call(getUserId, user.uid)
-            yield put(actions.successCurrenUserInfo(
+            yield put(actions.successCurrentUserInfo(
                 {
                     displayName: user.displayName,
                     email: user.email,
