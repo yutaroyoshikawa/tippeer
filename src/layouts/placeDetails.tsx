@@ -4,7 +4,8 @@ import ReactGoogleMapLoader from "react-google-maps-loader"
 import ReactStreetview from 'react-streetview'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/globalMenu'
-import { ArticleTitle, PerformanceCard } from '../components'
+import * as actions from '../actions/placeDetails'
+import { ArticleTitle } from '../components'
 import { IPlaceDetailsState } from '../reducers/placeDetails'
 import * as Styled from '../styles/placeDetails'
 
@@ -12,7 +13,7 @@ export interface IProps extends IPlaceDetailsState {
     dispatch: Dispatch<any>
     match: {
         params: {
-            placeId: number
+            placeId: string
         }
     }
 }
@@ -24,6 +25,7 @@ export default class extends React.Component<IProps, {}> {
 
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(actions.requestFindPlaceInfo(this.props.match.params.placeId))
     }
 
     public googleMap = (googleMaps: any) => (
@@ -32,10 +34,10 @@ export default class extends React.Component<IProps, {}> {
             googleMaps={googleMaps}
             coordinates={[
               {
-                position: {lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude},
+                position: {lat: this.props.placeDetails.geoPlace.latitude, lng: this.props.placeDetails.geoPlace.longitude},
               },
             ]}
-            center={{lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude}}
+            center={{lat: this.props.placeDetails.geoPlace.latitude, lng: this.props.placeDetails.geoPlace.longitude}}
             zoom={13}
             zoomControl={false}
             mapTypeControl={false}
@@ -57,7 +59,7 @@ export default class extends React.Component<IProps, {}> {
                     linksControl: false ,
                     motionTracking: true,
                     panControl: false ,
-                    position: {lat: this.props.placeDetails.latitude, lng: this.props.placeDetails.longitude},
+                    position: {lat: this.props.placeDetails.geoPlace.latitude, lng: this.props.placeDetails.geoPlace.longitude},
                     pov: {heading: 100, pitch: 0},
                     scrollwheel: false ,
                     zoom: 1,
@@ -67,11 +69,11 @@ export default class extends React.Component<IProps, {}> {
         )
     )
 
-    public renderPerformances = () => (
-        this.props.placeDetails.performaces.map((id, i) => (
-            <Styled.ListElements key={i.toString()}><PerformanceCard performanceId={id} /></Styled.ListElements>
-        ))
-    )
+    // public renderPerformances = () => (
+    //     this.props.placeDetails.performaces.map((id, i) => (
+    //         <Styled.ListElements key={i.toString()}><PerformanceCard performanceId={id} /></Styled.ListElements>
+    //     ))
+    // )
 
     public render() {
         return(
@@ -85,7 +87,7 @@ export default class extends React.Component<IProps, {}> {
                     </Styled.PlaceInfo>
                     <ReactGoogleMapLoader
                         params={{
-                            key: process.env.GOOGLE_MAP_API_KEY,
+                            key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
                         }}
                         render={this.googleStreetView.bind(this,)}
                     />
@@ -105,7 +107,7 @@ export default class extends React.Component<IProps, {}> {
                             <ArticleTitle title={'ここのパフォーマンス'} color={'light'} />
                         </Styled.PerformanceTitle>
                         <Styled.PerformanceContent>
-                            {this.renderPerformances()}
+                            {/* {this.renderPerformances()} */}
                         </Styled.PerformanceContent>
                     </Styled.InnerPerformanceBox>
                 </Styled.PerformanceBox>

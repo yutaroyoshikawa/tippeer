@@ -180,6 +180,31 @@ export function getPerformances(Id: string){
     })
 }
 
+export function getPlacePerformances(Id: string){
+    return new Promise( async (resolve, reject) => {
+        const collection = await firestore().collection('performances')
+        const query = await collection.where('place_id', '==', Id).orderBy('finish', 'desc')
+        const performances: any = await []
+        await query.get().then((doc) => (
+            doc.forEach((data) => {
+                performances.push({
+                    finish: data.data().finish.toDate(),
+                    id: data.id,
+                    placeId: data.data().place_id,
+                    placeName: data.data().place_name,
+                    start: data.data().start.toDate(),
+                    thumbnail: data.data().thumbnail,
+                })
+            }) 
+        ))
+        if(performances){
+            resolve(performances)
+        }else{
+            reject()
+        }
+    })
+}
+
 export function* checkUserExists(id: string): SagaIterator {
     const user = yield call(getIsUserExists, id)
     return user

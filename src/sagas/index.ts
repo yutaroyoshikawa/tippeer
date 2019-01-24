@@ -4,6 +4,7 @@ import ArtistDetails from './artistDetails'
 import Auth from './auth'
 import FireStore from './fireStore'
 import PerformanceDetails from './performanceDetails'
+import PlaceDetails from './placeDetails'
 import RegistUser from './registUser'
 import Search from './search'
 
@@ -14,6 +15,7 @@ export default function* (): SagaIterator{
     ...Auth,
     ...FireStore,
     ...PerformanceDetails,
+    ...PlaceDetails,
     ...RegistUser,
     ...Search,
   ])

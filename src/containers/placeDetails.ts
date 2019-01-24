@@ -8,7 +8,7 @@ type AllState = ReturnType<typeof store.getState>
 
 const mapStateToProps = (state: AllState) => {
     return {
-      placeDetails: state.placeDetails.placeDetails
+      placeDetails: state.placeDetails,
     }
   }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch });
