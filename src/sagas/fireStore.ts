@@ -205,6 +205,24 @@ export function getPlacePerformances(Id: string){
     })
 }
 
+export function getUserInfo(Id: string){
+    return new Promise( async (resolve, reject) => {
+        const collection = await firestore().collection('users')
+        const query = await collection.where('id', '==', Id)
+        let user: any = await ''
+        await query.get().then((doc) => (
+            doc.forEach((data) => {
+                user = data.data()
+            }) 
+        ))
+        if(user){
+            resolve(user)
+        }else{
+            reject()
+        }
+    })
+}
+
 export function* checkUserExists(id: string): SagaIterator {
     const user = yield call(getIsUserExists, id)
     return user

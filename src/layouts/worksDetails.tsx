@@ -1,15 +1,22 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/globalMenu'
+import * as actions from '../actions/worksDetails'
 import { Score } from '../components'
 import { ArticleTitle } from '../components'
-import { ArtistCard, CommentBox, CommentList, PriceCard } from '../components'
+import { ArtistCard, PriceCard } from '../components'
 import { IWorksDetailsState } from '../reducers/worksDetails'
+
 
 import * as Styled from '../styles/worksDetails'
 
 export interface IProps extends IWorksDetailsState {
     dispatch: Dispatch<any>
+    match: {
+        params: {
+            worksId: string
+        }
+    }
 }
 
 export default class extends React.Component<IProps, {}> {
@@ -23,6 +30,7 @@ export default class extends React.Component<IProps, {}> {
 
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(actions.requestFindWorksInfo(this.props.match.params.worksId))
     }
 
     public renderContents = () => (
@@ -69,13 +77,13 @@ export default class extends React.Component<IProps, {}> {
                     </Styled.ContentSection>
                 </Styled.WorksInfo>
                 
-                <Styled.CommentSection>
+                {/* <Styled.CommentSection>
                     <ArticleTitle title={'Comments'} color={'dark'} />
                     <CommentBox type={'works'} />
                     <Styled.Comments>
                         <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} dark={true} />
                     </Styled.Comments>
-                </Styled.CommentSection>
+                </Styled.CommentSection> */}
             </Styled.Entire>
         )
     }
