@@ -5,7 +5,7 @@ import { requestLogin, resetAuthState } from '../actions/auth'
 import { onCrop } from '../actions/cropper'
 import * as dialog from '../actions/dialog'
 import * as actions from '../actions/registUser'
-import { Search } from '../actions/search'
+import { requestSearch } from '../actions/searchBox'
 import { closeMenu, closeRegistration } from '../actions/userMenu'
 import { changeUserInfo } from './auth'
 import { checkUserExists, registUserInfo } from './fireStore'
@@ -90,7 +90,7 @@ function* faildCancelRegistUser(): SagaIterator {
 
 function* canselRegistBeforeSearch(): SagaIterator {
     while(true) {
-        yield take(Search)
+        yield take(requestSearch)
         const state = yield select()
         const registState: boolean = yield state.userMenu.isRegistration
         if(registState){

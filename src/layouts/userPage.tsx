@@ -5,7 +5,7 @@ import * as React from 'react'
 import MapGL, * as map from 'react-map-gl'
 import ShuffleText from 'react-shuffle-text'
 import { Dispatch } from 'redux'
-import * as actions from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import * as userPageActions from '../actions/userPage'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 import { IUserPageState } from '../reducers/userPage'
@@ -29,7 +29,7 @@ export default class extends React.Component<IProps, {}> {
 
     public componentDidMount = () => {
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
-            this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
+            this.props.dispatch(setMobileMenuState('none'))
         }
         // this.props.dispatch(userPageActions.setInitialProps())
     }

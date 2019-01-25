@@ -3,7 +3,7 @@ import ReactGoogleMap from "react-google-map"
 import ReactGoogleMapLoader from "react-google-maps-loader"
 import ReactStreetview from 'react-streetview'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import * as actions from '../actions/placeDetails'
 import { ArticleTitle } from '../components'
 import { IPlaceDetailsState } from '../reducers/placeDetails'
@@ -24,7 +24,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.requestFindPlaceInfo(this.props.match.params.placeId))
     }
 

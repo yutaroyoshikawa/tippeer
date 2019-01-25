@@ -3,8 +3,7 @@ import * as React from 'react'
 import * as reactRouter from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { ISearchBoxState } from 'src/reducers/searchBox'
-import * as actions from '../actions/search'
-import {setSearchBoxWord} from '../actions/searchBox'
+import {requestSearch, setSearchBoxWord} from '../actions/searchBox'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 
 import * as Styled from '../styles/components/searchBox'
@@ -19,12 +18,12 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public setSearchWordState = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.dispatch(setSearchBoxWord({searchWord: e.currentTarget.value}))
+        this.props.dispatch(setSearchBoxWord(e.currentTarget.value))
     }
 
     public onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        this.props.dispatch(actions.Search({searchWord: this.props.searchBox.searchWord}))
+        this.props.dispatch(requestSearch())
         this.props.history.push('/search/' + this.props.searchBox.searchWord)
     }
 

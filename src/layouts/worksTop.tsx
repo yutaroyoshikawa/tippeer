@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import { ArticleTitle } from '../components'
 import { ArtistCard, WorksCard } from '../components'
 import { IWorksTopState } from '../reducers/worksTop'
@@ -18,7 +18,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'works'}))
+        this.props.dispatch(setMobileMenuState('works'))
     }
 
     public renderFollowArtists = (size: number) => (

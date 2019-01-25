@@ -9,8 +9,8 @@ type AllState = ReturnType<typeof store.getState>
 
 const mapStateToProps = (state: AllState) => {
     return {
-        globalMenu: state.globalMenu.globalMenu,
-        searchBox: state.searchBox.searchBox,
+        globalMenu: state.globalMenu,
+        searchBox: state.searchBox,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })

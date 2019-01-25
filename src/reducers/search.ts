@@ -1,10 +1,30 @@
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+
 export interface ISearch {
     searchWord: string
-    searchState: 'loading' | 'complete' | 'none'
+    isLoad: boolean
     result: {
-        artists: string[] | null
-        works: number[] | null
-        performances: number[] | null
-        places: number[] | null
+        artists: string[]
+        works: string[]
+        performances: string[]
+        places: string[]
     }
 }
+
+export interface ISearchState {
+    search: ISearch
+}
+
+const initialReduceSearchState: ISearch = {
+    isLoad: false,
+    result: {
+        artists: [],
+        performances: [],
+        places: [],
+        works: [],
+    },
+    searchWord: '',
+}
+
+export default reducerWithInitialState(initialReduceSearchState)
+    .build()

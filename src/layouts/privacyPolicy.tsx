@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
-import * as actions from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import { ArticleTitle } from '../components'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 
@@ -17,7 +17,7 @@ export default class extends React.Component<IProps, {}> {
 
     public componentDidMount = () => {
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
-            this.props.dispatch(actions.setMobileMenuState({tabState: 'none'}))
+            this.props.dispatch(setMobileMenuState('none'))
         }
     }
 

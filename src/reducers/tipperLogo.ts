@@ -1,20 +1,16 @@
-// import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 export interface ITipperLogo {
     url: string;
 }
 
-// export interface ITipperLogoState {
-//     tipperLogo: ITipperLogo[];
-// }
+export interface ITipperLogoState {
+    tipperLogo: ITipperLogo;
+}
 
-// const initialReduceUserMenuState: ITipperLogoState = {
-//     tipperLogo: [
-//         {
-//             url: '',
-//         }
-//     ]
-// }
+const initialReduceTipperLogoState: ITipperLogo = {
+    url: '',
+}
 
-// export default reducerWithInitialState(initialReduceUserMenuState)
-//     .build()
+export default reducerWithInitialState(initialReduceTipperLogoState)
+    .build()

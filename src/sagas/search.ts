@@ -1,11 +1,13 @@
+import { SagaIterator } from 'redux-saga'
 // import createHistory from 'history/createBrowserHistory';
 import { fork, put, take } from 'redux-saga/effects'
-import * as Actions from '../actions/globalMenu'
+import { searchedResult } from '../actions/search'
+import * as actions from '../actions/searchBox'
 
-function* handleSearch() {
-    while(true) {
-        yield take('SEARCH')
-        yield put(Actions.getAgentInfo)
+function* handleSearch(): SagaIterator {
+    while(true) { 
+        yield take(actions.requestSearch)
+        yield put(searchedResult)
     }
 } 
 

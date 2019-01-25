@@ -3,7 +3,7 @@ import * as React from 'react'
 import QrReader from 'react-qr-reader'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import { ArtistCard } from '../components'
 // import * as actions from '../actions/tipping'
 import { ITippingState } from '../reducers/tipping'
@@ -40,7 +40,7 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'tipping'}))
+        this.props.dispatch(setMobileMenuState('tipping'))
     }
 
     public onError = (e: any) => {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import {setSearchBoxWord} from '../actions/searchBox'
 import { ArtistCard, PerformanceCard, PlaceCard, SearchBox, WorksCard } from '../components'
 // import * as actions from '../actions/search'
@@ -43,7 +43,7 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'search'}))
+        this.props.dispatch(setMobileMenuState('search'))
         this.setState({
             result: {
                 artists: ['hoge', 'huga', 'piyo', 'foo'],
@@ -89,7 +89,7 @@ export default class extends React.Component<IProps, IState> {
     )
 
     public setSearchBox = (word: string) => {
-        this.props.dispatch(setSearchBoxWord({searchWord: word}))
+        this.props.dispatch(setSearchBoxWord(word))
     }
 
     public renderPage = () => (

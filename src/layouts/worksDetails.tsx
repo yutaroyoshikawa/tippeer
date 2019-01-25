@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import * as actions from '../actions/worksDetails'
 import { Score } from '../components'
 import { ArticleTitle } from '../components'
@@ -29,7 +29,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.requestFindWorksInfo(this.props.match.params.worksId))
     }
 

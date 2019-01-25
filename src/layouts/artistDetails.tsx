@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import { ArticleTitle, ArtistCard, CommentBox } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
 import { NotFound } from './'
@@ -35,7 +35,7 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.requestGetArtistInfo(this.props.match.params.artistId))
     }
 

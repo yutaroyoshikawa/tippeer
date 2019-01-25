@@ -11,15 +11,13 @@ export interface ISearchBoxState {
     searchBox: ISearchBox
 }
 
-const initialReduceUserMenuState: ISearchBoxState = {
-    searchBox: {
-            searchWord: decodeURI(location.pathname.substr(8, location.pathname.length - 1)),
-        }
+const initialReduceUserMenuState: ISearchBox = {
+    searchWord: decodeURI(location.pathname.substr(8, location.pathname.length - 1)),
 }
 
 export default reducerWithInitialState(initialReduceUserMenuState)
-    .case(actions.setSearchBoxWord, (state: ISearchBoxState, payload) => ({
+    .case(actions.setSearchBoxWord, (state: ISearchBox, payload):ISearchBox => ({
         ...state,
-        searchBox: {searchWord: payload.searchWord}
+        searchWord: payload
     }))
     .build()

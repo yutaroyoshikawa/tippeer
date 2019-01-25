@@ -3,11 +3,11 @@ import * as React from 'react';
 import { Dispatch } from 'redux'
 // import * as actions from '../actions/globalMenu'
 // import { tabType } from '../reducers/globalMenu'
-import { IGlobalMenuState } from '../reducers/globalMenu'
+import { IMobileMenuState } from '../reducers/mobileMenu'
 
 import * as Styled from '../styles/components/mobileMenu'
 
-export interface IProps extends IGlobalMenuState {
+export interface IProps extends IMobileMenuState {
     dispatch: Dispatch<any>;
 }
 
