@@ -23,26 +23,37 @@ import firebaseSaga from './firebase'
 
 
 function* doGetPerformanceInfoWorker(): SagaIterator {
-    while(true) {
+    while (true) {
         const performanceId = yield take(actions.getPerformanceInfo)
-        try{
+        try {
             const snapshot = yield call(firebaseSaga.firestore.getDocument, 'performances/' + performanceId.payload)
             const performance = snapshot.data()
-                yield put(actions.successPerformanceInfo(
+            const convertedComments: any = []
+            yield performance.comments.map((data: any) => {
+                convertedComments.push(
                     {
-                        address: performance.address,
-                        artistId: performance.artist_id,
-                        comments: performance.comments,
-                        discription: performance.discription,
-                        finish: performance.finish.toDate(),
-                        geoLocate: performance.geo_locate,
-                        locateName: performance.locate_name,
-                        performanceTitle: performance.name,
-                        start: performance.start.toDate(),
-                        thumbnail: performance.thumbnail,
+                        content: data.content,
+                        createdAt: data.created_at.toDate(),
+                        updatedAt: data.updated_at.toDate(),
+                        userId: data.user_id,
                     }
-                ))
-        }catch(e){
+                )
+            })
+            yield put(actions.successPerformanceInfo(
+                {
+                    address: performance.address,
+                    artistId: performance.artist_id,
+                    comments: convertedComments,
+                    discription: performance.discription,
+                    finish: performance.finish.toDate(),
+                    geoLocate: performance.geo_locate,
+                    locateName: performance.locate_name,
+                    performanceTitle: performance.name,
+                    start: performance.start.toDate(),
+                    thumbnail: performance.thumbnail,
+                }
+            ))
+        } catch (e) {
             yield put(actions.faildPerformanceInfo())
         }
     }
