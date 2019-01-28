@@ -6,7 +6,7 @@ import FireStore from './fireStore'
 import PerformanceDetails from './performanceDetails'
 import PlaceDetails from './placeDetails'
 import RegistUser from './registUser'
-import Search from './search'
+// import Search from './search'
 import WorksDetails from './worksDetails'
 
 
@@ -18,7 +18,7 @@ export default function* (): SagaIterator{
     ...PerformanceDetails,
     ...PlaceDetails,
     ...RegistUser,
-    ...Search,
+    // ...Search,
     ...WorksDetails,
   ])
 }
