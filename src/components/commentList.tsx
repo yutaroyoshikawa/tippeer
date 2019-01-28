@@ -29,7 +29,7 @@ export class CommentList extends React.Component<IProps, {}> {
                                     <li>{data.content}</li>
                                     <Styled.PostedData>
                                         <li>{data.userId}</li>
-                                        <li>{data.createdAt}</li>
+                                        <li>{data.createdAt.toString()}</li>
                                     </Styled.PostedData>
                                 </Styled.CommentContents>
                             </Styled.CommentElements>
@@ -58,7 +58,7 @@ export class CommentList extends React.Component<IProps, {}> {
                                 <li>{data.content}</li>
                                 <Styled.PostedData>
                                     <Styled.UserId>{data.userId}</Styled.UserId>
-                                    <li>{data.createdAt}</li>
+                                    <li>{data.createdAt.toString()}</li>
                                 </Styled.PostedData>
                             </Styled.CommentContents>
                         </Styled.CommentElements>
