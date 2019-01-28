@@ -12,7 +12,7 @@ export interface ISearchBoxState {
 }
 
 const initialReduceUserMenuState: ISearchBox = {
-    searchWord: decodeURI(location.pathname.substr(8, location.pathname.length - 1)),
+    searchWord: "",
 }
 
 export default reducerWithInitialState(initialReduceUserMenuState)

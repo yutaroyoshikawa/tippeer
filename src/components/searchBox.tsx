@@ -2,10 +2,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import * as React from 'react'
 import * as reactRouter from 'react-router-dom'
 import { Dispatch } from 'redux'
+// import * as rison from 'rison'
 import { ISearchBoxState } from 'src/reducers/searchBox'
 import {requestSearch, setSearchBoxWord} from '../actions/searchBox'
 import { IGlobalMenuState } from '../reducers/globalMenu'
-
 import * as Styled from '../styles/components/searchBox'
 
 export interface IProps extends ISearchBoxState, reactRouter.RouteComponentProps<{}>, IGlobalMenuState {
@@ -24,7 +24,7 @@ export default class extends React.Component<IProps, {}> {
     public onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         this.props.dispatch(requestSearch())
-        this.props.history.push('/search/' + this.props.searchBox.searchWord)
+        this.props.history.push('/search/' + encodeURI(this.props.searchBox.searchWord))
     }
 
     public renderSearchBox = () => (
