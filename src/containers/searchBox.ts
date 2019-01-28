@@ -14,4 +14,4 @@ const mapStateToProps = (state: AllState) => {
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
-export const SearchBox = withRouter<any>(connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(searchBox) as React.ComponentClass)
+export const SearchBoxInput = withRouter<any>(connect<{}, {}, IProps>(mapStateToProps, mapDispatchToProps)(searchBox) as React.ComponentClass)
