@@ -109,9 +109,8 @@ export default reducerWithInitialState(initialReduceUserMenuState)
         ...state,
         isLoad: true,
     }))
-    .case(actions.findWorksInfo, (state: IWorksDetails, payload): IWorksDetails => ({
+    .case(actions.findWorksInfo, (state: IWorksDetails): IWorksDetails => ({
         ...state,
-        ...payload,
         isFind: true,
     }))
     .case(actions.notFindWorksInfo, (state: IWorksDetails): IWorksDetails => ({
