@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
 import { setMobileMenuState } from '../actions/mobileMenu'
-import { ArticleTitle, ArtistCard, CommentBox } from '../components'
+import { ArticleTitle, ArtistCard, CommentBox, PerformanceCard } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
 import { NotFound } from './'
 
@@ -39,13 +39,13 @@ export default class extends React.Component<IProps, IState> {
         this.props.dispatch(actions.requestGetArtistInfo(this.props.match.params.artistId))
     }
 
-    // public renderPerformanceCard = () => (
-    //     this.props.artistDetails.performanceHistories.map((id, key) => (
-    //         <Styled.ListElements key={key}>
-    //             <PerformanceCard performanceId={id} />
-    //         </Styled.ListElements>
-    //     ))
-    // )
+    public renderPerformanceCard = () => (
+        this.props.artistDetails.performanceHistories.map((id, key) => (
+            <Styled.ListElements key={key}>
+                <PerformanceCard performanceId={'hoge'} />
+            </Styled.ListElements>
+        ))
+    )
 
     public renderOfferBox = () => (
         this.state.offerBoxState ?
@@ -151,7 +151,7 @@ export default class extends React.Component<IProps, IState> {
                         <ArticleTitle title={'過去のパフォーマンス'} color={'light'} />
                     </Styled.PerformanceHistoryTitle>
                     <Styled.PerformanceHistory>
-                        {/* {this.renderPerformanceCard()} */}
+                        {this.renderPerformanceCard()}
                     </Styled.PerformanceHistory>    
                 </section>
                 :
