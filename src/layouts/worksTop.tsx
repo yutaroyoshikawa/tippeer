@@ -32,7 +32,7 @@ export default class extends React.Component<IProps, {}> {
     public renderRecommend = () => (
         this.props.worksTop.recommend.map((data, i) => (
             <Styled.ListElements key={i} >
-                <WorksCard worksId={data} />
+                <WorksCard worksId={data.toString()} />
             </Styled.ListElements>
         ))
     )
@@ -40,7 +40,7 @@ export default class extends React.Component<IProps, {}> {
     public renderNewrelease = () => (
         this.props.worksTop.newReleace.map((data, i) => (
             <Styled.ListElements key={i}>
-                <WorksCard worksId={data} />
+                <WorksCard worksId={data.toString()} />
             </Styled.ListElements>
         ))
     )
@@ -48,7 +48,7 @@ export default class extends React.Component<IProps, {}> {
     public renderRanking = () => (
         this.props.worksTop.runking.map((data, i) => (
             <Styled.ListElements key={i}>
-                <WorksCard worksId={data} />
+                <WorksCard worksId={data.toString()} />
             </Styled.ListElements>
         ))
     )
