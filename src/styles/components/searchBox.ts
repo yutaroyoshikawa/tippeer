@@ -24,13 +24,13 @@ export const SearchButton = styled.button`
 `
 
 export const MobileSearchButton = styled.button`
-    padding: 3px 5px;
+    padding: 4px 5px;
     :focus {
         outline: none;
     }
     border-radius: 0 35px 35px 0;
     width: 30px;
-    height: 30px;
+    height: 32px;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
