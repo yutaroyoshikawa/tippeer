@@ -18,6 +18,7 @@ const mapStateToProps = (state: AllState) => {
     return {
         globalMenu: state.globalMenu,
         search: state.search,
+        searchBox: state.searchBox,
     }
 }
 

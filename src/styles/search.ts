@@ -1,4 +1,6 @@
-import styled, { createGlobalStyle} from './styled-components'
+import { Hits } from 'react-instantsearch-dom'
+import { Link } from 'react-router-dom'
+import styled, { createGlobalStyle } from './styled-components'
 
 export const GlobalStyle = createGlobalStyle`
     body {
@@ -89,4 +91,45 @@ export const Entire = styled.div`
     padding: 60px 0 20px 0;
     background-color: rgb(215, 187, 187);
     width: 100%;
+`
+
+export const ArtistEntire = styled.article`
+    
+    text-align: center;
+`
+export const ArtistCard = styled.figure`
+    filter: drop-shadow(0 0 1px #555);
+    margin-right: 10px;
+`
+
+export const ArtistLink = styled(Link)`
+
+`
+
+export const IconBox = styled.div`
+
+`
+
+export const ArtistIcon = styled.img`
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+`
+
+export const Name = styled.p`
+    color: #000;
+    text-align: center;
+`
+
+export const HitList = styled(Hits)`
+    .ais-Hits-list {
+        display: flex;
+        padding: 0 0 5px 20px;
+        list-style: none;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+    .ais-Hits-item {
+        margin-right: 20px;
+    }
 `

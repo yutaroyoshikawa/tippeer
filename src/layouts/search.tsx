@@ -1,91 +1,111 @@
 import * as React from 'react'
+import { Index, InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import {setSearchBoxWord} from '../actions/searchBox'
-import { ArtistCard, PerformanceCard, PlaceCard, SearchBox, WorksCard } from '../components'
+import { GoogleMap, PriceCard, SearchBoxInput } from '../components'
 // import * as actions from '../actions/search'
-import { ArticleTitle } from '../components/'
+import { ArticleTitle, ArtistCard } from '../components/'
 import { IGlobalMenuState } from '../reducers/globalMenu'
+import { ISearchBoxState } from '../reducers/searchBox'
 
+import * as Performance from '../styles/components/performanceCard'
+import * as Place from '../styles/components/placeCard'
+import * as Works from '../styles/components/worksCard'
 import * as Styled from '../styles/search'
 
-export interface IProps extends IGlobalMenuState {
+
+export interface IProps extends IGlobalMenuState, ISearchBoxState {
     dispatch: Dispatch<any>
     match: {
         params: {
-            searchWord: string | undefined
+            searchWord: string
         }
     }
 }
 
-export interface IState {
-    result: {
-        artists: string[]
-        performaces: number[]
-        places: number[]
-        works: number[]
-    }
-}
-
-export default class extends React.Component<IProps, IState> {
+export default class extends React.Component<IProps, {}> {
     constructor(props: IProps) {
         super(props)
-
-        this.state={
-            result: {
-                artists: [],
-                performaces: [],
-                places: [],
-                works: [],
-            }
-        }
     }
 
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState('search'))
-        this.setState({
-            result: {
-                artists: ['hoge', 'huga', 'piyo', 'foo'],
-                performaces: [0, 1, 2, 3],
-                places: [0, 1, 2, 3],
-                works: [0, 1, 2, 3],
-            }
-        })
+        this.props.dispatch(setSearchBoxWord(this.props.match.params.searchWord))
     }
 
-    public renderArtists = () => (
-        this.state.result.artists.map((id) => (
-            <Styled.Elements key={id}>
-                <ArtistCard artistId={id} size={130} style={'standalone'} nameHidden={false} color={'light'} link={true} />
-            </Styled.Elements>
-        ))
+    public pushHistory = () => (
+        window.history.pushState(null, '', '/search/' + this.props.searchBox.searchWord)
     )
 
-    public renderPerformaces = () => (
-        this.state.result.performaces.map((id) => (
-            <Styled.Elements key={id}>
-                <PerformanceCard performanceId={id} />
-            </Styled.Elements>
-            
-        ))
+    public renderArtists = (hits: any) => (
+        hits.hit ?
+            <Styled.ArtistEntire>
+                <Styled.ArtistLink to={"/artists/" + hits.hit.objectID} onClick={this.pushHistory.bind(this,)} >
+                    <Styled.ArtistCard><Styled.ArtistIcon src={hits.hit.iconUrl} alt="ArtistIcon"/></Styled.ArtistCard>
+                    <Styled.Name>{hits.hit.name}</Styled.Name>
+                </Styled.ArtistLink>
+            </Styled.ArtistEntire>
+            :
+            null
     )
 
-    public renderPlaces = () => (
-        this.state.result.places.map((id) => (
-            <Styled.Elements>
-                <PlaceCard placeId={id} />
-            </Styled.Elements>
-        ))
+    public renderPerformaces = (hits: any) => (
+        hits.hit ?
+            <Performance.Entire>
+                <Link to={"/performances/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                    <figure><Performance.PerformanceThumbnail src={hits.hit.thumbnail} alt="PerformanceThumbnail" /></figure>
+                </Link>
+                <Performance.PerformanceInfo>
+                    <Link to={"/performances/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                        <Performance.PerformanceName>{hits.hit.name}</Performance.PerformanceName>
+                        <Performance.Start>{hits.hit.start}</Performance.Start>
+                        <Performance.Finish>{hits.hit.finish}</Performance.Finish>
+                    </Link>
+                    <Link to={"/places/" + hits.hit.placeId}  onClick={this.pushHistory.bind(this,)}>
+                        <Performance.PlaceInfo>{hits.hit.placeName}</Performance.PlaceInfo>
+                    </Link>        
+                </Performance.PerformanceInfo> 
+            </Performance.Entire>
+            :
+            null
     )
 
-    public renderWorks = () => (
-        this.state.result.works.map((id) => (
-            <Styled.Elements>
-                <WorksCard worksId={id} />
-            </Styled.Elements>
-            
-        ))
+    public renderPlaces = (hits: any) => (
+        hits.hit ?
+            <Place.Entire>
+                <Link to={"/places/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                    <figure><GoogleMap latitude={hits.hit.geoPlace.lat} longitude={hits.hit.geoPlace.long} width={'100%'} height={'110px'} /></figure>
+                    <Place.PlaceInfo>
+                        <Place.Name>{hits.hit.name}</Place.Name>
+                        <Place.PostalCode>〒{hits.hit.postalCode}</Place.PostalCode>
+                        <Place.Address>{hits.hit.address}</Place.Address>
+                    </Place.PlaceInfo>
+                </Link>
+            </Place.Entire>
+            :
+            null
+    )
+
+    public renderWorks = (hits: any) => (
+        hits.hit ?
+            <Works.Entire>
+                <Link to={"/works/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                    <p><Works.WorksThumbnail src={hits.hit.thumbnail} alt="worksThumbnail"/></p>
+                </Link>
+                <Works.WorksInfo>
+                    <Link to={"/works/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                        <Works.WorksName>{hits.hit.name}</Works.WorksName>
+                    </Link>
+                    <Link to={'/artists/' + hits.hit.artistId}  onClick={this.pushHistory.bind(this,)} >
+                        <ArtistCard artistId={hits.hit.artistId} size={40} style={'card'} nameHidden={false} color={'light'} link={true} />
+                    </Link>
+                    <Works.Price><PriceCard type={'circle'} price={hits.hit.price} size={80} /></Works.Price>
+                </Works.WorksInfo>
+            </Works.Entire>
+            :
+            null
     )
 
     public setSearchBox = (word: string) => {
@@ -93,20 +113,22 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public renderPage = () => (
-        this.props.match.params.searchWord ?
+        this.props.searchBox.searchWord ?
         <Styled.Result>
             {
                 this.props.globalMenu.agent === 'tablet' || this.props.globalMenu.agent === 'mobile' ?
                 null
                 :
-                <Styled.SearchWord>{this.props.match.params.searchWord}の検索結果</Styled.SearchWord>
+                <Styled.SearchWord>{this.props.searchBox.searchWord}の検索結果</Styled.SearchWord>
             }
             <Styled.PerformanceTitle>
                 <ArticleTitle title={'パフォーマンス'} color={'light'} />
             </Styled.PerformanceTitle>    
             <Styled.Contents>
                 <Styled.ContentBox>
-                    {this.renderPerformaces()}
+                    <Index indexName="performances">
+                        <Styled.HitList hitComponent={this.renderPerformaces.bind(this,)} />
+                    </Index>
                 </Styled.ContentBox>    
             </Styled.Contents>
             <Styled.PerformanceTitle>
@@ -114,7 +136,9 @@ export default class extends React.Component<IProps, IState> {
             </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>
-                    {this.renderArtists()}
+                    <Index indexName="artists">
+                        <Styled.HitList hitComponent={this.renderArtists.bind(this,)} />
+                    </Index>
                 </Styled.ContentBox> 
             </Styled.Contents>
             <Styled.PerformanceTitle>
@@ -122,7 +146,9 @@ export default class extends React.Component<IProps, IState> {
             </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>
-                    {this.renderWorks()}
+                    <Index indexName="works">
+                        <Styled.HitList hitComponent={this.renderWorks.bind(this,)} />
+                    </Index>
                 </Styled.ContentBox>
             </Styled.Contents>
             <Styled.PerformanceTitle>
@@ -130,7 +156,9 @@ export default class extends React.Component<IProps, IState> {
             </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>
-                    {this.renderPlaces()}
+                    <Index indexName="places">
+                        <Styled.HitList hitComponent={this.renderPlaces.bind(this,)} />
+                    </Index>
                 </Styled.ContentBox>
             </Styled.Contents>
         </Styled.Result>
@@ -150,9 +178,9 @@ export default class extends React.Component<IProps, IState> {
         </Styled.Trend>
     )
 
-    public renderSearchBox = () => (
+    public renderSearchBoxInput = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
-        <Styled.SearchBox><SearchBox /></Styled.SearchBox>
+        <Styled.SearchBox><SearchBoxInput /></Styled.SearchBox>
         :
         null
     )
@@ -160,9 +188,16 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             <Styled.Entire>
-                <Styled.GlobalStyle />
-                {this.renderSearchBox()}
-                {this.renderPage()}
+                <InstantSearch
+                    apiKey={process.env.REACT_APP_ALGOLIA_SEARCH_API_KEY ? process.env.REACT_APP_ALGOLIA_SEARCH_API_KEY : ''}
+                    appId={process.env.REACT_APP_ALGOLIA_SEARCH_APP_ID ? process.env.REACT_APP_ALGOLIA_SEARCH_APP_ID : ''}
+                    indexName="performances"
+                >
+                    <SearchBox defaultRefinement={this.props.searchBox.searchWord} />
+                    <Styled.GlobalStyle />
+                    {this.renderSearchBoxInput()}
+                    {this.renderPage()}
+                </InstantSearch>
             </Styled.Entire>
         )
     }
