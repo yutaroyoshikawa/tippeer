@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import * as actions from '../actions/performanceDetails'
-import { ArticleTitle, ArtistCard } from '../components'
+import { ArticleTitle, ArtistCard, CommentBox, CommentList, DistanceCard, GoogleMap } from '../components'
 import { IPerformanceDetailsState } from '../reducers/performaceDetails'
 import * as Styled from '../styles/performanceDetails'
 import { NotFound } from './'
@@ -22,7 +22,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.getPerformanceInfo(this.props.match.params.performanceId))
     }
 
@@ -60,10 +60,10 @@ export default class extends React.Component<IProps, {}> {
                         </Styled.PerformanceInfo>
                     </Styled.TopSection>
                     
-                    {/* <Styled.BottomSection>
-                        <GoogleMap placeId={this.props.performanceDetails.placeId} width={'100%'} height={'200px'} />
+                    <Styled.BottomSection>
+                        <GoogleMap latitude={this.props.performanceDetails.geoLocate[0]} longitude={this.props.performanceDetails.geoLocate[1]} width={'100%'} height={'200px'} />
                         <Styled.PlaceDistance>
-                            <DistanceCard placeId={this.props.performanceDetails.placeId} />
+                            <DistanceCard placeId={0} />
                         </Styled.PlaceDistance>
                         <Styled.CommentBox>
                             <CommentBox type={'performance'} />
@@ -71,7 +71,7 @@ export default class extends React.Component<IProps, {}> {
                         <Styled.CommentList>
                             <CommentList type={'performance'} initialWorksComments={null} initialPerformanceComments={this.props.performanceDetails.comments} dark={false} />
                         </Styled.CommentList>
-                    </Styled.BottomSection> */}
+                    </Styled.BottomSection>
                 </div>
                 :
                 <NotFound />

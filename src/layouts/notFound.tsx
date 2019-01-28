@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
-import { setMobileMenuState } from '../actions/globalMenu'
+import { setMobileMenuState } from '../actions/mobileMenu'
 import * as Styled from '../styles/notFound'
 
 export interface IProps {
@@ -9,7 +9,7 @@ export interface IProps {
 
 export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
-        this.props.dispatch(setMobileMenuState({tabState: 'none'}))
+        this.props.dispatch(setMobileMenuState('none'))
     }
 
     public render() {
