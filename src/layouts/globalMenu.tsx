@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu';
 import { requestLogin } from '../actions/auth'
 import * as actions from '../actions/globalMenu'
-import { Back, MobileMenu, SearchBox, TipperLogo, UserMenu } from '../components'
+import { Back, MobileMenu, SearchBoxInput, TipperLogo, UserMenu } from '../components'
 
 import * as Styled from '../styles/globalMenu'
 
@@ -39,7 +39,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
         :
             <Styled.DeskTopMemu>
                 <li><TipperLogo/></li>
-                <li><SearchBox /></li>
+                <li><SearchBoxInput /></li>
                 <li><UserMenu /></li>
             </Styled.DeskTopMemu>   
     )
