@@ -1,3 +1,4 @@
+import Img from 'react-image'
 import { Link } from 'react-router-dom'
 import styled from '../styled-components'
 
@@ -42,7 +43,7 @@ export const IconBox = styled.div`
     }
 `
 
-export const ArtistIcon = styled.img`
+export const ArtistIcon = styled(Img)`
     width: ${props => props.width}px;
     height: ${props => props.width}px;
     border-radius: ${props => props.width}px;
