@@ -1,5 +1,5 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createBrowserHistory'
 import * as React from 'react'
 
 import * as Styled from '../styles/components/back'
