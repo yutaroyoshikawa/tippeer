@@ -5,7 +5,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import 'ress'
 import { Dialog, Faq, Notification, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
-import { ArtistDetails, NotFound, PerformanceDetails, PlaceDetails, Search, Tipping, WorksDetails, WorksTop } from './layouts'
+import { ArtistDetails, Library, NotFound, PerformanceDetails, PlaceDetails, Search, Tipping, WorksDetails, WorksTop } from './layouts'
 import { buildStore } from './store';
 import * as Styled from './styles/app'
 
@@ -35,6 +35,7 @@ class App extends React.Component {
                             <Route exact={true} path='/works' component={WorksTop} />
                             <Route exact={true} path='/tipping' component={Tipping} />
                             <Route exact={true} path='/tipping/:tippingToken' component={Tipping} />
+                            <Route exact={true} path='/library' component={Library} />
                             <Route exact={false} path='*' component={NotFound} status={404} />
                         </Switch>
                     </div>
