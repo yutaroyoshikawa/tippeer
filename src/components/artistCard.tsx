@@ -57,6 +57,31 @@ export class ArtistCard extends React.Component<IProps, IState> {
         isMounted = false
     }
 
+    public componentDidUpdate = async () => {
+        try {
+            const artist: any = await this.getArtistInfo(this.props.artistId)
+            if (isMounted) {
+                await this.setState(
+                    {
+                        artistName: artist[0].name,
+                        icon: artist[0].icon,
+                        isFind: true,
+                        isLoad: false,
+                    }
+                )
+            }
+        } catch (e) {
+            if (isMounted) {
+                await this.setState(
+                    {
+                        isFind: false,
+                        isLoad: false,
+                    }
+                )
+            }
+        }
+    }
+
     public componentDidMount = async () => {
         isMounted = true
 
