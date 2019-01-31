@@ -48,6 +48,8 @@ function* doCheckTipping() {
                 ))
             }else{
                 yield put(actions.setComponent('thanks'))
+                yield delay(3000)
+                yield put(actions.setComponent('result'))
             }   
         }
     }
