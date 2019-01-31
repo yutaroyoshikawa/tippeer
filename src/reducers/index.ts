@@ -6,6 +6,7 @@ import back from './back'
 import cropper from './cropper'
 import dialog from './dialog'
 import globalMenu from './globalMenu'
+import library from './library'
 import mobileMenu from './mobileMenu'
 import performanceDetails from './performaceDetails'
 import placeDetails from './placeDetails'
@@ -19,7 +20,6 @@ import userPage from './userPage'
 import worksDetails from './worksDetails'
 import worksTop from './worksTop'
 
-
 export default combineReducers({
     artistDetails,
     auth,
@@ -27,6 +27,7 @@ export default combineReducers({
     cropper,
     dialog,
     globalMenu,
+    library,
     mobileMenu,
     notifications,
     performanceDetails,
