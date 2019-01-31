@@ -7,6 +7,7 @@ import PerformanceDetails from './performanceDetails'
 import PlaceDetails from './placeDetails'
 import RegistUser from './registUser'
 // import Search from './search'
+import Tipping from './tipping'
 import WorksDetails from './worksDetails'
 
 
@@ -19,6 +20,7 @@ export default function* (): SagaIterator{
     ...PlaceDetails,
     ...RegistUser,
     // ...Search,
+    ...Tipping,
     ...WorksDetails,
   ])
 }
