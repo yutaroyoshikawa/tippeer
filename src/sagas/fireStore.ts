@@ -223,6 +223,24 @@ export function getUserInfo(Id: string){
     })
 }
 
+export function getTippingPerformance(TippingToken: string) {
+    return new Promise( async (resolve, reject) => {
+        const collection = await firestore().collection('performances')
+        const query = await collection.where('tipping_token', '==', TippingToken)
+        let performance: any = await ''
+        await query.get().then((doc) => (
+            doc.forEach((data) => {
+                performance = data
+            }) 
+        ))
+        if(performance){
+            resolve(performance)
+        }else{
+            reject()
+        }
+    })
+}
+
 export function* checkUserExists(id: string): SagaIterator {
     const user = yield call(getIsUserExists, id)
     return user
