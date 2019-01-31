@@ -34,6 +34,7 @@ class App extends React.Component {
                             <Route exact={true} path='/artists/:artistId' component={ArtistDetails} />
                             <Route exact={true} path='/works' component={WorksTop} />
                             <Route exact={true} path='/tipping' component={Tipping} />
+                            <Route exact={true} path='/tipping/:tippingToken' component={Tipping} />
                             <Route exact={false} path='*' component={NotFound} status={404} />
                         </Switch>
                     </div>

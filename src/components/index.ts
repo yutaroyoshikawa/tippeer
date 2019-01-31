@@ -10,6 +10,12 @@ export { Auth } from '../containers/auth'
 export { Notification } from '../containers/notification'
 export { RegistUser } from '../containers/registUser'
 export { Dialog } from '../containers/dialog'
+export { TippingPay } from '../containers/tippingPay'
+export { TippingPerformance } from '../containers/tippingPerformance'
+export { TippingResult } from '../containers/tippingResult'
+export { TippingScan } from '../containers/tippingScan'
+export { TippingTop } from '../containers/tippingTop'
+export { TippingThanks } from '../containers/tippingThanks'
 
 /*
 template
