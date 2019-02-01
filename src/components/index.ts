@@ -16,7 +16,10 @@ export { TippingResult } from '../containers/tippingResult'
 export { TippingScan } from '../containers/tippingScan'
 export { TippingTop } from '../containers/tippingTop'
 export { TippingThanks } from '../containers/tippingThanks'
+export { TippingQR } from '../containers/tippingQR'
 export { LibraryTab } from '../containers/libraryTab'
+export { ArtistManage } from '../containers/artistManage'
+export { AdminManage } from '../containers/adminManage'
 
 /*
 template

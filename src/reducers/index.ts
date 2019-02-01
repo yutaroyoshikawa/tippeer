@@ -7,6 +7,7 @@ import cropper from './cropper'
 import dialog from './dialog'
 import globalMenu from './globalMenu'
 import library from './library'
+import manage from './manage'
 import mobileMenu from './mobileMenu'
 import performanceDetails from './performaceDetails'
 import placeDetails from './placeDetails'
@@ -28,6 +29,7 @@ export default combineReducers({
     dialog,
     globalMenu,
     library,
+    manage,
     mobileMenu,
     notifications,
     performanceDetails,
@@ -41,4 +43,4 @@ export default combineReducers({
     userPage,
     worksDetails,
     worksTop,
-});
+})
