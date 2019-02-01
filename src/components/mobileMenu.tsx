@@ -1,14 +1,13 @@
-import { faMoneyBill, faPaintBrush, faSearch, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyBill, faPaintBrush, faSearch, faShoppingBag, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import { Dispatch } from 'redux'
-// import * as actions from '../actions/globalMenu'
-// import { tabType } from '../reducers/globalMenu'
+import { IAuthState } from '../reducers/auth'
+import { tabType } from '../reducers/mobileMenu'
 import { IMobileMenuState } from '../reducers/mobileMenu'
-
 import * as Styled from '../styles/components/mobileMenu'
 
-export interface IProps extends IMobileMenuState {
-    dispatch: Dispatch<any>;
+export interface IProps extends IMobileMenuState, IAuthState {
+    dispatch: Dispatch<any>
 }
 
 export default class extends React.Component<IProps, {}> {
@@ -16,18 +15,34 @@ export default class extends React.Component<IProps, {}> {
         super(props)
     }
 
-    // public setTabState = (tabName: tabType) => {
-    //     this.props.dispatch(actions.setMobileMenuState({tabState: tabName}))
-    // }
-    
+    public renderTab = (displayName: string, stateName: tabType, icon: IconDefinition) => (
+        <Styled.ListElement>
+            <button>
+                <Styled.TabLink
+                    to={'/' + stateName}
+                    itemRef={stateName}
+                    itemProp={this.props.mobileMenu.tabState}
+                >
+                    <span><Styled.Icon icon={icon} /></span>
+                    {this.props.mobileMenu.tabState === stateName ? displayName : null}
+                </Styled.TabLink>
+            </button>
+        </Styled.ListElement>
+    )
+
     public render() {
-        return(
+        return (
             <Styled.Entire>
                 <Styled.InnerMenu>
-                    <Styled.ListElement><button><Styled.TabLink to='/search' itemRef={'search'} itemProp={this.props.mobileMenu.tabState} ><span><Styled.Icon icon={faSearch} /></span>Search</Styled.TabLink></button></Styled.ListElement>
-                    <Styled.ListElement><button><Styled.TabLink to='/tipping' itemRef={'tipping'} itemProp={this.props.mobileMenu.tabState}><span><Styled.Icon icon={faMoneyBill} /></span>Tipping</Styled.TabLink></button></Styled.ListElement>
-                    <Styled.ListElement><button><Styled.TabLink to='/works' itemRef={'works'} itemProp={this.props.mobileMenu.tabState}><span><Styled.Icon icon={faPaintBrush} /></span>Works</Styled.TabLink></button></Styled.ListElement>
-                    <Styled.ListElement><button><Styled.TabLink to='/library' itemRef={'library'} itemProp={this.props.mobileMenu.tabState}><span><Styled.Icon icon={faShoppingBag} /></span>Library</Styled.TabLink></button></Styled.ListElement>
+                    {this.renderTab('Search', 'search', faSearch)}
+                    {this.renderTab('Tippig', 'tipping', faMoneyBill)}
+                    {this.renderTab('Works', 'works', faPaintBrush)}
+                    {
+                        this.props.auth.isSignedIn ?
+                            this.renderTab('Library', 'library', faShoppingBag)
+                            :
+                            null
+                    }
                 </Styled.InnerMenu>
             </Styled.Entire>
         )
