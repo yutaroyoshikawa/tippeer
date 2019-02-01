@@ -8,9 +8,9 @@ import * as actions from '../actions/registUser'
 import { requestSearch } from '../actions/searchBox'
 import { closeMenu, closeRegistration } from '../actions/userMenu'
 import { changeUserInfo } from './auth'
-import { checkUserExists, registUserInfo } from './fireStore'
+import firebaseSaga from './firebase'
+import { checkUserExists } from './fireStore'
 import { registUserIcon } from './storage'
-
 
 function* validateIdWorker(id: any): SagaIterator {
         if(id.payload){
@@ -125,15 +125,33 @@ function* registUserWorker(): SagaIterator {
         yield put(dialog.closeDialog())
         const state = yield select()
         const data = yield state.registUser.icon.data
-        const url: string | null = yield call(registUserIcon, data)
-        const uid: string = yield state.auth.uid
-        const id: string = yield state.registUser.id.value
-        const name: string = yield state.registUser.name.value
-        const mail: string = yield state.registUser.mail.value
-        const birthday: string = yield state.registUser.birthday.value
-        const tags: string[] = yield state.registUser.tags.tags
-        yield call(registUserInfo, uid, id, name, mail, birthday, tags, url)
-        yield call(changeUserInfo, name, url, mail)
+        const Url: string | null = yield call(registUserIcon, data)
+        const Uid: string = yield state.auth.uid
+        const Id: string = yield state.registUser.id.value
+        const Name: string = yield state.registUser.name.value
+        const Mail: string = yield state.registUser.mail.value
+        const Birthday: string = yield state.registUser.birthday.value
+        const Tags: string[] = yield state.registUser.tags.tags
+        yield call(
+            firebaseSaga.firestore.setDocument,
+            'users/' + Uid,
+            new Object({
+                birthday: Birthday,
+                email: Mail,
+                icon_url: Url,
+                id: Id,
+                login_history: [],
+                name: Name,
+                purchase_history: [],
+                search_history: [],
+                tags: Tags,
+                user_type: 'user',
+            }),
+            {
+                merge: false,
+            }
+        )
+        yield call(changeUserInfo, Name, Url, Mail)
         yield put(actions.successRegistUser())
         yield put(requestLogin())
         yield put(dialog.openDialog(

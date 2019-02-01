@@ -126,20 +126,6 @@ function getIsUserExists(id: string){
     })
 }
 
-export function getUserId(Uid: string){
-    return new Promise( async (resolve) => {
-        const collection = await firestore().collection('users')
-        const query = await collection.where("uid", "==", Uid)
-        let id: string = ''
-        await query.get().then((doc) => (
-            doc.forEach((data) => {
-                id = data.data().id
-            }) 
-        ))
-        resolve(id)
-    })
-}
-
 export function getArtistDetails(Id: string){
     return new Promise( async (resolve, reject) => {
         const collection = await firestore().collection('users')

@@ -4,7 +4,6 @@ import { SagaIterator } from 'redux-saga'
 import { call, fork, put, take } from 'redux-saga/effects'
 import * as actions from '../actions/auth'
 import firebaseSaga from './firebase'
-import { getUserId } from './fireStore'
 
 function onAuthStateChanged() {
     return new Promise((resolve, reject) => {
@@ -13,6 +12,7 @@ function onAuthStateChanged() {
         ))
     })
 }
+
 function onAuthDelete() {
     const currentUser = firebase.auth().currentUser
     return new Promise((resolve, reject) => {
@@ -50,15 +50,16 @@ function* doInitializeAuthWorker():SagaIterator {
         yield take(actions.requestLogin)
         try{
             const user:firebase.User = yield call(onAuthStateChanged)
-            const userId: string = yield call(getUserId, user.uid)
+            const doc = yield call(firebaseSaga.firestore.getDocument, 'users/' + user.uid)
             yield put(actions.successCurrentUserInfo(
                 {
                     displayName: user.displayName,
                     email: user.email,
                     emailVerified: user.emailVerified,
-                    id: userId,
+                    id: doc.data().id,
                     photoURL: user.photoURL,
                     uid: user.uid,
+                    userType: doc.data().user_type,
                 }
             ))
         }catch(e) {

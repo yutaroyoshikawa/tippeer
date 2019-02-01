@@ -1,4 +1,5 @@
 import actionCreatorFactory from 'typescript-fsa'
+import { userType } from '../reducers/auth'
 const actionCreator = actionCreatorFactory()
 
 export interface ICurrentUser {
@@ -8,6 +9,7 @@ export interface ICurrentUser {
     photoURL: string | null
     emailVerified: boolean | null
     uid: string
+    userType: userType
 }
 
 export const successCurrentUserInfo  = actionCreator<ICurrentUser>('SUCCESS_CURRENT_USER_INFO')
@@ -29,3 +31,4 @@ export const noExistsUser           = actionCreator('NO_EXISTS_USER')
 export const registRequestAlert     = actionCreator('REGIST_REQUEST_ALERT')
 
 export const resetAuthState         = actionCreator('RESET_AUTH_STATE')
+
