@@ -16,6 +16,7 @@ export { TippingResult } from '../containers/tippingResult'
 export { TippingScan } from '../containers/tippingScan'
 export { TippingTop } from '../containers/tippingTop'
 export { TippingThanks } from '../containers/tippingThanks'
+export { LibraryTab } from '../containers/libraryTab'
 
 /*
 template
@@ -32,6 +33,7 @@ export { CommentList } from './commentList'
 export { PriceCard } from './priceCard'
 export { GoogleMap } from './googleMap'
 export { DistanceCard } from './distanceCard'
+export { LibraryWorksCard } from '../components/libraryWorksCard'
 /*
 template
 */

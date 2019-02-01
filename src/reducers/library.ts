@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import * as actions from '../actions/library'
 
 interface IContent {
-    id: string
     name: string
     dataUrl: string
     artistId: string
@@ -9,7 +9,7 @@ interface IContent {
     playingPoint: string
 }
 
-interface IWorks {
+export interface IWorks {
     id: string
     name: string
     artistId: string
@@ -17,7 +17,7 @@ interface IWorks {
     contents: IContent[]
 }
 
-type ITab = 'music' | 'movie' | 'image'
+export type ITab = 'music' | 'movie' | 'image'
 
 interface ILibrary {
     isFind: boolean
@@ -42,4 +42,34 @@ const initialReduceLibraryState: ILibrary = {
 }
 
 export default reducerWithInitialState(initialReduceLibraryState)
+    .case(actions.setTab, (state: ILibrary, payload): ILibrary => ({
+        ...state,
+        tabState: payload,
+    }))
+    .case(actions.requestGetLibrary, (state: ILibrary): ILibrary => ({
+        ...state,
+        isLoad: true,
+    }))
+    .case(actions.successGetLibrary, (state: ILibrary): ILibrary => ({
+        ...state,
+        isFind: true,
+        isLoad: false,
+    }))
+    .case(actions.faildGetLibrary, (state: ILibrary): ILibrary => ({
+        ...state,
+        isFind: false,
+        isLoad: false,
+    }))
+    .case(actions.setImageWorks, (state: ILibrary, payload): ILibrary => ({
+        ...state,
+        images: payload,
+    }))
+    .case(actions.setMovieWorks, (state: ILibrary, payload): ILibrary => ({
+        ...state,
+        movies: payload,
+    }))
+    .case(actions.setMusicWorks, (state: ILibrary, payload): ILibrary => ({
+        ...state,
+        musics: payload,
+    }))
     .build()
