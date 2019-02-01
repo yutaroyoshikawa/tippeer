@@ -2,12 +2,15 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/auth'
 import { IAuthState } from '../reducers/auth'
 
+export type userType = 'user' | 'artist' | 'admin'
+
 interface IAuth {
     displayName: string | null
     email: string | null
     photoURL: string | null
     emailVerified: boolean | null
     uid: string
+    userType: userType
     isSignedIn: boolean
     hideAuth: boolean
     authState: 'login' | 'regist' | null
@@ -26,6 +29,7 @@ const initialReduceAuthState: IAuth = {
     isSignedIn: false,
     photoURL: null,
     uid: '',
+    userType: 'user'
 }
 
 export default reducerWithInitialState(initialReduceAuthState)
@@ -33,11 +37,11 @@ export default reducerWithInitialState(initialReduceAuthState)
         ...state,
         ...payload,
     }))
-    .case(actions.failureCurrentUserInfo, (state: IAuth, payload): IAuth => ({
+    .case(actions.failureCurrentUserInfo, (state: IAuth): IAuth => ({
         ...state,
         isSignedIn: false,
     }))
-    .case(actions.successLogout, (state: IAuth, payload): IAuth => ({
+    .case(actions.successLogout, (state: IAuth): IAuth => ({
         ...state,
         authState: null,
         displayName: null,
