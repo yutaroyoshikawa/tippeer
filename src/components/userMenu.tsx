@@ -2,6 +2,7 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { faAddressBook, faQuestionCircle, faSignOutAlt, faTimes, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
+import Img from 'react-image'
 import { Dispatch } from 'redux'
 import { IUserMenuState } from 'src/reducers/userMenu'
 import { hideAuth, requestLogout, showAuth } from '../actions/auth'
@@ -17,7 +18,7 @@ export interface IProps extends IUserMenuState, IAuthState {
 }
 
 export default class extends React.Component<IProps, {}> {
-    constructor(props: IProps){
+    constructor(props: IProps) {
         super(props);
     }
 
@@ -26,31 +27,31 @@ export default class extends React.Component<IProps, {}> {
             this.props.dispatch(actions.closeMenu())
             :
             this.props.dispatch(actions.openMenu())
-        
-        if(this.props.userMenu.isRegistration){
+
+        if (this.props.userMenu.isRegistration) {
             this.props.dispatch(requestCanselRegistUser())
         }
     }
 
     public renderAuth = () => (
         !this.props.auth.hideAuth ?
-        <Auth />
-        :
-        null
+            <Auth />
+            :
+            null
     )
 
     public renderButton = () => (
         this.props.auth.isSignedIn ?
-        <Styled.ListStyle onClick={this.props.dispatch.bind(this, requestLogout())}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
-        :
-        <Styled.ListStyle onClick={this.setAuthState.bind(this,)}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログインまたは登録</Styled.ListStyle>
+            <Styled.ListStyle onClick={this.props.dispatch.bind(this, requestLogout())}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
+            :
+            <Styled.ListStyle onClick={this.setAuthState.bind(this,)}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログインまたは登録</Styled.ListStyle>
     )
 
     public setAuthState = () => (
         !this.props.auth.hideAuth ?
-         this.props.dispatch(hideAuth())
-         :
-         this.props.dispatch(showAuth())
+            this.props.dispatch(hideAuth())
+            :
+            this.props.dispatch(showAuth())
     )
 
     public renderChangeUserInfo = () => (
@@ -64,36 +65,38 @@ export default class extends React.Component<IProps, {}> {
         this.props.userMenu.openState ?
             <Styled.Top>
                 {this.props.userMenu.isRegistration ?
-                <RegistUser />
-                :
-                <div style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center'}}>
-                    <Styled.MenuList>
-                    {this.renderAuth()}
-                        {this.renderChangeUserInfo()}
-                        {this.renderButton()}
-                        <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
-                        <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
-                    </Styled.MenuList>
-                    <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
-                </div>
+                    <RegistUser />
+                    :
+                    <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center' }}>
+                        <Styled.MenuList>
+                            {this.renderAuth()}
+                            {this.renderChangeUserInfo()}
+                            {this.renderButton()}
+                            <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
+                            <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
+                        </Styled.MenuList>
+                        <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
+                    </div>
                 }
             </Styled.Top>
-        :
+            :
             null
     )
 
     public render() {
-        return(
+        return (
             <Styled.Entire>
                 <Styled.MenuButton onClick={this.clickMenu.bind(this,)}>
                     {
-                        this.props.auth.photoURL ?
-                            this.props.userMenu.openState?
-                                <FontAwesomeIcon icon={faTimes} style={{width: '40px', height: '40px'}} />
-                                :
-                                <img src={this.props.auth.photoURL} alt="userIcon" style={{width: '40px', height: '40px', borderRadius: '50%', marginBottom: '-4px'}} />
+                        this.props.userMenu.openState ?
+                            <FontAwesomeIcon icon={faTimes} style={{ width: '40px', height: '40px' }} />
                             :
-                            <FontAwesomeIcon icon={this.props.userMenu.mark === 'faUserCircle'? faUserCircle : faTimes} style={{width: '40px', height: '40px'}} />
+                            <Img
+                                src={this.props.auth.photoURL}
+                                unloader={<FontAwesomeIcon icon={faUserCircle} style={{ width: '40px', height: '40px' }} />}
+                                alt="userIcon"
+                                style={{ width: '40px', height: '40px', borderRadius: '50%', marginBottom: '-4px' }}
+                            />
                     }
                 </Styled.MenuButton>
                 {this.renderMenu()}

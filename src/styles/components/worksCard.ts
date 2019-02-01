@@ -1,3 +1,4 @@
+import Img from 'react-image'
 import styled from '../styled-components'
 
 export const Entire = styled.article`
@@ -7,7 +8,7 @@ export const Entire = styled.article`
     border-radius: 8px;
 `
 
-export const WorksThumbnail = styled.img`
+export const WorksThumbnail = styled(Img)`
     width: 100%;
     height: 110px;
     object-fit: cover;
