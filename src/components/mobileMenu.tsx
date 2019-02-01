@@ -1,5 +1,6 @@
-import { faMoneyBill, faPaintBrush, faSearch, faShoppingBag, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import * as React from 'react';
+import { faMoneyBill, faPaintBrush, faSearch, faShoppingBag, faTasks, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import * as React from 'react'
+import { Motion, spring } from 'react-motion'
 import { Dispatch } from 'redux'
 import { IAuthState } from '../reducers/auth'
 import { tabType } from '../reducers/mobileMenu'
@@ -32,19 +33,30 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return (
-            <Styled.Entire>
-                <Styled.InnerMenu>
-                    {this.renderTab('Search', 'search', faSearch)}
-                    {this.renderTab('Tippig', 'tipping', faMoneyBill)}
-                    {this.renderTab('Works', 'works', faPaintBrush)}
-                    {
-                        this.props.auth.isSignedIn ?
-                            this.renderTab('Library', 'library', faShoppingBag)
-                            :
-                            null
-                    }
-                </Styled.InnerMenu>
-            </Styled.Entire>
+            <Motion style={{y: spring(this.props.mobileMenu.isHide ? 100 : 0)}}>
+                {(value: any) => 
+                    <Styled.Entire itemProp={value.y}>
+                        <Styled.InnerMenu>
+                            {this.renderTab('Search', 'search', faSearch)}
+                            {this.renderTab('Tippig', 'tipping', faMoneyBill)}
+                            {this.renderTab('Works', 'works', faPaintBrush)}
+                            {
+                                this.props.auth.isSignedIn ?
+                                    this.renderTab('Library', 'library', faShoppingBag)
+                                    :
+                                    null
+                            }
+                            {
+                                this.props.auth.userType === 'admin' || this.props.auth.userType === 'artist' ?
+                                    this.renderTab('Manage', 'manage', faTasks)
+                                    :
+                                    null
+                            }
+                        </Styled.InnerMenu>
+                    </Styled.Entire>
+                }
+            </Motion>
+            
         )
     }
 }

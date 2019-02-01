@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Motion, spring } from 'react-motion'
 import { Dispatch } from 'redux'
 import { IGlobalMenuState } from 'src/reducers/globalMenu';
 import { requestLogin } from '../actions/auth'
@@ -13,7 +14,7 @@ export interface IProps extends IGlobalMenuState {
 
 export default class GlobalMenu extends React.Component<IProps, {}> {
 
-    constructor(props: IProps){
+    constructor(props: IProps) {
         super(props);
 
         this.state = {
@@ -33,35 +34,40 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
             <Styled.MobileTopMenu>
                 <li><Back /></li>
-                <li><TipperLogo/></li>
+                <li><TipperLogo /></li>
                 <li><UserMenu /></li>
             </Styled.MobileTopMenu>
-        :
+            :
             <Styled.DeskTopMemu>
-                <li><TipperLogo/></li>
+                <li><TipperLogo /></li>
                 <li><SearchBoxInput /></li>
                 <li><UserMenu /></li>
-            </Styled.DeskTopMemu>   
+            </Styled.DeskTopMemu>
     )
 
     public renderMobileMenu = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
             <MobileMenu />
-            
-        :
+
+            :
             null
     )
 
     public render() {
-        return(
-            <div>
-                <Styled.TopGlobalMenu>
-                    {this.renderLeyout()}
-                </Styled.TopGlobalMenu>
+        return (
+            <Styled.Entire>
+                <Motion style={{ y: spring(this.props.globalMenu.isHide ? 100 : 0) }}>
+                    {(value: any) =>
+                        <Styled.TopGlobalMenu itemProp={value.y}>
+                            {this.renderLeyout()}
+                        </Styled.TopGlobalMenu>
+                    }
+                </Motion>
                 <Styled.BottomGlobalMenu>
                     {this.renderMobileMenu()}
                 </Styled.BottomGlobalMenu>
-            </div>
+            </Styled.Entire>
+
         )
     }
 }

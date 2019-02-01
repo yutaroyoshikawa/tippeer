@@ -1,6 +1,10 @@
 import styled from './styled-components'
 
-export const MobileTopMenu = styled.ul`
+export const Entire = styled.div`
+
+`
+
+export const MobileTopMenu = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,6 +25,7 @@ export const DeskTopMemu = styled.ul`
 `
 
 export const TopGlobalMenu = styled.nav`
+    transform: translateY(-${props => props.itemProp}%);
     position: fixed;
     width: 100%;
     height: 50px;

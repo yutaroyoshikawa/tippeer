@@ -7,6 +7,7 @@ const getDevice = uaParser.getDevice().type
 
 interface IGlobalMenu {
     agent: string
+    isHide: boolean
 }
 
 export interface IGlobalMenuState {
@@ -15,11 +16,20 @@ export interface IGlobalMenuState {
 
 const initialReduceUserMenuState: IGlobalMenu = {
     agent: '',
+    isHide: false,
 }
 
 export default reducerWithInitialState(initialReduceUserMenuState)
     .case(actions.getAgentInfo, (state: IGlobalMenu): IGlobalMenu => ({
         ...state,
         agent: !getDevice ? 'undefined' : getDevice.toString()
+    }))
+    .case(actions.hideGlobalMenu, (state: IGlobalMenu): IGlobalMenu => ({
+        ...state,
+        isHide: true,
+    }))
+    .case(actions.showGlobalMenu, (state: IGlobalMenu): IGlobalMenu => ({
+        ...state,
+        isHide: false,
     }))
     .build()

@@ -13,6 +13,7 @@ export const Entire = styled.ul`
     height: 50px;
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(12px);
+    transform: translateY(${props => props.itemProp}%)
 `
 
 export const InnerMenu = styled.div`
