@@ -9,7 +9,12 @@ export interface IProps {
 
 export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
+        document.title = 'TIPPEER | 404 NotFound'
         this.props.dispatch(setMobileMenuState('none'))
+    }
+
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
     }
 
     public render() {

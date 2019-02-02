@@ -19,6 +19,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
+        document.title = 'TIPPEER | Manage'
         this.props.dispatch(setMobileMenuState('manage'))
         this.props.dispatch(hideGlobalMenu())
         this.props.dispatch(hideMobileMenu())

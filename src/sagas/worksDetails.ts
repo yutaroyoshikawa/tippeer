@@ -21,6 +21,7 @@ function* doGetWorksInfo(): SagaIterator {
                     worksTitle: worksInfo.name,
                 }
             ))
+            document.title = 'TIPPEER | ' + worksInfo.name
         }catch(e){
             yield put(actions.notFindWorksInfo())
             yield put(actions.successLoad())

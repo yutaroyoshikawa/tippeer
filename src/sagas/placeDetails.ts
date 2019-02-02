@@ -23,6 +23,7 @@ function* doGetPlaceDetailsInfoWorker(): SagaIterator {
                     postalcode: placeInfo.postal_code,
                 }
             ))
+            document.title = 'TIPPEER | ' + placeInfo.name
         }catch(e){
             yield put(actions.notFindPlaceInfo())
         }

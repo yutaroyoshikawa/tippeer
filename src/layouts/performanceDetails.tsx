@@ -26,6 +26,10 @@ export default class extends React.Component<IProps, {}> {
         this.props.dispatch(actions.getPerformanceInfo(this.props.match.params.performanceId))
     }
 
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
+    }
+
     public render() {
         return(
             this.props.performanceDetails.findPerformance ?

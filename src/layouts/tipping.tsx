@@ -25,10 +25,15 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
+        document.title = 'TIPPEER | Tipping'
         this.props.dispatch(setMobileMenuState('tipping'))
         if (this.props.match.params.tippingToken) {
             this.props.dispatch(actions.requestGetTippingPerformance(this.props.match.params.tippingToken))
         }
+    }
+
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
     }
 
     public renderState = (): any => {

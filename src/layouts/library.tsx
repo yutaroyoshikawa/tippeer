@@ -15,7 +15,12 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
+        document.title = 'TIPPEER | Library' 
         this.props.dispatch(setMobileMenuState('library'))
+    }
+
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
     }
 
     public renderWorks = () => (

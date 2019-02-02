@@ -24,8 +24,13 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
+        document.title = 'TIPPEER | ' + this.props.placeDetails.placeName
         this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.requestFindPlaceInfo(this.props.match.params.placeId))
+    }
+
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
     }
 
     public googleMap = (googleMaps: any) => (

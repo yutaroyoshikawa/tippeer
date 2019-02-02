@@ -53,6 +53,7 @@ function* doGetPerformanceInfoWorker(): SagaIterator {
                     thumbnail: performance.thumbnail,
                 }
             ))
+            document.title = 'TIPPEER | ' + performance.performance.name
         } catch (e) {
             yield put(actions.faildPerformanceInfo())
         }

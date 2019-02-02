@@ -18,7 +18,12 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount() {
+        document.title = 'TIPPEER | Works'
         this.props.dispatch(setMobileMenuState('works'))
+    }
+
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
     }
 
     public renderFollowArtists = (size: number) => (

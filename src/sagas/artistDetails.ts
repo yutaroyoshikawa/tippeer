@@ -19,6 +19,7 @@ function* doGetArtistInfoWorker(): SagaIterator {
                 subscribeCount: artistInfo.subscribe_count,
                 topImage: artistInfo.top_image,
             }
+            document.title = 'TIPPEER | ' + artistInfo.name
             const performances = yield call(getPerformances, artistId.payload)
             yield put(actions.findArtistInfo())
             yield put(actions.requestSetRecentPerformance(performances))

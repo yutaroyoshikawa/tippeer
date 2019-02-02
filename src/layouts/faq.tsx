@@ -47,9 +47,14 @@ export default class extends React.Component<IProps, IState> {
     }
 
     public componentDidMount = () => {
+        document.title = 'TIPPEER | FAQ' 
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(setMobileMenuState('none'))
         }
+    }
+
+    public componentWillUnmount = () => {
+        document.title = 'TIPPEER'
     }
 
     public renderFaqs = () => (

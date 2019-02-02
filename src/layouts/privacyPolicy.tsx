@@ -16,6 +16,7 @@ export default class extends React.Component<IProps, {}> {
     }
 
     public componentDidMount = () => {
+        document.title = 'TIPPEER | PrivacyPolicy'
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(setMobileMenuState('none'))
         }

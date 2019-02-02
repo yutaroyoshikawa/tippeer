@@ -39,6 +39,10 @@ export default class extends React.Component<IProps, IState> {
         this.props.dispatch(actions.requestGetArtistInfo(this.props.match.params.artistId))
     }
 
+    public componentWillUnmount() {
+        document.title = 'TIPPEER'
+    }
+
     public renderPerformanceCard = () => (
         this.props.artistDetails.performanceHistories.map((id, key) => (
             <Styled.ListElements key={key}>
