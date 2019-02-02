@@ -1,14 +1,23 @@
-// import { SagaIterator } from 'redux-saga'
-// import { fork } from 'redux-saga/effects'
-// // import * as actions from '../actions/userMenu'
+import { SagaIterator } from 'redux-saga'
+import { fork, put, take } from 'redux-saga/effects'
+import { hideMobileMenu, showMobileMenu } from '../actions/mobileMenu'
+import * as actions from '../actions/userMenu'
 
-// function* doRequestOpenWorkser(): SagaIterator {
-//     while(true){
-//         const action = yield take(actions.requestOpenMenu);
+function* doHideMenuWorker(): SagaIterator {
+    while (true) {
+        yield take(actions.openMenu)
+        yield put(hideMobileMenu())
+    }
+}
 
-//     }
-// }
+function* doShowMenuWorker(): SagaIterator {
+    while(true) {
+        yield take(actions.closeMenu)
+        yield put(showMobileMenu())
+    }
+}
 
-// export function* watchRequestOpenAsync() {
-//     yield fork(doRequestOpenWorkser)
-// }
+export default [
+    fork(doHideMenuWorker),
+    fork(doShowMenuWorker),
+]

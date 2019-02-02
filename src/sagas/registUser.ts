@@ -4,6 +4,7 @@ import { isAlphanumeric, isEmail } from 'validator'
 import { requestLogin, resetAuthState } from '../actions/auth'
 import { onCrop } from '../actions/cropper'
 import * as dialog from '../actions/dialog'
+import { hideMobileMenu, showMobileMenu } from '../actions/mobileMenu'
 import * as actions from '../actions/registUser'
 import { requestSearch } from '../actions/searchBox'
 import { closeMenu, closeRegistration } from '../actions/userMenu'
@@ -29,6 +30,27 @@ function* validateIdWorker(id: any): SagaIterator {
         }else{
             yield put(actions.setIdError("IDを入力してください"))
         }
+}
+
+function* hideMenu(): SagaIterator {
+    while(true) {
+        yield take(actions.requestRegistration)
+        yield put(hideMobileMenu())
+    }
+}
+
+function* showMenu(): SagaIterator {
+    while(true) {
+        yield take(actions.successRegistUser)
+        yield put(showMobileMenu())
+    }
+}
+
+function* onCancelShowMenu(): SagaIterator {
+    while(true) {
+        yield take(actions.successCanselRegistUser)
+        yield put(showMobileMenu())
+    }
 }
 
 function* validateNameWorker(): SagaIterator {
@@ -213,4 +235,7 @@ export default [
     fork(addTagWorker),
     fork(removeTagWorker),
     fork(successRegistUserWorker),
+    fork(hideMenu),
+    fork(showMenu),
+    fork(onCancelShowMenu),
 ]

@@ -5,11 +5,9 @@ const actionCreator = actionCreatorFactory()
 export interface ICurrentUser {
     displayName: string | null
     email: string | null
-    id: string | null
     photoURL: string | null
     emailVerified: boolean | null
     uid: string
-    userType: userType
 }
 
 export const successCurrentUserInfo  = actionCreator<ICurrentUser>('SUCCESS_CURRENT_USER_INFO')
@@ -32,3 +30,4 @@ export const registRequestAlert     = actionCreator('REGIST_REQUEST_ALERT')
 
 export const resetAuthState         = actionCreator('RESET_AUTH_STATE')
 
+export const setUserInfo            = actionCreator<{id: string, userType: userType}>('SET_USER_INFO')

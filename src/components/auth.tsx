@@ -43,7 +43,6 @@ export default class extends React.Component<IProps, {}> {
                         },
                         credentialHelper: 'none',
                         popupMode: true,
-                        privacyPolicyUrl: '/privacypolicy',
                         signInFlow: 'popup',
                         signInOptions: [
                             {

@@ -67,4 +67,8 @@ export default reducerWithInitialState(initialReduceAuthState)
         ...state,
         authState: null,
     }))
+    .case(actions.setUserInfo, (state: IAuth, payload): IAuth => ({
+        ...state,
+        ...payload,
+    }))
     .build()

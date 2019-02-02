@@ -38,3 +38,5 @@ export const successCanselRegistUser    = actionCreator('SUCCESS_CANSEL_REGIST_U
 export const faildCanselRegistUser      = actionCreator('FAILD_CANSEL_REGIST_USER')
 
 export const requestRegistration        = actionCreator('REQUEST_REGISTRATION')
+
+export const closeRegistRation          = actionCreator('CLOSE_RESISTRATION')

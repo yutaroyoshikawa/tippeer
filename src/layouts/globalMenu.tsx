@@ -12,6 +12,8 @@ export interface IProps extends IGlobalMenuState {
     dispatch: Dispatch<any>;
 }
 
+// let samplingY: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 export default class GlobalMenu extends React.Component<IProps, {}> {
 
     constructor(props: IProps) {
@@ -27,6 +29,32 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
     public componentDidMount() {
         this.props.dispatch(actions.getAgentInfo())
         this.props.dispatch(requestLogin())
+        // window.addEventListener('scroll', e => {
+        //     this.setState({
+        //         currentPosition: 
+        //             Math.max(
+        //                 window.pageYOffset,
+        //                 document.documentElement.scrollTop,
+        //                 document.body.scrollTop
+        //             )
+        //     })
+        // })
+        // window.addEventListener('touchend', e => {
+        //     samplingY.map((data, i) => {
+        //         samplingY[i] = Math.max(
+        //             window.pageYOffset,
+        //             document.documentElement.scrollTop,
+        //             document.body.scrollTop
+        //         )
+        //     })
+        //     this.state.currentPosition < samplingY[9] ?
+        //         0
+        //         :
+        //         this.state.currentPosition > samplingY[9] + 30 ?
+        //             0
+        //             :
+        //             null
+        // })
     }
 
 
@@ -48,7 +76,6 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
     public renderMobileMenu = () => (
         this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
             <MobileMenu />
-
             :
             null
     )

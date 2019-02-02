@@ -64,7 +64,7 @@ function* doRequestRegistAleart(): SagaIterator {
 
 function* loginCompleteAleart(): SagaIterator {
     while(true) {
-        yield take(authActions.existsUser)
+        yield take(authActions.setUserInfo)
         const state = yield select()
         const id = yield state.auth.id
         yield put(notifications.show(

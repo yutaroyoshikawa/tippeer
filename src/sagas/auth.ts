@@ -1,9 +1,24 @@
 import * as firebase from 'firebase'
 import * as notifications from 'react-notification-system-redux'
 import { SagaIterator } from 'redux-saga'
-import { call, fork, put, take } from 'redux-saga/effects'
+import { call, fork, put, select, take } from 'redux-saga/effects'
 import * as actions from '../actions/auth'
 import firebaseSaga from './firebase'
+
+function* getUseradditionalInfo(): SagaIterator {
+    while(true){
+        yield take(actions.existsUser)
+        const state = yield select()
+        const uid = yield state.auth.uid
+        const doc = yield call(firebaseSaga.firestore.getDocument, 'users/' + uid)
+        yield put(actions.setUserInfo(
+            {
+                id: doc.data().id,
+                userType: doc.data().user_type,
+            }
+        ))
+    }
+}
 
 function onAuthStateChanged() {
     return new Promise((resolve, reject) => {
@@ -50,16 +65,14 @@ function* doInitializeAuthWorker():SagaIterator {
         yield take(actions.requestLogin)
         try{
             const user:firebase.User = yield call(onAuthStateChanged)
-            const doc = yield call(firebaseSaga.firestore.getDocument, 'users/' + user.uid)
+            // const doc = yield call(firebaseSaga.firestore.getDocument, 'users/' + user.uid)
             yield put(actions.successCurrentUserInfo(
                 {
                     displayName: user.displayName,
                     email: user.email,
                     emailVerified: user.emailVerified,
-                    id: doc.data().id,
                     photoURL: user.photoURL,
                     uid: user.uid,
-                    userType: doc.data().user_type,
                 }
             ))
         }catch(e) {
@@ -121,4 +134,5 @@ export default [
     fork(doLogoutWorker),
     fork(doHideAuthWorker),
     fork(doLogoutNotifify),
+    fork(getUseradditionalInfo),
 ]
