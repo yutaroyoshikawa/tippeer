@@ -1,5 +1,17 @@
 import { Link } from 'react-router-dom'
-import styled, { createGlobalStyle } from './styled-components'
+import styled, { createGlobalStyle, keyframes } from './styled-components'
+
+const myWordEnter = keyframes`
+    0% {
+        opacity: 0;
+        transform: translate(0%, 0) scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+`
 
 export const GlobalStyle = createGlobalStyle`
     body {
@@ -68,14 +80,23 @@ export const PlaceInfo = styled.div`
 
 export const PerformanceName = styled.li`
     font-size: 80px;
+    .shuffle-text-char {
+        animation: 0.5s ease-in-out both ${myWordEnter};
+    }
 `
 
 export const PerformanceTime = styled.li`
     font-size: 30px;
+    .shuffle-text-char {
+        animation: 0.5s ease-in-out both ${myWordEnter};
+    }
 `
 
 export const PerformancePlaceName = styled.li`
     font-size: 30px;
+    .shuffle-text-char {
+        animation: 0.5s ease-in-out both ${myWordEnter};
+    }
 `
 
 export const Map = styled.div`
