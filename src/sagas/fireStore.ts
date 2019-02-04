@@ -104,7 +104,7 @@ export function* registUserInfo(Uid: string, Id: string, Name: string, Mail: str
 
 function* getSuggestionTagsWorker(input: any):SagaIterator {
     const searchWord = yield input.payload
-    const tags: string[] = yield []
+    const tags: string[] = []
     if(input.payload){
         const snapshot = yield call(firebaseSaga.firestore.getCollection, 'tags')
         yield snapshot.forEach((tag: any) => {
