@@ -1,5 +1,5 @@
-import { delay, SagaIterator } from 'redux-saga'
-import { call, fork, put, select, take } from 'redux-saga/effects'
+import { SagaIterator } from 'redux-saga'
+import { call, delay, fork, put, select, take } from 'redux-saga/effects'
 import { openDialog } from '../actions/dialog'
 import * as actions from '../actions/tipping'
 import { getTippingPerformance } from './fireStore'
