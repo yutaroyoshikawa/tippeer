@@ -1,5 +1,6 @@
 import { SagaIterator } from 'redux-saga'
 import { call, fork, put, take } from 'redux-saga/effects'
+import { setSendToId } from '../actions/commentBox'
 import * as actions from '../actions/performanceDetails'
 // import { IComments } from '../reducers/performaceDetails'
 import firebaseSaga from './firebase'
@@ -53,6 +54,7 @@ function* doGetPerformanceInfoWorker(): SagaIterator {
                     thumbnail: performance.thumbnail,
                 }
             ))
+            yield put(setSendToId(performanceId.payload))
             document.title = 'TIPPEER | ' + performance.performance.name
         } catch (e) {
             yield put(actions.faildPerformanceInfo())

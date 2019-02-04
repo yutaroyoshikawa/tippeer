@@ -1,14 +1,17 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
+import { Rating } from 'semantic-ui-react'
+import { setCommentType } from '../actions/commentBox'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import * as actions from '../actions/worksDetails'
-import { Score } from '../components'
 import { ArticleTitle } from '../components'
 import { ArtistCard, CommentBox, CommentList, PriceCard } from '../components'
 import { IWorksDetailsState } from '../reducers/worksDetails'
 
-
+import * as ScoreStyled from '../styles/components/score'
 import * as Styled from '../styles/worksDetails'
+
+// import 'semantic-ui-css/semantic.min.css'
 
 export interface IProps extends IWorksDetailsState {
     dispatch: Dispatch<any>
@@ -31,10 +34,23 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.requestFindWorksInfo(this.props.match.params.worksId))
+        this.props.dispatch(setCommentType('works'))
     }
 
+    public renderScore = (rate: number, size: number) => (
+        <ScoreStyled.ScoreBox>
+            <Rating
+                maxRating={5}
+                defaultRating={rate}
+                disabled={true}
+                size="massive"
+                icon="star"
+            />
+        </ScoreStyled.ScoreBox>
+    )
+
     public renderContents = () => (
-        this.props.worksDetails.contents.map((data,key) => (
+        this.props.worksDetails.contents.map((data, key) => (
             <div key={key}>
                 <li>
                     <Styled.Contents>
@@ -49,14 +65,14 @@ export default class extends React.Component<IProps, {}> {
     )
 
     public render() {
-        return(
+        return (
             <Styled.Entire>
-                <Styled.GlobalStyle theme={{image: this.props.worksDetails.worksThumbnail}} />
+                <Styled.GlobalStyle theme={{ image: this.props.worksDetails.worksThumbnail }} />
                 <Styled.WorksInfo>
                     <Styled.TopWorksInfo>
                         <Styled.WorksThumbnail>
                             <Styled.InnerWorksThumbnail>
-                                <img style={{width: '100%'}} src={this.props.worksDetails.worksThumbnail} alt="worksThumbnail"/>
+                                <img style={{ width: '100%' }} src={this.props.worksDetails.worksThumbnail} alt="worksThumbnail" />
                             </Styled.InnerWorksThumbnail>
                         </Styled.WorksThumbnail>
                         <Styled.WorksDetails>
@@ -64,8 +80,12 @@ export default class extends React.Component<IProps, {}> {
                             <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} color={'dark'} link={true} />
                             <Styled.DesktopPriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={30} /></Styled.DesktopPriceCard>
                             <Styled.MobilePriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={18} /></Styled.MobilePriceCard>
-                            <Styled.DesktopScore><Score size={40} /></Styled.DesktopScore>
-                            <Styled.MobileScore><Score size={25} /></Styled.MobileScore>
+                            <Styled.DesktopScore>
+                                {this.renderScore(this.props.worksDetails.score, 40)}
+                            </Styled.DesktopScore>
+                            <Styled.MobileScore>
+                                {this.renderScore(this.props.worksDetails.score, 25)}
+                            </Styled.MobileScore>
                         </Styled.WorksDetails>
                     </Styled.TopWorksInfo>
                     <Styled.Description>{this.props.worksDetails.description}</Styled.Description>
@@ -76,10 +96,10 @@ export default class extends React.Component<IProps, {}> {
                         </Styled.ContentList>
                     </Styled.ContentSection>
                 </Styled.WorksInfo>
-                
+
                 <Styled.CommentSection>
                     <ArticleTitle title={'Comments'} color={'dark'} />
-                    <CommentBox type={'works'} />
+                    <CommentBox />
                     <Styled.Comments>
                         <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} dark={true} />
                     </Styled.Comments>

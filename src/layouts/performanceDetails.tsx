@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
+import { setCommentType } from '../actions/commentBox'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import * as actions from '../actions/performanceDetails'
 import { ArticleTitle, ArtistCard, CommentBox, CommentList, DistanceCard, GoogleMap } from '../components'
@@ -24,6 +25,7 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.getPerformanceInfo(this.props.match.params.performanceId))
+        this.props.dispatch(setCommentType('performance'))
     }
 
     public componentWillUnmount() {
@@ -70,7 +72,7 @@ export default class extends React.Component<IProps, {}> {
                             <DistanceCard placeId={0} />
                         </Styled.PlaceDistance>
                         <Styled.CommentBox>
-                            <CommentBox type={'performance'} />
+                            <CommentBox />
                         </Styled.CommentBox>
                         <Styled.CommentList>
                             <CommentList type={'performance'} initialWorksComments={null} initialPerformanceComments={this.props.performanceDetails.comments} dark={false} />

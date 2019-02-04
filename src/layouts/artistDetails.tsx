@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
+import { setCommentType } from '../actions/commentBox'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import { ArticleTitle, ArtistCard, CommentBox, PerformanceCard } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
@@ -37,6 +38,7 @@ export default class extends React.Component<IProps, IState> {
     public componentDidMount() {
         this.props.dispatch(setMobileMenuState('none'))
         this.props.dispatch(actions.requestGetArtistInfo(this.props.match.params.artistId))
+        this.props.dispatch(setCommentType('performance'))
     }
 
     public componentWillUnmount() {
@@ -145,7 +147,7 @@ export default class extends React.Component<IProps, IState> {
                             
                             <Styled.PerformanceComment>
                                 <div>
-                                    <CommentBox type={'performance'} />
+                                    <CommentBox />
                                 </div>
                                 {/* <CommentList type={'performance'} initialPerformanceComments={this.props.artistDetails.recentlyPerformanceComments} initialWorksComments={null} dark={false} /> */}
                             </Styled.PerformanceComment>
