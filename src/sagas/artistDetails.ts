@@ -2,6 +2,7 @@ import { SagaIterator } from 'redux-saga'
 import { call, fork, put, select, take } from 'redux-saga/effects'
 import * as actions from '../actions/artistDetails'
 import { IArtistDetails, IPerformance } from '../actions/artistDetails'
+import { setSendToId } from '../actions/commentBox'
 import { getArtistDetails, getPerformances } from './fireStore'
 
 function* doGetArtistInfoWorker(): SagaIterator {
@@ -54,6 +55,7 @@ function* doSetRecentPerformance(): SagaIterator {
                 }
             }
         })
+        yield put(setSendToId(recentPerform.id))
         recentPerform ?
             yield put(actions.findRecentPerformance(recentPerform))
             :

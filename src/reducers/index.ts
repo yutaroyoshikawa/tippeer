@@ -3,11 +3,13 @@ import { combineReducers } from 'redux'
 import artistDetails from './artistDetails'
 import auth from './auth'
 import back from './back'
+import commentBox from './commentBox'
 import cropper from './cropper'
 import dialog from './dialog'
 import globalMenu from './globalMenu'
 import library from './library'
 import manage from './manage'
+import manageQR from './manageQR'
 import mobileMenu from './mobileMenu'
 import performanceDetails from './performaceDetails'
 import placeDetails from './placeDetails'
@@ -25,11 +27,13 @@ export default combineReducers({
     artistDetails,
     auth,
     back,
+    commentBox,
     cropper,
     dialog,
     globalMenu,
     library,
     manage,
+    manageQR,
     mobileMenu,
     notifications,
     performanceDetails,
