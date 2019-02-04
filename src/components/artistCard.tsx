@@ -1,3 +1,5 @@
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { firestore } from 'firebase'
 import * as React from 'react'
 import * as Styled from '../styles/components/artistCard'
@@ -58,53 +60,56 @@ export class ArtistCard extends React.Component<IProps, IState> {
     }
 
     public componentDidUpdate = async () => {
-        try {
-            const artist: any = await this.getArtistInfo(this.props.artistId)
-            if (isMounted) {
-                await this.setState(
-                    {
-                        artistName: artist[0].name,
-                        icon: artist[0].icon,
-                        isFind: true,
-                        isLoad: false,
-                    }
-                )
-            }
-        } catch (e) {
-            if (isMounted) {
-                await this.setState(
-                    {
-                        isFind: false,
-                        isLoad: false,
-                    }
-                )
+        if(this.props.artistId){
+            try {
+                const artist: any = await this.getArtistInfo(this.props.artistId)
+                if (isMounted) {
+                    await this.setState(
+                        {
+                            artistName: artist[0].name,
+                            icon: artist[0].icon,
+                            isFind: true,
+                            isLoad: false,
+                        }
+                    )
+                }
+            } catch (e) {
+                if (isMounted) {
+                    await this.setState(
+                        {
+                            isFind: false,
+                            isLoad: false,
+                        }
+                    )
+                }
             }
         }
     }
 
     public componentDidMount = async () => {
         isMounted = true
-
-        try {
-            const artist: any = await this.getArtistInfo(this.props.artistId)
-            if (isMounted) {
-                await this.setState(
-                    {
-                        artistName: artist[0].name,
-                        icon: artist[0].icon,
-                        isFind: true,
-                        isLoad: false,
-                    }
-                )
-            }
-        } catch (e) {
-            if (isMounted) {
-                await this.setState(
-                    {
-                        isFind: false,
-                        isLoad: false,
-                    }
-                )
+        if(this.props.artistId){
+            try {
+                const artist: any = await this.getArtistInfo(this.props.artistId)
+                if (isMounted) {
+                    await this.setState(
+                        {
+                            artistName: artist[0].name,
+                            icon: artist[0].icon,
+                            isFind: true,
+                            isLoad: false,
+                        }
+                    )
+                }
+            } catch (e) {
+                if (isMounted) {
+                    await this.setState(
+                        {
+                            isFind: false,
+                            isLoad: false,
+                        }
+                    )
+                }
             }
         }
     }
@@ -135,9 +140,10 @@ export class ArtistCard extends React.Component<IProps, IState> {
                         width={this.props.size}
                         alt="ArtistIcon"
                         loader={this.renderLoader()}
+                        unloader={<FontAwesomeIcon style={{width: '30px', height: '30px'}} icon={faUserCircle} />}
                     />
                 </Styled.ArtistCard>
-                {this.props.nameHidden ? null : <Styled.Name itemProp={this.props.color}>{this.state.artistName}</Styled.Name>}
+                {this.props.nameHidden ? null : <Styled.Name itemProp={this.props.color}>{this.props.artistId}</Styled.Name>}
             </Styled.IconBox>
 
     )
