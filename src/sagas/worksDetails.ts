@@ -1,5 +1,6 @@
 import { SagaIterator } from 'redux-saga'
 import { call, fork, put, take } from 'redux-saga/effects'
+import { setSendToId } from '../actions/commentBox'
 import * as actions from '../actions/worksDetails'
 import reduxFirebase from './firebase'
 
@@ -21,6 +22,7 @@ function* doGetWorksInfo(): SagaIterator {
                     worksTitle: worksInfo.name,
                 }
             ))
+            yield put(setSendToId(data.payload))
             document.title = 'TIPPEER | ' + worksInfo.name
         }catch(e){
             yield put(actions.notFindWorksInfo())
