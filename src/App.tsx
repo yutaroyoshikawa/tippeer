@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import 'ress'
+// import 'semantic-ui-css/semantic.min.css'
 import { Dialog, Faq, Notification, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
 import { ArtistDetails, Library, Manage, NotFound, PerformanceDetails, PlaceDetails, Search, Tipping, WorksDetails, WorksTop } from './layouts'
@@ -37,6 +38,7 @@ class App extends React.Component {
                             <Route exact={true} path='/tipping/:tippingToken' component={Tipping} />
                             <Route exact={true} path='/library' component={Library} />
                             <Route exact={true} path='/manage' component={Manage} />
+                            <Route exact={true} path='/manage/:managePage' component={Manage} />
                             <Route exact={false} path='*' component={NotFound} status={404} />
                         </Switch>
                     </div>

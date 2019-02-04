@@ -1,19 +1,23 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
-import { hideGlobalMenu } from '../actions/globalMenu'
-import { hideMobileMenu } from '../actions/mobileMenu'
+import { setArtistManagementPage } from '../actions/manage'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import { AdminManage, ArtistManage } from '../components'
 import { NotFound } from '../layouts'
 import { IAuthState } from '../reducers/auth'
+import { IArtistManagementPage } from '../reducers/manage'
 // import * as Styled from '../styles/manage'
 
 export interface IProps extends IAuthState {
     dispatch: Dispatch<any>
+    match: {
+        params: {
+            managePage: IArtistManagementPage
+        }
+    }
 }
 
 export default class extends React.Component<IProps, {}> {
-
     constructor(props: IProps){
         super(props)
     }
@@ -21,8 +25,9 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
         document.title = 'TIPPEER | Manage'
         this.props.dispatch(setMobileMenuState('manage'))
-        this.props.dispatch(hideGlobalMenu())
-        this.props.dispatch(hideMobileMenu())
+        if(this.props.match.params.managePage) {
+            this.props.dispatch(setArtistManagementPage(this.props.match.params.managePage))
+        }
     }
 
     public renderPage = () => {
