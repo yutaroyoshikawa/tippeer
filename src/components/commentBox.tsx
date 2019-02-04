@@ -1,7 +1,8 @@
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { Star, StarBorder } from '@material-ui/icons'
 import * as React from 'react'
+import Rating from 'react-rating'
 import { Dispatch } from 'redux'
-import { Rating } from 'semantic-ui-react'
 import * as actions from '../actions/commentBox'
 import { IAuthState } from '../reducers/auth'
 import { ICommentBoxState } from '../reducers/commentBox'
@@ -23,8 +24,8 @@ export default class extends React.Component<IProps, {}> {
         this.props.dispatch(actions.initializeCommentBox())
     }
 
-    public hundleScoreChange = (e: React.MouseEvent<HTMLDivElement>, data: {rating: number; maxRating: number}  ) => (
-        this.props.dispatch(actions.setRate(data.rating))
+    public hundleScoreChange = (rate: number) => (
+        this.props.dispatch(actions.setRate(rate))
     )
 
     public renderScore = () => (
@@ -33,22 +34,20 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.Score>
                     <ScoreStyled.ScoreBox>
                         <Rating
-                            maxRating={5}
-                            defaultRating={3}
-                            icon="star"
-                            size='massive'
-                            onRate={this.hundleScoreChange}
+                            initialRating={3}
+                            emptySymbol={<StarBorder />}
+                            fullSymbol={<Star />}
+                            onChange={this.hundleScoreChange}
                         />
                     </ScoreStyled.ScoreBox>
                 </Styled.Score>
                 <Styled.MobileScore>
                     <ScoreStyled.ScoreBox>
                         <Rating
-                            maxRating={5}
-                            defaultRating={3}
-                            icon="star"
-                            size='large'
-                            onRate={this.hundleScoreChange}
+                            initialRating={3}
+                            emptySymbol={<StarBorder />}
+                            fullSymbol={<Star />}
+                            onChange={this.hundleScoreChange}
                         />
                     </ScoreStyled.ScoreBox>
                 </Styled.MobileScore>

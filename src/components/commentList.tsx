@@ -1,5 +1,6 @@
+import { Star, StarBorder } from '@material-ui/icons'
 import * as React from 'react'
-import { Rating } from 'semantic-ui-react'
+import Rating from 'react-rating'
 import { IPerformanceComments, IWorksComments } from '../reducers/worksDetails'
 import { ArtistCard } from './'
 
@@ -23,11 +24,10 @@ export class CommentList extends React.Component<IProps, {}> {
     public renderScore = (rate: number) => (
         <ScoreStyled.ScoreBox>
             <Rating
-                maxRating={5}
-                defaultRating={rate}
-                disabled={true}
-                size="large"
-                icon="star"
+                initialRating={rate}
+                emptySymbol={<StarBorder />}
+                fullSymbol={<Star />}
+                readonly={true}
             />
         </ScoreStyled.ScoreBox>
     )

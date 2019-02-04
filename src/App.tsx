@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import 'ress'
-// import 'semantic-ui-css/semantic.min.css'
 import { Dialog, Faq, Notification, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
 import { ArtistDetails, Library, Manage, NotFound, PerformanceDetails, PlaceDetails, Search, Tipping, WorksDetails, WorksTop } from './layouts'

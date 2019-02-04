@@ -1,6 +1,7 @@
+import { Star, StarBorder } from '@material-ui/icons'
 import * as React from 'react'
+import Rating from 'react-rating'
 import { Dispatch } from 'redux'
-import { Rating } from 'semantic-ui-react'
 import { setCommentType } from '../actions/commentBox'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import * as actions from '../actions/worksDetails'
@@ -10,8 +11,6 @@ import { IWorksDetailsState } from '../reducers/worksDetails'
 
 import * as ScoreStyled from '../styles/components/score'
 import * as Styled from '../styles/worksDetails'
-
-// import 'semantic-ui-css/semantic.min.css'
 
 export interface IProps extends IWorksDetailsState {
     dispatch: Dispatch<any>
@@ -40,11 +39,10 @@ export default class extends React.Component<IProps, {}> {
     public renderScore = (rate: number, size: number) => (
         <ScoreStyled.ScoreBox>
             <Rating
-                maxRating={5}
-                defaultRating={rate}
-                disabled={true}
-                size="massive"
-                icon="star"
+                initialRating={rate}
+                emptySymbol={<StarBorder />}
+                fullSymbol={<Star />}
+                readonly={true}
             />
         </ScoreStyled.ScoreBox>
     )

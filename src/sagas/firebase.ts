@@ -12,6 +12,4 @@ const config = {
 }
 
 const myFirebaseApp = firebase.initializeApp(config)
-const settings = { timestampsInSnapshots: true };
-firebase.firestore().settings(settings);
 export default new ReduxSagaFirebase(myFirebaseApp)
