@@ -11,6 +11,7 @@ interface IAuth {
     emailVerified: boolean | null
     uid: string
     userType: userType
+    id: string
     isSignedIn: boolean
     hideAuth: boolean
     authState: 'login' | 'regist' | null
@@ -26,6 +27,7 @@ const initialReduceAuthState: IAuth = {
     email: null,
     emailVerified: null,
     hideAuth: true,
+    id: '',
     isSignedIn: false,
     photoURL: null,
     uid: '',
