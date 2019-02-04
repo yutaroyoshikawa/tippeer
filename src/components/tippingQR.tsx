@@ -1,6 +1,8 @@
 import * as QRCode from 'qrcode.react'
 import * as React from 'react'
 import { Dispatch } from 'redux'
+import { hideGlobalMenu, showGlobalMenu } from '../actions/globalMenu'
+import { hideMobileMenu, showMobileMenu } from '../actions/mobileMenu'
 import { IManageState } from '../reducers/manage'
 import { ArtistCard } from './'
 // import * as Styled from '../styles/tipping'
@@ -16,13 +18,23 @@ export default class extends React.Component<IProps, {}> {
         super(props)
     }
 
+    public componentDidMount() {
+        this.props.dispatch(hideGlobalMenu())
+        this.props.dispatch(hideMobileMenu())
+    }
+
+    public componentWillUnmount() {
+        this.props.dispatch(showGlobalMenu())
+        this.props.dispatch(showMobileMenu())
+    }
+
     public render() {
         return (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: 'calc(100vh - 100px)' }}>
                 <div>
                     <h2 style={{ textAlign: 'center', fontSize: '33px', letterSpacing: '3px', fontWeight: 'normal' }}>
-                        <span style={{marginRight: '6px'}}><img style={{width: '152px'}} src={TipperLogo} /></span>で投げ銭
-                    </h2>
+                        <span style={{ marginRight: '6px' }}><img style={{ width: '152px' }} src={TipperLogo} /></span>で投げ銭
+                        </h2>
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '50px 0' }}>
                         <QRCode
                             value={'http://192.168.0.10:3000/tipping/hoge'}
@@ -30,7 +42,7 @@ export default class extends React.Component<IProps, {}> {
                         />
                     </div>
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ fontSize: '35px'}}>
+                        <div style={{ fontSize: '35px' }}>
                             <ArtistCard
                                 artistId={'hoge'}
                                 size={100}
