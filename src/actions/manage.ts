@@ -1,4 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa'
+import { IAdminManagementPage, IArtistManagementPage } from '../reducers/manage'
+
 const actionCreator = actionCreatorFactory()
 
 export const requestRegistPerformance =     actionCreator('REQUEST_REGIST_PERFORMANCE')
@@ -25,3 +27,12 @@ export const openQR =                       actionCreator('OPEN_QR')
 export const closeQR =                      actionCreator('CLOSE_QR')
 
 export const setIsShowCommentList =         actionCreator<boolean>('SET_IS_SHOW_COMMENT_LIST')
+
+export const openDrawer =                   actionCreator('OPEN_DRAWER')
+export const closeDrawer =                  actionCreator('CLOSE_DRAWER')
+
+export const setArtistManagementPage =      actionCreator<IArtistManagementPage>('SET_ARTIST_MANAGEMENT_PAGE')
+export const setAdminManagementPage =       actionCreator<IAdminManagementPage>('SET_ADMIN_MANAGEMENT_PAGE')
+
+export const hideDrawerOpenner =            actionCreator('HIDE_DRAWER_OPENNER')
+export const showDrawerOpenner =            actionCreator('SHOW_DRAWER_OPENNER')
