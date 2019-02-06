@@ -15,4 +15,12 @@ export const GlobalStyle = createGlobalStyle`
     input, textarea, select {
         font-size: 17px;
     }
+
+    .switch-wrapper {
+        position: relative;
+    }
+      
+    .switch-wrapper > div {
+        position: absolute;
+    }
 `
