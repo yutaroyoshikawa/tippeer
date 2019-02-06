@@ -1,8 +1,10 @@
 import * as d3Ease from 'd3-ease'
+import DeckGL, {HexagonLayer} from 'deck.gl'
 import {fromJS} from 'immutable';
 import * as mapbox from 'mapbox-gl'
 import * as React from 'react'
 import MapGL, * as map from 'react-map-gl'
+// import { Marker } from 'react-map-gl'
 import ShuffleText from 'react-shuffle-text'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/mobileMenu'
@@ -20,6 +22,10 @@ export interface IProps extends IGlobalMenuState, IUserPageState {
 if(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN){
     (mapbox as typeof mapbox).accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 }
+
+const data = [
+    [35.6588, 139.6972],
+    ]
 
 export default class extends React.Component<IProps, {}> {
 
@@ -91,6 +97,17 @@ export default class extends React.Component<IProps, {}> {
         this.props.dispatch(userPageActions.setViewPort(viewportData))
     )
 
+    public renderLayer = () => (
+        new HexagonLayer({
+            data,
+            elevationScale: 4,
+            extruded: false,
+            id: 'heatmap',
+            pickable: false,
+            radius: 200,
+        })
+    )
+
     public render() {
         return(
             <section>
@@ -112,7 +129,7 @@ export default class extends React.Component<IProps, {}> {
                         <li>transactionType: {this.props.userPage.transitionType}</li>
                     </ul>
                 </div>
-                <Styled.PlaceInfo>
+                <Styled.PlaceInfo itemProp={this.props.globalMenu.agent}>
                     <Styled.PerformanceName><ShuffleText content={this.props.userPage.nowPerformance.performanceName}/></Styled.PerformanceName>
                     <div>
                         <Styled.PerformanceTime><ShuffleText content={this.props.userPage.nowPerformance.start} /></Styled.PerformanceTime>
@@ -121,23 +138,28 @@ export default class extends React.Component<IProps, {}> {
                     </div>
                 </Styled.PlaceInfo>
                 <Styled.Map>
-                    <MapGL 
-                        {...this.props.userPage.viewport}
-                        width= '100%'
-                        height= {this.props.globalMenu.agent === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'}
-                        mapStyle= 'mapbox://styles/mapbox/dark-v9'
-                        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-                        transitionDuration={10000}
-                        transitionEasing={d3Ease.easeCubicOut}
-                        transitionInterpolator={new map.FlyToInterpolator()}
-                        onLoad={this.OnRotate.bind(this,)}
-                        onViewportChange= {this.onViewportChange.bind(this,)}
-                        onTransitionEnd= {this.onTransitionEnd.bind(this,)}
-                        dragPan={false}
-                        doubleClickZoom={false}
-                        dragRotate={false}
-                        scrollZoom={false}
-                    />
+                    <DeckGL
+                        layers={this.renderLayer()}
+                        viewState={this.props.userPage.viewport}
+                    >
+                        <MapGL 
+                            {...this.props.userPage.viewport}
+                            width= '100%'
+                            height= {this.props.globalMenu.agent === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'}
+                            mapStyle= 'mapbox://styles/mapbox/dark-v9'
+                            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+                            transitionDuration={10000}
+                            transitionEasing={d3Ease.easeCubicOut}
+                            transitionInterpolator={new map.FlyToInterpolator()}
+                            onLoad={this.OnRotate.bind(this,)}
+                            onViewportChange= {this.onViewportChange.bind(this,)}
+                            onTransitionEnd= {this.onTransitionEnd.bind(this,)}
+                            dragPan={false}
+                            doubleClickZoom={false}
+                            dragRotate={false}
+                            scrollZoom={false}
+                        />
+                    </DeckGL>
                 </Styled.Map>
             </section>
         )

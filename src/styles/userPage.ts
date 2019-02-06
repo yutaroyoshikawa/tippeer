@@ -52,7 +52,7 @@ export const MenuLink = styled(Link)`
 `
 
 export const PlaceInfo = styled.div`
-    height: calc(100vh - 120px);
+    height: ${props => props.itemProp === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'};
     position: absolute;
     right: 0;
     top: 50px;
