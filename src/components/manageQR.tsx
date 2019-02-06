@@ -9,16 +9,31 @@ import * as actions from '../actions/manage'
 import { IManageState } from '../reducers/manage'
 import { IManageQRState } from '../reducers/manageQR'
 import { ArticleTitle, TippingQR } from './'
-// import * as Styled from '../styles/tipping'
+
+// import * as Styled from '../styles/components/manageQR'
 
 export interface IProps extends IManageState, IManageQRState {
     dispatch: Dispatch<any>
 }
 
-export default class extends React.Component<IProps, {}> {
+interface IState {
+    isMount: boolean
+}
+
+export default class extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
+
+        this.state = {
+            isMount: true
+        }
     }
+
+    public componentWillUnmount = () => (
+        this.setState({
+            isMount: false,
+        })
+    )
 
     public renderTippingQR = () => (
         this.props.manage.isOpenTippingQR ?
@@ -49,39 +64,38 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return (
             <div>
-                <div style={{width: '90%', margin: '0 auto'}}>
-                    <div style={{margin: '50px 0'}}>
+                <div style={{ width: '90%', margin: '0 auto' }}>
+                    <div style={{ margin: '50px 0' }}>
                         <ArticleTitle title="QRコード表示" color="light" />
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'center', margin: '50px 0'}}>
+                    <div style={{ display: 'flex', justifyContent: 'center', margin: '50px 0' }}>
                         {
                             this.props.manageQR.performance ?
-                                <Card style={{width: '300px'}}>
+                                <Card style={{ width: '300px' }}>
                                     <CardContent>
-                                        <Typography  color="textSecondary">
+                                        <Typography color="textSecondary">
                                             現在のパフォーマンス
-                                        </Typography>
-                                        <Typography  component="h3">
+                                                </Typography>
+                                        <Typography component="h3">
                                             Example Performance
-                                        </Typography>
+                                                </Typography>
                                     </CardContent>
                                 </Card>
                                 :
-                                <Card style={{width: '300px'}}>
+                                <Card style={{ width: '300px' }}>
                                     <CardContent>
-                                        <Typography  component="h3">
+                                        <Typography component="h3">
                                             現在実施されているパフォーマンスはありません。
-                                        </Typography>
+                                                </Typography>
                                     </CardContent>
                                 </Card>
                         }
-                        
                     </div>
                     <Divider />
-                    <div style={{display: 'flex', justifyContent: 'center', margin: '50px 0'}}>
+                    <div style={{ display: 'flex', justifyContent: 'center', margin: '50px 0' }}>
                         <Fab onClick={this.openQR} color="secondary" variant="extended" aria-label="Add" disabled={!this.props.manageQR.isEnabledButton} >
                             <FontAwesomeIcon icon={faQrcode} />
-                            <span style={{paddingLeft: '5px'}}>QRコードを表示する</span>
+                            <span style={{ paddingLeft: '5px' }}>QRコードを表示する</span>
                         </Fab>
                     </div>
                 </div>
