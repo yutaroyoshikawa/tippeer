@@ -1,7 +1,8 @@
 import createHistory from 'history/createBrowserHistory';
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import 'ress'
 import { Dialog, Faq, Notification, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
@@ -22,7 +23,11 @@ class App extends React.Component {
                         <Styled.GlobalStyle />
                         <Notification />
                         <Dialog />
-                        <Switch>
+                        <AnimatedSwitch
+                            atEnter={{ opacity: 0 }}
+                            atLeave={{ opacity: 0 }}
+                            atActive={{ opacity: 1 }}
+                        >
                             <Route exact={true} path='/faq' component={Faq} />
                             <Route exact={true} path='/privacypolicy' component={PrivacyPolicy} />
                             <Route exact={true} path='/' component={UserPage} />
@@ -39,7 +44,7 @@ class App extends React.Component {
                             <Route exact={true} path='/manage' component={Manage} />
                             <Route exact={true} path='/manage/:managePage' component={Manage} />
                             <Route exact={false} path='*' component={NotFound} status={404} />
-                        </Switch>
+                        </AnimatedSwitch>
                     </div>
                 </Router>
             </Provider>
