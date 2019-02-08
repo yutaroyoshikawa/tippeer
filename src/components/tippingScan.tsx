@@ -11,17 +11,23 @@ export interface IProps extends ITippingState {
 }
 
 export default class extends React.Component<IProps, {}> {
+    private qrScannerRef: any
+
     constructor(props: IProps) {
         super(props)
     }
 
     public onError = (e: any) => {
-        this.setState({
-            error: e.message,
-            legacyMode: true,
-        })
-        alert('カメラの使用ができません')
+        this.props.dispatch(actions.faildLoadScanner())
     }
+
+    public onLoadImage = () => (
+        this.qrScannerRef ?
+            this.refs.o
+            :
+            alert(this.qrScannerRef)
+        
+    )
 
     public onScan = (result: string) => (
         result ?
@@ -44,6 +50,7 @@ export default class extends React.Component<IProps, {}> {
     public renderScaner = () => (
         !this.props.tipping.isLegacyMode ?
             <QrReader
+                ref={(ref: any) => {this.qrScannerRef = ref}}
                 onError={this.onError.bind(this,)}
                 onImageLoad={this.onScan.bind(this,)}
                 onLoad={this.onLoad.bind(this,)}
@@ -52,9 +59,7 @@ export default class extends React.Component<IProps, {}> {
                 legacyMode={this.props.tipping.isLegacyMode}
             />
             :
-            <form>
-                <input type="file" />
-            </form>
+            <button onClick={this.onLoadImage.bind(this,)}>イメージから読み込む</button>
     )
 
     public render() {

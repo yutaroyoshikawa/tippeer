@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Random } from 'react-animated-text'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/tipping'
 import { ITippingState } from '../reducers/tipping'
@@ -21,7 +22,13 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             <Styled.Section onClick={this.setComponentState}>
-                <h2>Thank you</h2>
+                <Styled.ThanksRipple>
+                    <Styled.ThanksLine>
+                        <Styled.ThanksText>
+                            <Random text="Thank you" />
+                        </Styled.ThanksText>
+                    </Styled.ThanksLine>
+                </Styled.ThanksRipple>
             </Styled.Section>
         )
     }
