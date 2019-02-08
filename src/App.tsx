@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { Route, Router } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import 'ress'
-import { Dialog, Faq, Notification, PrivacyPolicy, UserPage } from './components'
+import { Dialog, Faq, InitialLoad, Notification, PrivacyPolicy, UserPage } from './components'
 import { GlobalMenu } from './containers/globalMenu'
 import { ArtistDetails, Library, Manage, NotFound, PerformanceDetails, PlaceDetails, Search, Tipping, WorksDetails, WorksTop } from './layouts'
 import { buildStore } from './store';
@@ -23,6 +23,7 @@ class App extends React.Component {
                         <Styled.GlobalStyle />
                         <Notification />
                         <Dialog />
+                        <InitialLoad />
                         <AnimatedSwitch
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}

@@ -7,6 +7,7 @@ import commentBox from './commentBox'
 import cropper from './cropper'
 import dialog from './dialog'
 import globalMenu from './globalMenu'
+import initialLoad from './initialLoad'
 import library from './library'
 import manage from './manage'
 import manageQR from './manageQR'
@@ -31,6 +32,7 @@ export default combineReducers({
     cropper,
     dialog,
     globalMenu,
+    initialLoad,
     library,
     manage,
     manageQR,
