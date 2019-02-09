@@ -38,6 +38,7 @@
     "react-motion": "^0.5.2",
     "react-notification-system-redux": "^1.2.0",
     "react-onsenui": "^1.11.2",
+    "react-player": "^1.9.3",
     "react-qr-reader": "^2.1.1",
     "react-rating": "^1.6.2",
     "react-redux": "^5.1.0",
