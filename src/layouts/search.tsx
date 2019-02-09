@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/mobileMenu'
 import {setSearchBoxWord} from '../actions/searchBox'
-import { GoogleMap, PriceCard, SearchBoxInput } from '../components'
+import { ArticleTitle, PriceCard, SearchBoxInput } from '../components'
 // import * as actions from '../actions/search'
-import { ArticleTitle, ArtistCard } from '../components/'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 import { ISearchBoxState } from '../reducers/searchBox'
 
@@ -76,7 +75,6 @@ export default class extends React.Component<IProps, {}> {
         hits.hit ?
             <Place.Entire>
                 <Link to={"/places/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
-                    <figure><GoogleMap latitude={hits.hit.geoPlace.lat} longitude={hits.hit.geoPlace.long} width={'100%'} height={'110px'} /></figure>
                     <Place.PlaceInfo>
                         <Place.Name>{hits.hit.name}</Place.Name>
                         <Place.PostalCode>〒{hits.hit.postalCode}</Place.PostalCode>
@@ -91,15 +89,12 @@ export default class extends React.Component<IProps, {}> {
     public renderWorks = (hits: any) => (
         hits.hit ?
             <Works.Entire>
-                <Link to={"/works/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                <Link to={"/works/" + hits.hit.objectID} onClick={this.pushHistory.bind(this,)} >
                     <p><Works.WorksThumbnail src={hits.hit.thumbnail} alt="worksThumbnail"/></p>
                 </Link>
                 <Works.WorksInfo>
-                    <Link to={"/works/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
+                    <Link to={"/works/" + hits.hit.objectID} onClick={this.pushHistory.bind(this,)} >
                         <Works.WorksName>{hits.hit.name}</Works.WorksName>
-                    </Link>
-                    <Link to={'/artists/' + hits.hit.artistId}  onClick={this.pushHistory.bind(this,)} >
-                        <ArtistCard artistId={hits.hit.artistId} size={40} style={'card'} nameHidden={false} color={'light'} link={true} />
                     </Link>
                     <Works.Price><PriceCard type={'circle'} price={hits.hit.price} size={80} /></Works.Price>
                 </Works.WorksInfo>
@@ -123,13 +118,13 @@ export default class extends React.Component<IProps, {}> {
             }
             <Styled.PerformanceTitle>
                 <ArticleTitle title={'パフォーマンス'} color={'light'} />
-            </Styled.PerformanceTitle>    
+            </Styled.PerformanceTitle>
             <Styled.Contents>
                 <Styled.ContentBox>
                     <Index indexName="performances">
                         <Styled.HitList hitComponent={this.renderPerformaces.bind(this,)} />
                     </Index>
-                </Styled.ContentBox>    
+                </Styled.ContentBox>
             </Styled.Contents>
             <Styled.PerformanceTitle>
                 <ArticleTitle title={'アーティスト'} color={'light'} />

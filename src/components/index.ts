@@ -40,6 +40,7 @@ export { PriceCard } from './priceCard'
 export { GoogleMap } from './googleMap'
 export { DistanceCard } from './distanceCard'
 export { LibraryWorksCard } from '../components/libraryWorksCard'
+export { SearchMap } from '../components/searchMap'
 /*
 template
 */

@@ -6,6 +6,13 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background-color: rgb(215, 187, 187);
     }
+
+    .ais-SearchBox-form {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 `
 
 export const Result = styled.div`
