@@ -1,12 +1,28 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
+import transition from 'styled-transition-group'
 import styled from '../styled-components'
 
 export const Entire = styled.div`
     color: #000;
 `
 
-export const Top = styled.nav`
+export const Top = transition.nav`
+    &:enter {
+        height: 0;
+    }
+    &:enter-active {
+      height: 100vh;
+      transition: height 400ms ease-in;
+    }
+    &:exit {
+      height: 100vh;
+    }
+    &:exit-active {
+      height: 0;
+      transition: height 400ms ease-in;
+    }
+
     width: 100vw;
     height: 100vh;
     position: absolute;
