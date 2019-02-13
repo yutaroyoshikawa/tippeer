@@ -44,7 +44,7 @@ export default class extends React.Component<IProps, {}> {
         this.props.auth.isSignedIn ?
             <Styled.ListStyle onClick={this.props.dispatch.bind(this, requestLogout())}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
             :
-            <Styled.ListStyle onClick={this.setAuthState.bind(this,)}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログインまたは登録</Styled.ListStyle>
+            <Styled.ListStyle onClick={this.setAuthState}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログインまたは登録</Styled.ListStyle>
     )
 
     public setAuthState = () => (
@@ -62,31 +62,32 @@ export default class extends React.Component<IProps, {}> {
     )
 
     public renderMenu = () => (
-        this.props.userMenu.openState ?
-            <Styled.Top>
-                {this.props.userMenu.isRegistration ?
-                    <RegistUser />
-                    :
-                    <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center' }}>
-                        <Styled.MenuList>
-                            {this.renderAuth()}
-                            {this.renderChangeUserInfo()}
-                            {this.renderButton()}
-                            <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
-                            <li><Styled.ListLink to='/faq' onClick={this.clickMenu.bind(this,)}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
-                        </Styled.MenuList>
-                        <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
-                    </div>
-                }
-            </Styled.Top>
-            :
-            null
+        <Styled.Top
+            in={this.props.userMenu.openState}
+            timeout={400}
+            unmountOnExit={true}
+        >
+            {this.props.userMenu.isRegistration ?
+                <RegistUser />
+                :
+                <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', alignItems: 'center' }}>
+                    <Styled.MenuList>
+                        {this.renderAuth()}
+                        {this.renderChangeUserInfo()}
+                        {this.renderButton()}
+                        <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
+                        <li><Styled.ListLink to='/faq' onClick={this.clickMenu}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
+                    </Styled.MenuList>
+                    <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
+                </div>
+            }
+        </Styled.Top>
     )
 
     public render() {
         return (
             <Styled.Entire>
-                <Styled.MenuButton onClick={this.clickMenu.bind(this,)}>
+                <Styled.MenuButton onClick={this.clickMenu}>
                     {
                         this.props.userMenu.openState ?
                             <FontAwesomeIcon icon={faTimes} style={{ width: '40px', height: '40px' }} />
