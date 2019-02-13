@@ -8,6 +8,7 @@ type AllState = ReturnType<typeof store.getState>
 
 const mapStateToProps = (state: AllState) => {
     return {
+        cropper: state.cropper,
         manage: state.manage,
     }
 }

@@ -4,7 +4,7 @@ import * as actions from '../actions/cropper'
 interface ICropper {
     data: string
     isOpen: boolean
-    type: 'icon'
+    type: 'icon' | 'works'
 }
 
 export interface ICropperState{
