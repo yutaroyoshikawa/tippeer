@@ -18,6 +18,18 @@ export default class extends React.Component<IProps, {}> {
         super(props)
     }
 
+    public componentDidMount() {
+        window.addEventListener('touchmove', e => {
+            e.preventDefault()
+        }, {passive: false})
+    }
+
+    public componentWillUnmount() {
+        window.removeEventListener('touchmove', e => {
+            e.preventDefault()
+        })
+    }
+
     public setIsMusic = (isMusic: boolean) => {
         isMusic ?
             this.props.dispatch(actions.playMusic())
@@ -38,6 +50,7 @@ export default class extends React.Component<IProps, {}> {
                     timeout={800}
                     onExited={this.doHide}
                 >
+                    <Styled.GlobalStyle />
                     <Styled.LogoSection>
                         <Styled.Icon src={Icon} />
                         <Styled.Logo src={Logo} />

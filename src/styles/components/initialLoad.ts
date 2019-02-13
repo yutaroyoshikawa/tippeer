@@ -1,5 +1,5 @@
 import transition from 'styled-transition-group'
-import styled, { keyframes } from '../styled-components'
+import styled, { createGlobalStyle, keyframes } from '../styled-components'
 
 const slideOut  = keyframes`
     0% {
@@ -48,6 +48,12 @@ const moveLeft = keyframes`
     }
     100% {
         transform: translateX(0px);
+    }
+`
+
+export const GlobalStyle = createGlobalStyle`
+    html {
+        overflow: hidden;
     }
 `
 
