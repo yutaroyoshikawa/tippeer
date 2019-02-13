@@ -11,11 +11,11 @@ export const Crop = styled(Cropper)`
         outline: 0;
     }
 
-    
     @media screen and (min-width: 1024px){
         width: 400px;
         height: 400px;
     }
+
     @media screen and (max-width: 480px){
         width: 70vw;
         height: 70vw;
@@ -31,7 +31,7 @@ export const Entire = styled.div`
     align-items: center;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 999999999999999999;
     background: rgba(0, 0, 0, 0.8);
 
     &::before {
@@ -74,7 +74,7 @@ export const CroppedButtonArea = styled.div`
         bottom: 80px;
     }
     color: white;
-    position: fixed;
+    position: absolute;
     left: 0px;
     width: 100vw;
     display: flex;
