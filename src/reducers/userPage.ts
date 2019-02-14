@@ -30,6 +30,7 @@ export interface IUserPage {
         finish: string
         placeName: string
     }
+    isEffectPlaying: boolean
 }
 
 export interface IUserPageState {
@@ -73,6 +74,7 @@ const initialReduceUserPageState: IUserPage = {
             start: '2018/12/10-12:59',
         },
     ],
+    isEffectPlaying: false,
     nowPerformance: {
         artistId: '',
         finish: '',
@@ -142,5 +144,13 @@ export default reducerWithInitialState(initialReduceUserPageState)
             placeName: state.initialMapPerformances[state.flyTo].placeName,
             start: state.initialMapPerformances[state.flyTo].start,
         }
+    }))
+    .case(actions.playEffect, (state: IUserPage): IUserPage => ({
+        ...state,
+        isEffectPlaying: true,
+    }))
+    .case(actions.endEffect, (state: IUserPage): IUserPage => ({
+        ...state,
+        isEffectPlaying: false,
     }))
     .build()

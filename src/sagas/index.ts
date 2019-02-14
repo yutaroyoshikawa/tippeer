@@ -9,6 +9,7 @@ import RegistUser from './registUser'
 // import Search from './search'
 import Tipping from './tipping'
 import UserMenu from './userMenu'
+import UserPage from './userPage'
 import WorksDetails from './worksDetails'
 
 
@@ -23,6 +24,7 @@ export default function* (): SagaIterator{
     // ...Search,
     ...Tipping,
     ...UserMenu,
+    ...UserPage,
     ...WorksDetails,
   ])
 }

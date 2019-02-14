@@ -37,7 +37,11 @@ export default class extends React.Component<IProps, {}> {
         if(this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet'){
             this.props.dispatch(setMobileMenuState('none'))
         }
-        // this.props.dispatch(userPageActions.setInitialProps())
+        this.props.dispatch(userPageActions.playEffect())
+    }
+
+    public componentWillUnmount = () => {
+        this.props.dispatch(userPageActions.endEffect())
     }
 
     public mapStyle = () => (

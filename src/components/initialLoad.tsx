@@ -22,6 +22,17 @@ export default class extends React.Component<IProps, {}> {
         window.addEventListener('touchmove', e => {
             e.preventDefault()
         }, {passive: false})
+
+        const audioContext = new AudioContext()
+        const ctx = audioContext.createBufferSource()
+        ctx.start()
+
+        const eventName = typeof document.ontouchend !== 'undefined' ? 'touchend' : 'mouseup'
+        const initAudioContext = () => {
+            document.removeEventListener(eventName, initAudioContext)
+            audioContext.resume()
+        }
+        document.addEventListener(eventName, initAudioContext)
     }
 
     public componentWillUnmount() {
