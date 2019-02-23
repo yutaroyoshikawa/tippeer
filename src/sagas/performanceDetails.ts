@@ -21,8 +21,6 @@ import firebaseSaga from './firebase'
 //     updated_at: Date
 // }
 
-
-
 function* doGetPerformanceInfoWorker(): SagaIterator {
     while (true) {
         const performanceId = yield take(actions.getPerformanceInfo)

@@ -10,7 +10,9 @@ import globalMenu from './globalMenu'
 import initialLoad from './initialLoad'
 import library from './library'
 import manage from './manage'
+import managePerformance from './managePerformance'
 import manageQR from './manageQR'
+import manageWorks from './manageWorks'
 import mobileMenu from './mobileMenu'
 import performanceDetails from './performaceDetails'
 import placeDetails from './placeDetails'
@@ -35,7 +37,9 @@ export default combineReducers({
     initialLoad,
     library,
     manage,
+    managePerformance,
     manageQR,
+    manageWorks,
     mobileMenu,
     notifications,
     performanceDetails,

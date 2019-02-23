@@ -10,6 +10,7 @@ const mapStateToProps = (state: AllState) => {
     return {
         cropper: state.cropper,
         manage: state.manage,
+        manageWorks: state.manageWorks,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })

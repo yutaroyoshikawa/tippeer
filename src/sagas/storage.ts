@@ -25,3 +25,15 @@ export function* registUserIcon(data: string) {
 
     return downloadUrl
 }
+
+export function* uploadFile(data: string) {
+    const blobData: Blob = dataURLtoBlob(data)
+    const mimeType = blobData.type
+    const type = mimeType.slice(mimeType.indexOf('/') + 1)
+    const thumbFileName: string = nanoid() + '.' + type
+    const thumbPath = '/images/works/' + thumbFileName
+    const task = firebaseSaga.storage.uploadFile(thumbPath, dataURLtoBlob(data), {})
+    yield task
+    const thumbUrl = yield call(firebaseSaga.storage.getDownloadURL, thumbPath)
+    return thumbUrl
+}

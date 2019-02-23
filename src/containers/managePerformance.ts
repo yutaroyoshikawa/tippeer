@@ -9,6 +9,7 @@ type AllState = ReturnType<typeof store.getState>
 const mapStateToProps = (state: AllState) => {
     return {
         manage: state.manage,
+        managePerformance: state.managePerformance,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })

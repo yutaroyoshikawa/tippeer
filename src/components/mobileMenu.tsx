@@ -1,4 +1,4 @@
-import { faMoneyBill, faPaintBrush, faSearch, faShoppingBag, faTasks, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyBill, faPaintBrush, faSearch, faShoppingBag, faTasks, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import * as React from 'react'
 import { Motion, spring } from 'react-motion'
 import { Dispatch } from 'redux'
@@ -38,7 +38,7 @@ export default class extends React.Component<IProps, {}> {
                     <Styled.Entire itemProp={value.y}>
                         <Styled.InnerMenu>
                             {this.renderTab('Search', 'search', faSearch)}
-                            {this.renderTab('Tippig', 'tipping', faMoneyBill)}
+                            {this.renderTab('Tipping', 'tipping', faMoneyBill)}
                             {this.renderTab('Works', 'works', faPaintBrush)}
                             {
                                 this.props.auth.isSignedIn ?
@@ -56,7 +56,6 @@ export default class extends React.Component<IProps, {}> {
                     </Styled.Entire>
                 }
             </Motion>
-            
         )
     }
 }
