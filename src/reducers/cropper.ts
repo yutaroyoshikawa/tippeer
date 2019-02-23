@@ -1,10 +1,11 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/cropper'
+import { cropType } from '../actions/cropper'
 
 interface ICropper {
     data: string
     isOpen: boolean
-    type: 'icon' | 'works'
+    type: cropType
 }
 
 export interface ICropperState{
