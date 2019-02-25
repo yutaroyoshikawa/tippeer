@@ -467,6 +467,10 @@
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@types/d3-ease/-/d3-ease-1.0.7.tgz#93a301868be9e15061f3d44343b1ab3f8acb6f09"
 
+"@types/dateformat@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/dateformat/-/dateformat-3.0.0.tgz#d3cbfa8ac3789990592f3d9585331cdb2c5f979f"
+
 "@types/firebase@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@types/firebase/-/firebase-3.2.1.tgz#17c1c8fee7485ab09668d2461e34540bdf44b3b1"
@@ -3219,6 +3223,10 @@ date-fns@2.0.0-alpha.25:
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
+
+dateformat@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
 
 debounce@^1.1.0:
   version "1.2.0"
