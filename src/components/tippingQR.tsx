@@ -3,13 +3,15 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { hideGlobalMenu, showGlobalMenu } from '../actions/globalMenu'
 import { hideMobileMenu, showMobileMenu } from '../actions/mobileMenu'
+import { IGlobalMenuState } from '../reducers/globalMenu'
 import { IManageState } from '../reducers/manage'
-import { ArtistCard } from './'
-// import * as Styled from '../styles/tipping'
+import * as Styled from '../styles/components/tippingQR'
+import { ArtistCard, CommentList } from './'
 
 import TipperLogo from 'src/TipperLogo.svg'
+import BackgroundImg from 'src/topImage.jpg'
 
-export interface IProps extends IManageState {
+export interface IProps extends IManageState, IGlobalMenuState {
     dispatch: Dispatch<any>
 }
 
@@ -28,33 +30,111 @@ export default class extends React.Component<IProps, {}> {
         this.props.dispatch(showMobileMenu())
     }
 
+    public renderTippingSum = () => (
+        <Styled.TippingSumSection>
+            <Styled.TippingSumInnerBlock>
+                <Styled.TippingSumTitle>投げ銭合計</Styled.TippingSumTitle>
+                <Styled.TippingSum
+                    thousandSeparator={true}
+                    prefix="¥"
+                    value={1200}
+                    readOnly={true}
+                />
+            </Styled.TippingSumInnerBlock>
+        </Styled.TippingSumSection>
+    )
+
     public render() {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: 'calc(100vh - 100px)' }}>
-                <div>
-                    <h2 style={{ textAlign: 'center', fontSize: '33px', letterSpacing: '3px', fontWeight: 'normal' }}>
-                        <span style={{ marginRight: '6px' }}><img style={{ width: '152px' }} src={TipperLogo} /></span>で投げ銭
-                        </h2>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', margin: '50px 0' }}>
-                        <QRCode
-                            value={'http://192.168.0.10:3000/tipping/hoge'}
-                            size={300}
-                        />
-                    </div>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ fontSize: '35px' }}>
+            <Styled.Entire title={BackgroundImg}>
+                <Styled.LeftSection>
+                    <Styled.TippingMessage>
+                        <Styled.LogoSpace>
+                            <Styled.TipperLogo
+                                src={TipperLogo}
+                            />
+                        </Styled.LogoSpace>
+                        で投げ銭
+                    </Styled.TippingMessage>
+                    <Styled.QR>
+                        <Styled.QRSection>
+                            <QRCode
+                                value={'http://192.168.0.10:3000/tipping/hoge'}
+                                size={window.innerHeight * 0.55}
+                            />
+                        </Styled.QRSection>
+                    </Styled.QR>
+                    <Styled.Artist>
+                        <div>
                             <ArtistCard
                                 artistId={'hoge'}
-                                size={100}
+                                size={this.props.globalMenu.agent === 'undefined' ? 100 : 70}
                                 style={'card'}
                                 nameHidden={false}
-                                color={'light'}
+                                color={'dark'}
                                 link={false}
                             />
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </Styled.Artist>
+                </Styled.LeftSection>
+                <Styled.RightSection>
+                    {this.renderTippingSum()}
+                    <Styled.CommnetSection>
+                        <CommentList
+                            dark={true}
+                            initialPerformanceComments={
+                                [
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+                                    {
+                                        content: 'いいかんでぃ',
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                        userId: 'hoge',
+                                    },
+
+                                ]
+                            }
+                            initialWorksComments={null}
+                            type={'performance'}
+                        />
+                    </Styled.CommnetSection>
+                </Styled.RightSection>
+            </Styled.Entire>
         )
     }
 }

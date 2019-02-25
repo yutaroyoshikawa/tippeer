@@ -5,6 +5,7 @@ import Auth from './auth'
 import Cropper from './cropper'
 import FireStore from './fireStore'
 import ManagePerformance from './managePerformance'
+import ManageQR from './manageQR'
 import ManageWorks from './manageWorks'
 import PerformanceDetails from './performanceDetails'
 import PlaceDetails from './placeDetails'
@@ -23,6 +24,7 @@ export default function* (): SagaIterator{
     ...Cropper,
     ...FireStore,
     ...ManagePerformance,
+    ...ManageQR,
     ...ManageWorks,
     ...PerformanceDetails,
     ...PlaceDetails,

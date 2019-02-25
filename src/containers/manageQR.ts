@@ -9,7 +9,7 @@ type AllState = ReturnType<typeof store.getState>
 const mapStateToProps = (state: AllState) => {
     return {
         manage: state.manage,
-        manageQR: state.manage,
+        manageQR: state.manageQR,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })

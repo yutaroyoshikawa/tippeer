@@ -1,11 +1,13 @@
-import { faQrcode } from '@fortawesome/free-solid-svg-icons'
+import { faImage, faQrcode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Card, CardContent, Divider, Fab, Typography } from '@material-ui/core'
+import { Card, CardContent, CardMedia, Divider, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Fab, Typography } from '@material-ui/core'
 // import ListIcon from '@material-ui/icons/List'
 import * as React from 'react'
 import Fullscreen from "react-full-screen"
+import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/manage'
+import * as qrActions from '../actions/manageQR'
 import { IManageState } from '../reducers/manage'
 import { IManageQRState } from '../reducers/manageQR'
 import { ArticleTitle, TippingQR } from './'
@@ -35,6 +37,10 @@ export default class extends React.Component<IProps, IState> {
         })
     )
 
+    public componentDidMount = () => (
+        this.props.dispatch(qrActions.requestGetManageQrPerformance())
+    )
+
     public renderTippingQR = () => (
         this.props.manage.isOpenTippingQR ?
             <TippingQR />
@@ -61,6 +67,59 @@ export default class extends React.Component<IProps, IState> {
             this.props.dispatch(actions.closeQR())
     )
 
+    public renderNoThumbnail = () => (
+        <div style={{ width: '300px', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#CCC' }}>
+            <FontAwesomeIcon icon={faImage} style={{ fontSize: '80px', color: '#FFF' }} />
+        </div>
+    )
+
+    public renderTippingPerformance = () => (
+        this.props.manageQR.performance.id ?
+            <Card style={{ width: '300px' }}>
+                <Link to={'/performances/' + this.props.manageQR.performance.id} >
+                    {
+                        this.props.manageQR.performance.thumbnail ?
+                            <CardMedia
+                                image={this.props.manageQR.performance.thumbnail}
+                                title="thumbnail"
+                                style={{ height: '300px', width: '300px' }}
+                            />
+                            :
+                            <CardMedia
+                                component={this.renderNoThumbnail}
+                                title="No Thumbnail"
+                                style={{ height: '300px', width: '300px' }}
+                            />
+                    }
+                </Link>
+                <CardContent>
+                    <Typography color="textSecondary">
+                        {this.props.manageQR.performance.name}
+                    </Typography>
+                    <ExpansionPanel>
+                        <ExpansionPanelSummary>
+                            <Typography component="p">
+                                概要
+                        </Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Typography component="p">
+                                {this.props.manageQR.performance.discription}
+                            </Typography>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                </CardContent>
+            </Card>
+            :
+            <Card style={{ width: '300px' }}>
+                <CardContent>
+                    <Typography component="h3">
+                        現在実施されているパフォーマンスはありません。
+                    </Typography>
+                </CardContent>
+            </Card>
+    )
+
     public render() {
         return (
             <div>
@@ -69,27 +128,7 @@ export default class extends React.Component<IProps, IState> {
                         <ArticleTitle title="QRコード表示" color="light" />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', margin: '50px 0' }}>
-                        {
-                            this.props.manageQR.performance ?
-                                <Card style={{ width: '300px' }}>
-                                    <CardContent>
-                                        <Typography color="textSecondary">
-                                            現在のパフォーマンス
-                                                </Typography>
-                                        <Typography component="h3">
-                                            Example Performance
-                                                </Typography>
-                                    </CardContent>
-                                </Card>
-                                :
-                                <Card style={{ width: '300px' }}>
-                                    <CardContent>
-                                        <Typography component="h3">
-                                            現在実施されているパフォーマンスはありません。
-                                                </Typography>
-                                    </CardContent>
-                                </Card>
-                        }
+                        {this.renderTippingPerformance()}
                     </div>
                     <Divider />
                     <div style={{ display: 'flex', justifyContent: 'center', margin: '50px 0' }}>
@@ -101,7 +140,7 @@ export default class extends React.Component<IProps, IState> {
                 </div>
                 <Fullscreen
                     enabled={this.props.manage.isOpenTippingQR}
-                    onChange={this.onScreenChange.bind(this,)}
+                    onChange={this.onScreenChange}
                 >
                     {this.renderTippingQR()}
                 </Fullscreen>

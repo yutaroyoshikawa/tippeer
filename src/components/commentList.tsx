@@ -1,4 +1,5 @@
 import { Star, StarBorder } from '@material-ui/icons'
+import * as dateformat from 'dateformat'
 import * as React from 'react'
 import Rating from 'react-rating'
 import { IPerformanceComments, IWorksComments } from '../reducers/worksDetails'
@@ -45,15 +46,7 @@ export class CommentList extends React.Component<IProps, {}> {
                                     <li>{data.content}</li>
                                     <Styled.PostedData>
                                         <li style={{marginRight: '10px'}}>{data.userId}</li>
-                                        <li>
-                                            {`
-                                                ${data.createdAt.getFullYear()}/
-                                                ${data.createdAt.getMonth()}/
-                                                ${data.createdAt.getDay()}-
-                                                ${data.createdAt.getHours()}:
-                                                ${data.createdAt.getMinutes()}
-                                            `}
-                                        </li>
+                                        <li>{dateformat(data.createdAt, 'yyyy/mm/dd hh:MM')}</li>
                                     </Styled.PostedData>
                                 </Styled.CommentContents>
                             </Styled.CommentElements>
@@ -82,7 +75,7 @@ export class CommentList extends React.Component<IProps, {}> {
                                     <li>{data.content}</li>
                                     <Styled.PostedData>
                                         <Styled.UserId>{data.userId}</Styled.UserId>
-                                        <li>{data.createdAt.toString()}</li>
+                                        <li>{dateformat(data.createdAt, 'yyyy/mm/dd hh:MM')}</li>
                                     </Styled.PostedData>
                                 </Styled.CommentContents>
                             </Styled.CommentElements>
