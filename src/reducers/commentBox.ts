@@ -1,9 +1,8 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/commentBox'
 
-interface ICommentBox {
+export interface ICommentBox {
     comment: string
-    userId: string
     rate: number
     sendToId: string
     type: 'works' | 'performance'
@@ -18,7 +17,6 @@ const initialReduceCommentBoxState: ICommentBox = {
     rate: 4,
     sendToId: '',
     type: 'performance',
-    userId: '',
 }
 
 export default reducerWithInitialState(initialReduceCommentBoxState)
@@ -29,10 +27,6 @@ export default reducerWithInitialState(initialReduceCommentBoxState)
     .case(actions.setRate, (state: ICommentBox, payload): ICommentBox => ({
         ...state,
         rate: payload,
-    }))
-    .case(actions.setUserId, (state: ICommentBox, payload): ICommentBox => ({
-        ...state,
-        userId: payload,
     }))
     .case(actions.initializeCommentBox, (state: ICommentBox): ICommentBox => ({
         ...state,
@@ -46,5 +40,13 @@ export default reducerWithInitialState(initialReduceCommentBoxState)
     .case(actions.setCommentType, (state: ICommentBox, payload): ICommentBox => ({
         ...state,
         type: payload,
+    }))
+    .case(actions.successSendWorksComment, (state: ICommentBox): ICommentBox => ({
+        ...state,
+        comment: '',
+    }))
+    .case(actions.successSendPerformanceComment, (state: ICommentBox): ICommentBox => ({
+        ...state,
+        comment: '',
     }))
     .build()
