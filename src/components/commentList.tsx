@@ -8,8 +8,6 @@ import { ArtistCard } from './'
 import * as Styled from '../styles/components/commentList'
 import * as ScoreStyled from '../styles/components/score'
 
-// import 'semantic-ui-css/semantic.min.css'
-
 export interface IProps {
     type: 'performance' | 'works' | 'standalone'
     initialWorksComments: IWorksComments[] | null

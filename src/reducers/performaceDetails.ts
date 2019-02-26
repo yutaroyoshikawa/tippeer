@@ -53,11 +53,11 @@ const initialReducePerformanceDetailsState: IPerformanceDetails = {
     ],
     discription: 'One way to announce or promote a certain new product or special events is perhaps through using of vinyl banners. Large or small size of printing these vinyl banners are can be able to print and in many types of weather it can hold up extremely well.',
     findPerformance: true,
-    finish: new Date('2018-12-01-12:59'),
+    finish: new Date(),
     geoLocate: [35.71706, 139.517882],
     locateName: '小金井公園',
     performanceTitle: 'hoge',
-    start: new Date('2018-12-01-15:59'),
+    start: new Date(),
     thumbnail: exampleImage,
 }
 
@@ -69,5 +69,9 @@ export default reducerWithInitialState(initialReducePerformanceDetailsState)
     .case(actions.faildPerformanceInfo, (state: IPerformanceDetails) => ({
         ...state,
         findPerformance: false,
+    }))
+    .case(actions.addNewComment, (state: IPerformanceDetails, payload): IPerformanceDetails => ({
+        ...state,
+        comments: payload,
     }))
     .build()

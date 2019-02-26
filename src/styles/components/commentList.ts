@@ -23,6 +23,7 @@ export const CommentContents = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
+    word-break: break-all;
 `
 
 export const PostedData = styled.div`

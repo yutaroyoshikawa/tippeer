@@ -1,3 +1,4 @@
+import * as dateformat from 'dateformat'
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { setCommentType } from '../actions/commentBox'
@@ -57,8 +58,8 @@ export default class extends React.Component<IProps, {}> {
                                         <ArtistCard artistId={this.props.performanceDetails.artistId} size={30} style={'card'} nameHidden={false} color={'dark'} link={true} />
                                     </Styled.MobilePerformanceArtist>
                                     <div>
-                                        <Styled.Start>{this.props.performanceDetails.start.toTimeString()}</Styled.Start>
-                                        <Styled.Finish>{this.props.performanceDetails.finish.toString()}</Styled.Finish>
+                                        <Styled.Start>{dateformat(this.props.performanceDetails.start, 'yyyy/mm/dd hh:MM')}</Styled.Start>
+                                        <Styled.Finish>{dateformat(this.props.performanceDetails.finish, 'yyyy/mm/dd hh:MM')}</Styled.Finish>
                                     </div>
                                 </Styled.PerformanceDetails>
                             </Styled.TopPerformanceInfo>

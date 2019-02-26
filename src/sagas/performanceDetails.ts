@@ -1,25 +1,9 @@
 import { SagaIterator } from 'redux-saga'
-import { call, fork, put, take } from 'redux-saga/effects'
-import { setSendToId } from '../actions/commentBox'
+import { call, fork, put, select, take } from 'redux-saga/effects'
+import { setSendToId, successSendPerformanceComment } from '../actions/commentBox'
 import * as actions from '../actions/performanceDetails'
-// import { IComments } from '../reducers/performaceDetails'
+import { IComments } from '../reducers/performaceDetails'
 import firebaseSaga from './firebase'
-
-// interface ISnapshot {
-//     address: string
-//     artist_id: string
-//     comments: IComments[]
-//     created_at: Date
-//     discription: string
-//     finish: Date
-//     geo_locate: number[]
-//     locate_name: string
-//     name: string
-//     postal_code: string
-//     start: Date
-//     thumbnail: string
-//     updated_at: Date
-// }
 
 function* doGetPerformanceInfoWorker(): SagaIterator {
     while (true) {
@@ -38,6 +22,7 @@ function* doGetPerformanceInfoWorker(): SagaIterator {
                     }
                 )
             })
+            convertedComments.sort((a: any, b: any) => a.createdAt > b.createdAt ? -1 : 1)
             yield put(actions.successPerformanceInfo(
                 {
                     address: performance.address,
@@ -53,13 +38,32 @@ function* doGetPerformanceInfoWorker(): SagaIterator {
                 }
             ))
             yield put(setSendToId(performanceId.payload))
-            document.title = 'TIPPEER | ' + performance.performance.name
+            document.title = 'TIPPEER | ' + performance.name
         } catch (e) {
             yield put(actions.faildPerformanceInfo())
         }
     }
 }
 
+function* addNewCommentWorker(): SagaIterator {
+    while(true) {
+        const comment = yield take(successSendPerformanceComment)
+        const state = yield select()
+        const user: string = state.auth.id
+        const comments: IComments[] = state.performanceDetails.comments
+        comments.unshift(
+            {
+                content: comment.payload,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                userId: user,
+            }
+        )
+        yield put(actions.addNewComment(comments))
+    }
+}
+
 export default [
     fork(doGetPerformanceInfoWorker),
+    fork(addNewCommentWorker),
 ]
