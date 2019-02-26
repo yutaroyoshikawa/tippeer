@@ -1,7 +1,8 @@
 import { SagaIterator } from 'redux-saga'
-import { call, fork, put, take } from 'redux-saga/effects'
-import { setSendToId } from '../actions/commentBox'
+import { call, fork, put, select, take } from 'redux-saga/effects'
+import { setSendToId, successSendWorksComment } from '../actions/commentBox'
 import * as actions from '../actions/worksDetails'
+import { IWorksComments } from '../reducers/worksDetails'
 import reduxFirebase from './firebase'
 
 function* doGetWorksInfo(): SagaIterator {
@@ -108,6 +109,25 @@ function* checkProgress(): SagaIterator {
     }
 }
 
+function* addNewCommentWorker(): SagaIterator {
+    while(true) {
+        const comment = yield take(successSendWorksComment)
+        const state = yield select()
+        const user: string = state.auth.id
+        const comments: IWorksComments[] = state.worksDetails.comments
+        comments.unshift(
+            {
+                content: comment.payload.content,
+                createdAt: new Date(),
+                score: comment.payload.rating,
+                updatedAt: new Date(),
+                userId: user,
+            }
+        )
+        yield put(actions.addNewWorksComment(comments))
+    }
+}
+
 export default [
     fork(doGetWorksInfo),
     fork(doSetAverageScore),
@@ -115,4 +135,5 @@ export default [
     fork(doSetComments),
     fork(doSetContents),
     fork(checkProgress),
+    fork(addNewCommentWorker),
 ]

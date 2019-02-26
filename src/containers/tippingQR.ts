@@ -10,6 +10,7 @@ const mapStateToProps = (state: AllState) => {
     return {
         globalMenu: state.globalMenu,
         manage: state.manage,
+        manageQR: state.manageQR,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch });

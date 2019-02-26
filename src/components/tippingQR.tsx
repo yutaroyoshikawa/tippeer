@@ -5,13 +5,14 @@ import { hideGlobalMenu, showGlobalMenu } from '../actions/globalMenu'
 import { hideMobileMenu, showMobileMenu } from '../actions/mobileMenu'
 import { IGlobalMenuState } from '../reducers/globalMenu'
 import { IManageState } from '../reducers/manage'
+import { IManageQRState } from '../reducers/manageQR'
 import * as Styled from '../styles/components/tippingQR'
 import { ArtistCard, CommentList } from './'
 
 import TipperLogo from 'src/TipperLogo.svg'
 import BackgroundImg from 'src/topImage.jpg'
 
-export interface IProps extends IManageState, IGlobalMenuState {
+export interface IProps extends IManageState, IGlobalMenuState, IManageQRState {
     dispatch: Dispatch<any>
 }
 
@@ -82,53 +83,7 @@ export default class extends React.Component<IProps, {}> {
                     <Styled.CommnetSection>
                         <CommentList
                             dark={true}
-                            initialPerformanceComments={
-                                [
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-                                    {
-                                        content: 'いいかんでぃ',
-                                        createdAt: new Date(),
-                                        updatedAt: new Date(),
-                                        userId: 'hoge',
-                                    },
-
-                                ]
-                            }
+                            initialPerformanceComments={this.props.manageQR.performance.comments}
                             initialWorksComments={null}
                             type={'performance'}
                         />

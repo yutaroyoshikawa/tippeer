@@ -5,8 +5,8 @@ import * as qrActions from '../actions/manageQR'
 export  interface IComments {
     content: string
     userId: string
-    icon: string
-    postedAt: Date
+    createdAt: Date
+    updatedAt: Date
 }
 
 export  interface IPerformance {
@@ -58,5 +58,12 @@ export default reducerWithInitialState(initialReduceManageState)
     }))
     .case(qrActions.faildGetManageQrPerformance, (state: IManageQR): IManageQR => ({
         ...state,
+    }))
+    .case(qrActions.setNewSyncComment, (state: IManageQR, payload): IManageQR => ({
+        ...state,
+        performance: {
+            ...state.performance,
+            comments: payload,
+        }
     }))
     .build()

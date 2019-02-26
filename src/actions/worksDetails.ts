@@ -31,3 +31,5 @@ export const setContents =          actionCreator<IContents[]>('SET_CONTENTS')
 export const setBaseWorksInfo =     actionCreator<IBaseWorksInfo>('SET_BASE_WORKS_INFO')
 
 export const successLoad =          actionCreator('SUCCESS_LOAD')
+
+export const addNewWorksComment =   actionCreator<IWorksComments[]>('ADD_NEW_WORKS_COMMENT')

@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa'
 const actionCreator = actionCreatorFactory()
-import { IComments  } from '../reducers/performaceDetails'
+import { IComments } from '../reducers/performaceDetails'
 
 interface IPerformanceDetails {
     address: string
@@ -18,3 +18,5 @@ interface IPerformanceDetails {
 export const getPerformanceInfo =           actionCreator<string>('GET_PERFORMANCE_INFO')
 export const successPerformanceInfo =       actionCreator<IPerformanceDetails>('SUCCESS_PERFORMANCE_INFO')
 export const faildPerformanceInfo   =       actionCreator('FAILD_PERFORMANCE_INFO')
+
+export const addNewComment =                actionCreator<IComments[]>('ADD_NEW_COMMENT')
