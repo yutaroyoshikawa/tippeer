@@ -1,7 +1,10 @@
+import { firestore } from 'firebase/app'
+import * as notifications from 'react-notification-system-redux'
 import { SagaIterator } from 'redux-saga'
 import { call, delay, fork, put, select, take } from 'redux-saga/effects'
 import { openDialog } from '../actions/dialog'
 import * as actions from '../actions/tipping'
+import firebaseSaga from './firebase'
 import { getTippingPerformance } from './fireStore'
 
 function* doGetTippingPerformanceWorker(): SagaIterator {
@@ -20,6 +23,14 @@ function* doGetTippingPerformanceWorker(): SagaIterator {
                 }
             ))
         } catch (e) {
+            yield put(actions.setComponent('top'))
+            yield put(notifications.error(
+                {
+                    autoDismiss: 10,
+                    message: 'パフォーマンスの取得に失敗しました。',
+                    position: 'tr',
+                }
+            ))
             yield put(actions.faildGetTippingPerformance())
         }
     }
@@ -31,7 +42,9 @@ function* doCheckTipping() {
         if(!paying.payload){
             yield delay(700)
             const state = yield select()
-            const tippingValue = yield state.tipping.tippingValue
+            const tippingValue = state.tipping.tippingValue
+            const performanceId: string = state.tipping.performance.id
+            const userId: string = state.auth.id
             if(tippingValue === 0){
                 yield put(actions.initializePaying())
                 yield put(openDialog(
@@ -47,6 +60,18 @@ function* doCheckTipping() {
                     }
                 ))
             }else{
+                yield call(
+                    firebaseSaga.firestore.updateDocument,
+                    'performances/' + performanceId,
+                    'tipping',
+                    firestore.FieldValue.arrayUnion(
+                        {
+                            tipping_at: new Date(),
+                            user_id: userId,
+                            value: tippingValue,
+                        }
+                    )
+                )
                 yield put(actions.setComponent('thanks'))
                 yield delay(3000)
                 yield put(actions.setComponent('result'))
