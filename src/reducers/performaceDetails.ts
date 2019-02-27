@@ -31,26 +31,7 @@ export interface IPerformanceDetailsState {
 const initialReducePerformanceDetailsState: IPerformanceDetails = {
     address: "",
     artistId: 'hoge',
-    comments: [
-        {
-            content: 'hogehugapiyofoo',
-            createdAt: new Date('2018-12-1'),
-            updatedAt: new Date('2018-12-1'),
-            userId: 'hoge',
-        },
-        {
-            content: 'hogehugapiyofoo',
-            createdAt: new Date('2018-12-1'),
-            updatedAt: new Date('2018-12-1'),
-            userId: 'hoge',
-        },
-        {
-            content: 'hogehugapiyofoo',
-            createdAt: new Date('2018-12-1'),
-            updatedAt: new Date('2018-12-1'),
-            userId: 'hoge',
-        },
-    ],
+    comments: new Array(),
     discription: 'One way to announce or promote a certain new product or special events is perhaps through using of vinyl banners. Large or small size of printing these vinyl banners are can be able to print and in many types of weather it can hold up extremely well.',
     findPerformance: true,
     finish: new Date(),
