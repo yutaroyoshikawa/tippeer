@@ -153,6 +153,7 @@ export const PayAddButtonSection = styled.div`
     max-width: 400px;
     display: flex;
     justify-content: space-evenly;
+    margin: 0 5vw;
 `
 
 export const PayAddButton = styled.button`
