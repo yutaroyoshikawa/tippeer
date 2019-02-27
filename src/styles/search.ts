@@ -98,6 +98,7 @@ export const Entire = styled.div`
     padding: 60px 0 20px 0;
     background-color: rgb(215, 187, 187);
     width: 100%;
+    position: relative;
 `
 
 export const ArtistEntire = styled.article`

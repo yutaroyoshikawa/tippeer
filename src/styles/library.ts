@@ -7,7 +7,7 @@ export const Global = createGlobalStyle`
 `
 
 export const Entire = styled.div`
-
+    position: relative;
 `
 
 export const TabSection = styled.div`

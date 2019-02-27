@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 export const Entire = styled.div`
     width: 100%;
     background-color: #FFF;
+    position: relative;
 `
 
 export const PrivacyPolicyTitle = styled.div`

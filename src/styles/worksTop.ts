@@ -7,11 +7,9 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const TwoSection = styled.div`
+position: relative;
 @media screen and (min-width: 1024px){
     display: flex;
-}
-@media screen and (max-width: 480px){
-    position: relative;
 }
 `
 
