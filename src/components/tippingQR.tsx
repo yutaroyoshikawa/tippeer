@@ -38,7 +38,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.TippingSum
                     thousandSeparator={true}
                     prefix="¥"
-                    value={1200}
+                    value={this.props.manageQR.performance.tippingSum}
                     readOnly={true}
                 />
             </Styled.TippingSumInnerBlock>
@@ -60,7 +60,7 @@ export default class extends React.Component<IProps, {}> {
                     <Styled.QR>
                         <Styled.QRSection>
                             <QRCode
-                                value={'http://192.168.0.10:3000/tipping/hoge'}
+                                value={'http://192.168.0.10:3000/tipping/' + this.props.manageQR.performance.tippingHash}
                                 size={window.innerHeight * 0.55}
                             />
                         </Styled.QRSection>

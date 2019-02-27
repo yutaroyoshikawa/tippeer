@@ -66,4 +66,18 @@ export default reducerWithInitialState(initialReduceManageState)
             comments: payload,
         }
     }))
+    .case(qrActions.setNewSyncTipping, (state: IManageQR, payload): IManageQR => ({
+        ...state,
+        performance: {
+            ...state.performance,
+            tippingSum: payload,
+        }
+    }))
+    .case(qrActions.setNewSyncToken, (state: IManageQR, payload): IManageQR => ({
+        ...state,
+        performance: {
+            ...state.performance,
+            tippingHash: payload,
+        }
+    }))
     .build()

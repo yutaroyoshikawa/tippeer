@@ -9,3 +9,8 @@ export const faildGetManageQrPerformance     = actionCreator<any>('FAILD_GET_MAN
 
 export const addNewSyncComment = actionCreator<firebase.firestore.DocumentSnapshot>('ADD_NEW_SYNC_COMMENT')
 export const setNewSyncComment = actionCreator<IComments[]>('SET_NEW_SYNC_COMMENT')
+
+export const addNewSyncTipping = actionCreator<firebase.firestore.DocumentSnapshot>('ADD_NEW_SYNC_TIPPING')
+export const setNewSyncTipping = actionCreator<number>('SET_NEW_SYNC_TIPPING')
+
+export const setNewSyncToken = actionCreator<string>('SET_NEW_SYNC_TOKEN')
