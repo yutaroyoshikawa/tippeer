@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import * as Styled from '../styles/components/worksCard'
 import { ArtistCard, PriceCard } from './'
 
+import paymentConfig from '../paymentConfig'
+
 export interface IProps {
     worksId: string
 }
@@ -97,7 +99,24 @@ export class WorksCard extends React.Component<IProps, IState> {
                     <Link to={'/artists/' + this.state.artistId} >
                         <ArtistCard artistId={this.state.artistId} size={40} style={'card'} nameHidden={false} color={'light'} link={true} />
                     </Link>
-                    <Styled.Price><PriceCard type={'circle'} price={this.state.price} size={80} /></Styled.Price>
+                    <Styled.Price>
+                        <PriceCard
+                            type={'circle'}
+                            price={this.state.price}
+                            size={80}
+                            config={paymentConfig(
+                                {
+                                    total: {
+                                        amount: {
+                                            currency: 'JPY',
+                                            value: this.state.price.toString(),
+                                        },
+                                        label: this.state.worksName,
+                                    }
+                                }
+                            )}
+                        />
+                    </Styled.Price>
                 </Styled.WorksInfo>
             </Styled.Entire>
         )

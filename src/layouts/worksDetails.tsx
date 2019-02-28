@@ -12,6 +12,8 @@ import { IWorksDetailsState } from '../reducers/worksDetails'
 import * as ScoreStyled from '../styles/components/score'
 import * as Styled from '../styles/worksDetails'
 
+import paymentConfig from '../paymentConfig'
+
 export interface IProps extends IWorksDetailsState {
     dispatch: Dispatch<any>
     match: {
@@ -54,7 +56,24 @@ export default class extends React.Component<IProps, {}> {
                     <Styled.Contents>
                         <Styled.ContentTitle>{data.title}</Styled.ContentTitle>
                         <Styled.ContentArtist><ArtistCard artistId={data.artistId} size={40} style={'card'} nameHidden={false} color={'dark'} link={true} /></Styled.ContentArtist>
-                        <Styled.ContentPrice><PriceCard type={'ellipse'} price={data.price} size={15} /></Styled.ContentPrice>
+                        <Styled.ContentPrice>
+                            <PriceCard
+                                type={'ellipse'}
+                                price={data.price}
+                                size={15}
+                                config={paymentConfig(
+                                    {
+                                        total: {
+                                            amount: {
+                                                currency: 'JPY',
+                                                value: data.price.toString(),
+                                            },
+                                            label: data.title,
+                                        },
+                                    }
+                                )}
+                            />
+                        </Styled.ContentPrice>
                     </Styled.Contents>
                 </li>
                 {key !== this.props.worksDetails.contents.length - 1 ? <Styled.ContentsBorder /> : null}
@@ -76,8 +95,42 @@ export default class extends React.Component<IProps, {}> {
                         <Styled.WorksDetails>
                             <Styled.WorksTitle>{this.props.worksDetails.worksTitle}</Styled.WorksTitle>
                             <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} color={'dark'} link={true} />
-                            <Styled.DesktopPriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={30} /></Styled.DesktopPriceCard>
-                            <Styled.MobilePriceCard><PriceCard type={'ellipse'} price={this.props.worksDetails.price} size={18} /></Styled.MobilePriceCard>
+                            <Styled.DesktopPriceCard>
+                                <PriceCard
+                                    type={'ellipse'}
+                                    price={this.props.worksDetails.price}
+                                    size={30}
+                                    config={paymentConfig(
+                                        {
+                                            total: {
+                                                amount: {
+                                                    currency: 'JPY',
+                                                    value: this.props.worksDetails.price.toString(),
+                                                },
+                                                label: this.props.worksDetails.worksTitle,
+                                            },
+                                        }
+                                    )}
+                                />
+                            </Styled.DesktopPriceCard>
+                            <Styled.MobilePriceCard>
+                                <PriceCard
+                                    type={'ellipse'}
+                                    price={this.props.worksDetails.price}
+                                    size={18}
+                                    config={paymentConfig(
+                                        {
+                                            total: {
+                                                amount: {
+                                                    currency: 'JPY',
+                                                    value: this.props.worksDetails.price.toString(),
+                                                },
+                                                label: this.props.worksDetails.worksTitle,
+                                            },
+                                        }
+                                    )}
+                                />
+                            </Styled.MobilePriceCard>
                             <Styled.DesktopScore>
                                 {this.renderScore(this.props.worksDetails.score, 40)}
                             </Styled.DesktopScore>
