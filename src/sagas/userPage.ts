@@ -1,3 +1,4 @@
+import { Howl } from 'howler'
 import { SagaIterator } from 'redux-saga'
 import { delay, fork, select, take } from 'redux-saga/effects'
 import * as actions from '../actions/userPage'
@@ -8,24 +9,15 @@ import periodicEffect from 'src/periodicEffect.mp3'
 function* doPlayEffectWorker(): SagaIterator {
     while (true) {
         const transitionType = yield take(actions.setTransitionType)
-        const request = new XMLHttpRequest()
-        const audioContext = new AudioContext()
-        const audioSource = audioContext.createBufferSource()
-        request.open("GET", flyEffect, true)
-        request.responseType = "arraybuffer"
-        request.onload = () => {
-            audioContext.decodeAudioData(request.response)
-                .then(audioBuffer => {
-                    audioSource.buffer = audioBuffer
-                    audioSource.connect(audioContext.destination)
-                })
-        }
-        request.send()
         if (transitionType.payload.transitionType === 'fly') {
             const state = yield select()
             const isPlay: boolean = state.initialLoad.isPlayMusic
             if (isPlay) {
-                audioSource.start(0)
+                const sound = new Howl({
+                    src: [flyEffect]
+                })
+    
+                sound.play()
             }
         }
     }
@@ -39,20 +31,11 @@ function* doPeriodicEffectWorker(): SagaIterator {
         const isPlayEffect: boolean = state.userPage.isEffectPlaying
         const transitionType = state.userPage.transitionType
         if (isPlay && isPlayEffect && transitionType === 'rotate') {
-            const request = new XMLHttpRequest()
-            const audioContext = new AudioContext()
-            const audioSource = audioContext.createBufferSource()
-            request.open("GET", periodicEffect, true)
-            request.responseType = "arraybuffer"
-            request.onload = () => {
-                audioContext.decodeAudioData(request.response)
-                    .then(audioBuffer => {
-                        audioSource.buffer = audioBuffer
-                        audioSource.connect(audioContext.destination)
-                    })
-            }
-            request.send()
-            audioSource.start(0)
+            const sound = new Howl({
+                src: [periodicEffect]
+            })
+
+            sound.play()
         }
     }
 }
