@@ -11,7 +11,8 @@ function* doGetTippingPerformanceWorker(): SagaIterator {
     while (true) {
         const tippingToken = yield take(actions.requestGetTippingPerformance)
         try {
-            const snapshot = yield call(getTippingPerformance, tippingToken.payload)
+            const token: string = tippingToken.payload
+            const snapshot = yield call(getTippingPerformance, token.substr(28))
             const performance = snapshot.data()
             yield put(actions.successGetTippingPerformance(
                 {
