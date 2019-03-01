@@ -49,7 +49,7 @@ export default class extends React.Component<IProps, {}> {
                                 </Styled.PerformanceThumbnail>
                                 <Styled.PerformanceDetails>
                                     <Styled.PerformanceTitle>
-                                        <ArticleTitle title={this.props.performanceDetails.performanceTitle} color={'dark'} />
+                                        {this.props.performanceDetails.performanceTitle}
                                     </Styled.PerformanceTitle>
                                     <Styled.PerformanceArtist>
                                         <ArtistCard artistId={this.props.performanceDetails.artistId} size={80} style={'card'} nameHidden={false} color={'dark'} link={true} />
