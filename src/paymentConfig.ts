@@ -25,12 +25,43 @@ import { PaymentRequestParams } from 'react-payment-request-api';
 const getConfig = (paymentDetail: PaymentDetailsInit) => ({
     details: paymentDetail,
 
-    methodData: [{
-        data: {
-            supportedNetworks: ['visa', 'mastercard', 'diners', 'jcb'],
+    methodData: [
+        {
+            data: {
+                supportedNetworks: ['visa', 'mastercard', 'diners', 'jcb'],
+            },
+            supportedMethods: ['basic-card'],
         },
-        supportedMethods: ['basic-card'],
-    }],
+        {
+
+            data: {
+                allowedCardNetwork: ['AMEX', 'MASTERCARD', 'VISA', 'DISCOVER', 'JCB'],
+                environment: 'TEST',
+                merchantId: 'fake',
+                paymentMethodTokenizationParameters: {
+                    parameters: {
+                        'gateway': 'stripe',
+                        'stripe:publishableKey': 'fake',
+                        'stripe:version': '2016-07-06'
+                    },
+                    tokenizationType: 'GATEWAY_TOKEN',
+
+                },
+            },
+            supportedMethods: ['https://android.com/pay'],
+        },
+        {
+
+            data: {
+                countryCode: 'JP',
+                merchantCapabilities: ['supportsDebit'],
+                merchantIdentifier: 'merchant.com.example',
+                supportedNetworks: ['masterCard', 'visa', 'jcb'],
+                version: 3,
+            },
+            supportedMethods: 'https://apple.com/apple-pay',
+        },
+    ],
 
     onShowFail: (error) => null,
 
