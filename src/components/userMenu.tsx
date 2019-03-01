@@ -42,9 +42,25 @@ export default class extends React.Component<IProps, {}> {
 
     public renderButton = () => (
         this.props.auth.isSignedIn ?
-            <Styled.ListStyle onClick={this.props.dispatch.bind(this, requestLogout())}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログアウト</Styled.ListStyle>
+            <Styled.ListStyle
+                onClick={this.props.dispatch.bind(this, requestLogout())}
+                itemProp={'400'}
+            >
+                <span>
+                    <Styled.MenuIcon icon={faSignOutAlt} />
+                </span>
+                ログアウト
+            </Styled.ListStyle>
             :
-            <Styled.ListStyle onClick={this.setAuthState}><span><Styled.MenuIcon icon={faSignOutAlt} /></span>ログインまたは登録</Styled.ListStyle>
+            <Styled.ListStyle
+                onClick={this.setAuthState}
+                itemProp={'400'}
+            >
+                <span>
+                    <Styled.MenuIcon icon={faSignOutAlt} />
+                </span>
+                ログインまたは登録
+            </Styled.ListStyle>
     )
 
     public setAuthState = () => (
@@ -56,7 +72,12 @@ export default class extends React.Component<IProps, {}> {
 
     public renderChangeUserInfo = () => (
         this.props.auth.isSignedIn ?
-            <Styled.ListStyle><span><Styled.MenuIcon icon={faAddressBook} /></span>ユーザ情報変更</Styled.ListStyle>
+            <Styled.ListStyle itemProp={'300'}>
+                <span>
+                    <Styled.MenuIcon icon={faAddressBook}/>
+                </span>
+                ユーザ情報変更
+            </Styled.ListStyle>
             :
             null
     )
@@ -75,8 +96,8 @@ export default class extends React.Component<IProps, {}> {
                         {this.renderAuth()}
                         {this.renderChangeUserInfo()}
                         {this.renderButton()}
-                        <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
-                        <li><Styled.ListLink to='/faq' onClick={this.clickMenu}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
+                        <li><Styled.ListLink to='/privacypolicy' onClick={this.clickMenu} itemProp={'500'}><span><Styled.MenuIcon icon={faUserSecret} /></span>プライバシーポリシ</Styled.ListLink></li>
+                        <li><Styled.ListLink to='/faq' onClick={this.clickMenu} itemProp={'600'}><span><Styled.MenuIcon icon={faQuestionCircle} /></span>よくある質問</Styled.ListLink></li>
                     </Styled.MenuList>
                     <Styled.CopyRight><small>TIPPER&copy; all rights reserved</small></Styled.CopyRight>
                 </div>

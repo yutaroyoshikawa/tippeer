@@ -1,7 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import transition from 'styled-transition-group'
-import styled from '../styled-components'
+import styled, { keyframes } from '../styled-components'
+
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+`
 
 export const Entire = styled.div`
     color: #000;
@@ -9,18 +20,22 @@ export const Entire = styled.div`
 
 export const Top = transition.nav`
     &:enter {
-        height: 0;
+        opacity: 0;
+        transform: translate3d(0, -100px, 0) scale(0.98) ;
     }
     &:enter-active {
-      height: 100vh;
-      transition: height 400ms ease-in;
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        transition: all 300ms ease-in;
     }
     &:exit {
-      height: 100vh;
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
     }
     &:exit-active {
-      height: 0;
-      transition: height 400ms ease-in;
+        opacity: 0;
+        transform: translate3d(0, -100px, 0) scale(0.98);
+        transition: all 200ms ease-in;
     }
 
     width: 100vw;
@@ -59,6 +74,8 @@ export const MenuList = styled.ul`
 `
 
 export const ListStyle = styled.li`
+    animation: ${fadeIn} 300ms ease ${props => props.itemProp}ms 1 forwards; 
+    opacity: 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -84,12 +101,19 @@ export const MenuIcon = styled(FontAwesomeIcon)`
 `
 
 export const ListLink = styled(Link)`
+    animation: ${fadeIn} 200ms ease ${props => props.itemProp}ms 1 forwards;
+    opacity: 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     color: #FFF;
+
+    &:hover {
+        transform: scale(1.2);
+        transition: all 1s;
+    }
  `
 
 export const CopyRight = styled.p`
