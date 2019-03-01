@@ -1,9 +1,14 @@
 import { ViewState } from 'react-map-gl';
 import actionCreatorFactory from 'typescript-fsa'
+import { IMapPerformance } from '../reducers/userPage'
 
 const actionCreator = actionCreatorFactory()
 
 type TransitionType = 'rotate' | 'fly'
+
+export const requestGetRealPerformance = actionCreator('REQUEST_GET_REAL_PERFORMANCE')
+export const successGetRealPerformance = actionCreator<IMapPerformance[]>('SUCCESS_GET_REAL_PERFORMANCE')
+export const faildGetRealPerformance = actionCreator<any>('FAILD_GET_REAL_PERFORMANCE')
 
 export const setRotate          = actionCreator('SET_ROTATE')
 export const setFly             = actionCreator('SET_FLY')

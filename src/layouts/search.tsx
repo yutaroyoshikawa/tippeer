@@ -1,3 +1,4 @@
+import * as dateformat from 'dateformat'
 import * as React from 'react'
 import { Index, InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import { Link } from 'react-router-dom'
@@ -59,8 +60,8 @@ export default class extends React.Component<IProps, {}> {
                 <Performance.PerformanceInfo>
                     <Link to={"/performances/" + hits.hit.objectID}  onClick={this.pushHistory.bind(this,)} >
                         <Performance.PerformanceName>{hits.hit.name}</Performance.PerformanceName>
-                        <Performance.Start>{hits.hit.start}</Performance.Start>
-                        <Performance.Finish>{hits.hit.finish}</Performance.Finish>
+                        <Performance.Start>{dateformat(hits.hit.start, 'yyyy/mm/dd hh:MM')}</Performance.Start>
+                        <Performance.Finish>{dateformat(hits.hit.finish, 'yyyy/mm/dd hh:MM')}</Performance.Finish>
                     </Link>
                     <Link to={"/places/" + hits.hit.placeId}  onClick={this.pushHistory.bind(this,)}>
                         <Performance.PlaceInfo>{hits.hit.placeName}</Performance.PlaceInfo>

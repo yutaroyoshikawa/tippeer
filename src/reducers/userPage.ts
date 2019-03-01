@@ -2,16 +2,15 @@ import { ViewState } from 'react-map-gl';
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/userPage'
 
-
-interface IMapPerformance {
-    performanceId: number
+export interface IMapPerformance {
+    performanceId: string
     latitude: number
     longitude: number
     performanceName: string
     performanceThumbnail: string
     artistId: string
-    start: string
-    finish: string
+    start: Date
+    finish: Date
     placeName: string
 }
 
@@ -22,12 +21,12 @@ export interface IUserPage {
     initialMapPerformances: IMapPerformance[]
     viewport: ViewState
     nowPerformance: {
-        performanceId: number
+        performanceId: string
         performanceName: string
         performanceThumbnail: string
         artistId: string
-        start: string
-        finish: string
+        start: Date
+        finish: Date
         placeName: string
     }
     isEffectPlaying: boolean
@@ -42,47 +41,47 @@ const initialReduceUserPageState: IUserPage = {
     initialMapPerformances: [
         {
             artistId: 'hoge',
-            finish: '2018/12/10-13:59',
+            finish: new Date(),
             latitude: 35.71706,
             longitude: 139.517882,
-            performanceId: 1,
+            performanceId: 'hoge',
             performanceName: 'hoge',
             performanceThumbnail: 'hoge',
             placeName: 'hoge',
-            start: '2018/12/10-12:59',
+            start: new Date(),
         },
         {
             artistId: 'huga',
-            finish: '2018/12/10-13:59',
+            finish: new Date(),
             latitude: 35.571013,
             longitude: 139.770478,
-            performanceId: 1,
+            performanceId: 'hoge',
             performanceName: 'huga',
             performanceThumbnail: 'hoge',
             placeName: 'hoge',
-            start: '2018/12/10-12:59',
+            start: new Date(),
         },
         {
             artistId: 'piyo',
-            finish: '2018/12/10-13:59',
+            finish: new Date(),
             latitude: 35.7007,
             longitude: 139.574491,
-            performanceId: 1,
+            performanceId: 'hoge',
             performanceName: 'piyo',
             performanceThumbnail: 'hoge',
             placeName: 'hoge',
-            start: '2018/12/10-12:59',
+            start: new Date(),
         },
     ],
     isEffectPlaying: false,
     nowPerformance: {
         artistId: '',
-        finish: '',
-        performanceId: 0,
+        finish: new Date(),
+        performanceId: '',
         performanceName: '',
         performanceThumbnail: '',
         placeName: '',
-        start: '',
+        start: new Date(),
     },
     recommendperformances: [1, 2, 3, 4, 5, 6, 7, 8],
     transitionType: 'rotate',

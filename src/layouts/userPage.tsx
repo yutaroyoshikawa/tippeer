@@ -1,4 +1,5 @@
 import * as d3Ease from 'd3-ease'
+import * as dateformat from 'dateformat'
 import DeckGL, {HexagonLayer} from 'deck.gl'
 import {fromJS} from 'immutable';
 import * as mapbox from 'mapbox-gl'
@@ -136,8 +137,8 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.PlaceInfo itemProp={this.props.globalMenu.agent}>
                     <Styled.PerformanceName><ShuffleText content={this.props.userPage.nowPerformance.performanceName}/></Styled.PerformanceName>
                     <div>
-                        <Styled.PerformanceTime><ShuffleText content={this.props.userPage.nowPerformance.start} /></Styled.PerformanceTime>
-                        <Styled.PerformanceTime><ShuffleText content={this.props.userPage.nowPerformance.finish} /></Styled.PerformanceTime>
+                        <Styled.PerformanceTime><ShuffleText content={dateformat(this.props.userPage.nowPerformance.start, 'yyyy/mm/dd hh:MM')} /></Styled.PerformanceTime>
+                        <Styled.PerformanceTime><ShuffleText content={dateformat(this.props.userPage.nowPerformance.finish, 'yyyy/mm/dd hh:MM')} /></Styled.PerformanceTime>
                         <Styled.PerformancePlaceName><ShuffleText content={this.props.userPage.nowPerformance.placeName} /></Styled.PerformancePlaceName>
                     </div>
                 </Styled.PlaceInfo>
