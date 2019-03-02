@@ -28,6 +28,7 @@ class App extends React.Component {
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
+                            className="switch-wrapper"
                         >
                             <Route exact={true} path='/faq' component={Faq} />
                             <Route exact={true} path='/privacypolicy' component={PrivacyPolicy} />

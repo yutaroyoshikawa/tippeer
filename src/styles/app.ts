@@ -22,5 +22,11 @@ export const GlobalStyle = createGlobalStyle`
       
     .switch-wrapper > div {
         position: absolute;
+        width: 100vw;
+    }
+
+    .switch-wrapper > section {
+        position: absolute;
+        width: 100vw;
     }
 `
