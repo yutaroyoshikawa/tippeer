@@ -90,6 +90,8 @@ export const PerformanceTime = styled.li`
     .shuffle-text-char {
         animation: 0.5s ease-in-out both ${myWordEnter};
     }
+
+    
 `
 
 export const PerformancePlaceName = styled.li`
@@ -101,4 +103,6 @@ export const PerformancePlaceName = styled.li`
 
 export const Map = styled.div`
     z-index: 0;
+    width: 100vw;
+    height: 100vh;
 `
