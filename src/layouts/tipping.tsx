@@ -27,9 +27,7 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
         document.title = 'TIPPEER | Tipping'
         this.props.dispatch(setMobileMenuState('tipping'))
-        if (this.props.match.params.tippingToken) {
-            this.props.dispatch(actions.requestGetTippingPerformance(this.props.match.params.tippingToken))
-        }
+        this.props.dispatch(actions.requestGetTopQR(this.props.match.params.tippingToken))
     }
 
     public componentWillUnmount() {
@@ -75,7 +73,6 @@ export default class extends React.Component<IProps, {}> {
                     }
                 </Motion>
             </div>
-
             :
             <Styled.Entire>
                 投げ銭はモバイル端末またはタブレット端末からのみご利用いただけます。
