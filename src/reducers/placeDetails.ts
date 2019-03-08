@@ -29,26 +29,29 @@ export interface IPlaceDetailsState {
 }
 
 const initialReducePlaceDetailsState: IPlaceDetails = {
-    address: '東京都小金井市関野町１丁目１３−１',
+    address: '',
     geoPlace: {
         latitude: 0,
         longitude: 0,
     },
     isFind: false,
     isLoad: false,
-    performaces: [],
-    placeName: '小金井公園',
-    postalcode: '184-0001',
+    performaces: new Array(),
+    placeName: '',
+    postalcode: '',
 }
 
 export default reducerWithInitialState(initialReducePlaceDetailsState)
     .case(actions.requestFindPlaceInfo, (state: IPlaceDetails): IPlaceDetails => ({
         ...state,
+        isFind: false,
         isLoad: true,
     }))
     .case(actions.findPlaceInfo, (state: IPlaceDetails, payload): IPlaceDetails => ({
         ...state,
         ...payload,
+        isFind: true,
+        isLoad: false,
     }))
     .case(actions.notFindPlaceInfo, (state: IPlaceDetails): IPlaceDetails => ({
         ...state,
