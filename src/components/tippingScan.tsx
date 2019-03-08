@@ -1,5 +1,7 @@
+import jsQR from 'jsqr'
 import * as React from 'react'
 import QrReader from 'react-qr-reader'
+import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/tipping'
 import { ITippingState } from '../reducers/tipping'
@@ -11,8 +13,6 @@ export interface IProps extends ITippingState {
 }
 
 export default class extends React.Component<IProps, {}> {
-    private qrScannerRef: any
-
     constructor(props: IProps) {
         super(props)
     }
@@ -20,14 +20,6 @@ export default class extends React.Component<IProps, {}> {
     public onError = (e: any) => {
         this.props.dispatch(actions.faildLoadScanner())
     }
-
-    public onLoadImage = () => (
-        this.qrScannerRef ?
-            this.refs.o
-            :
-            alert(this.qrScannerRef)
-        
-    )
 
     public onScan = (result: string) => (
         result ?
@@ -47,19 +39,55 @@ export default class extends React.Component<IProps, {}> {
             null
     )
 
+    public hundleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        const image = new Image()
+        let data: Uint8ClampedArray = new Uint8ClampedArray()
+        const getImageSize = () => {
+            const width = image.naturalWidth
+            const height = image.naturalHeight
+            const result = jsQR(data, width, height)
+            if(result){
+                this.props.dispatch(actions.successScanQR(result.data))
+            }
+        }
+        if (files && files[0]) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                if(reader.result && files && typeof reader.result === 'string'){
+                    image.src = reader.result.toString()
+                    
+                }else{
+                    data = new Uint8ClampedArray(reader.result as any)
+                }
+            }
+            reader.readAsDataURL(files[0])
+            reader.readAsArrayBuffer(files[0])
+            image.onloadend = getImageSize
+        }
+        e.target.value = ''
+    }
+
     public renderScaner = () => (
         !this.props.tipping.isLegacyMode ?
             <QrReader
-                ref={(ref: any) => {this.qrScannerRef = ref}}
-                onError={this.onError.bind(this,)}
-                onImageLoad={this.onScan.bind(this,)}
-                onLoad={this.onLoad.bind(this,)}
-                onScan={this.onScan.bind(this,)}
+                onError={this.onError}
+                onImageLoad={this.onScan}
+                onLoad={this.onLoad}
+                onScan={this.onScan}
                 style={{ width: '80vw', height: '80vw' }}
                 legacyMode={this.props.tipping.isLegacyMode}
             />
             :
-            <button onClick={this.onLoadImage.bind(this,)}>イメージから読み込む</button>
+            <label style={{ cursor: 'pointer' }}>
+                        <div style={{ padding: '5px 0', width: '100%', textAlign: 'center', border: 'solid 1px #555', borderRadius: '10px', cursor: 'pointer' }}>データを指定</div>
+                <input
+                    style={{ display: 'none' }}
+                    type="file"
+                    accept='image/*'
+                    onChange={this.hundleChangeInput}
+                />
+            </label>
     )
 
     public render() {
@@ -67,6 +95,7 @@ export default class extends React.Component<IProps, {}> {
             <Styled.Section>
                 {this.renderScaner()}
                 {this.renderLoader()}
+                <Link to="tipping/m6SBwnNc0sqRGp8jJJtzT">リンク</Link>
             </Styled.Section>
         )
     }

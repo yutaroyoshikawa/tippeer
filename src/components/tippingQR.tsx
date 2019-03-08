@@ -60,7 +60,7 @@ export default class extends React.Component<IProps, {}> {
                     <Styled.QR>
                         <Styled.QRSection>
                             <QRCode
-                                value={'http://tippeer.app/tipping/' + this.props.manageQR.performance.tippingHash}
+                                value={'https://tippeer.app/tipping/' + this.props.manageQR.performance.tippingHash}
                                 size={window.innerHeight * 0.55}
                             />
                         </Styled.QRSection>
