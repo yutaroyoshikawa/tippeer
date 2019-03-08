@@ -1,15 +1,28 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Img from 'react-image'
 import { Link } from 'react-router-dom'
+import transition from 'styled-transition-group'
 import styled, { createGlobalStyle, keyframes } from './styled-components'
 
 const myWordEnter = keyframes`
     0% {
         opacity: 0;
-        transform: translate(0%, 0) scale(1);
+        transform: translate(0%, 0) scale(1.5);
     }
 
     100% {
         opacity: 1;
         transform: translate(0, 0) scale(1);
+    }
+`
+
+const slideIn = keyframes`
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 `
 
@@ -20,7 +33,6 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const Menu = styled.ul`
-    
     @media screen and (min-width: 1024px){
         font-size: 40px;
         list-style: none;
@@ -55,7 +67,6 @@ export const PlaceInfo = styled.div`
     height: ${props => props.itemProp === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'};
     position: absolute;
     right: 0;
-    top: 50px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -74,8 +85,21 @@ export const PlaceInfo = styled.div`
         align-items: flex-start;
         width: 100%;
         background: rgba(0, 0, 0, 0.2);
-        padding-left: 10px; 
+        padding-left: 10px;
     }
+`
+
+export const performanceThumb = styled.div`
+    @media screen and (min-width: 1024px){
+        width: 300px;
+    }
+    @media screen and (max-width: 480px){
+        width: 50vw;
+    }
+`
+
+export const thumbImage = styled(Img)`
+    width: 100%;
 `
 
 export const PerformanceName = styled.li`
@@ -90,8 +114,6 @@ export const PerformanceTime = styled.li`
     .shuffle-text-char {
         animation: 0.5s ease-in-out both ${myWordEnter};
     }
-
-    
 `
 
 export const PerformancePlaceName = styled.li`
@@ -104,5 +126,66 @@ export const PerformancePlaceName = styled.li`
 export const Map = styled.div`
     z-index: 0;
     width: 100vw;
+    height: ${props => props.itemProp === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'};
+`
+
+export const Window = transition.section.attrs({
+    timeout: 200,
+    unmountOnExit: true,
+  })`
+    &:enter {
+        opacity: 0.01;
+    }
+    &:enter-active {
+        opacity: 1;
+        transition: opacity 200ms ease-in;
+    }
+    &:exit { 
+        opacity: 1;
+    }
+    &:exit-active {
+        opacity: 0.01;
+        transition: opacity 200ms ease-in;
+    }
+
+    width: 100vw;
     height: 100vh;
+    position: fixed;
+    z-index: 999999999999;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const List = styled.ul`
+    display: flex;
+    list-style: none;
+`
+
+export const Card = styled.li`
+    margin: 0 50px;
+    transform: translateX(100vw);
+    animation: ${slideIn} 500ms ease ${props => props.itemProp}ms 1 forwards;
+`
+
+export const WindowTitle = styled.div`
+    color: #FFF;
+    position: fixed;
+    top: 50px;
+    left: 100px;
+`
+
+export const WindowCloser = styled.div`
+    position: fixed;
+    right: 100px;
+    top: 50px;
+    color: #FFF;
+`
+
+export const Cancel = styled(FontAwesomeIcon)`
+    width: 100%;
+    font-size: 50px;
 `
