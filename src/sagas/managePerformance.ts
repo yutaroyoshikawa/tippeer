@@ -6,7 +6,7 @@ import * as notifications from 'react-notification-system-redux'
 import { SagaIterator } from 'redux-saga'
 import { call, fork, put, select, take } from 'redux-saga/effects'
 import * as actions from '../actions/managePerformance'
-import { IRegistPerformance } from '../reducers/managePerformance'
+import { IPlace, IRegistPerformance } from '../reducers/managePerformance'
 import firebaseSaga from './firebase'
 
 function* doGetRegistedPerformances(): SagaIterator {
@@ -65,7 +65,7 @@ function* doRegistPerformanceWorker(): SagaIterator {
                 'performances/' + performanceId, 
                 new Object({
                     artist_id: userId,
-                    comments: [],
+                    comments: new Array(),
                     discription: registData.discription,
                     finish: registData.finish,
                     geo_locate: placeInfo.geo_place,
@@ -75,6 +75,7 @@ function* doRegistPerformanceWorker(): SagaIterator {
                     postal_code: placeInfo.postal_code,
                     start: registData.start,
                     thumbnail: thumbUrl,
+                    tipping: new Array(),
                     tipping_token: '',
                 }),
                 {
@@ -117,7 +118,27 @@ function* doRegistPerformanceWorker(): SagaIterator {
     }
 }
 
+function* doGetPlaceSelection(): SagaIterator {
+    while(true) {
+        yield take(actions.requestGetPlaces)
+        try {
+            const snapshot: firestore.QuerySnapshot = yield call(firebaseSaga.firestore.getCollection, 'places/')
+            const places: IPlace[] = new Array()
+            snapshot.forEach(doc => (
+                places.push({
+                    label: doc.data().name,
+                    value: doc.id,
+                })
+            ))
+            yield put(actions.successGetPlaces(places))
+        }catch(e) {
+            yield put(actions.faildGetPlaces(e))
+        }
+    }
+}
+
 export default [
     fork(doRegistPerformanceWorker),
     fork(doGetRegistedPerformances),
+    fork(doGetPlaceSelection),
 ]
