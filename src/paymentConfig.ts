@@ -54,14 +54,18 @@ const getConfig = (paymentDetail: PaymentDetailsInit) => ({
 
             data: {
                 countryCode: 'JP',
-                merchantCapabilities: ['supportsDebit'],
-                merchantIdentifier: 'merchant.com.example',
+                merchantCapabilities: ["supports3DS", "supportsCredit", "supportsDebit"],
+                merchantIdentifier: 'org.webkit.demo',
                 supportedNetworks: ['masterCard', 'visa', 'jcb'],
                 version: 3,
             },
             supportedMethods: 'https://apple.com/apple-pay',
         },
     ],
+
+    onMerchantValidation: (event: any): void => {
+        event.complete('');
+    },
 
     onShowFail: (error) => null,
 
