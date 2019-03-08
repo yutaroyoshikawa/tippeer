@@ -104,10 +104,55 @@ function* doGetPerformances(): SagaIterator {
     }
 }
 
+function* doGetReccomend(): SagaIterator {
+    while(true) {
+        yield take(actions.requestLoadRecommend)
+        try {
+            const snapshot: firestore.QuerySnapshot = yield call(firebaseSaga.firestore.getCollection, 'performances')
+            const performances: string[] = new Array()
+            snapshot.forEach(performance => performances.push(performance.id))
+            yield put(actions.successLoadRecommend(performances))
+        }catch(e) {
+            yield put(actions.faildLoadRecommend(e))
+        }
+    }
+}
+
+function* doGetNearby(): SagaIterator {
+    while(true) {
+        yield take(actions.requestLoadNearby)
+        try {
+            const snapshot: firestore.QuerySnapshot = yield call(firebaseSaga.firestore.getCollection, 'performances')
+            const performances: string[] = new Array()
+            snapshot.forEach(performance => performances.push(performance.id))
+            yield put(actions.successLoadNearby(performances))
+        }catch(e) {
+            yield put(actions.faildLoadNearby(e))
+        }
+    }
+}
+
+function* doGetFollowing(): SagaIterator {
+    while(true) {
+        yield take(actions.requestLoadFollower)
+        try {
+            const snapshot: firestore.QuerySnapshot = yield call(firebaseSaga.firestore.getCollection, 'users')
+            const users: string[] = new Array()
+            snapshot.forEach(user => users.push(user.id))
+            yield put(actions.successLoadFollower(users))
+        }catch(e) {
+            yield put(actions.faildLoadFollower(e))
+        }
+    }
+}
+
 export default [
     fork(doPlayEffectWorker),
     fork(doPeriodicEffectWorker),
     fork(doPeriodicEffect2Worker),
     fork(doPeriodicEffect3Worker),
     fork(doGetPerformances),
+    fork(doGetReccomend),
+    fork(doGetNearby),
+    fork(doGetFollowing),
 ]

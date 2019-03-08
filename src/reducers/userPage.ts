@@ -16,7 +16,12 @@ export interface IMapPerformance {
 
 export interface IUserPage {
     flyTo: number
-    recommendperformances: number[]
+    recommendPerformances: string[]
+    nearbyPerformances: string[]
+    followingArtist: string[]
+    isHideWindow: boolean
+    isLoadWindow: boolean
+    selectedWindow: 'recommend' | 'nearby' | 'following'
     transitionType: 'rotate' | 'fly'
     initialMapPerformances: IMapPerformance[]
     viewport: ViewState
@@ -30,6 +35,7 @@ export interface IUserPage {
         placeName: string
     }
     isEffectPlaying: boolean
+    isLoad: boolean
 }
 
 export interface IUserPageState {
@@ -38,42 +44,13 @@ export interface IUserPageState {
 
 const initialReduceUserPageState: IUserPage = {
     flyTo: 0,
-    initialMapPerformances: [
-        {
-            artistId: 'hoge',
-            finish: new Date(),
-            latitude: 35.71706,
-            longitude: 139.517882,
-            performanceId: 'hoge',
-            performanceName: 'hoge',
-            performanceThumbnail: 'hoge',
-            placeName: 'hoge',
-            start: new Date(),
-        },
-        {
-            artistId: 'huga',
-            finish: new Date(),
-            latitude: 35.571013,
-            longitude: 139.770478,
-            performanceId: 'hoge',
-            performanceName: 'huga',
-            performanceThumbnail: 'hoge',
-            placeName: 'hoge',
-            start: new Date(),
-        },
-        {
-            artistId: 'piyo',
-            finish: new Date(),
-            latitude: 35.7007,
-            longitude: 139.574491,
-            performanceId: 'hoge',
-            performanceName: 'piyo',
-            performanceThumbnail: 'hoge',
-            placeName: 'hoge',
-            start: new Date(),
-        },
-    ],
+    followingArtist: new Array(),
+    initialMapPerformances: new Array(),
     isEffectPlaying: false,
+    isHideWindow: true,
+    isLoad: false,
+    isLoadWindow: false,
+    nearbyPerformances: new Array(),
     nowPerformance: {
         artistId: '',
         finish: new Date(),
@@ -83,7 +60,8 @@ const initialReduceUserPageState: IUserPage = {
         placeName: '',
         start: new Date(),
     },
-    recommendperformances: [1, 2, 3, 4, 5, 6, 7, 8],
+    recommendPerformances: [],
+    selectedWindow: 'recommend',
     transitionType: 'rotate',
     viewport: {
         bearing: 0,
@@ -135,13 +113,7 @@ export default reducerWithInitialState(initialReduceUserPageState)
     .case(actions.setPerformanceInfo, (state: IUserPage): IUserPage => ({
         ...state,
         nowPerformance: {
-            artistId: state.initialMapPerformances[state.flyTo].artistId,
-            finish: state.initialMapPerformances[state.flyTo].finish,
-            performanceId: state.initialMapPerformances[state.flyTo].performanceId,
-            performanceName: state.initialMapPerformances[state.flyTo].performanceName,
-            performanceThumbnail: state.initialMapPerformances[state.flyTo].performanceThumbnail,
-            placeName: state.initialMapPerformances[state.flyTo].placeName,
-            start: state.initialMapPerformances[state.flyTo].start,
+            ...state.initialMapPerformances[state.flyTo],
         }
     }))
     .case(actions.playEffect, (state: IUserPage): IUserPage => ({
@@ -151,5 +123,64 @@ export default reducerWithInitialState(initialReduceUserPageState)
     .case(actions.endEffect, (state: IUserPage): IUserPage => ({
         ...state,
         isEffectPlaying: false,
+    }))
+    .case(actions.requestGetRealPerformance, (state: IUserPage): IUserPage => ({
+        ...state,
+        isLoad: true,
+    }))
+    .case(actions.successGetRealPerformance, (state: IUserPage, payload): IUserPage => ({
+        ...state,
+        initialMapPerformances: payload,
+        isLoad: false,
+        viewport: {
+            ...state.viewport,
+            latitude: payload[0].latitude,
+            longitude: payload[0].longitude,
+        }
+    }))
+    .case(actions.faildGetRealPerformance, (state: IUserPage): IUserPage => ({
+        ...state,
+        isLoad: false,
+    }))
+    .case(actions.successLoadFollower, (state: IUserPage, payload): IUserPage => ({
+        ...state,
+        followingArtist: payload,
+        isLoadWindow: false,
+    }))
+    .case(actions.successLoadNearby, (state: IUserPage, payload): IUserPage => ({
+        ...state,
+        isLoadWindow: false,
+        nearbyPerformances: payload,
+    }))
+    .case(actions.successLoadRecommend, (state: IUserPage, payload): IUserPage => ({
+        ...state,
+        isLoadWindow: false,
+        recommendPerformances: payload,
+    }))
+    .case(actions.openWindow, (state: IUserPage): IUserPage => ({
+        ...state,
+        isHideWindow: false,
+        isLoadWindow: true,
+    }))
+    .case(actions.closeWindow, (state: IUserPage): IUserPage => ({
+        ...state,
+        isHideWindow: true,
+        isLoadWindow: false,
+    }))
+    .case(actions.faildLoadFollower, (state: IUserPage): IUserPage => ({
+        ...state,
+        isLoadWindow: false,
+    }))
+    .case(actions.faildLoadNearby, (state: IUserPage): IUserPage => ({
+        ...state,
+        isLoadWindow: false,
+    }))
+    .case(actions.faildLoadRecommend, (state: IUserPage): IUserPage => ({
+        ...state,
+        isLoadWindow: false,
+    }))
+    .case(actions.setSelectedWindow, (state: IUserPage, payload): IUserPage => ({
+        ...state,
+        selectedWindow: payload,
     }))
     .build()
