@@ -1,3 +1,4 @@
+import * as dateformat from 'dateformat'
 import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 import * as React from 'react'
@@ -105,8 +106,8 @@ export class PerformanceCard extends React.Component<IProps, IState> {
                 <Styled.PerformanceInfo>
                     <Link to={"/performances/" + this.props.performanceId}  >
                         <Styled.PerformanceName>{this.state.performanceTitle}</Styled.PerformanceName>
-                        <Styled.Start>{this.state.start.toString()}</Styled.Start>
-                        <Styled.Finish>{this.state.finish.toString()}</Styled.Finish>
+                        <Styled.Start>{dateformat(this.state.start, 'yyyy/mm/dd hh:MM')}</Styled.Start>
+                        <Styled.Finish>{dateformat(this.state.finish, 'yyyy/mm/dd hh:MM')}</Styled.Finish>
                     </Link>
                     <Link to={"/places/" + this.state.placeId}>
                         <Styled.PlaceInfo>{this.state.placeName}</Styled.PlaceInfo>

@@ -1,4 +1,5 @@
 import { faBell, faComments, faHistory, faPaintBrush, faStar } from '@fortawesome/free-solid-svg-icons';
+import * as dateformat from 'dateformat'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
@@ -105,7 +106,19 @@ export default class extends React.Component<IProps, IState> {
                             </Styled.MobileArtistCard>
                         </Styled.ArtistInfo>
                         <Styled.FunctionList>
-                            <Styled.UsuallyButton><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.subscribeState ? actions.successUnsubscribe() : actions.successSubscribe() )}><Styled.MarkColor itemScope={this.props.artistDetails.subscribeState} ><Styled.RegistrationMark icon={faStar}/></Styled.MarkColor><span>登録</span></button></Styled.UsuallyButton>
+                            <Styled.UsuallyButton>
+                                <button
+                                    onClick={
+                                        this.props.dispatch.bind(this,
+                                            this.props.artistDetails.subscribeState ?
+                                                actions.requestUnfollow(this.props.match.params.artistId)
+                                                :
+                                                actions.requestUnfollow(this.props.match.params.artistId)
+                                            )
+                                    }
+                                    disabled={this.props.artistDetails.isLoadFollow}
+                                >
+                            <Styled.MarkColor itemScope={this.props.artistDetails.subscribeState} ><Styled.RegistrationMark icon={faStar}/></Styled.MarkColor><span>登録</span></button></Styled.UsuallyButton>
                             <Styled.UsuallyButton><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.notifyState ? actions.successUnnotify() : actions.successNotify() )}><Styled.MarkColor itemScope={this.props.artistDetails.notifyState} ><Styled.RegistrationMark icon={faBell} /></Styled.MarkColor><span>通知</span></button></Styled.UsuallyButton>
                             <Styled.UsuallyButton><button><Link to={'/artists/' + this.props.match.params.artistId + '/works'}><Styled.LinkMark icon={faPaintBrush} /><span>作品</span></Link></button></Styled.UsuallyButton>
                             <Styled.OfferButton><button onClick={this.setOfferboxState.bind(this,)}><Styled.LinkMark icon={faComments} /><span>オファー</span></button></Styled.OfferButton>
@@ -124,8 +137,8 @@ export default class extends React.Component<IProps, IState> {
                                     </Styled.RecentlyPerformanceTitle>
                                     <Styled.PerformanceName>{this.props.artistDetails.recentlyPerformance.title}</Styled.PerformanceName>
                                     <Styled.RecentlyPerformanceInfo>
-                                        <Styled.Start>{this.props.artistDetails.recentlyPerformance.start.toString()}</Styled.Start>
-                                        <Styled.Finish>{this.props.artistDetails.recentlyPerformance.finish.toString()}</Styled.Finish>
+                                        <Styled.Start>{dateformat(this.props.artistDetails.recentlyPerformance.start, 'yyyy/mm/dd hh:MM')}</Styled.Start>
+                                        <Styled.Finish>{dateformat(this.props.artistDetails.recentlyPerformance.finish, 'yyyy/mm/dd hh:MM')}</Styled.Finish>
                                     </Styled.RecentlyPerformanceInfo>
                                     <Styled.PerformanceDescriptionBox>
                                         <Styled.PerformanceDescription>{this.props.artistDetails.recentlyPerformance.description}</Styled.PerformanceDescription>
