@@ -72,6 +72,7 @@ export default reducerWithInitialState(initialReduceUserMenuState)
     }))
     .case(actions.successGetTippingPerformance, (state: ITipping, payload): ITipping => ({
         ...state,
+        componentState: 'result',
         isFindPerformance: true,
         isLoadPerformance: false,
         performance: payload,
