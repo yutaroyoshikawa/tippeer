@@ -6,7 +6,7 @@ import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
 import { setCommentType } from '../actions/commentBox'
 import { setMobileMenuState } from '../actions/mobileMenu'
-import { ArticleTitle, ArtistCard, CommentBox, PerformanceCard } from '../components'
+import { ArticleTitle, ArtistCard, CommentBox, CommentList, PerformanceCard } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
 import { NotFound } from './'
 
@@ -49,7 +49,7 @@ export default class extends React.Component<IProps, IState> {
     public renderPerformanceCard = () => (
         this.props.artistDetails.performanceHistories.map((id, key) => (
             <Styled.ListElements key={key}>
-                <PerformanceCard performanceId={'hoge'} />
+                <PerformanceCard performanceId={id.id} />
             </Styled.ListElements>
         ))
     )
@@ -86,7 +86,7 @@ export default class extends React.Component<IProps, IState> {
     public render() {
         return(
             this.props.artistDetails.findArtist ?
-                <section>
+                <section style={{position: 'absolute', top: 0, width: '100vw'}}>
                     <Styled.GlobalStyle />
                     <Styled.TopSection itemProp={this.props.artistDetails.topImage}>
                         <Styled.ArtistInfo>
@@ -113,13 +113,27 @@ export default class extends React.Component<IProps, IState> {
                                             this.props.artistDetails.subscribeState ?
                                                 actions.requestUnfollow(this.props.match.params.artistId)
                                                 :
-                                                actions.requestUnfollow(this.props.match.params.artistId)
+                                                actions.requestFollow(this.props.match.params.artistId)
                                             )
                                     }
                                     disabled={this.props.artistDetails.isLoadFollow}
                                 >
-                            <Styled.MarkColor itemScope={this.props.artistDetails.subscribeState} ><Styled.RegistrationMark icon={faStar}/></Styled.MarkColor><span>登録</span></button></Styled.UsuallyButton>
-                            <Styled.UsuallyButton><button onClick={this.props.dispatch.bind(this, this.props.artistDetails.notifyState ? actions.successUnnotify() : actions.successNotify() )}><Styled.MarkColor itemScope={this.props.artistDetails.notifyState} ><Styled.RegistrationMark icon={faBell} /></Styled.MarkColor><span>通知</span></button></Styled.UsuallyButton>
+                            <Styled.MarkColor
+                                itemScope={this.props.artistDetails.subscribeState}
+                            ><Styled.RegistrationMark icon={faStar}/></Styled.MarkColor><span>登録</span></button></Styled.UsuallyButton>
+                            <Styled.UsuallyButton>
+                                <button
+                                    onClick={
+                                        this.props.dispatch.bind(this,
+                                            this.props.artistDetails.notifyState?
+                                                actions.requestUnnotify()
+                                                :
+                                                actions.requestNotify()
+                                        )
+                                    }
+                                    disabled={this.props.artistDetails.isLoadNotify}
+                                >
+                            <Styled.MarkColor itemScope={this.props.artistDetails.notifyState} ><Styled.RegistrationMark icon={faBell} /></Styled.MarkColor><span>通知</span></button></Styled.UsuallyButton>
                             <Styled.UsuallyButton><button><Link to={'/artists/' + this.props.match.params.artistId + '/works'}><Styled.LinkMark icon={faPaintBrush} /><span>作品</span></Link></button></Styled.UsuallyButton>
                             <Styled.OfferButton><button onClick={this.setOfferboxState.bind(this,)}><Styled.LinkMark icon={faComments} /><span>オファー</span></button></Styled.OfferButton>
                             <Styled.BiographyButton><button onClick={this.setBiographyState.bind(this,)}><Styled.LinkMark icon={faHistory} /><span>バイオグラフィー</span></button></Styled.BiographyButton>
@@ -162,7 +176,9 @@ export default class extends React.Component<IProps, IState> {
                                 <div>
                                     <CommentBox />
                                 </div>
-                                {/* <CommentList type={'performance'} initialPerformanceComments={this.props.artistDetails.recentlyPerformanceComments} initialWorksComments={null} dark={false} /> */}
+                                <div style={{width: '90%', overflowY: 'scroll', webkitOverFlowScrolling: 'touch', margin: '0 auto', height: '300px'}}>
+                                    <CommentList type={'performance'} initialPerformanceComments={this.props.artistDetails.recentlyPerformance.comments} initialWorksComments={null} dark={false} />
+                                </div>
                             </Styled.PerformanceComment>
                         </Styled.RecentPerformanceBox>  
                     </Styled.RecentPerformanceSection>

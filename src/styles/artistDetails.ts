@@ -27,7 +27,7 @@ export const ArtistInfo = styled.div`
     @media screen and (min-width: 1024px){
         display: inline-block;
         background: rgba(255, 255, 255, 0.8);
-        padding: 80px 0;
+        padding: 80px 50px;
         margin: 10vh 0;
         width: 700px;
     }
@@ -317,6 +317,7 @@ export const PerformanceDescriptionBox = styled.div`
     word-break: break-word;
     @media screen and (min-width: 1024px){
         width: 450px;
+        padding-right: 100px;
     }
     @media screen and (max-width: 480px){
         width: 95%;

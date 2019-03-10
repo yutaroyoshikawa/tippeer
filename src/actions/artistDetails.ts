@@ -22,6 +22,7 @@ export interface IInitGetInfo {
     subscribeCount: number
     topImage: string
     biography: IBiography[]
+    uid: string
 }
 
 interface IUserSettings {
@@ -50,6 +51,7 @@ export interface IArtistDetails {
     selfIntroduction: string
     subscribeCount: number
     topImage: string
+    uid: string
 }
 
 interface IGetPerformance {
@@ -96,11 +98,21 @@ export const successSubscribe =                 actionCreator('SUCCESS_SUBSCRIBE
 export const requestUnsubscribe =               actionCreator<{userId: string, artistId: string}>('REQUEST_UNSUBSCRIBE')
 export const successUnsubscribe =               actionCreator('SUCCESS_UNSUBSCRIBE')
 
-export const requestNotify =                    actionCreator<{userId: string, artistId: string}>('REQUEST_NOTIFY')
+export const requestNotify =                    actionCreator('REQUEST_NOTIFY')
 export const successNotify =                    actionCreator('SUCCESS_NOTIFY')
+export const faildNotify =                      actionCreator('FAILD_NOTIFY')
 
-export const requestUnnotify =                  actionCreator<{userId: string, artistId: string}>('REQUEST_UNNOTIFY')
+export const requestUnnotify =                  actionCreator('REQUEST_UNNOTIFY')
 export const successUnnotify =                  actionCreator('SUCCESS_UNNOTIFY')
+export const faildUnnotify =                    actionCreator('FAILD_UNNOTIFY')
 
 export const getBiography =                     actionCreator<{artistId: string}>('GET_BIOGRAPHY')
 export const successBiography =                 actionCreator<IBiography[]>('SUCCESS_BIOGRAPHY')
+
+export const requestFollow =                    actionCreator<string>('REQUEST_FOLLOW')
+export const successFollow =                    actionCreator('SUCCESS_FOLLOW')
+export const faildFollow =                      actionCreator<any>('FAILD_FOLLOW')
+
+export const requestUnfollow =                  actionCreator<string>('REQUEST_UNFOLLOW')
+export const successUnfollow =                  actionCreator('SUCCESS_UNFOLLOW')
+export const faildUnfollow =                    actionCreator<any>('FAILD_UNFOLLOW')
