@@ -5,6 +5,8 @@ import Auth from './auth'
 import CommentBox from './commentBox'
 import Cropper from './cropper'
 import FireStore from './fireStore'
+import GlobalMenu from './globalMenu'
+import ManageArtist from './manageArtist'
 import ManagePerformance from './managePerformance'
 import ManageQR from './manageQR'
 import ManageWorks from './manageWorks'
@@ -17,7 +19,7 @@ import TippingQR from './tippingQR'
 import UserMenu from './userMenu'
 import UserPage from './userPage'
 import WorksDetails from './worksDetails'
-
+import WorksTop from './worksTop'
 
 export default function* (): SagaIterator{
   yield all([
@@ -26,6 +28,8 @@ export default function* (): SagaIterator{
     ...CommentBox,
     ...Cropper,
     ...FireStore,
+    ...GlobalMenu,
+    ...ManageArtist,
     ...ManagePerformance,
     ...ManageQR,
     ...ManageWorks,
@@ -38,5 +42,6 @@ export default function* (): SagaIterator{
     ...UserMenu,
     ...UserPage,
     ...WorksDetails,
+    ...WorksTop,
   ])
 }
