@@ -1,7 +1,7 @@
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import * as d3Ease from 'd3-ease'
 import * as dateformat from 'dateformat'
-import DeckGL, { HexagonLayer } from 'deck.gl'
 import { fromJS } from 'immutable';
 import * as mapbox from 'mapbox-gl'
 import * as React from 'react'
@@ -25,12 +25,7 @@ if (process.env.REACT_APP_MAPBOX_ACCESS_TOKEN) {
     (mapbox as typeof mapbox).accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 }
 
-const data = [
-    [35.6588, 139.6972],
-]
-
 export default class extends React.Component<IProps, {}> {
-
     constructor(props: IProps) {
         super(props)
     }
@@ -75,6 +70,14 @@ export default class extends React.Component<IProps, {}> {
         })
     )
 
+    public hexagonLayer = () => (
+        fromJS(
+            [
+                {COORDINATES: [35.3750655, 139.4633761]}
+            ]
+        )
+    )
+
     public onTransitionEnd = () => {
         this.props.dispatch(
             userPageActions.setTransitionType(
@@ -102,17 +105,6 @@ export default class extends React.Component<IProps, {}> {
 
     public onViewportChange = (viewportData: map.ViewState) => (
         this.props.dispatch(userPageActions.setViewPort(viewportData))
-    )
-
-    public renderLayer = () => (
-        new HexagonLayer({
-            data,
-            elevationScale: 4,
-            extruded: false,
-            id: 'heatmap',
-            pickable: false,
-            radius: 200,
-        })
     )
 
     public hundleRecommendClick = () => {
@@ -210,28 +202,29 @@ export default class extends React.Component<IProps, {}> {
     )
 
     public renderMapBox = () => (
-        <DeckGL
-            layers={this.renderLayer()}
-            viewState={this.props.userPage.viewport}
-        >
-            <MapGL
-                {...this.props.userPage.viewport}
-                width='100%'
-                height={this.props.globalMenu.agent === 'undefined' ? 'calc(100vh - 150px)' : 'calc(100vh - 100px)'}
-                mapStyle='mapbox://styles/mapbox/dark-v9'
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-                transitionDuration={10000}
-                transitionEasing={d3Ease.easeCubicOut}
-                transitionInterpolator={new map.FlyToInterpolator()}
-                onLoad={this.OnRotate.bind(this,)}
-                onViewportChange={this.onViewportChange.bind(this,)}
-                onTransitionEnd={this.onTransitionEnd.bind(this,)}
-                dragPan={false}
-                doubleClickZoom={false}
-                dragRotate={false}
-                scrollZoom={false}
-            />
-        </DeckGL>
+        <MapGL
+            {...this.props.userPage.viewport}
+            width='100%'
+            height={this.props.globalMenu.agent === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'}
+            mapStyle='mapbox://styles/mapbox/dark-v9'
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            transitionDuration={10000}
+            transitionEasing={d3Ease.easeCubicOut}
+            transitionInterpolator={new map.FlyToInterpolator()}
+            onLoad={this.OnRotate.bind(this,)}
+            onViewportChange={this.onViewportChange.bind(this,)}
+            onTransitionEnd={this.onTransitionEnd.bind(this,)}
+            dragPan={false}
+            doubleClickZoom={false}
+            dragRotate={false}
+            scrollZoom={false}
+        />
+    )
+
+    public renderLoadingThumb = () => (
+        <Styled.LoadingImage>
+            <CircularProgress />
+        </Styled.LoadingImage>
     )
 
     public render() {
@@ -250,7 +243,10 @@ export default class extends React.Component<IProps, {}> {
                             <ShuffleText content={this.props.userPage.nowPerformance.performanceName} />
                         </Styled.PerformanceName>
                         <Styled.performanceThumb>
-                            <Styled.thumbImage src={this.props.userPage.nowPerformance.performanceThumbnail} />
+                            <Styled.thumbImage
+                                src={this.props.userPage.nowPerformance.performanceThumbnail}
+                                loader={this.renderLoadingThumb()}
+                            />
                         </Styled.performanceThumb>
                         <div>
                             <Styled.PerformanceTime>
