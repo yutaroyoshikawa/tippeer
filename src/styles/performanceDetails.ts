@@ -1,8 +1,17 @@
-import styled, { createGlobalStyle } from './styled-components'
+import styled, { createGlobalStyle, keyframes } from './styled-components'
 
 export const GlobalStyle = createGlobalStyle`
     body {
         background: #FFF;
+    }
+`
+
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 `
 
@@ -62,6 +71,8 @@ export const PerformanceInfo = styled.div`
     @media screen and (max-width: 480px){
         margin-top: -100px;
     }
+    opacity: 0;
+    animation: ${fadeIn} 3500ms ease forwards;
 `
 
 export const TopPerformanceInfo = styled.div`
@@ -114,7 +125,15 @@ export const PerformanceDetails = styled.div`
 `
 
 export const PerformanceTitle = styled.div`
-    color: #FFF;
+    font-weight: normal;
+
+    @media screen and (min-width: 1024px){
+        font-size: 60px;
+    }
+    @media screen and (max-width: 480px){
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
 `
 
 export const Start = styled.p`

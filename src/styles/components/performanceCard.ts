@@ -1,10 +1,21 @@
-import styled from '../styled-components'
+import styled, { keyframes } from '../styled-components'
+
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+`
 
 export const Entire = styled.article`
     background: #FFF;
     filter: drop-shadow(0 0 2px #555);
     width: 200px;
     border-radius: 8px;
+    opacity: 0;
+    animation: ${fadeIn} 100ms ease forwards;
 `
 
 export const PerformanceThumbnail = styled.img`

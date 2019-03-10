@@ -36,7 +36,7 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return(
             this.props.performanceDetails.findPerformance ?
-                <div>
+                <section style={{position: 'absolute', top: 0, width: '100vw'}}>
                     <Styled.GlobalStyle />
                     <Styled.TopSection itemProp={this.props.performanceDetails.thumbnail}>
                         <Styled.PerformanceInfo>
@@ -79,7 +79,7 @@ export default class extends React.Component<IProps, {}> {
                             <CommentList type={'performance'} initialWorksComments={null} initialPerformanceComments={this.props.performanceDetails.comments} dark={false} />
                         </Styled.CommentList>
                     </Styled.BottomSection>
-                </div>
+                </section>
                 :
                 <NotFound />
         )

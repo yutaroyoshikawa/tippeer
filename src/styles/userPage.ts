@@ -26,6 +26,16 @@ const slideIn = keyframes`
     }
 `
 
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+`
+
 export const GlobalStyle = createGlobalStyle`
     body {
         background: #FFF;
@@ -57,6 +67,7 @@ export const Menu = styled.ul`
 
 export const MenuList = styled.li`
     margin-bottom: 25px;
+    cursor: pointer;
 `
 
 export const MenuLink = styled(Link)`
@@ -99,7 +110,9 @@ export const performanceThumb = styled.div`
 `
 
 export const thumbImage = styled(Img)`
+    opacity: 0;
     width: 100%;
+    animation: ${fadeIn} 200ms ease forwards;
 `
 
 export const PerformanceName = styled.li`
@@ -188,4 +201,18 @@ export const WindowCloser = styled.div`
 export const Cancel = styled(FontAwesomeIcon)`
     width: 100%;
     font-size: 50px;
+`
+
+export const LoadingImage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media screen and (min-width: 1024px){
+        width: 300px;
+        height: 300px;
+    }
+    @media screen and (max-width: 480px){
+        width: 50vw;
+    }
+    background-color: #FFF;
 `

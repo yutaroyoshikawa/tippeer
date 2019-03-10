@@ -67,7 +67,7 @@ export default class extends React.Component<IProps, IState> {
 
     public render() {
         return(
-            <section>
+            <section style={{position: 'absolute', top: 0, width: '100vw'}}>
                 <Styled.GlobalStyle />
                 <Styled.FaqTitle>
                     <ArticleTitle title={'よくある質問'} color={'light'} />

@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `
 
-export const Entire = styled.div`
+export const Entire = styled.section`
     width: 100%;
     background-color: #FFF;
     position: relative;

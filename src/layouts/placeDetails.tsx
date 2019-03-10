@@ -92,7 +92,7 @@ export default class extends React.Component<IProps, {}> {
     public render() {
         return (
             this.props.placeDetails.isFind ?
-            <section>
+            <section style={{position: 'absolute', top: 0, width: '100vw'}}>
                 <Styled.GlobalStyle />
                 <Styled.StreetViewSection>
                     <Styled.PlaceInfo>

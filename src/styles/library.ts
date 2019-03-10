@@ -6,7 +6,7 @@ export const Global = createGlobalStyle`
     }
 `
 
-export const Entire = styled.div`
+export const Entire = styled.section`
     position: relative;
 `
 

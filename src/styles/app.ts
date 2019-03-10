@@ -16,17 +16,5 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 17px;
     }
 
-    .switch-wrapper {
-        position: relative;
-    }
-      
-    .switch-wrapper > div {
-        position: absolute;
-        width: 100vw;
-    }
 
-    .switch-wrapper > section {
-        position: absolute;
-        width: 100vw;
-    }
 `

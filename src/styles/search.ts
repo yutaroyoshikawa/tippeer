@@ -1,6 +1,6 @@
 import { Hits } from 'react-instantsearch-dom'
 import { Link } from 'react-router-dom'
-import styled, { createGlobalStyle } from './styled-components'
+import styled, { createGlobalStyle, keyframes } from './styled-components'
 
 export const GlobalStyle = createGlobalStyle`
     body {
@@ -15,9 +15,20 @@ export const GlobalStyle = createGlobalStyle`
     }
 `
 
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+`
+
 export const Result = styled.div`
+    opacity: 0;
     width: 100%;
     position: relative;
+    animation: ${fadeIn} 200ms ease forwards;
 `
 
 export const PerformanceTitle = styled.div`
@@ -103,7 +114,7 @@ export const Entire = styled.div`
 `
 
 export const ArtistEntire = styled.article`
-    
+    animation: ${fadeIn} 200ms ease forwards;
     text-align: center;
 `
 export const ArtistCard = styled.figure`
