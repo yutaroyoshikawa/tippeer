@@ -10,7 +10,6 @@ import * as Styled from '../styles/components/tippingQR'
 import { ArtistCard, CommentList } from './'
 
 import TipperLogo from 'src/TipperLogo.svg'
-import BackgroundImg from 'src/topImage.jpg'
 
 export interface IProps extends IManageState, IGlobalMenuState, IManageQRState {
     dispatch: Dispatch<any>
@@ -47,7 +46,7 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return (
-            <Styled.Entire title={BackgroundImg}>
+            <Styled.Entire title={this.props.manageQR.performance.thumbnail}>
                 <Styled.LeftSection>
                     <Styled.TippingMessage>
                         <Styled.LogoSpace>
