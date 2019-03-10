@@ -14,15 +14,21 @@ export interface IProps extends IInitialLoadState {
     dispatch: Dispatch<any>
 }
 
+const stopScroll = (e: TouchEvent) => {
+    e.preventDefault()
+}
+
 export default class extends React.Component<IProps, {}> {
     constructor(props: IProps) {
         super(props)
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual'
+        }
+        window.scrollTo(0, 0)
     }
 
     public componentDidMount() {
-        window.addEventListener('touchmove', e => {
-            e.preventDefault()
-        }, { passive: false })
+        window.addEventListener('touchmove', e => stopScroll.bind(this,), {passive: false} )
         const sound = new Howl({
             src: ['']
         })
@@ -32,12 +38,11 @@ export default class extends React.Component<IProps, {}> {
             sound.play()
         }
         document.addEventListener(eventName, initAudioContext)
+        
     }
 
     public componentWillUnmount() {
-        window.removeEventListener('touchmove', e => {
-            e.preventDefault()
-        })
+        window.removeEventListener('touchmove', e => stopScroll.bind(this,), false)
     }
 
     public setIsMusic = (isMusic: boolean) => {
