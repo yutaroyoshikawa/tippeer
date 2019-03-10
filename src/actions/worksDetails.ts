@@ -6,18 +6,17 @@ interface IWorksInfo {
     worksTitle: string
     artistId: string
     worksThumbnail: string
-    price: number
+    entirePrice: number
     description: string
     contents: []
     comments: []
-    score: number
 }
 
 interface IBaseWorksInfo {
     worksTitle: string
     artistId: string
     worksThumbnail: string
-    price: number
+    entirePrice: number
     description: string
 }
 

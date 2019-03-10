@@ -1,8 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/worksDetails'
 
-import thumbnail from '../popVirus.jpg'
-
 export interface IContents {
     title: string
     artistId: string
@@ -28,7 +26,7 @@ interface IWorksDetails {
     worksTitle: string
     artistId: string
     worksThumbnail: string
-    price: number
+    entirePrice: number
     score: number
     description: string
     contents: IContents[]
@@ -42,64 +40,16 @@ export interface IWorksDetailsState {
 }
 
 const initialReduceUserMenuState: IWorksDetails = {
-    artistId: 'hoge',
-    comments: [
-        {
-            content: 'hogehugapiyofoo',
-            createdAt: new Date('12/12/12'),
-            score: 4,
-            updatedAt: new Date('12/12/12'),
-            userId: 'hoge',
-        },
-        {
-            content: 'hogehugapiyofoo',
-            createdAt: new Date('12/12/12'),
-            score: 4,
-            updatedAt: new Date('12/12/12'),
-            userId: 'hoge',
-        },
-        {
-            content: 'hogehugapiyofoo',
-            createdAt: new Date('12/12/12'),
-            score: 4,
-            updatedAt: new Date('12/12/12'),
-            userId: 'hoge',
-        },
-    ],
-    contents: [
-        {
-            artistId: 'hoge',
-            price: 300,
-            title: 'hoge',
-        },
-        {
-            artistId: 'hoge',
-            price: 300,
-            title: 'hogehogehoge',
-        },
-        {
-            artistId: 'hoge',
-            price: 300,
-            title: 'hogehoge',
-        },
-        {
-            artistId: 'hoge',
-            price: 300,
-            title: 'hoge',
-        },
-        {
-            artistId: 'hoge',
-            price: 300,
-            title: 'hoge',
-        },
-    ],
-    description: 'One way to announce or promote a certain new product or special events is perhaps through using of vinyl banners. Large or small size of printing these vinyl banners are can be able to print and in many types of weather it can hold up extremely well.',
+    artistId: '',
+    comments: new Array(),
+    contents: new Array(),
+    description: '',
+    entirePrice: 0,
     isFind: false,
     isLoad: false,
-    price: 1200,
     score: 0,
-    worksThumbnail: thumbnail,
-    worksTitle: 'POP VIRUS',
+    worksThumbnail: '',
+    worksTitle: '',
 }
 
 
@@ -136,5 +86,9 @@ export default reducerWithInitialState(initialReduceUserMenuState)
     .case(actions.setContents, (state: IWorksDetails, payload): IWorksDetails => ({
         ...state,
         contents: payload,
+    }))
+    .case(actions.addNewWorksComment, (state: IWorksDetails, payload): IWorksDetails => ({
+        ...state,
+        comments: payload,
     }))
     .build()

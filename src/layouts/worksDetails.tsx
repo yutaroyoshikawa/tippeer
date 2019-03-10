@@ -83,78 +83,81 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return (
-            <Styled.Entire>
-                <Styled.GlobalStyle theme={{ image: this.props.worksDetails.worksThumbnail }} />
-                <Styled.WorksInfo>
-                    <Styled.TopWorksInfo>
-                        <Styled.WorksThumbnail>
-                            <Styled.InnerWorksThumbnail>
-                                <img style={{ width: '100%' }} src={this.props.worksDetails.worksThumbnail} alt="worksThumbnail" />
-                            </Styled.InnerWorksThumbnail>
-                        </Styled.WorksThumbnail>
-                        <Styled.WorksDetails>
-                            <Styled.WorksTitle>{this.props.worksDetails.worksTitle}</Styled.WorksTitle>
-                            <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} color={'dark'} link={true} />
-                            <Styled.DesktopPriceCard>
-                                <PriceCard
-                                    type={'ellipse'}
-                                    price={this.props.worksDetails.price}
-                                    size={30}
-                                    config={paymentConfig(
-                                        {
-                                            total: {
-                                                amount: {
-                                                    currency: 'JPY',
-                                                    value: this.props.worksDetails.price.toString(),
-                                                },
-                                                label: this.props.worksDetails.worksTitle,
-                                            },
-                                        }
-                                    )}
-                                />
-                            </Styled.DesktopPriceCard>
-                            <Styled.MobilePriceCard>
-                                <PriceCard
-                                    type={'ellipse'}
-                                    price={this.props.worksDetails.price}
-                                    size={18}
-                                    config={paymentConfig(
-                                        {
-                                            total: {
-                                                amount: {
-                                                    currency: 'JPY',
-                                                    value: this.props.worksDetails.price.toString(),
-                                                },
-                                                label: this.props.worksDetails.worksTitle,
-                                            },
-                                        }
-                                    )}
-                                />
-                            </Styled.MobilePriceCard>
-                            <Styled.DesktopScore>
-                                {this.renderScore(this.props.worksDetails.score, 40)}
-                            </Styled.DesktopScore>
-                            <Styled.MobileScore>
-                                {this.renderScore(this.props.worksDetails.score, 25)}
-                            </Styled.MobileScore>
-                        </Styled.WorksDetails>
-                    </Styled.TopWorksInfo>
-                    <Styled.Description>{this.props.worksDetails.description}</Styled.Description>
-                    <Styled.ContentSection>
-                        <ArticleTitle title={'Contents'} color={'dark'} />
-                        <Styled.ContentList>
-                            {this.renderContents()}
-                        </Styled.ContentList>
-                    </Styled.ContentSection>
-                </Styled.WorksInfo>
+            <Styled.Entire itemProp={this.props.worksDetails.worksThumbnail}>
+                <div style={{ width: '100vw', position: 'relative', zIndex: 5, display: 'flex', justifyContent: 'center' }}>
+                    <div>
+                        <Styled.WorksInfo>
+                            <Styled.TopWorksInfo>
+                                <Styled.WorksThumbnail>
+                                    <Styled.InnerWorksThumbnail>
+                                        <img style={{ width: '100%' }} src={this.props.worksDetails.worksThumbnail} alt="worksThumbnail" />
+                                    </Styled.InnerWorksThumbnail>
+                                </Styled.WorksThumbnail>
+                                <Styled.WorksDetails>
+                                    <Styled.WorksTitle>{this.props.worksDetails.worksTitle}</Styled.WorksTitle>
+                                    <ArtistCard artistId={this.props.worksDetails.artistId} size={50} style={'card'} nameHidden={false} color={'dark'} link={true} />
+                                    <Styled.DesktopPriceCard>
+                                        <PriceCard
+                                            type={'ellipse'}
+                                            price={this.props.worksDetails.entirePrice}
+                                            size={30}
+                                            config={paymentConfig(
+                                                {
+                                                    total: {
+                                                        amount: {
+                                                            currency: 'JPY',
+                                                            value: this.props.worksDetails.entirePrice.toString(),
+                                                        },
+                                                        label: this.props.worksDetails.worksTitle,
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                    </Styled.DesktopPriceCard>
+                                    <Styled.MobilePriceCard>
+                                        <PriceCard
+                                            type={'ellipse'}
+                                            price={this.props.worksDetails.entirePrice}
+                                            size={18}
+                                            config={paymentConfig(
+                                                {
+                                                    total: {
+                                                        amount: {
+                                                            currency: 'JPY',
+                                                            value: this.props.worksDetails.entirePrice.toString(),
+                                                        },
+                                                        label: this.props.worksDetails.worksTitle,
+                                                    },
+                                                }
+                                            )}
+                                        />
+                                    </Styled.MobilePriceCard>
+                                    <Styled.DesktopScore>
+                                        {this.renderScore(this.props.worksDetails.score, 40)}
+                                    </Styled.DesktopScore>
+                                    <Styled.MobileScore>
+                                        {this.renderScore(this.props.worksDetails.score, 25)}
+                                    </Styled.MobileScore>
+                                </Styled.WorksDetails>
+                            </Styled.TopWorksInfo>
+                            <Styled.Description>{this.props.worksDetails.description}</Styled.Description>
+                            <Styled.ContentSection>
+                                <ArticleTitle title={'Contents'} color={'dark'} />
+                                <Styled.ContentList>
+                                    {this.renderContents()}
+                                </Styled.ContentList>
+                            </Styled.ContentSection>
+                        </Styled.WorksInfo>
 
-                <Styled.CommentSection>
-                    <ArticleTitle title={'Comments'} color={'dark'} />
-                    <CommentBox />
-                    <Styled.Comments>
-                        <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} dark={true} />
-                    </Styled.Comments>
-                </Styled.CommentSection>
+                        <Styled.CommentSection>
+                            <ArticleTitle title={'Comments'} color={'dark'} />
+                            <CommentBox />
+                            <Styled.Comments>
+                                <CommentList initialWorksComments={this.props.worksDetails.comments} initialPerformanceComments={null} type={'works'} dark={true} />
+                            </Styled.Comments>
+                        </Styled.CommentSection>
+                    </div>
+                </div>
             </Styled.Entire>
         )
     }

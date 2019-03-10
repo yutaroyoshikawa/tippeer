@@ -1,50 +1,43 @@
-import styled, { createGlobalStyle } from './styled-components'
+import styled from './styled-components'
 
-export const GlobalStyle = createGlobalStyle`
-    body {
-        background: url(${props => props.theme.image}) no-repeat center;
-        background-size: cover;
-    }
-
-    body::before {
-        content: '';
-        background: inherit;
-        filter: blur(10px);
-        position: fixed;
-        z-index: -1;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-    }
-`
-
-export const Entire = styled.div`
+export const Entire = styled.section`
+    display: flex;
+    justify-content: center;
     color: #FFF;
-    @media screen and (min-width: 1024px){
-        width: 1020px;
-        margin: 0 auto;
-    }
-    @media screen and (max-width: 480px){
-        width: 100%;
-    }
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    width: 100vw;
 
     &::before {
         content: '';
-        filter: blur(10px);
-        background: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
         position: fixed;
-        z-index: -1;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-      }
+        z-index: -100;
+        background: url('${props => props.itemProp}') no-repeat center;
+        background-size: cover;
+    }
+    
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(17px);
+    }
+     
 `
 
 export const WorksInfo = styled.section`
     @media screen and (min-width: 1024px){
-        width: 100%;
+        width: 1020px;
         height: 100vh;
         display: flex;
         flex-direction: column;

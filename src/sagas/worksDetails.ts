@@ -16,9 +16,8 @@ function* doGetWorksInfo(): SagaIterator {
                     artistId: worksInfo.artist_id,
                     comments: worksInfo.comments,
                     contents: worksInfo.contents,
-                    description: worksInfo.description,
-                    price: worksInfo.price,
-                    score: worksInfo.Score,
+                    description: worksInfo.discription,
+                    entirePrice: worksInfo.entire_price,
                     worksThumbnail: worksInfo.thumbnail,
                     worksTitle: worksInfo.name,
                 }
@@ -91,7 +90,7 @@ function* doSetBaseWorksInfo(): SagaIterator {
             {
                 artistId: worksInfo.artistId,
                 description: worksInfo.description,
-                price: worksInfo.price,
+                entirePrice: worksInfo.entirePrice,
                 worksThumbnail: worksInfo.worksThumbnail,
                 worksTitle: worksInfo.worksTitle,
             }
