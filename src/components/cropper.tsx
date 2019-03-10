@@ -24,7 +24,7 @@ export default class extends React.Component<IProps, IState> {
  
     public cropping() {
         if(this.cropRef.getCroppedCanvas()) {
-            const data = this.cropRef.getCroppedCanvas({width: 400, height: 400}).toDataURL().toString()
+            const data = this.cropRef.getCroppedCanvas(this.props.cropper.type === 'artistTop' ? {width: 1920, height: 1080} : {width: 400, height: 400}).toDataURL().toString()
             this.props.dispatch(actions.onCrop(data))
         }
     }
@@ -42,7 +42,7 @@ export default class extends React.Component<IProps, IState> {
                 <Styled.Crop
                     itemType={this.props.cropper.type}
                     src={this.props.cropper.data}
-                    aspectRatio={1 / 1}
+                    aspectRatio={this.props.cropper.type === 'artistTop' ? 16 / 9 : 1 / 1}
                     guides={true}
                     ref={(cropper: any) => this.cropRef = cropper}
                     viewMode={1}
