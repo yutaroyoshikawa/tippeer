@@ -1,6 +1,7 @@
 import { SagaIterator } from 'redux-saga'
 import { fork, put, select, take } from 'redux-saga/effects'
 import { cropType, onCrop } from '../actions/cropper'
+import { setRegistArtistThumb } from '../actions/manageArtist'
 import { setRegistPerformanceThumb } from '../actions/managePerformance'
 import { setRegistWorksThumb } from '../actions/manageWorks'
 
@@ -15,6 +16,8 @@ function* setCroppedDataWorker(): SagaIterator {
                 yield put(setRegistPerformanceThumb(croppedData))
             case 'works' :
                 yield put(setRegistWorksThumb(croppedData))
+            case 'artistTop' :
+                yield put(setRegistArtistThumb(croppedData))
         }
     }
 }
