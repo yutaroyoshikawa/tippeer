@@ -6,7 +6,7 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/manage'
 import { IArtistManagementPage, IManageState } from '../reducers/manage'
-import { ManagePerformance, ManageQR, ManageWorks } from './'
+import { ManageArtist, ManagePerformance, ManageQR, ManageWorks } from './'
 // import * as Styled from '../styles/tipping'
 
 
@@ -81,7 +81,7 @@ export default class extends React.Component<IProps, {}> {
             case 'works' :
                 return(<ManageWorks />)
             case 'artistInfo' :
-                return(null)
+                return(<ManageArtist />)
         }
     }
 
