@@ -34,7 +34,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.Score>
                     <ScoreStyled.ScoreBox>
                         <Rating
-                            initialRating={3}
+                            initialRating={this.props.commentBox.rate}
                             emptySymbol={<StarBorder />}
                             fullSymbol={<Star />}
                             onChange={this.hundleScoreChange}
@@ -44,7 +44,7 @@ export default class extends React.Component<IProps, {}> {
                 <Styled.MobileScore>
                     <ScoreStyled.ScoreBox>
                         <Rating
-                            initialRating={3}
+                            initialRating={this.props.commentBox.rate}
                             emptySymbol={<StarBorder />}
                             fullSymbol={<Star />}
                             onChange={this.hundleScoreChange}
