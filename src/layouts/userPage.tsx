@@ -6,6 +6,7 @@ import { fromJS } from 'immutable';
 import * as mapbox from 'mapbox-gl'
 import * as React from 'react'
 import MapGL, * as map from 'react-map-gl'
+import { Link } from 'react-router-dom'
 // import { Marker } from 'react-map-gl'
 import ShuffleText from 'react-shuffle-text'
 import { Dispatch } from 'redux'
@@ -238,28 +239,30 @@ export default class extends React.Component<IProps, {}> {
                         <Styled.MenuList onClick={this.hundleNearbyClick}>近くのパフォーマンス</Styled.MenuList>
                         <li onClick={this.hundleFollowingClick}>フォローアーティスト</li>
                     </Styled.Menu>
-                    <Styled.PlaceInfo itemProp={this.props.globalMenu.agent}>
-                        <Styled.PerformanceName>
-                            <ShuffleText content={this.props.userPage.nowPerformance.performanceName} />
-                        </Styled.PerformanceName>
-                        <Styled.performanceThumb>
-                            <Styled.thumbImage
-                                src={this.props.userPage.nowPerformance.performanceThumbnail}
-                                loader={this.renderLoadingThumb()}
-                            />
-                        </Styled.performanceThumb>
-                        <div>
-                            <Styled.PerformanceTime>
-                                <ShuffleText content={dateformat(this.props.userPage.nowPerformance.start, 'yyyy/mm/dd hh:MM')} />
-                            </Styled.PerformanceTime>
-                            <Styled.PerformanceTime>
-                                <ShuffleText content={dateformat(this.props.userPage.nowPerformance.finish, 'yyyy/mm/dd hh:MM')} />
-                            </Styled.PerformanceTime>
-                            <Styled.PerformancePlaceName>
-                                <ShuffleText content={this.props.userPage.nowPerformance.placeName} />
-                            </Styled.PerformancePlaceName>
-                        </div>
-                    </Styled.PlaceInfo>
+                    <Link to={'/performances/' + this.props.userPage.nowPerformance.performanceId} >
+                        <Styled.PlaceInfo itemProp={this.props.globalMenu.agent}>
+                            <Styled.PerformanceName>
+                                <ShuffleText content={this.props.userPage.nowPerformance.performanceName} />
+                            </Styled.PerformanceName>
+                            <Styled.performanceThumb>
+                                <Styled.thumbImage
+                                    src={this.props.userPage.nowPerformance.performanceThumbnail}
+                                    loader={this.renderLoadingThumb()}
+                                />
+                            </Styled.performanceThumb>
+                            <div>
+                                <Styled.PerformanceTime>
+                                    <ShuffleText content={dateformat(this.props.userPage.nowPerformance.start, 'yyyy/mm/dd hh:MM')} />
+                                </Styled.PerformanceTime>
+                                <Styled.PerformanceTime>
+                                    <ShuffleText content={dateformat(this.props.userPage.nowPerformance.finish, 'yyyy/mm/dd hh:MM')} />
+                                </Styled.PerformanceTime>
+                                <Styled.PerformancePlaceName>
+                                    <ShuffleText content={this.props.userPage.nowPerformance.placeName} />
+                                </Styled.PerformancePlaceName>
+                            </div>
+                        </Styled.PlaceInfo>
+                    </Link>
                     <Styled.Map itemProp={this.props.globalMenu.agent}>
                         {this.renderMapBox()}
                     </Styled.Map>
