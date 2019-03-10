@@ -7,7 +7,6 @@ export const Entire = styled.div`
     align-items: center;
     justify-content: space-around;
     height: 100vh;
-    background-color: #FFF;
     background: url(${props => props.title}) no-repeat center;
     background-size: cover;
     z-index: 1;
@@ -15,8 +14,17 @@ export const Entire = styled.div`
     &::before {
         content: '';
         background: inherit;
-        background-color: rgba(0, 0, 0, 0.4);
         filter: blur(17px);
+        position: fixed;
+        z-index: 2;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+    }
+    &::after {
+        content: '';
+        background-color: rgba(0, 0, 0, 0.7);
         position: fixed;
         z-index: 2;
         top: -20px;
