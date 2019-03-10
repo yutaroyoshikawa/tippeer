@@ -30,7 +30,7 @@ let getWorksInfo: any = (Id: string) => {
                 resolve(
                     {
                         artistId: doc.data().artist_id,
-                        price: doc.data().price,
+                        price: doc.data().entire_price,
                         worksName: doc.data().name,
                         worksThumbnail: doc.data().thumbnail,
                     }
