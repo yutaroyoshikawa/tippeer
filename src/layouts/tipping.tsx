@@ -12,7 +12,7 @@ export interface IProps extends ITippingState, IGlobalMenuState {
     dispatch: Dispatch<any>
     match: {
         params: {
-            tippingToken: string
+            tippingToken: string | undefined
         }
     }
 }
@@ -27,7 +27,9 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
         document.title = 'TIPPEER | Tipping'
         this.props.dispatch(setMobileMenuState('tipping'))
-        this.props.dispatch(actions.requestGetTopQR(this.props.match.params.tippingToken))
+        if(this.props.match.params.tippingToken){
+            this.props.dispatch(actions.requestGetTopQR(this.props.match.params.tippingToken))
+        }
     }
 
     public componentWillUnmount() {
