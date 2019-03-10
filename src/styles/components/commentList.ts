@@ -1,4 +1,27 @@
-import styled from '../styled-components'
+import styled, { css, keyframes } from '../styled-components'
+
+const slideDown = keyframes`
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+`
+
+const slideInAnim = css`
+    transform: translateY(-100px);
+    animation: ${slideDown} 1000ms ease forwards;
+`
+
+export const ListWrapper = styled.div`
+    ${
+        props => props.itemScope ?
+            slideInAnim
+            :
+            null
+    }
+`
 
 export const Entire = styled.ul`
     list-style: none;

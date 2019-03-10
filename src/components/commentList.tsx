@@ -35,7 +35,7 @@ export class CommentList extends React.Component<IProps, {}> {
         this.props.type === 'works' ?
             this.props.initialWorksComments !== null ?
                 this.props.initialWorksComments.map((data, key) => (
-                    <div key={key}>
+                    <Styled.ListWrapper key={key}>
                         <Styled.Commnet>
                             <Styled.CommentElements>
                                 <Styled.Artist><ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} color={'dark'} link={false} /></Styled.Artist>
@@ -59,13 +59,21 @@ export class CommentList extends React.Component<IProps, {}> {
                                     : null
                                 : null
                         }
-                    </div>
+                    </Styled.ListWrapper>
                 ))
                 : null
             :
             this.props.initialPerformanceComments !== null ?
                 this.props.initialPerformanceComments.map((data, key) => (
-                    <div key={key}>
+                    <Styled.ListWrapper
+                        key={key}
+                        itemScope={
+                            this.props.initialPerformanceComments ?
+                                this.props.initialPerformanceComments.length === key ? true : false
+                                :
+                                false
+                        }
+                    >
                         <Styled.Commnet>
                             <Styled.CommentElements>
                                 <Styled.Artist>{<ArtistCard artistId={data.userId} style={'standalone'} size={50} nameHidden={true} color={'dark'} link={false} />}</Styled.Artist>
@@ -88,7 +96,7 @@ export class CommentList extends React.Component<IProps, {}> {
                                     : null
                                 : null
                         }
-                    </div>
+                    </Styled.ListWrapper>
                 ))
                 : null
     )
