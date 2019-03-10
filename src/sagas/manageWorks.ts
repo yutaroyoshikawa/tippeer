@@ -8,7 +8,7 @@ import { call, fork, put, select, take } from 'redux-saga/effects'
 import * as actions from '../actions/manageWorks'
 import { IRegistedContent, IRegistedWorks, IRegistWorks } from '../reducers/manageWorks'
 import firebaseSaga from './firebase'
-import { uploadFile } from './storage'
+// import { uploadFile } from './storage'
 
 function* doGetRegistedWorks(): SagaIterator {
     while (true) {
@@ -47,7 +47,7 @@ function* doRegistWorksWorker(): SagaIterator {
         const worksId: string = nanoid()
         const thumbFileName: string = nanoid() + '.png'
         const thumbPath = '/images/works/' + thumbFileName
-        let registedContents: IRegistedContent[] = new Array()
+        const registedContents: IRegistedContent[] = new Array()
         try {
             let thumbUrl: string = ''
             if (registData.thumbData) {
@@ -55,10 +55,10 @@ function* doRegistWorksWorker(): SagaIterator {
                 yield task
                 thumbUrl = yield call(firebaseSaga.storage.getDownloadURL, thumbPath)
             }
-            registData.works.map( function* (works) {
-                registedContents = yield registedContents.concat(
+            registData.works.map((works) => {
+                registedContents.push(
                     {
-                        data: yield call(uploadFile, works.data),
+                        data: '',
                         name: works.title,
                         price: works.price,
                     }
