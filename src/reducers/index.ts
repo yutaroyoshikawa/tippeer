@@ -10,6 +10,7 @@ import globalMenu from './globalMenu'
 import initialLoad from './initialLoad'
 import library from './library'
 import manage from './manage'
+import manageArtist from './manageArtist'
 import managePerformance from './managePerformance'
 import manageQR from './manageQR'
 import manageWorks from './manageWorks'
@@ -37,6 +38,7 @@ export default combineReducers({
     initialLoad,
     library,
     manage,
+    manageArtist,
     managePerformance,
     manageQR,
     manageWorks,
