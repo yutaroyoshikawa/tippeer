@@ -1,6 +1,7 @@
 import actionCreatorFactory from 'typescript-fsa'
 const actionCreator = actionCreatorFactory()
-import { IWorksTop } from '../reducers/worksTop'
+import { IWorkses } from '../reducers/worksTop'
 
-export const getInitInfo =         actionCreator('GET_INIT_INFO')
-export const successInitInfo =     actionCreator<IWorksTop>('SUCCESS_INIT_INFO')
+export const requestGetWorksTopInfo = actionCreator('REQUEST_GET_WORKS_TOP_INFO')
+export const successGetWorksTopInfo = actionCreator<IWorkses>('SUCCESS_GET_WORKS_TOP_INFO')
+export const faildGetWorksTopInfo   = actionCreator<any>('FAILD_GET_WORKS_TOP_INFO')

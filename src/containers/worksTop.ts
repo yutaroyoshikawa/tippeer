@@ -8,7 +8,7 @@ type AllState = ReturnType<typeof store.getState>
 
 const mapStateToProps = (state: AllState) => {
     return {
-        worksTop: state.worksTop.worksTop
+        worksTop: state.worksTop,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch })
