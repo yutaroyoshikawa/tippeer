@@ -11,10 +11,10 @@ function* doGetRecentPerformance(): SagaIterator {
         yield take(actions.requestGetManageQrPerformance)
         const state = yield select()
         const artistId: string = state.auth.id
-        const now = new Date()
-        const max = now.setDate(now.getDate() + 1)
+        // const now = new Date()
+        // const max = now.setDate(now.getDate() + 1)
         try {
-            const ref = firestore().collection('performances').where('start', '>', new Date(max)).where('artist_id', '==', artistId)
+            const ref = firestore().collection('performances').where('artist_id', '==', artistId)
             const snapshot: firestore.QuerySnapshot = yield call(firebaseSaga.firestore.getCollection, ref)
             let performances: IPerformance = {
                 comments: new Array(),

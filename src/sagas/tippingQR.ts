@@ -13,8 +13,8 @@ import firebaseSaga from './firebase'
 function* doCheckQRWorker(): SagaIterator {
     while (true) {
         yield take(openQR)
-        // const state = yield select()
-        const id: string = 'yGDRmCMUFqqcaDHymVL4R'
+        const state = yield select()
+        const id: string = state.manageQR.performance.id
         const task = yield fork(
             firebaseSaga.firestore.syncDocument,
             'performances/' + id,
@@ -48,8 +48,8 @@ function* setNewComment(): SagaIterator {
 function* doCheckTippingWorker(): SagaIterator {
     while (true) {
         yield take(openQR)
-        // const state = yield select()
-        const id: string = 'yGDRmCMUFqqcaDHymVL4R'
+        const state = yield select()
+        const id: string = state.manageQR.performance.id
         const task = yield fork(
             firebaseSaga.firestore.syncDocument,
             'performances/' + id,
@@ -62,7 +62,8 @@ function* doCheckTippingWorker(): SagaIterator {
 
 function* doGenerateToken(): SagaIterator {
     while (true) {
-        const id: string = 'yGDRmCMUFqqcaDHymVL4R'
+        const state = yield select()
+        const id: string = state.manageQR.performance.id
         const hashId: string = nanoid()
         yield call(
             firebaseSaga.firestore.updateDocument,
@@ -71,7 +72,7 @@ function* doGenerateToken(): SagaIterator {
             hashId
         )
         yield put(setNewSyncToken(hashId))
-        yield delay(600000)
+        yield delay(60000)
     }
 }
 
@@ -81,6 +82,16 @@ function* hundleGenerateToken(): SagaIterator {
         const task = yield fork(doGenerateToken)
         yield take(closeQR)
         yield cancel(task)
+        const state = yield select()
+        const id: string = state.manageQR.performance.id
+        const hashId: string = ''
+        yield call(
+            firebaseSaga.firestore.updateDocument,
+            'performances/' + id,
+            'tipping_token',
+            hashId
+        )
+        yield put(setNewSyncToken(hashId))
     }
 }
 
