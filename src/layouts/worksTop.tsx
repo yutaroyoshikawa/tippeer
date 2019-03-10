@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/mobileMenu'
+import * as actions from '../actions/worksTop'
 import { ArticleTitle } from '../components'
 import { ArtistCard, WorksCard } from '../components'
 import { IWorksTopState } from '../reducers/worksTop'
@@ -20,6 +21,7 @@ export default class extends React.Component<IProps, {}> {
     public componentDidMount() {
         document.title = 'TIPPEER | Works'
         this.props.dispatch(setMobileMenuState('works'))
+        this.props.dispatch(actions.requestGetWorksTopInfo())
     }
 
     public componentWillUnmount() {
@@ -60,7 +62,7 @@ export default class extends React.Component<IProps, {}> {
 
     public render() {
         return(
-            <div>
+            <section style={{position: 'absolute', top: 0, width: '100vw'}}>
                 <Styled.GlobalStyle />
                 <Styled.TopSection>
                     <Styled.TopFollowArtists>
@@ -158,7 +160,7 @@ export default class extends React.Component<IProps, {}> {
                         {this.renderRanking()}
                     </Styled.CardContents>
                 </section>
-            </div>
+            </section>
         )
     }
 }
