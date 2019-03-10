@@ -1,4 +1,5 @@
 import actionCreatorFactory from 'typescript-fsa'
+import { IPlace } from '../reducers/managePerformance'
 
 const actionCreator = actionCreatorFactory()
 
@@ -34,3 +35,7 @@ export const faildRegistPerformance =           actionCreator<string>('FAILD_REG
 export const requestGetRegistedPerformances =   actionCreator('REQUEST_GET_REGISTED_PERFORMANCES')
 export const successGetRegistedPerformances =   actionCreator<IPerformance[]>('SUCCESS_GET_REGISTED_PERFORMANCES')
 export const faildGetRegistedPerformances =     actionCreator('FAILD_GET_REGISTED_PERFORMANCES')
+
+export const requestGetPlaces =                 actionCreator('REQUEST_GET_PLACES')
+export const successGetPlaces =                 actionCreator<IPlace[]>('SUCCESS_GET_PLACES')
+export const faildGetPlaces =                   actionCreator<any>('FAILD_GET_PLACES')

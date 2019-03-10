@@ -12,8 +12,14 @@ export interface IRegistPerformance {
     isOpenRegist: boolean
 }
 
+export interface IPlace {
+    value: string
+    label: StringConstructor
+}
+
 interface IManagePerformance {
     regist: IRegistPerformance
+    placeSelection: IPlace[]
     isLoad: boolean
     registed: actions.IPerformance[]
 }
@@ -24,6 +30,7 @@ export interface IManagePerformanceState {
 
 const initialReduceManageState: IManagePerformance = {
     isLoad: false,
+    placeSelection: new Array(),
     regist: {
         discription: '',
         finish: new Date(),
@@ -141,5 +148,9 @@ export default reducerWithInitialState(initialReduceManageState)
             ...state.regist,
             isOpenRegist: false,
         }
+    }))
+    .case(actions.successGetPlaces, (state: IManagePerformance, payload): IManagePerformance => ({
+        ...state,
+        placeSelection: payload,
     }))
     .build()

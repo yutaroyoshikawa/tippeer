@@ -30,6 +30,7 @@ export default class extends React.Component<IProps, {}> {
 
     public componentDidMount = () => {
         this.props.dispatch(performanceActions.requestGetRegistedPerformances())
+        this.props.dispatch(performanceActions.requestGetPlaces())
     }
 
     public hundleClickDialog = () => (
@@ -120,11 +121,7 @@ export default class extends React.Component<IProps, {}> {
                             パフォーマンス場所
                         </Typography>
                         <Select
-                            options={
-                                [
-                                    { value: 'hoge', label: '小金井公園' },
-                                ]
-                            }
+                            options={this.props.managePerformance.placeSelection}
                             onChange={this.setPlaceId}
                         />
                     </div>
