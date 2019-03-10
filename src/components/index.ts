@@ -25,6 +25,7 @@ export { ManageQR } from '../containers/manageQR'
 export { ManagePerformance } from '../containers/managePerformance'
 export { ManageWorks } from '../containers/manageWorks'
 export { InitialLoad } from '../containers/initialLoad'
+export { ManageArtist } from '../containers/manageArtist'
 
 /*
 template
