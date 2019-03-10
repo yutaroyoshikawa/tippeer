@@ -37,6 +37,36 @@ function* doGetTippingPerformanceWorker(): SagaIterator {
     }
 }
 
+function* doGetTopQR(): SagaIterator {
+    while (true) {
+        const tippingToken = yield take(actions.requestGetTopQR)
+        try {
+            const token: string = tippingToken.payload
+            const snapshot = yield call(getTippingPerformance, token)
+            const performance = snapshot.data()
+            yield put(actions.successGetTippingPerformance(
+                {
+                    artistId: performance.artist_id,
+                    finish: performance.finish.toDate(),
+                    id: snapshot.id,
+                    name: performance.name,
+                    start: performance.start.toDate(),
+                }
+            ))
+        } catch (e) {
+            yield put(actions.setComponent('top'))
+            yield put(notifications.error(
+                {
+                    autoDismiss: 10,
+                    message: 'パフォーマンスの取得に失敗しました。',
+                    position: 'tr',
+                }
+            ))
+            yield put(actions.faildGetTippingPerformance())
+        }
+    }
+}
+
 function* doCheckTipping() {
     while(true) {
         const paying = yield take(actions.setIsBack)
@@ -84,4 +114,5 @@ function* doCheckTipping() {
 export default [
     fork(doGetTippingPerformanceWorker),
     fork(doCheckTipping),
+    fork(doGetTopQR),
 ]
