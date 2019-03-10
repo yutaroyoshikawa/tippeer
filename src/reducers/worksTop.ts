@@ -1,83 +1,80 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from '../actions/worksTop'
 
-import sampleImage from '../popVirus.jpg'
+export interface ISpotlight {
+    worksId: string,
+    thumbnail: string,
+    artistId: string,
+    worksTitle: string
+}
 
-export interface IWorksTop {
+export interface IWorkses {
     spotlight: [
-        {
-            worksId: number,
-            thumbnail: string,
-            artistId: string,
-            worksTitle: string
-        },
-        {
-            worksId: number,
-            thumbnail: string,
-            artistId: string,
-            worksTitle: string
-        },
-        {
-            worksId: number,
-            thumbnail: string,
-            artistId: string,
-            worksTitle: string
-        },
-        {
-            worksId: number,
-            thumbnail: string,
-            artistId: string,
-            worksTitle: string
-        }
+        ISpotlight,
+        ISpotlight,
+        ISpotlight,
+        ISpotlight
     ],
     followArtists: string[],
-    recommend: number[],
-    newReleace: number[],
-    runking: number[],
+    recommend: string[],
+    newReleace: string[],
+    runking: string[],
+}
+
+interface IWorksTop extends IWorkses {
+    isLoad: boolean
 }
 
 export interface IWorksTopState {
     worksTop: IWorksTop
 }
 
-const initialReduceWorksTopState: IWorksTopState = {
-    worksTop: {
-        followArtists: ['hoge', 'hoge', 'hoge', 'hoge'],
-        newReleace: [1,2,3,4,5,6,7],
-        recommend: [1,2,3,4,5,6,7],
-        runking: [1,2,3,4],
-        spotlight: [
-            {
-                artistId: 'hoge',
-                thumbnail: sampleImage,
-                worksId: 1,
-                worksTitle: 'hoge',
-            },
-            {
-                artistId: 'hoge',
-                thumbnail: sampleImage,
-                worksId: 1,
-                worksTitle: 'hoge',
-            },
-            {
-                artistId: 'hoge',
-                thumbnail: sampleImage,
-                worksId: 1,
-                worksTitle: 'hoge',
-            },
-            {
-                artistId: 'hoge',
-                thumbnail: sampleImage,
-                worksId: 1,
-                worksTitle: 'hoge',
-            },
-        ],
-    }
+const initialReduceWorksTopState: IWorksTop = {
+    followArtists: new Array(),
+    isLoad: false,
+    newReleace: new Array(),
+    recommend: new Array(),
+    runking: new Array(),
+    spotlight: [
+        {
+            artistId: '',
+            thumbnail: '',
+            worksId: '',
+            worksTitle: '',
+        },
+        {
+            artistId: '',
+            thumbnail: '',
+            worksId: '',
+            worksTitle: '',
+        },
+        {
+            artistId: '',
+            thumbnail: '',
+            worksId: '',
+            worksTitle: '',
+        },
+        {
+            artistId: '',
+            thumbnail: '',
+            worksId: '',
+            worksTitle: '',
+        },
+    ],
 }
 
 export default reducerWithInitialState(initialReduceWorksTopState)
-    .case(actions.successInitInfo, (state: IWorksTopState, payload): IWorksTopState => ({
+    .case(actions.requestGetWorksTopInfo, (state: IWorksTop): IWorksTop => ({
         ...state,
-        worksTop: payload
+        isLoad: true,
+    }))
+    .case(actions.successGetWorksTopInfo, (state: IWorksTop, payload): IWorksTop => ({
+        ...state,
+        ...payload,
+        isLoad: false,
+    }))
+    .case(actions.faildGetWorksTopInfo, (state: IWorksTop): IWorksTop => ({
+        ...state,
+        isLoad: false,
     }))
     .build()
