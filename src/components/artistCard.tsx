@@ -140,7 +140,7 @@ export class ArtistCard extends React.Component<IProps, IState> {
                         width={this.props.size}
                         alt="ArtistIcon"
                         loader={this.renderLoader()}
-                        unloader={<FontAwesomeIcon style={{width: '30px', height: '30px'}} icon={faUserCircle} />}
+                        unloader={<FontAwesomeIcon style={{fontSize: this.props.size+'px'}} icon={faUserCircle} />}
                     />
                 </Styled.ArtistCard>
                 {this.props.nameHidden ? null : <Styled.Name itemProp={this.props.color}>{this.props.artistId}</Styled.Name>}
