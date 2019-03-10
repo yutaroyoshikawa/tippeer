@@ -130,7 +130,7 @@ export function getArtistDetails(Id: string){
     return new Promise( async (resolve, reject) => {
         const collection = await firestore().collection('users')
         const query = await collection.where("id", "==", Id).where("account_type", "==", "artist")
-        let artist: any = await {}
+        let artist: any = {}
         await query.get().then((doc) => (
             doc.forEach((data) => {
                 artist = data.data()
