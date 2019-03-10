@@ -19,6 +19,8 @@
     "dateformat": "^3.0.3",
     "deck.gl": "^6.4.0",
     "firebase": "^5.7.2",
+    "geolocation": "^0.2.0",
+    "google-maps": "^3.3.0",
     "howler": "^2.1.1",
     "immutable": "^4.0.0-rc.12",
     "jsqr": "^1.2.0",

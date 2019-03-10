@@ -29,6 +29,7 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
     public componentDidMount() {
         this.props.dispatch(actions.getAgentInfo())
         this.props.dispatch(requestLogin())
+        this.props.dispatch(actions.requestGetGeoLocation())
         // window.addEventListener('scroll', e => {
         //     this.setState({
         //         currentPosition: 
@@ -73,13 +74,6 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
             </Styled.DeskTopMemu>
     )
 
-    public renderMobileMenu = () => (
-        this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
-            <MobileMenu />
-            :
-            null
-    )
-
     public render() {
         return (
             <Styled.Entire>
@@ -90,9 +84,14 @@ export default class GlobalMenu extends React.Component<IProps, {}> {
                         </Styled.TopGlobalMenu>
                     }
                 </Motion>
-                <Styled.BottomGlobalMenu>
-                    {this.renderMobileMenu()}
-                </Styled.BottomGlobalMenu>
+                {
+                    this.props.globalMenu.agent === 'mobile' || this.props.globalMenu.agent === 'tablet' ?
+                        <Styled.BottomGlobalMenu>
+                            <MobileMenu />
+                        </Styled.BottomGlobalMenu>
+                        :
+                        null
+                }
             </Styled.Entire>
 
         )
