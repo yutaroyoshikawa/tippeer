@@ -30,4 +30,4 @@ export const registRequestAlert     = actionCreator('REGIST_REQUEST_ALERT')
 
 export const resetAuthState         = actionCreator('RESET_AUTH_STATE')
 
-export const setUserInfo            = actionCreator<{id: string, userType: userType}>('SET_USER_INFO')
+export const setUserInfo            = actionCreator<{id: string, userType: userType, following: string[]}>('SET_USER_INFO')

@@ -7,6 +7,7 @@ export type userType = 'user' | 'artist' | 'admin'
 interface IAuth {
     displayName: string | null
     email: string | null
+    following: string[]
     photoURL: string | null
     emailVerified: boolean | null
     uid: string
@@ -26,6 +27,7 @@ const initialReduceAuthState: IAuth = {
     displayName: null,
     email: null,
     emailVerified: null,
+    following: new Array(),
     hideAuth: true,
     id: '',
     isSignedIn: false,

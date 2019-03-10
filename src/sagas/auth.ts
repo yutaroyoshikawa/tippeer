@@ -13,6 +13,7 @@ function* getUseradditionalInfo(): SagaIterator {
         const doc = yield call(firebaseSaga.firestore.getDocument, 'users/' + uid)
         yield put(actions.setUserInfo(
             {
+                following: doc.data().following,
                 id: doc.data().id,
                 userType: doc.data().user_type,
             }
