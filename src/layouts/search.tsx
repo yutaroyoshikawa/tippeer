@@ -97,7 +97,10 @@ export default class extends React.Component<IProps, {}> {
                     <Link to={"/works/" + hits.hit.objectID} onClick={this.pushHistory.bind(this,)} >
                         <Works.WorksName>{hits.hit.name}</Works.WorksName>
                     </Link>
-                    <Works.Price><PriceCard type={'circle'} price={hits.hit.price} size={80} /></Works.Price>
+                    <p>
+                        {hits.hit.artist_id}
+                    </p>
+                    <Works.Price><PriceCard type={'circle'} price={hits.hit.entire_price} size={80} /></Works.Price>
                 </Works.WorksInfo>
             </Works.Entire>
             :
