@@ -71,7 +71,7 @@ export const CroppedButtonArea = styled.div`
         bottom: 100px;
     }
     @media screen and (max-width: 480px){
-        bottom: 80px;
+        bottom: 100px;
     }
     color: white;
     position: absolute;
@@ -79,5 +79,5 @@ export const CroppedButtonArea = styled.div`
     width: 100vw;
     display: flex;
     justify-content: center;
-    z-index: 21;
+    z-index: 2100;
 `

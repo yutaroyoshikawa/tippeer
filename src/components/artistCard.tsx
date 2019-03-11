@@ -115,9 +115,9 @@ export class ArtistCard extends React.Component<IProps, IState> {
     }
 
     public renderLoader = () => (
-        <div style={{ width: this.props.size + 'px', height: this.props.size + 'px', background: 'black', borderRadius: '50%', color: "white", }}>
+        <p style={{ width: this.props.size + 'px', height: this.props.size + 'px', background: 'black', borderRadius: '50%', color: "white", display: 'block'}}>
             loading...
-        </div>
+        </p>
     )
 
     public renderCard = () => (

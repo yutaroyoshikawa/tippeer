@@ -1,7 +1,6 @@
 import jsQR from 'jsqr'
 import * as React from 'react'
 import QrReader from 'react-qr-reader'
-import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import * as actions from '../actions/tipping'
 import { ITippingState } from '../reducers/tipping'
@@ -94,8 +93,8 @@ export default class extends React.Component<IProps, {}> {
         return (
             <Styled.Section>
                 {this.renderScaner()}
-                {this.renderLoader()}
-                <Link to="tipping/m6SBwnNc0sqRGp8jJJtzT">リンク</Link>
+                {/* {this.renderLoader()} */}
+                <p>対応していないクライアントです。ブラウザ版をご使用ください。</p>
             </Styled.Section>
         )
     }

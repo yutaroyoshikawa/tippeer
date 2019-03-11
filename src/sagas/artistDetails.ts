@@ -181,29 +181,40 @@ function* followArtist(): SagaIterator {
         const state = yield select()
         const userUId = state.auth.uid
         const artistUId: string = state.artistDetails.uid
-        try{
-            yield call(
-                firebaseSaga.firestore.updateDocument,
-                'users/' + artistUId,
-                'follower',
-                firestore.FieldValue.arrayUnion(userUId)
-            )
-            yield call(
-                firebaseSaga.firestore.updateDocument,
-                'users/' + userUId,
-                'following',
-                firestore.FieldValue.arrayUnion(artistUId)
-            )
-            yield put(actions.successSubscribe())
-            yield put(notifications.success(
+        if(userUId){
+            try{
+                yield call(
+                    firebaseSaga.firestore.updateDocument,
+                    'users/' + artistUId,
+                    'follower',
+                    firestore.FieldValue.arrayUnion(userUId)
+                )
+                yield call(
+                    firebaseSaga.firestore.updateDocument,
+                    'users/' + userUId,
+                    'following',
+                    firestore.FieldValue.arrayUnion(artistUId)
+                )
+                yield put(actions.successSubscribe())
+                yield put(notifications.success(
+                    {
+                        autoDismiss: 5,
+                        message: 'フォローしました。',
+                        position: 'tr',
+                    }
+                ))
+            }catch(e) {
+                yield put(actions.faildFollow(e))
+            }
+        }else {
+            yield put(notifications.error(
                 {
                     autoDismiss: 5,
-                    message: 'フォローしました。',
+                    message: 'ログインしてください。',
                     position: 'tr',
                 }
             ))
-        }catch(e) {
-            yield put(actions.faildFollow(e))
+            yield put(actions.faildFollow('doesnt login'))
         }
     }
 }
@@ -247,29 +258,40 @@ function* notifyArtist(): SagaIterator {
         const state = yield select()
         const userUId = state.auth.uid
         const artistUId: string = state.artistDetails.uid
-        try{
-            yield call(
-                firebaseSaga.firestore.updateDocument,
-                'users/' + artistUId,
-                'notified_users',
-                firestore.FieldValue.arrayUnion(userUId)
-            )
-            yield call(
-                firebaseSaga.firestore.updateDocument,
-                'users/' + userUId,
-                'notifying',
-                firestore.FieldValue.arrayUnion(artistUId)
-            )
-            yield put(actions.successNotify())
-            yield put(notifications.success(
+        if(userUId){
+            try{
+                yield call(
+                    firebaseSaga.firestore.updateDocument,
+                    'users/' + artistUId,
+                    'notified_users',
+                    firestore.FieldValue.arrayUnion(userUId)
+                )
+                yield call(
+                    firebaseSaga.firestore.updateDocument,
+                    'users/' + userUId,
+                    'notifying',
+                    firestore.FieldValue.arrayUnion(artistUId)
+                )
+                yield put(actions.successNotify())
+                yield put(notifications.success(
+                    {
+                        autoDismiss: 5,
+                        message: '通知設定しました。',
+                        position: 'tr',
+                    }
+                ))
+            }catch(e) {
+                yield put(actions.faildNotify(e))
+            }
+        }else{
+            yield put(notifications.error(
                 {
                     autoDismiss: 5,
-                    message: '通知設定しました。',
+                    message: 'ログインしてください。',
                     position: 'tr',
                 }
             ))
-        }catch(e) {
-            yield put(actions.faildNotify(e))
+            yield put(actions.faildNotify())
         }
     }
 }

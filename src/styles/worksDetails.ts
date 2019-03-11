@@ -8,7 +8,9 @@ export const Entire = styled.section`
     position: absolute;
     top: 0;
     width: 100vw;
-
+    @media screen and (max-width: 480px){
+        margin: 80px 0;
+    }
     &::before {
         content: '';
         width: 100%;

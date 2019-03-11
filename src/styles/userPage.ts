@@ -75,7 +75,7 @@ export const MenuLink = styled(Link)`
 `
 
 export const PlaceInfo = styled.div`
-    height: ${props => props.itemProp === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 100px)'};
+    height: ${props => props.itemProp === 'undefined' ? 'calc(100vh - 50px)' : 'calc(100vh - 120px)'};
     position: absolute;
     right: 0;
     display: flex;
@@ -221,6 +221,8 @@ export const LoadingImage = styled.div`
 export const mapPinZone = styled.div`
     width: 200px;
     height: 200px;
+    border: solid 1px #FFF;
+    border-radius: 50%;
     display: flex;
     color: #FFF;
     justify-content: center;

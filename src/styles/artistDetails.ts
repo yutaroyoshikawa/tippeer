@@ -29,6 +29,7 @@ export const TopSection = styled.section`
     @media screen and (max-width: 480px){
         height: 43vh;
         margin-bottom: 20px;
+        margin-top: 50px;
     }
 `
 
@@ -43,10 +44,11 @@ export const ArtistInfo = styled.div`
     }
     @media screen and (max-width: 480px){
         background: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 43vh;
         color: #FFF;
-        width: 90%;
+        padding: 0 5%;
         height: 40vh;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -391,10 +393,6 @@ export const PerformanceDescription = styled.p`
     }
     @media screen and (max-width: 480px){
         margin: 15px 0;
-        height: 50px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
     }
 `
 
