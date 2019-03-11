@@ -1,12 +1,14 @@
-import { faBell, faComments, faHistory, faPaintBrush, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faComments, faHistory, faPaintBrush, faStar, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { Card, CardContent, Fab, TextField } from '@material-ui/core'
 import * as dateformat from 'dateformat'
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 import { Dispatch } from 'redux'
 import * as actions from '../actions/artistDetails'
 import { setCommentType } from '../actions/commentBox'
 import { setMobileMenuState } from '../actions/mobileMenu'
-import { ArticleTitle, ArtistCard, CommentBox, CommentList, PerformanceCard } from '../components'
+import { ArticleTitle, ArtistCard, CommentBox, CommentList, PerformanceCard, WorksCard } from '../components'
 import { IArtistDetailsState } from '../reducers/artistDetails'
 import { NotFound } from './'
 
@@ -24,6 +26,7 @@ export interface IProps extends IArtistDetailsState {
 interface IState {
     offerBoxState: boolean
     biographyState: boolean
+    worksState: boolean
 }
 
 export default class extends React.Component<IProps, IState> {
@@ -33,6 +36,7 @@ export default class extends React.Component<IProps, IState> {
         this.state={
             biographyState: false,
             offerBoxState: false,
+            worksState: false,
         }
     }
 
@@ -57,10 +61,70 @@ export default class extends React.Component<IProps, IState> {
     public renderOfferBox = () => (
         this.state.offerBoxState ?
         <Styled.ClickBox>
-            <ArticleTitle title={'オファー'} color={'light'} />
-            <form>
-                <textarea cols={30} rows={10} />
-            </form>
+            <Styled.Title>
+                <ArticleTitle title={'オファー'} color={'light'} />
+            </Styled.Title>
+            <button onClick={this.setOfferboxState}>
+                <Styled.Closer icon={faTimesCircle} />
+            </button>
+            <Styled.Timeline>
+                <Card style={{ width: '300px' }}>
+                    <CardContent>
+                        <TextField
+                            placeholder="文章を入力"
+                            multiline={true}
+                            rows={2}
+                            rowsMax={4}
+                            variant="outlined"
+                            style={{width: '100%'}}
+                        />
+                        <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
+                            <Fab
+                                color="secondary"
+                                variant="extended"
+                            >
+                                送信
+                            </Fab>
+                        </div>
+                    </CardContent>
+                </Card>
+            </Styled.Timeline>
+        </Styled.ClickBox>
+        :
+        null
+    )
+
+    public renderWorks = () => (
+        this.state.worksState ?
+        <Styled.ClickBox>
+            <Styled.Title>
+                <ArticleTitle title="Works" color="dark" />
+            </Styled.Title>
+            <button onClick={this.setWorksState}>
+                <Styled.Closer icon={faTimesCircle} />
+            </button>
+            <Styled.List>
+                <Styled.Card itemProp="0">
+                    <WorksCard
+                        worksId="NgSLFZbF5ovpJfgi9hA7L"
+                    />
+                </Styled.Card>
+                <Styled.Card itemProp="100">
+                    <WorksCard
+                        worksId="W3lkVwKPCt008xfRAI8Bn"
+                    />
+                </Styled.Card>
+                <Styled.Card itemProp="200">
+                    <WorksCard
+                        worksId="sP0_0HyBrLtQsJdt2AC8j"
+                    />
+                </Styled.Card>
+                <Styled.Card itemProp="300">
+                    <WorksCard
+                        worksId="wctQqO3E1EmEU2yhJshKA"
+                    />
+                </Styled.Card>
+            </Styled.List>
         </Styled.ClickBox>
         :
         null
@@ -69,18 +133,121 @@ export default class extends React.Component<IProps, IState> {
     public renderBiographyBox = () => (
         this.state.biographyState ?
         <Styled.ClickBox>
-            <ArticleTitle title={'バイオグラフィー'} color={'light'} />
+            <Styled.Title>
+                <ArticleTitle title={'バイオグラフィー'} color={'dark'} />
+            </Styled.Title>
+            <button onClick={this.setBiographyState}>
+                <Styled.Closer icon={faTimesCircle} />
+            </button>
+            
+            <Styled.Timeline>
+                <VerticalTimeline>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    date="2011 - present"
+                    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Creative Director</h3>
+                    <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+                    <p>
+                    Creative Direction, User Experience, Visual Design, Project Management, Team Leading
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    date="2010 - 2011"
+                    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Art Director</h3>
+                    <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
+                    <p>
+                    Creative Direction, User Experience, Visual Design, SEO, Online Marketing
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    date="2008 - 2010"
+                    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Web Designer</h3>
+                    <h4 className="vertical-timeline-element-subtitle">Los Angeles, CA</h4>
+                    <p>
+                    User Experience, Visual Design
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    date="2006 - 2008"
+                    iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Web Designer</h3>
+                    <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
+                    <p>
+                    User Experience, Visual Design
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--education"
+                    date="April 2013"
+                    iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Content Marketing for Web, Mobile and Social Media</h3>
+                    <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
+                    <p>
+                    Strategy, Social Media
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--education"
+                    date="November 2012"
+                    iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Agile Development Scrum Master</h3>
+                    <h4 className="vertical-timeline-element-subtitle">Certification</h4>
+                    <p>
+                    Creative Direction, User Experience, Visual Design
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--education"
+                    date="2002 - 2006"
+                    iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+                    icon={<div />}
+                >
+                    <h3 className="vertical-timeline-element-title">Bachelor of Science in Interactive Digital Media Visual Imaging</h3>
+                    <h4 className="vertical-timeline-element-subtitle">Bachelor Degree</h4>
+                    <p>
+                    Creative Direction, Visual Design
+                    </p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                    iconStyle={{ background: 'rgb(16, 204, 82)', color: '#fff' }}
+                    icon={<div />}
+                />
+                </VerticalTimeline>
+            </Styled.Timeline>
+
         </Styled.ClickBox>
         :
         null
     )
 
     public setOfferboxState = () => {
-        this.setState({offerBoxState: this.state.offerBoxState ? false : true, biographyState: false})
+        this.setState({offerBoxState: this.state.offerBoxState ? false : true, biographyState: false, worksState: false})
     }
 
     public setBiographyState = () => {
-        this.setState({biographyState: this.state.biographyState ? false : true, offerBoxState: false})
+        this.setState({biographyState: this.state.biographyState ? false : true, offerBoxState: false, worksState: false})
+    }
+
+    public setWorksState = () => {
+        this.setState({worksState: this.state.worksState ? false : true, offerBoxState: false, biographyState: false})
     }
 
     public render() {
@@ -118,9 +285,14 @@ export default class extends React.Component<IProps, IState> {
                                     }
                                     disabled={this.props.artistDetails.isLoadFollow}
                                 >
-                            <Styled.MarkColor
-                                itemScope={this.props.artistDetails.subscribeState}
-                            ><Styled.RegistrationMark icon={faStar}/></Styled.MarkColor><span>登録</span></button></Styled.UsuallyButton>
+                                    <Styled.MarkColor
+                                        itemScope={this.props.artistDetails.subscribeState}
+                                    >
+                                        <Styled.RegistrationMark icon={faStar}/>
+                                    </Styled.MarkColor>
+                                    <span>フォロー</span>
+                                </button>
+                            </Styled.UsuallyButton>
                             <Styled.UsuallyButton>
                                 <button
                                     onClick={
@@ -134,12 +306,13 @@ export default class extends React.Component<IProps, IState> {
                                     disabled={this.props.artistDetails.isLoadNotify}
                                 >
                             <Styled.MarkColor itemScope={this.props.artistDetails.notifyState} ><Styled.RegistrationMark icon={faBell} /></Styled.MarkColor><span>通知</span></button></Styled.UsuallyButton>
-                            <Styled.UsuallyButton><button><Link to={'/artists/' + this.props.match.params.artistId + '/works'}><Styled.LinkMark icon={faPaintBrush} /><span>作品</span></Link></button></Styled.UsuallyButton>
-                            <Styled.OfferButton><button onClick={this.setOfferboxState.bind(this,)}><Styled.LinkMark icon={faComments} /><span>オファー</span></button></Styled.OfferButton>
-                            <Styled.BiographyButton><button onClick={this.setBiographyState.bind(this,)}><Styled.LinkMark icon={faHistory} /><span>バイオグラフィー</span></button></Styled.BiographyButton>
+                            <Styled.UsuallyButton><button onClick={this.setWorksState}><Styled.LinkMark icon={faPaintBrush} /><span>作品</span></button></Styled.UsuallyButton>
+                            <Styled.OfferButton><button onClick={this.setOfferboxState}><Styled.LinkMark icon={faComments} /><span>オファー</span></button></Styled.OfferButton>
+                            <Styled.BiographyButton><button onClick={this.setBiographyState}><Styled.LinkMark icon={faHistory} /><span>バイオグラフィー</span></button></Styled.BiographyButton>
                         </Styled.FunctionList> 
                         {this.renderOfferBox()}
                         {this.renderBiographyBox()}
+                        {this.renderWorks()}
                     </Styled.TopSection>
                     
                     <Styled.RecentPerformanceSection>

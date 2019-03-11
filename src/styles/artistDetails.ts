@@ -1,5 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styled, { createGlobalStyle } from './styled-components'
+import styled, { createGlobalStyle, keyframes } from './styled-components'
+
+const slideIn = keyframes`
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+`
 
 export const GlobalStyle = createGlobalStyle`
     body {
@@ -138,7 +148,7 @@ export const FunctionList = styled.ul`
 
 export const UsuallyButton = styled.li`
     @media screen and (min-width: 1024px){
-        width: 40px;
+        width: 65px;
     }
     @media screen and (max-width: 480px){
         width: 50px;
@@ -222,25 +232,69 @@ export const MarkColor = styled.div`
 `
 
 export const ClickBox = styled.div`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    background-filter: blur(30px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+`
+
+export const Timeline = styled.div`
+    overflow-y: scroll;
+    webkit-overflow-scrolling: touch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @media screen and (min-width: 1024px){
-        width: 1020px;
-        height: 500px;
-        margin: -250px 0 0 -510px;
-        padding: 20px;
-        border-radius: 20px;
+        width: 50vw;
+        min-width: 1024px;
+        max-width: 50vw;
+        height: 100vh;
+        min-height: 500px;
+        max-height: 100vh;
     }
     @media screen and (max-width: 480px){
-        width: 95vw;
-        height: 95vw;
-        margin: -47.5vw 0 0 -47.5vw;
-        padding: 10px;
-        border-radius: 10px;
+        width: 90vw;
+        height: 80vh;
+        min-height: 400px;
+        max-height: 80vh;
     }
+`
+
+export const Title = styled.div`
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: #FFF;
+`
+
+export const Closer = styled(FontAwesomeIcon)`
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    color: #FFF;
+    @media screen and (min-width: 1024px){
+        font-size: 50px;
+    }
+    @media screen and (max-width: 480px){
+        font-size: 30px;
+    }
+`
+
+export const List = styled.ul`
+    display: flex;
+    list-style: none;
+`
+
+export const Card = styled.li`
+    margin: 0 50px;
+    transform: translateX(100vw);
+    animation: ${slideIn} 500ms ease ${props => props.itemProp}ms 1 forwards;
 `
 
 export const RecentPerformanceSection = styled.section`

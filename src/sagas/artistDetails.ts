@@ -54,7 +54,7 @@ function* doSetRecentPerformance(): SagaIterator {
                 recentPerform = {
                     address: perform.address,
                     comments: perform.comments,
-                    description: perform.description,
+                    description: perform.discription,
                     finish: perform.finish.toDate(),
                     id: perform.id,
                     placeName: perform.place_name,
