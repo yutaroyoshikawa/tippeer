@@ -1,4 +1,4 @@
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faMapPin, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import * as d3Ease from 'd3-ease'
 import * as dateformat from 'dateformat'
@@ -6,8 +6,8 @@ import { fromJS } from 'immutable';
 import * as mapbox from 'mapbox-gl'
 import * as React from 'react'
 import MapGL, * as map from 'react-map-gl'
+import { Marker } from 'react-map-gl'
 import { Link } from 'react-router-dom'
-// import { Marker } from 'react-map-gl'
 import ShuffleText from 'react-shuffle-text'
 import { Dispatch } from 'redux'
 import { setMobileMenuState } from '../actions/mobileMenu'
@@ -27,6 +27,8 @@ if (process.env.REACT_APP_MAPBOX_ACCESS_TOKEN) {
 }
 
 export default class extends React.Component<IProps, {}> {
+    private mapGLRef: MapGL | null
+
     constructor(props: IProps) {
         super(props)
     }
@@ -37,6 +39,12 @@ export default class extends React.Component<IProps, {}> {
         }
         this.props.dispatch(userPageActions.playEffect())
         this.props.dispatch(userPageActions.requestGetRealPerformance())
+        if(this.mapGLRef){
+            const reactMap = this.mapGLRef.getMap()
+            reactMap.on('load', () => 
+                reactMap.addLayer(this.mapStyle())
+            )
+        }
     }
 
     public componentWillUnmount = () => {
@@ -69,14 +77,6 @@ export default class extends React.Component<IProps, {}> {
             'source-layer': 'building',
             'type': 'fill-extrusion',
         })
-    )
-
-    public hexagonLayer = () => (
-        fromJS(
-            [
-                {COORDINATES: [35.3750655, 139.4633761]}
-            ]
-        )
     )
 
     public onTransitionEnd = () => {
@@ -219,7 +219,23 @@ export default class extends React.Component<IProps, {}> {
             doubleClickZoom={false}
             dragRotate={false}
             scrollZoom={false}
-        />
+            ref={reactMap => this.mapGLRef = reactMap}
+        >
+            {
+                this.props.userPage.initialMapPerformances.map(perform => 
+                    <Marker
+                        key={perform.performanceId}
+                        latitude={perform.latitude}
+                        longitude={perform.longitude}
+                    >
+                        <Styled.mapPinZone>
+                            <Styled.mapPinName>{perform.performanceName}</Styled.mapPinName>
+                            <Styled.mapPinIcon icon={faMapPin} />
+                        </Styled.mapPinZone>
+                    </Marker>
+                )
+            }
+        </MapGL>
     )
 
     public renderLoadingThumb = () => (

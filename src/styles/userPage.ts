@@ -213,6 +213,26 @@ export const LoadingImage = styled.div`
     }
     @media screen and (max-width: 480px){
         width: 50vw;
+        height: 50vw;
     }
     background-color: #FFF;
+`
+
+export const mapPinZone = styled.div`
+    width: 200px;
+    height: 200px;
+    display: flex;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+`
+
+export const mapPinName = styled.p`
+    font-size: 30px;
+`
+
+export const mapPinIcon = styled(FontAwesomeIcon)`
+    font-size: 40px;
 `
